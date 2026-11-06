@@ -4,7 +4,7 @@
   const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const targets = new Set(document.querySelectorAll(
-    '.about-copy > *, .about-block, .resume-section-head, .resume-column-heading, '
+    '.about-copy > *, .about-egg-story, .about-block, .resume-section-head, .resume-column-heading, '
     + '.internship, .activity, .skill-group'
   ));
   const animations = new Map();

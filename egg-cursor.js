@@ -18,7 +18,7 @@
   let x = 0, y = 0, desiredX = 0, desiredY = 0;
 
   const position = () => {
-    cursor.style.transform = `translate3d(${x - 40}px,${y - 40}px,0)`;
+    cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
   };
   const tick = () => {
     frame = 0;

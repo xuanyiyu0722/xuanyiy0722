@@ -93,10 +93,18 @@
 
 .home-page .hero-note .crack-invitation { color:#fdd957; }
 
+/* The transparent hit area stays still while only the EGG drawing leans. */
+.home-page .hero-poster .poster-egg-anchor{opacity:0;}
+.home-page .hero-poster .poster-egg-hover{pointer-events:all;cursor:default;}
+.home-page .hero-poster .poster-egg-hit{fill:transparent;pointer-events:all;}
+.home-page .hero-poster .poster-egg-motion{transform-box:fill-box;transform-origin:center bottom;pointer-events:none;}
+.home-page .hero-poster .poster-egg-copy{fill:#111210;pointer-events:none;}
+@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){.home-page .hero-poster .poster-egg-hover,.home-page .hero-poster .poster-egg-hit{pointer-events:none;}}
+
 /* Action feedback is decorative; the native egg buttons remain the click targets. */
-.egg-crack-cursor{position:fixed;left:0;top:0;z-index:1000;width:80px;height:80px;pointer-events:none;user-select:none;opacity:0;transition:opacity 140ms ease;}
+.egg-crack-cursor{position:fixed;left:0;top:0;z-index:1000;width:56px;height:56px;pointer-events:none;user-select:none;opacity:0;transition:opacity 140ms ease;}
 .egg-crack-cursor.is-visible{opacity:1;}
-.egg-crack-cursor__disc{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:#fdd957;color:#423c30;font-family:var(--font-heading);font-size:16px;font-weight:700;line-height:1;letter-spacing:0;transform:scale(.76);transition:transform 200ms var(--ease);}
+.egg-crack-cursor__disc{display:grid;place-items:center;width:100%;height:100%;clip-path:polygon(50.00% 0.00%,58.19% 8.81%,69.13% 3.81%,73.33% 15.08%,85.36% 14.64%,84.92% 26.67%,96.19% 30.87%,91.19% 41.81%,100.00% 50.00%,91.19% 58.19%,96.19% 69.13%,84.92% 73.33%,85.36% 85.36%,73.33% 84.92%,69.13% 96.19%,58.19% 91.19%,50.00% 100.00%,41.81% 91.19%,30.87% 96.19%,26.67% 84.92%,14.64% 85.36%,15.08% 73.33%,3.81% 69.13%,8.81% 58.19%,0.00% 50.00%,8.81% 41.81%,3.81% 30.87%,15.08% 26.67%,14.64% 14.64%,26.67% 15.08%,30.87% 3.81%,41.81% 8.81%);background:#fdd957;color:#423c30;font-family:var(--font-heading);font-size:14px;font-weight:700;line-height:1;letter-spacing:0;transform:scale(.76);transition:transform 200ms var(--ease);}
 .egg-crack-cursor.is-visible .egg-crack-cursor__disc{transform:scale(1);}
 .egg-crack-cursor.is-pressed .egg-crack-cursor__disc{transform:scale(.9);}
 @media(hover:hover) and (pointer:fine){

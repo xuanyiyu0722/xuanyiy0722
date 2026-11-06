@@ -10,6 +10,13 @@
   let lenis = null;
   let printing = false;
   const advance = ({ timestamp }) => lenis?.raf(timestamp);
+  window.PortfolioGalleryScroll = Object.freeze({
+    to(top, { immediate = false } = {}) {
+      if (!Number.isFinite(top)) return;
+      if (lenis) lenis.scrollTo(top, { immediate, force:true });
+      else window.scrollTo({ top, behavior:immediate || reduce.matches ? 'instant' : 'smooth' });
+    }
+  });
   const clearEffects = () => {
     cancelScroll.forEach(cancel => cancel());
     cancelScroll = [];
