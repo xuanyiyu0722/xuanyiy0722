@@ -1,0 +1,14 @@
+.viewer-open{overflow:hidden;}
+.image-viewer{width:calc(100vw - 32px);height:calc(100dvh - 32px);max-width:1500px;max-height:none;padding:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);}
+.image-viewer::backdrop{background:#1119;backdrop-filter:blur(5px);}
+.image-viewer[open]{display:flex;flex-direction:column;}
+.image-viewer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border-bottom:1px solid var(--line);}
+.image-viewer-title{font-size:14px;line-height:1.3;margin:0;}
+.image-viewer-actions{display:flex;align-items:center;gap:8px;}
+.image-viewer-actions button{border:1px solid var(--line);background:transparent;color:inherit;border-radius:3px;min-height:32px;min-width:34px;cursor:pointer;font:inherit;font-size:13px;}
+.image-viewer-actions button:disabled{opacity:.35;cursor:default;}
+.image-viewer-actions output{font-size:11px;min-width:38px;text-align:center;}
+.image-viewer-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:24px;touch-action:pan-x pan-y;}
+.image-viewer-scroll img{max-width:none;width:100%;height:auto;display:block;margin-inline:auto;user-select:none;-webkit-user-drag:none;}
+.image-viewer-scroll.is-zoomed{cursor:grab;}
+.image-viewer-scroll.is-dragging{cursor:grabbing;}

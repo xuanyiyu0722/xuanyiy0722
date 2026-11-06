@@ -1,0 +1,39 @@
+/* Frame 10425 / 10426 continue the established case-study typography and spacing. */
+.ep-app-logo{background:#442f24;color:#f6f1ee;border-bottom:1px solid #795743;}
+.ep-app-logo .ep-eyebrow,.ep-future-exploration .ep-eyebrow{color:#dcb89c;}
+.ep-logo-concept{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:70px;align-items:center;}
+.ep-logo-concept figure{margin:0;max-width:310px;justify-self:center;width:100%;}
+.ep-logo-concept figure img{display:block;width:100%;height:auto;border:0;background:transparent;box-shadow:none;}
+.ep-logo-copy{max-width:650px;}.ep-logo-copy h3{font-family:var(--font-heading);font-size:30px;line-height:1.3;font-weight:400;margin:0 0 24px;}
+.ep-logo-copy>p{font-size:16px;line-height:1.85;color:#e6d8cf;margin:0 0 18px;}
+.ep-logo-copy dl{display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid #795743;margin:29px 0 0;padding-top:23px;}
+.ep-logo-copy dt{font-size:18px;line-height:1.4;color:#ffd5d0;margin-bottom:9px;}.ep-logo-copy dd{font-size:13px;line-height:1.75;color:#c5a99a;margin:0;}
+.ep-continuation-footer{display:flex;justify-content:flex-end;font-size:11px;line-height:1.6;margin-top:35px;}
+.ep-continuation-footer a{color:inherit;text-underline-offset:4px;opacity:.7;}
+.ep-app-logo .ep-continuation-footer,.ep-future-exploration .ep-continuation-footer{color:#dcb89c;}
+.ep-lifetime-figure{margin:0 0 34px;}.ep-lifetime-journey{font-family:Manrope,Arial,sans-serif;display:block;width:100%;height:auto;overflow:hidden;}
+.ep-journey-phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;border-top:1px solid #dfcbc0;padding-top:28px;}
+.ep-journey-phases article{min-width:0;}.ep-journey-phases article>span{font-size:10px;letter-spacing:.07em;color:#a18170;}
+.ep-journey-phases h3{font-size:22px;line-height:1.4;font-weight:400;margin:10px 0 20px;color:#442f24;}
+.ep-journey-phases ul{list-style:none;margin:0;padding:0;display:grid;gap:15px;}.ep-journey-phases li{font-size:13px;line-height:1.75;padding-left:17px;position:relative;color:#795c4f;}
+.ep-journey-phases li:before{content:"";position:absolute;width:6px;height:6px;border-radius:50%;top:9px;left:0;background:#ab7f65;}.ep-journey-phases .ep-journey-role-pet:before{background:#ec9c9e;}
+.ep-storyboard-figure{margin:0;}.ep-storyboard-figure img{display:block;width:100%;height:auto;border:0;border-radius:0;background:#fff;box-shadow:none;}
+.ep-storyboard-figure figcaption{font-size:11px;line-height:1.6;margin-top:16px;color:#947466;}
+.ep-story-transcript{margin-top:30px;border-top:1px solid #dfcbc0;border-bottom:1px solid #dfcbc0;}
+.ep-story-transcript summary{padding:20px 4px;font-size:17px;line-height:1.55;cursor:pointer;}.ep-story-transcript summary>span{font-size:11px;color:#a18170;margin-left:16px;white-space:nowrap;}
+.ep-story-transcript ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 33px;padding:5px 0 25px 27px;margin:0;}
+.ep-story-transcript li{padding-left:3px;min-width:0;font-size:13px;color:#ab7f65;}.ep-story-transcript h3{font-size:16px;line-height:1.5;font-weight:400;color:#442f24;margin:0 0 8px;}.ep-story-transcript p{font-size:13px;line-height:1.8;color:#795c4f;margin:0;}
+.ep-future-exploration{background:#442f24;color:#f6f1ee;}
+.ep-future-direction{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:55px;padding:10px 0 40px;}
+.ep-future-direction+.ep-future-direction{border-top:1px solid #795743;padding-top:42px;padding-bottom:0;}
+.ep-future-number{color:#c89e84;font-size:10px;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;margin:0 0 17px;}
+.ep-future-direction h3{display:flex;align-items:center;gap:12px;font-family:var(--font-heading);font-size:26px;font-weight:400;line-height:1.4;margin:0 0 23px;}
+.ep-future-icon{width:30px;height:30px;flex-shrink:0;overflow:visible;}
+.ep-future-direction>div>p:not(.ep-future-number){font-size:16px;line-height:1.85;color:#e6d8cf;margin:0 0 18px;}.ep-future-direction>div>p:last-child{margin-bottom:0;}
+.ep-future-direction figure{margin:0;min-width:0;}.ep-future-direction figure>a>svg{display:block;width:100%;height:auto;overflow:hidden;}
+.ep-future-direction figcaption{font-size:11px;line-height:1.8;color:#c5a99a;text-align:center;max-width:360px;margin:16px auto 0;}
+@media(max-width:1250px){.ep-logo-concept{gap:45px;}.ep-logo-concept figure{max-width:270px;}.ep-logo-copy h3{font-size:28px;}.ep-logo-copy>p{font-size:15px;}.ep-journey-phases{gap:24px;}.ep-journey-phases h3{font-size:20px;}.ep-future-direction{gap:35px;}.ep-future-direction h3{font-size:24px;}.ep-future-direction>div>p:not(.ep-future-number){font-size:15px;}}
+@media(max-width:1000px){.ep-logo-concept{grid-template-columns:1fr;gap:35px;}.ep-logo-concept figure{max-width:250px;}.ep-logo-copy{max-width:none;}.ep-journey-phases{grid-template-columns:1fr;gap:27px;}.ep-journey-phases ul{grid-template-columns:1fr 1fr;gap:12px 25px;}.ep-journey-phases h3{margin-bottom:16px;}.ep-story-transcript ol{grid-template-columns:1fr 1fr;}.ep-future-direction{grid-template-columns:1fr;gap:28px;}.ep-future-direction figure{width:100%;max-width:430px;justify-self:center;}}
+@media(max-width:640px){.ep-logo-concept{gap:28px;}.ep-logo-concept figure{max-width:225px;}.ep-logo-copy h3{font-size:27px;margin-bottom:20px;}.ep-logo-copy>p{font-size:16px;line-height:1.8;}.ep-logo-copy dl{gap:22px;margin-top:25px;padding-top:20px;}.ep-logo-copy dt{font-size:17px;}.ep-logo-copy dd{font-size:12px;}.ep-continuation-footer{margin-top:26px;font-size:10px;}.ep-lifetime-figure{margin-bottom:25px;}.ep-journey-phases{padding-top:24px;gap:25px;}.ep-journey-phases ul{grid-template-columns:1fr;gap:12px;}.ep-journey-phases li{font-size:14px;line-height:1.7;}.ep-journey-phases h3{font-size:23px;}.ep-storyboard-figure figcaption{font-size:10px;margin-top:13px;}.ep-story-transcript{margin-top:24px;}.ep-story-transcript summary{font-size:16px;line-height:1.7;padding:18px 0;}.ep-story-transcript summary>span{display:block;margin-left:18px;font-size:10px;}.ep-story-transcript ol{grid-template-columns:1fr;gap:23px;padding-left:23px;}.ep-story-transcript h3{font-size:17px;}.ep-story-transcript p{font-size:14px;}.ep-future-direction{gap:24px;padding-bottom:31px;}.ep-future-direction+.ep-future-direction{padding-top:31px;}.ep-future-direction h3{font-size:23px;gap:10px;margin-bottom:20px;}.ep-future-direction>div>p:not(.ep-future-number){font-size:16px;line-height:1.8;}.ep-future-icon{width:27px;height:27px;}.ep-future-direction figcaption{font-size:10px;max-width:290px;}.ep-future-direction figure{max-width:350px;}}
+/* Device viewports use Figma's native design coordinates inside the scaled map. */
+.ep-user-journey .ep-lifetime-journey>svg{width:202.861px;height:202.861px;}

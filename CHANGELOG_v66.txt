@@ -1,0 +1,7 @@
+v66 — Remove lower-page extras
+
+- Removed the copyright footer and its top divider from Home, Gallery, and About.
+- Removed the entire Selected Projects list below the Home hero.
+- Removed the now-unused project-list cursor script from the Home page.
+- Adjusted the Home mobile minimum height to avoid an empty strip after removing the lower sections.
+- Preserved the interactive carton, main navigation, Gallery grid, and project detail pages.

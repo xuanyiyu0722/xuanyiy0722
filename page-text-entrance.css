@@ -1,0 +1,8 @@
+.page-text-ready .text-arrival:not(.is-in-view) { opacity: 0; translate: 0 30px; }
+.page-text-ready .text-arrival.is-in-view { opacity: 1; translate: none; }
+@media (prefers-reduced-motion:reduce) {
+  .page-text-ready .text-arrival:not(.is-in-view) { opacity: 1; translate: none; }
+}
+@media print {
+  .page-text-ready .text-arrival:not(.is-in-view) { opacity: 1; translate: none; }
+}

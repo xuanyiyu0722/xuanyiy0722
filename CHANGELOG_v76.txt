@@ -1,0 +1,9 @@
+v76 — Sound effects, About details, and replaying entrances
+
+- Added Alicia's supplied egg-crack MP3 to the Home crack action and the navigation hatch interaction.
+- Added Huyml Work's referenced transition MP3 when Gallery changes to the next active work, with throttling and a shared mute control.
+- Removed the post-crack instruction and the small About / Alicia line.
+- Added the +86 contact number; both phone links now open the messaging app via sms: links.
+- Added a Behind the eggshell note explaining the online name 煎蛋 (“fried egg”).
+- Made About, project detail, and basic reveal animations reset outside the viewport and replay on re-entry.
+- Made the Home Crack one open invitation #FDD957.

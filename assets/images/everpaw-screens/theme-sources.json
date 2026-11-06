@@ -1,0 +1,31 @@
+{
+  "source": "theme-screens-original.png",
+  "sha256": "e994b80bd58da39447dd5ccabdc6c9c266fa87832a3cff0d687253d6fb2b6487",
+  "size": [
+    1528,
+    1525
+  ],
+  "method": "Original RGBA pixels are unchanged. Native SVG clipping follows the opaque phone silhouette and excludes the external translucent shadow. Original beige hardware and internal UI are preserved.",
+  "screens": {
+    "theme-profile": {
+      "viewport": [
+        393,
+        177,
+        477,
+        964
+      ],
+      "hardwareClipPoints": 167,
+      "frame": "original beige"
+    },
+    "theme-monitor": {
+      "viewport": [
+        923,
+        178,
+        477,
+        964
+      ],
+      "hardwareClipPoints": 154,
+      "frame": "original beige"
+    }
+  }
+}

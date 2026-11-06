@@ -1,0 +1,219 @@
+{
+  "version": 31,
+  "inputBoards": {
+    "function-brainstorm-original.png": {
+      "sha256": "e564247d89a37f08fd0e18da5bbfb16d27bf4a1f7a1bc8e15a27c5adee34d85b"
+    },
+    "design-system-original.png": {
+      "sha256": "b88e0b302957bf087a2b50d2c40e58de2e59a9daeac2c496a96342f89a348db1"
+    },
+    "future-roadmap-original.png": {
+      "sha256": "49ba44a56a637e1052cfa773769f4be8d27a54d64b6572ca9452dfb96ecc5b90"
+    },
+    "business-model-original.png": {
+      "sha256": "aaeb031c0fae885c8feb01242680d6392423e0c7216f81664cb8dc068c7e906f"
+    },
+    "cost-roadmap-business-original.png": {
+      "sha256": "1ccbf8b67558d9186b55ee06fc3b5eebc7fdb448ad40dc1d540bd552e58134dc"
+    },
+    "cost-original.png": {
+      "sha256": "fe4f7f444d20568f83de7817fb403c827eb27865a8a62bea1add12b7c20a0ad1"
+    },
+    "brainstorm-system-logo-original.png": {
+      "sha256": "72ee3475e851e9f21b689454ce4833d963cc1e27505e6b0cb93a3dbd5ce04406"
+    },
+    "app-logo-original.png": {
+      "sha256": "f22c1cbf291a18bc6604fb0746a65a4e356d4a6f5da5b6fc83f05e5c28cdb105"
+    }
+  },
+  "presentation": "Native HTML text, typography, color swatches, component specimens, cost bars, roadmap and business model. Original logo artwork uses a full-resolution SVG viewport. Source images are preserved without resampling.",
+  "functionBrainstorm": {
+    "categories": 6,
+    "ideas": 22,
+    "mainFunctions": 6,
+    "allSelected": 14,
+    "groups": [
+      [
+        "Access",
+        [
+          [
+            "App Unlock",
+            "main"
+          ],
+          [
+            "Temporary Access Code",
+            "selected"
+          ],
+          [
+            "Shared Permission Setting",
+            "selected"
+          ],
+          [
+            "Emergency Admin Unlock",
+            "idea"
+          ],
+          [
+            "Fingerprint Unlock",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Space Layout",
+        [
+          [
+            "Modular Locker Layout",
+            "main"
+          ],
+          [
+            "Available Space Check",
+            "selected"
+          ],
+          [
+            "Space Visualization",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Group Management",
+        [
+          [
+            "RA Dashboard",
+            "main"
+          ],
+          [
+            "Weekly Clean-up Reminder",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Hardware Interface",
+        [
+          [
+            "Small Screen on Each Locker",
+            "main"
+          ],
+          [
+            "Digital Name Tag",
+            "selected"
+          ],
+          [
+            "Main Touchscreen Panel",
+            "idea"
+          ],
+          [
+            "AI Food Recognition",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Storage",
+        [
+          [
+            "Personal Storage Compartment",
+            "main"
+          ],
+          [
+            "Adjustable Compartment Size",
+            "selected"
+          ],
+          [
+            "Unauthorized Access Alert",
+            "selected"
+          ],
+          [
+            "Access History",
+            "selected"
+          ]
+        ]
+      ],
+      [
+        "Food Freshness",
+        [
+          [
+            "Food Storage Date Record",
+            "main"
+          ],
+          [
+            "Expiration Reminder",
+            "selected"
+          ],
+          [
+            "Food Category Tag",
+            "idea"
+          ],
+          [
+            "Freshness Indicator",
+            "idea"
+          ]
+        ]
+      ]
+    ],
+    "presentation": "A centered circular composition. Six equal main circles are placed at 60-degree intervals at the same radius; supporting circles share a second radius, consistent diameters, typography and fixed label/icon slots. All 22 ideas and original priorities remain."
+  },
+  "designSystem": {
+    "colors": {
+      "Primary": "#3B5BFF",
+      "Primary Light": "#7B95FF",
+      "Primary Dark": "#2741E8",
+      "Primary Deep": "#1E2A78",
+      "Primary Soft": "#D8E3FF",
+      "Ink": "#0F1A3B",
+      "Ink Secondary": "#5A6A95",
+      "Warning": "#8A4B00"
+    },
+    "gradient": [
+      "#4F70FF",
+      "#2741E8"
+    ],
+    "typeStyles": 9,
+    "cardRadius": 22,
+    "fieldRadius": 16,
+    "transitionMs": 200,
+    "layout": "Typography, Color and Buttons in three horizontal columns; Forms & Status below the right columns; Cards & Navigation across the bottom. Responsive stacking on mobile."
+  },
+  "cost": {
+    "currency": "USD",
+    "componentsCents": {
+      "3.97″ E-Ink Display": 1900,
+      "Enclosure": 1300,
+      "12V Electronic Cabinet Lock": 200,
+      "ESP32 Development Board": 300,
+      "12V Battery Pack": 400,
+      "Solderless Breadboard": 30,
+      "MOSFET Driver Module": 60,
+      "Jumper Wiring": 10
+    },
+    "totalCents": 4200,
+    "chartAxisMaxCents": 2000,
+    "scaleTarget": [
+      30,
+      35
+    ]
+  },
+  "roadmap": {
+    "steps": 4,
+    "pilotWeeks": [
+      6,
+      8
+    ],
+    "pilotResidents": [
+      8,
+      12
+    ],
+    "metrics": 5
+  },
+  "businessModel": {
+    "hardwarePriceRange": [
+      40,
+      50
+    ],
+    "groupMonthlyPrice": 10,
+    "residentsPerGroupMax": 20,
+    "saleSteps": 3,
+    "revenueStreams": 5
+  }
+}

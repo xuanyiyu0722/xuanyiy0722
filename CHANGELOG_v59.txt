@@ -1,0 +1,12 @@
+v59 — 数字动画仅保留调研章节
+
+基于 v58 调整。
+
+- 移除 NABORFOOD High-Fidelity Experience Flow 屏幕内的数字递增动画。
+  屏幕重新渲染后，运动数据也保持直接显示原值。
+- 移除 FridgeKey Cost 章节中的成本数字动画，以及后面商业模式中的价格动画。
+- 将计数范围明确限制在前面的调研章节。
+  现保留 33 处：NABORFOOD 11、FridgeKey 7、EverPaw 12、MUSUBI 3。
+- 首页开场、标题渐显、手绘导航蛋的裂开与孵化交互继续使用 v58 的效果。
+
+代码变化：illustrated-motion.js 与七个页面的脚本缓存版本。

@@ -1,0 +1,8 @@
+v72 — Narrower sidebar and numbered project presentation
+
+- Narrowed the three main-page sidebars from 244 to 224px (200px on narrower desktops), with slightly tighter left/right padding.
+- Changed Alicia's name to #CEA68B and restored the four navigation rules without selection movement.
+- Centered the first Gallery cover vertically on page entry by removing the introduction from the content flow.
+- Set every cover frame to a 1000:700 ratio; original artwork and project destinations remain intact.
+- Added #1–#4, larger genuine Euclid Bold project titles overlapping the cover edge, and subtle hover zoom / opening arrow, with covers kept level and centered.
+- Preserved the Motion scroll fade and reduced-motion behavior, the Home poster fills, and the v67-style Home entrance.

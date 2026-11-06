@@ -1,0 +1,95 @@
+/* Lenis and Motion share the setup/read frame order from Motion's Lenis example. */
+(() => {
+  const cards = [...document.querySelectorAll('.gallery-project-card')];
+  if (!cards.length) return;
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  let cancelScroll = [];
+  let animations = [];
+  let resizeTimer;
+  let lenis = null;
+  let printing = false;
+  const advance = ({ timestamp }) => lenis?.raf(timestamp);
+  const clearEffects = () => {
+    cancelScroll.forEach(cancel => cancel());
+    cancelScroll = [];
+    animations.forEach(animation => {
+      if (typeof animation.cancel === 'function') animation.cancel();
+      else animation.stop?.();
+    });
+    animations = [];
+    root.classList.remove('gallery-scroll-linked');
+    delete root.dataset.galleryScrollEngine;
+    cards.forEach(card => {
+      card.style.removeProperty('opacity');
+      card.querySelector('.gallery-cover').style.removeProperty('transform');
+      card.querySelector('.gallery-cover').style.removeProperty('opacity');
+      card.querySelector('.gallery-project-number').style.removeProperty('transform');
+    });
+  };
+  const destroySmooth = () => {
+    window.Motion?.cancelFrame?.(advance);
+    lenis?.destroy();
+    lenis = null;
+    root.classList.remove('gallery-lenis-active');
+    delete root.dataset.gallerySmoothEngine;
+  };
+  const startSmooth = () => {
+    if (lenis || !window.Lenis || !window.Motion?.frame?.setup || !window.Motion?.cancelFrame) return;
+    try {
+      root.classList.add('gallery-lenis-active');
+      lenis = new Lenis({ autoRaf:false, lerp:0.1, smoothWheel:true, syncTouch:false, anchors:true });
+      Motion.frame.setup(advance, true);
+      root.dataset.gallerySmoothEngine = 'lenis';
+    } catch (error) {
+      destroySmooth();
+      console.warn('Gallery is using native scrolling.', error);
+    }
+  };
+  const setup = () => {
+    clearTimeout(resizeTimer);
+    clearEffects();
+    if (reduce.matches || printing) { destroySmooth(); return; }
+    if (!window.Motion) { destroySmooth(); return; }
+    startSmooth();
+    const { animate, scroll } = Motion;
+    try {
+      cards.forEach(card => {
+        const cover = card.querySelector('.gallery-cover');
+        const index = card.querySelector('.gallery-project-number');
+        const stage = card.closest('.gallery-project');
+        const tall = card.getBoundingClientRect().height >= innerHeight * .94;
+        const offset = tall
+          ? ['start end','center 60%','center 40%','end start']
+          : ['start end','end end','start start','end start'];
+        // The side information leads; the cover reaches full opacity a little later.
+        const coverOffset = tall
+          ? ['start 90%','center 56%','center 40%','end start']
+          : ['start 90%','end 85%','start start','end start'];
+        const fade = animate(card, { opacity:[0,1,1,0] }, { ease:'linear' });
+        const move = animate(cover, { opacity:[0,1,1,0], y:[60,0,0,-60], scale:[.94,1,1,.94] }, { ease:'linear' });
+        const distance = innerWidth <= 820 ? 24 : 70;
+        const number = animate(index, { y:[-distance,distance] }, { ease:'linear' });
+        animations.push(fade, move, number);
+        cancelScroll.push(
+          scroll(fade, { target:card, offset }),
+          scroll(move, { target:card, offset:coverOffset }),
+          scroll(number, { target:stage, offset:['start end','end start'] })
+        );
+      });
+      root.classList.add('gallery-scroll-linked');
+      root.dataset.galleryScrollEngine = 'motion';
+    } catch (error) {
+      clearEffects();
+      console.warn('Gallery scroll effects could not start.', error);
+    }
+  };
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(setup,100); }, { passive:true });
+  reduce.addEventListener('change', setup);
+  window.addEventListener('pagehide', () => { clearTimeout(resizeTimer); clearEffects(); destroySmooth(); });
+  window.addEventListener('pageshow', setup);
+  window.addEventListener('beforeprint', () => { printing = true; setup(); });
+  window.addEventListener('afterprint', () => { printing = false; setup(); });
+  document.fonts?.ready.then(setup);
+  setup();
+})();

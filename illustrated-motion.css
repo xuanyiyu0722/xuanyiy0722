@@ -1,0 +1,161 @@
+/* v60: illustrated eggs, a carton-led entrance, and research-only metrics. */
+:root { --egg-ease: cubic-bezier(.22,.72,.18,1); }
+.brand-symbol:after { display: none; }
+.brand-symbol .brand-illustration {
+  display: block;
+  width: 30px;
+  height: 40px;
+  overflow: visible;
+}
+.mini-brand .brand-illustration {
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 19px;
+  height: 26px;
+  overflow: visible;
+}
+
+/* Hand-drawn navigation symbols share the portfolio's warm paper palette. */
+.nav .nav-egg.illustrated-egg {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 32px;
+  font-size: 0;
+  overflow: visible;
+}
+.illustrated-egg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: 50% 82%;
+}
+.egg-shell-upper, .egg-shell-lower, .nav-chick {
+  transform-box: view-box;
+  transform-origin: 32px 43px;
+  transition: transform 420ms var(--egg-ease), opacity 240ms ease;
+}
+.nav-egg-crack {
+  fill: none;
+  stroke: #33362e;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  opacity: 0;
+  transition: stroke-dashoffset 320ms var(--egg-ease), opacity 160ms ease;
+}
+.nav-chick { opacity: 0; transform: translateY(18px) scale(.65); }
+.egg-sparks { opacity: 0; transform-origin: 32px 28px; }
+.nav a:is(:hover,:focus-visible) .nav-egg-crack {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+.nav a:not(.active):is(:hover,:focus-visible) .illustrated-egg svg {
+  animation: egg-curious 480ms var(--egg-ease) both;
+}
+.nav a.active .egg-shell-upper { opacity: 0; transform: translate(-9px,-24px) rotate(-24deg); }
+.nav a.active .egg-shell-lower { transform: translateY(4px) rotate(4deg); }
+.nav a.active .nav-chick { opacity: 1; transform: none; }
+.nav a.active .nav-egg-crack { opacity: 0; }
+.nav a.active:is(:hover,:focus-visible) .chick-wing {
+  transform-box: fill-box;
+  transform-origin: 20% 45%;
+  animation: chick-wave 500ms ease-in-out 2;
+}
+.nav a.is-hatching .egg-shell-upper {
+  animation: shell-pop 620ms var(--egg-ease) both;
+}
+.nav a.is-hatching .egg-shell-lower {
+  animation: shell-settle 620ms var(--egg-ease) both;
+}
+.nav a.is-hatching .nav-chick {
+  animation: chick-hatch 620ms var(--egg-ease) both;
+}
+.nav a.is-hatching .nav-egg-crack { opacity: 0; }
+.nav a.is-hatching .egg-sparks { animation: hatch-sparks 560ms ease-out both; }
+.nav .nav-egg.watercolor-egg { flex-basis: 32px; width: 32px; height: 36px; }
+.watercolor-egg > svg { mix-blend-mode: multiply; }
+.watercolor-egg svg svg { overflow: hidden; }
+.watercolor-egg .nav-egg-crack { stroke: none; transition: opacity 280ms ease; }
+.nav a.active .watercolor-egg .egg-shell-lower { opacity: 0; }
+.nav a.is-hatching .watercolor-egg .egg-shell-lower { animation-name: watercolor-shell-settle; }
+.nav a.active:is(:hover,:focus-visible) .watercolor-egg .chick-wing {
+  transform-box: view-box;
+  transform-origin: 32px 48px;
+  animation-name: watercolor-wave;
+}
+@keyframes watercolor-shell-settle {
+  0% { opacity: 1; transform: none; }
+  45% { opacity: 1; transform: translateY(8px) rotate(-6deg); }
+  80%,100% { opacity: 0; transform: translateY(4px) rotate(4deg); }
+}
+@keyframes watercolor-wave {
+  0%,100% { transform: rotate(0); }
+  50% { transform: rotate(-5deg); }
+}
+@keyframes egg-curious {
+  0%,100% { transform: rotate(0); }
+  28% { transform: rotate(-7deg); }
+  65% { transform: rotate(5deg); }
+}
+@keyframes chick-wave {
+  0%,100% { transform: rotate(0); }
+  50% { transform: rotate(-26deg); }
+}
+@keyframes shell-pop {
+  0%,15% { opacity: 1; transform: none; }
+  55% { opacity: 1; transform: translate(-11px,-26px) rotate(-28deg); }
+  100% { opacity: 0; transform: translate(-18px,-33px) rotate(-42deg); }
+}
+@keyframes shell-settle {
+  0% { transform: none; }
+  45% { transform: translateY(8px) rotate(-6deg); }
+  100% { transform: translateY(4px) rotate(4deg); }
+}
+@keyframes chick-hatch {
+  0%,12% { opacity: 0; transform: translateY(20px) scale(.65); }
+  40% { opacity: 1; transform: translateY(-8px) scale(1.08); }
+  68% { opacity: 1; transform: translateY(2px) scale(.98); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes hatch-sparks {
+  0%,12% { opacity: 0; transform: scale(.55); }
+  40% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* The marker is set before first paint, only on Home and only with motion on. */
+.egg-intro-pending .home-page > :is(.main,.sidebar,.mobile-bar) { opacity: 0; }
+.egg-intro-veil { position: fixed; inset: 0; z-index: 9998; background: var(--bg); pointer-events: none; }
+.egg-intro-actor { position: fixed; z-index: 9999; pointer-events: none; transform-origin: center; }
+.home-page .egg-intro-actor .asset-carton {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+}
+:is([data-egg-entrance="loading"],[data-egg-entrance="playing"]) .home-page #assetCarton { visibility: hidden; }
+.home-page .hero-poster .intro-copy-line { transform-box: fill-box; transform-origin: left bottom; }
+
+/* The hidden template fixes the final width while the visible number counts.
+   Screen readers and printing always receive the original research value. */
+.metric-counter { display: inline-grid; vertical-align: baseline; font: inherit; font-variant-numeric: tabular-nums; }
+.metric-counter-measure, .metric-counter-value { grid-area: 1 / 1; white-space: pre; font: inherit; }
+.metric-counter-measure { visibility: hidden; }
+.metric-counter-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .egg-intro-pending .home-page > :is(.main,.sidebar,.mobile-bar) { opacity: 1; }
+  .egg-intro-veil, .egg-intro-actor { display: none; }
+  .illustrated-egg *, .illustrated-egg svg { animation: none !important; transition: none !important; }
+}
+@media print {
+  .egg-intro-veil, .egg-intro-actor { display: none; }
+  .egg-intro-pending .home-page > :is(.main,.sidebar,.mobile-bar) { opacity: 1; }
+  .metric-counter-value { visibility: hidden; }
+  .metric-counter-measure { visibility: visible; }
+}

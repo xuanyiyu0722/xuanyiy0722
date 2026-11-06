@@ -1,0 +1,86 @@
+{
+  "version": 28,
+  "inputBoards": {
+    "background-questionnaire-original.png": {
+      "sha256": "5975142507d7d0fbdf16adfdcb4e290e1cfa4b95897fcff8b94381aa84481bc6"
+    },
+    "questionnaire-updated-original.png": {
+      "sha256": "44e5fe1f3772e915cb3f962b272026e4516f70e65cead5a4e0647f0fe68db3e3"
+    },
+    "questionnaire-final-original.png": {
+      "sha256": "a7a99dbef918b8bbf5b072d19c89c9b4f34911c851fb3d765e844269ca1aee01"
+    },
+    "interview-journey-original.png": {
+      "sha256": "e190e8c30233f8ed290548d3ca57b9614e5d617392bef8a5bd7c20b2df549231"
+    },
+    "persona-competitor-original.png": {
+      "sha256": "701bcdd996b2ef53ff20afe484867dbdb5d010825758005553a5c02e60187985"
+    }
+  },
+  "presentation": "Native HTML text, charts and tables; original portraits, product photos and journey illustrations displayed through SVG viewports without resampling.",
+  "survey": {
+    "participants": 58,
+    "q1": {
+      "base": 58,
+      "yes": 46,
+      "no": 12
+    },
+    "q2": {
+      "base": 46,
+      "yes": 38,
+      "no": 8,
+      "yesPercent": 82.6,
+      "source": "Explicitly confirmed by the user and final questionnaire board"
+    },
+    "q3q4": {
+      "base": 38,
+      "multipleChoice": true,
+      "q3Counts": [
+        30,
+        24,
+        12,
+        10,
+        2
+      ],
+      "q4Counts": [
+        32,
+        28,
+        16,
+        14
+      ]
+    },
+    "q5": {
+      "base": 46,
+      "counts": [
+        22,
+        12,
+        10,
+        2
+      ]
+    },
+    "q6": [
+      19,
+      13,
+      12,
+      11,
+      9,
+      9,
+      2
+    ],
+    "q7Means": [
+      2.1,
+      2.24,
+      2.54,
+      3.25,
+      3.55,
+      3.66,
+      3.66
+    ]
+  },
+  "notes": [
+    "Emma interview age (19) and composite persona age (15) are preserved as separate supplied research records.",
+    "Q6 individual counts were checked at native resolution.",
+    "The final questionnaire board supersedes earlier survey figures; all input source files are retained unaltered.",
+    "Bar lengths use count / question base; Q6 uses a labeled count axis from 0 to 20."
+  ]
+}

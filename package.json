@@ -1,0 +1,15 @@
+{
+  "name": "alicia-portfolio-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alicia's existing HTML, CSS and JavaScript portfolio, with deployment checks.",
+  "scripts": {
+    "check": "node scripts/check-site.mjs",
+    "test": "node --test scripts/deployment.test.mjs",
+    "build": "node scripts/build-site.mjs",
+    "setup:git": "node scripts/setup-git.mjs"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

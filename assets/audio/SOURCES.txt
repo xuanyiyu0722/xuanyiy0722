@@ -1,0 +1,8 @@
+egg-crack.mp3
+Provided by Alicia: freesound_community-egg-crack4-85848.mp3
+Original supplied audio is preserved without re-encoding.
+
+gallery-page-turn.mp3
+Reference: https://huyml.co/ Work page transition sound
+Source: https://framerusercontent.com/assets/NwRpkuqMO8dekRRBn6RJjQlpM.mp3
+The reference site configures transitionSoundVolume at 23; this site uses 0.23.

@@ -1,0 +1,52 @@
+{
+  "version": 32,
+  "inputs": {
+    "fabric-map.png": {
+      "source": "/var/folders/8_/z065t3nn3vqbm68z6x9d0cw40000gn/T/codex-clipboard-70c2d2b9-571b-40c9-b3e4-9cd58dac9ae0.png",
+      "size": [
+        1021,
+        1024
+      ],
+      "sha256": "ab761baa1b174acb117ec0b2d5729fb2cc3096768060afb6fce72c84d25e3848"
+    },
+    "makers.png": {
+      "source": "/var/folders/8_/z065t3nn3vqbm68z6x9d0cw40000gn/T/codex-clipboard-fe7dace7-62e1-4a59-8004-a123a7daf33b.png",
+      "size": [
+        1036,
+        2050
+      ],
+      "sha256": "c04a5997f09ab85a5c3c0bd4d2bebc5481511e079d268d7b2fdb5b8c650b066f"
+    },
+    "storyline-reference-original.png": {
+      "source": "/var/folders/8_/z065t3nn3vqbm68z6x9d0cw40000gn/T/codex-clipboard-4b0331df-5a0f-49bf-a8a7-7ecbf854cc40.png",
+      "size": [
+        4485,
+        2284
+      ],
+      "sha256": "f4f067139df3e5963adf25565ca8742e6c7b5fff9621282f26fa752b64e3085f"
+    },
+    "replacement-location-fabric-map.png": {
+      "source": "/var/folders/8_/z065t3nn3vqbm68z6x9d0cw40000gn/T/TemporaryItems/NSIRD_screencaptureui_wOXZ8q/截屏2026-10-19 下午11.01.31.png",
+      "size": [
+        368,
+        390
+      ],
+      "sha256": "c49bac5cae5d766edb70221897e680d5966178ff826a644b2431e0a5ce0c9b1b"
+    },
+    "replacement-location-makers.png": {
+      "source": "/var/folders/8_/z065t3nn3vqbm68z6x9d0cw40000gn/T/TemporaryItems/NSIRD_screencaptureui_7TiKrc/截屏2026-10-19 下午11.01.47.png",
+      "size": [
+        304,
+        508
+      ],
+      "sha256": "89e1658e57194ab240fda223de4c7445b27c15cbde085c130617de62f576a2fe"
+    }
+  },
+  "changes": [
+    "Replace the Step 4 fabric map with the supplied green floral map.",
+    "Replace the Step 5 Makers screen with the supplied studio listing.",
+    "Paint the Step 5 phone first, then the unchanged brown-haired maker in front.",
+    "Apply the same asset and layer changes to the standalone SVG used by the full-storyline viewer."
+  ],
+  "method": "Original uploaded PNG bytes, unchanged. Existing SVG image slots use default xMidYMid meet to preserve the intrinsic aspect ratios. Character and screen positions, all other illustrations, path geometry, stage text and interactions are retained."
+}

@@ -1,0 +1,6 @@
+v77 — Gallery covers and sound refinement
+
+- Only “Crack” in the Home invitation is yellow (#FDD957); “one open.” inherits the original light text color.
+- Reduced egg-crack playback volume from 0.55 to 0.28. Gallery transition sound is unchanged.
+- Replaced the NABORFOOD, MUSUBI, and EverPaw Gallery covers with Alicia’s three supplied original PNGs, without modifying the image files.
+- Retained the Gallery layout, cover frames, scroll interactions, and FridgeKey cover.

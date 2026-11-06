@@ -1,0 +1,234 @@
+{
+  "fileKey": "EYPD74NT5Swk9RaquEmfw8",
+  "frames": [
+    "3704:31872",
+    "3704:30155"
+  ],
+  "screens": [
+    {
+      "file": "app-home.svg",
+      "nodeId": "3704:31899",
+      "title": "Home",
+      "width": "135",
+      "height": "302",
+      "viewBox": "0 0 135 302",
+      "bytes": 202821
+    },
+    {
+      "file": "app-customize-ai.svg",
+      "nodeId": "3704:32059",
+      "title": "AI Recipe Builder",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 461646
+    },
+    {
+      "file": "app-customize-nutrition.svg",
+      "nodeId": "3704:32255",
+      "title": "Customization · Base flavor",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 600154
+    },
+    {
+      "file": "app-customize-flavor.svg",
+      "nodeId": "3704:32506",
+      "title": "Customization · Chocolate coating",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 586749
+    },
+    {
+      "file": "app-discover.svg",
+      "nodeId": "3704:32752",
+      "title": "Discover",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 259716
+    },
+    {
+      "file": "app-discover-filter.svg",
+      "nodeId": "3704:33171",
+      "title": "Filtered products",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 339134
+    },
+    {
+      "file": "app-product-detail.svg",
+      "nodeId": "3704:33460",
+      "title": "Product Detail",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 398862
+    },
+    {
+      "file": "app-checkout-order.svg",
+      "nodeId": "3704:33966",
+      "title": "Checkout · Order Details",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 234840
+    },
+    {
+      "file": "app-checkout-payment.svg",
+      "nodeId": "3704:34096",
+      "title": "Checkout · Payment",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 229677
+    },
+    {
+      "file": "app-history.svg",
+      "nodeId": "3704:34216",
+      "title": "Purchase History",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 370580
+    },
+    {
+      "file": "app-pickup.svg",
+      "nodeId": "3704:34355",
+      "title": "Upcoming Pickup",
+      "width": "143",
+      "height": "302",
+      "viewBox": "0 0 143 302",
+      "bytes": 445912
+    },
+    {
+      "file": "app-profile.svg",
+      "nodeId": "3704:34507",
+      "title": "Profile",
+      "width": "140",
+      "height": "297",
+      "viewBox": "0 0 140 297",
+      "bytes": 217708
+    },
+    {
+      "file": "app-scan.svg",
+      "nodeId": "3704:34641",
+      "title": "Scan",
+      "width": "140",
+      "height": "297",
+      "viewBox": "0 0 140 297",
+      "bytes": 265441
+    },
+    {
+      "file": "machine-login.svg",
+      "nodeId": "3704:35093",
+      "title": "Log In Screen",
+      "width": "418",
+      "height": "296",
+      "viewBox": "0 0 418 296",
+      "bytes": 198374
+    },
+    {
+      "file": "machine-checkout.svg",
+      "nodeId": "3704:35012",
+      "title": "Checkout",
+      "width": "418",
+      "height": "296",
+      "viewBox": "0 0 418 296",
+      "bytes": 160352
+    },
+    {
+      "file": "machine-all-flavors.svg",
+      "nodeId": "3704:35136",
+      "title": "All Flavors",
+      "width": "417",
+      "height": "295",
+      "viewBox": "0 0 417 295",
+      "bytes": 439672
+    },
+    {
+      "file": "machine-seasonal.svg",
+      "nodeId": "3704:35400",
+      "title": "Seasonal category",
+      "width": "417",
+      "height": "295",
+      "viewBox": "0 0 417 295",
+      "bytes": 226985
+    },
+    {
+      "file": "machine-ai.svg",
+      "nodeId": "3704:34790",
+      "title": "AI Recommendation",
+      "width": "417",
+      "height": "295",
+      "viewBox": "0 0 417 295",
+      "bytes": 549016
+    },
+    {
+      "file": "machine-custom.svg",
+      "nodeId": "3704:34936",
+      "title": "Custom Build",
+      "width": "418",
+      "height": "296",
+      "viewBox": "0 0 418 296",
+      "bytes": 251759
+    },
+    {
+      "file": "iteration-order-before.svg",
+      "nodeId": "3704:30618",
+      "title": "Earlier Order & Build",
+      "width": "150",
+      "height": "320",
+      "viewBox": "0 0 150 320",
+      "bytes": 378962
+    },
+    {
+      "file": "iteration-recipe-after.svg",
+      "nodeId": "3704:30171",
+      "title": "AI Recipe Builder",
+      "width": "153",
+      "height": "323",
+      "viewBox": "0 0 153 323",
+      "bytes": 478145
+    },
+    {
+      "file": "iteration-custom-after.svg",
+      "nodeId": "3704:30367",
+      "title": "Visual customization",
+      "width": "153",
+      "height": "323",
+      "viewBox": "0 0 153 323",
+      "bytes": 616066
+    },
+    {
+      "file": "iteration-history-before.svg",
+      "nodeId": "3704:30777",
+      "title": "Earlier Purchase History",
+      "width": "150",
+      "height": "321",
+      "viewBox": "0 0 150 321",
+      "bytes": 225234
+    },
+    {
+      "file": "iteration-history-after.svg",
+      "nodeId": "3704:30943",
+      "title": "Updated Purchase History",
+      "width": "153",
+      "height": "323",
+      "viewBox": "0 0 153 323",
+      "bytes": 369916
+    },
+    {
+      "file": "iteration-machine-before.svg",
+      "nodeId": "3704:31083",
+      "title": "Earlier vending screen",
+      "width": "322",
+      "height": "272",
+      "viewBox": "0 0 322 272",
+      "bytes": 988997
+    }
+  ]
+}

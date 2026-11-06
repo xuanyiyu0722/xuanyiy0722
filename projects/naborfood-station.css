@@ -1,0 +1,61 @@
+/* Protein Station and service operations, following the supplied design boards. */
+.architecture-explainer{grid-template-columns:1fr;gap:30px;}
+.connected-diagram{min-width:0;max-width:650px;width:100%;}
+.connected-diagram h3{display:flex;align-items:center;gap:12px;font-family:var(--font-heading);font-size:22px;font-weight:600;line-height:1.25;margin:0 0 25px;text-align:center;white-space:nowrap;}
+.connected-diagram h3:before,.connected-diagram h3:after{content:"";height:2px;background:#a5cf4a;flex:1;min-width:12px;}
+.connected-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;position:relative;}
+.connected-card{border:1.5px solid #a5cf4a;border-radius:13px;background:#fff;overflow:hidden;min-width:0;}
+.connected-card h4{background:#eef4dc;margin:0;padding:15px 10px;font-size:15px;font-weight:600;text-align:center;line-height:1.3;}
+.connected-card>div{display:flex;align-items:center;gap:17px;padding:20px 16px;min-height:120px;}
+.connected-machine-icon{flex:none;width:48px;height:75px;stroke:#a5cf4a;stroke-width:1.7;}
+.connected-card img{width:42px!important;height:42px!important;object-fit:contain;flex:none;}
+.connected-card ul{margin:0;padding:0 0 0 10px;font-size:13px;line-height:1.6;}
+.connected-card li+li{margin-top:8px;}
+.connected-card li::marker{color:#a5cf4a;}
+.connected-cycle{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:66px;height:66px;z-index:2;overflow:visible;background:transparent;}
+.connected-cycle>path{fill:none;stroke:#a5cf4a;stroke-width:4;marker-end:url(#connected-arrow);}
+.connected-diagram figcaption{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:20px;}
+.connected-diagram figcaption span{background:#a5cf4a;color:#fff;border-radius:20px;font-size:11px;line-height:1.3;padding:7px 10px;white-space:nowrap;}
+.station-overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr) minmax(0,1fr);gap:27px;margin-top:36px;align-items:start;}
+.station-copy{font-size:13px;line-height:1.55;color:#64665e;margin:0 0 20px;}
+.station-overview figure,.station-scenarios figure{margin:0;min-width:0;}
+.station-overview figure>a,.station-scenarios figure>a{display:block;cursor:zoom-in;}
+.station-overview img,.station-scenarios img{display:block;width:100%;height:auto;}
+.station-overview figcaption,.station-scenarios figcaption{font-size:11px;color:#777b70;line-height:1.5;margin-top:12px;}
+.station-machine{position:static;}
+.station-machine figcaption{text-align:center;}
+.station-sketch-card{background:#a5cf4a;padding:13px;border-radius:5px;}
+.station-sketch-card p{font-size:13px;line-height:1.5;margin:18px 3px 4px;}
+.station-colors{background:#a5cf4a;border-radius:4px;font-size:13px;line-height:1.5;padding:14px 15px;margin:0 0 20px;}
+.station-brand-note{padding-bottom:18px;border-bottom:1px solid var(--ink);}
+.station-bar-art{display:grid;gap:18px;border-top:1px solid var(--ink);padding-top:18px;}
+.station-bar-art figcaption{margin:0 0 8px;font-weight:600;}
+.station-bar-art figure{display:flex;flex-direction:column;}
+.station-bar-art figure figcaption{order:-1;}
+.station-scenarios{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:38px;margin-top:65px;padding-top:34px;border-top:1px solid var(--ink);align-items:start;}
+.station-scenarios h3{font-family:var(--font-heading);font-size:30px;line-height:1.2;font-weight:600;margin:0 0 24px;}
+.station-scenarios p{font-size:17px;line-height:1.65;color:#5a5e52;margin:0 0 20px;}
+.station-scenarios strong{font-weight:600;color:var(--ink);}
+.blueprint-scroll-hint{font-size:13px;line-height:1.6;color:#777b70;margin:22px 0 26px;}
+.blueprint-scroll{max-width:100%;overflow:auto;overscroll-behavior:contain;max-height:710px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.blueprint-scroll:focus-visible{outline:2px solid #8caa3d;outline-offset:5px;}
+.blueprint-table{width:2210px;table-layout:fixed;border-collapse:separate;border-spacing:13px 16px;font-size:13px;line-height:1.4;}
+.blueprint-table col.blueprint-label{width:190px;}
+.blueprint-table th,.blueprint-table td{padding:0;border:0;vertical-align:top;}
+.blueprint-table thead th{position:sticky;top:0;z-index:2;color:#fff;background:#111;padding:13px 15px;font-size:17px;line-height:1.4;font-weight:500;text-align:center;}
+.blueprint-table thead th:not(:first-child):not(:last-child){clip-path:polygon(0 0,98% 0,100% 50%,98% 100%,0 100%,2% 50%);}
+.blueprint-table thead th:first-child{left:0;z-index:4;color:var(--ink);background:var(--bg);}
+.blueprint-table tbody th{position:sticky;left:0;z-index:3;background:var(--bg);vertical-align:middle;text-align:left;font-size:15px;font-weight:500;padding:18px 14px;box-shadow:10px 0 0 var(--bg);}
+.blueprint-table td>div{background:#eff4b4;min-height:118px;display:flex;align-items:center;justify-content:center;text-align:center;padding:15px 12px;}
+.blueprint-row-3 td>div,.blueprint-row-4 td>div{background:#a5cf4a;color:#fff;}
+.blueprint-source{display:inline-block;margin-top:19px;}
+@media(min-width:1500px){.architecture-explainer{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);}.connected-card h4{font-size:14px;}.connected-card ul{font-size:12px;}.connected-card>div{padding:20px 15px;gap:12px;}.connected-card img{width:44px!important;height:44px!important;}.connected-machine-icon{width:48px;height:72px;}.connected-diagram figcaption span{font-size:11px;}}
+@media(max-width:1100px){.architecture-explainer{grid-template-columns:1fr;gap:30px;}.connected-diagram{max-width:650px;width:100%;}.connected-card h4{font-size:15px;padding:15px 10px;}.connected-card ul{font-size:13px;}.connected-card>div{padding:20px 16px;gap:17px;}.connected-machine-icon{width:48px;height:75px;}.connected-card img{width:42px!important;height:42px!important;}.connected-diagram figcaption span{font-size:11px;}.station-overview{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:30px;}.station-right{grid-column:1/-1;}.station-bar-art{grid-template-columns:1fr 1fr;gap:26px;}.station-copy{font-size:14px;}.station-colors{font-size:14px;}.station-sketch-card p{font-size:14px;}.station-scenarios{grid-template-columns:1fr 1.4fr;gap:28px;}.station-scenarios p{font-size:16px;}}
+@media(max-width:640px){.connected-diagram h3{font-size:24px;white-space:normal;}.connected-pair{grid-template-columns:1fr;gap:54px;}.connected-card>div{justify-content:center;gap:26px;min-height:128px;}.connected-card ul{font-size:14px;}.connected-card h4{font-size:17px;}.connected-cycle{top:50%;transform:translate(-50%,-50%) rotate(90deg);}.connected-diagram figcaption{gap:8px;}.connected-diagram figcaption span{font-size:10px;}.station-overview{grid-template-columns:1fr;gap:32px;margin-top:30px;}.station-machine{grid-row:1;position:static;max-width:380px;justify-self:center;}.station-right{grid-column:auto;}.station-sketch-card{padding:15px;}.station-sketch-card p{font-size:15px;}.station-bar-art{grid-template-columns:1fr;gap:28px;}.station-scenarios{grid-template-columns:1fr;gap:24px;margin-top:45px;padding-top:28px;}.station-scenarios h3{font-size:27px;}.station-scenarios p{font-size:17px;}.station-copy{font-size:15px;}.station-colors{font-size:15px;}.blueprint-scroll{max-height:620px;}.blueprint-table{width:1840px;font-size:13px;}.blueprint-table col.blueprint-label{width:100px;}.blueprint-table tbody th{font-size:12px;padding:16px 8px;}.blueprint-table td>div{min-height:138px;}.blueprint-table thead th{font-size:16px;}.blueprint-scroll-hint{font-size:12px;}}
+
+/* The original Connected Experience board stays proportionate beside its explanation. */
+.architecture-explainer{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(28px,4vw,68px);align-items:center;}
+.architecture-explainer>p{max-width:620px;}
+.connected-diagram{max-width:none;aspect-ratio:1762/891;background-image:url('../assets/images/naborfood-experience/connected-experience-original.png');background-repeat:no-repeat;background-size:295.8% auto;background-position:right top;}
+.connected-diagram>h3,.connected-diagram>.connected-pair,.connected-diagram>figcaption{display:none;}
+@media(max-width:640px){.architecture-explainer{grid-template-columns:1fr;gap:28px;}.connected-diagram{max-width:740px;width:100%;}}

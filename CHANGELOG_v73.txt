@@ -1,0 +1,7 @@
+v73 — Restore sidebar width and refine Gallery / About
+
+- Restored the original 244px sidebar width (210px at the existing narrower desktop breakpoint) and its original horizontal padding.
+- Removed the visible Project Gallery title and Four case studies introduction above the works.
+- Increased the cover frame height from a 1000:700 ratio to 1000:760, retaining centered, level covers and all four numbered works.
+- Replaced About's older entrance with the project detail pages' Fade Up In timing, easing, mobile distances, and reduced-motion behavior.
+- Preserved the Home appearance, name color, navigation rules, and all project detail content and animations.

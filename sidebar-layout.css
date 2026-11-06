@@ -1,0 +1,5 @@
+/* Home, Gallery, and About share the original identity/navigation position. */
+@media (min-width:821px) {
+  .sidebar { padding-top: 108px; }
+}
+.mini-brand { padding-left: 0; }

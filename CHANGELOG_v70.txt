@@ -1,0 +1,8 @@
+v70 — Deeper brown and centered scrolling project gallery
+
+- Darkened #5C5546 to #423C30 across the three main pages.
+- Restored original watercolor egg/chick colors by removing multiply blending on the yellow sidebar.
+- Removed the four navigation rules around Home / Project Gallery / About.
+- Rebuilt Gallery as four unique vertical stages, with centered covers, project names on the left, and types/descriptions on the right.
+- Added reversible scroll-linked fade in/out based on the Motion scroll-fade example, with a small cover movement and reduced-motion support.
+- Retained Home's v67 entrance and the caption position above the carton.

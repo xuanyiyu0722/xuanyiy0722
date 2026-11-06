@@ -1,0 +1,210 @@
+{
+  "fileKey": "Eut6Z0WDtmcQNCv78rlIBD",
+  "frame": "4384:5890",
+  "note": "Original Figma assets for the two Future Exploration theme screens. High-fidelity screens use the latest user-supplied original renders; see ../everpaw-screens/sources.json.",
+  "assets": [
+    {
+      "screen": "theme-monitor",
+      "variable": "imgRectangle3",
+      "path": "../assets/images/everpaw-native/7df5eaf17d5c92b9ec51.png",
+      "sha256": "7df5eaf17d5c92b9ec514c50368bfed17245f66c7abcc4c326a88035c5417b7d",
+      "bytes": 2224170
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgRectangle4",
+      "path": "../assets/images/everpaw-native/a80b4cf4490a8dbae8ff.png",
+      "sha256": "a80b4cf4490a8dbae8ffdc9abe40703ea1a9562c6d2f785c8720672ba462012f",
+      "bytes": 3634
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgRectangle38",
+      "path": "../assets/images/everpaw-native/bc594cbe365449dbe8e2.png",
+      "sha256": "bc594cbe365449dbe8e2a787c73786ff260a91c6a6533520ccd8980e1d3e847d",
+      "bytes": 19618
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgRectangle37",
+      "path": "../assets/images/everpaw-native/771cf305369df9101b30.png",
+      "sha256": "771cf305369df9101b3060670ed8f10f676a35dbd5d1e1b2f4e4dfee7b9cd1a3",
+      "bytes": 6654
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "img51",
+      "path": "../assets/images/everpaw-native/0356880fc56d3768f679.png",
+      "sha256": "0356880fc56d3768f67990a88ff0927a689b7539da662f94c470681d7a67c595",
+      "bytes": 8825
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "img191",
+      "path": "../assets/images/everpaw-native/9b1c4d4a329d260a1239.png",
+      "sha256": "9b1c4d4a329d260a12390f71ab0934271abcc521f6cfba8a176920111767e147",
+      "bytes": 10880
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgFrame63",
+      "path": "../assets/images/everpaw-native/2fa8d1409ead7dc430b0.svg",
+      "sha256": "2fa8d1409ead7dc430b002a0d3c34feec6e52ceba2c9f9115651b1bcbc1296f7",
+      "bytes": 1565
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgEllipse14",
+      "path": "../assets/images/everpaw-native/6eb635ce58a0d5747bff.svg",
+      "sha256": "6eb635ce58a0d5747bff70399da31038a33fbf87b003cb5a2a0b31152909f09b",
+      "bytes": 1066
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgPetFood",
+      "path": "../assets/images/everpaw-native/3e6b23888a4412fe951f.svg",
+      "sha256": "3e6b23888a4412fe951f37f206961c31a844e68578f6604a53313ddcda8247bc",
+      "bytes": 2166
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgPoop",
+      "path": "../assets/images/everpaw-native/16c09462c3100417e289.svg",
+      "sha256": "16c09462c3100417e28923e24da52f242b124016e908c05f90627ba41613a086",
+      "bytes": 1579
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgWaterTank",
+      "path": "../assets/images/everpaw-native/e8b99fae22145b723d64.svg",
+      "sha256": "e8b99fae22145b723d64cddf3796258993c10cdc7a8bc6d5c555e2e87424fcdb",
+      "bytes": 1435
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgEllipse17",
+      "path": "../assets/images/everpaw-native/e4de5708041eb2ec10ec.svg",
+      "sha256": "e4de5708041eb2ec10ec255bcfc2b79df257ca51b9c47be05b894b4250b174d4",
+      "bytes": 270
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgBone",
+      "path": "../assets/images/everpaw-native/8500e56851dceb85e3aa.svg",
+      "sha256": "8500e56851dceb85e3aa94aeba2ad5694a820e69016eea3725089ea91934715e",
+      "bytes": 2353
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgGroup18",
+      "path": "../assets/images/everpaw-native/aa81bda1db0a26f7b9b6.svg",
+      "sha256": "aa81bda1db0a26f7b9b634c7b1588804b9a6ac1f2879f0376d2dd5bd64290d14",
+      "bytes": 1594
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgInsights",
+      "path": "../assets/images/everpaw-native/84f739bc288adaf87129.svg",
+      "sha256": "84f739bc288adaf87129b2dccb1d49da997e0457a3724a855a238ed56f7e809e",
+      "bytes": 234
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgGroup",
+      "path": "../assets/images/everpaw-native/5b16798d128c884fac91.svg",
+      "sha256": "5b16798d128c884fac91d53e7bb5ba73cdaecb2ab0788e9eea355c5cb105f51d",
+      "bytes": 1275
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgImage2",
+      "path": "../assets/images/everpaw-native/3bdb1125da2800d57e5f.svg",
+      "sha256": "3bdb1125da2800d57e5f7f04d832b666ff627cb31e199b2773061df73ba42a13",
+      "bytes": 2358
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgGroup12",
+      "path": "../assets/images/everpaw-native/acbbcdd9311bf2106b06.svg",
+      "sha256": "acbbcdd9311bf2106b0636bfb2b49c0e72677f597aae4e60c3d0a21180b79d0e",
+      "bytes": 2856
+    },
+    {
+      "screen": "theme-monitor",
+      "variable": "imgGroup13",
+      "path": "../assets/images/everpaw-native/a51735571773a7a7b8ae.svg",
+      "sha256": "a51735571773a7a7b8aef36a9b365a9acc4de6c337931eda3302b6cb4904d706",
+      "bytes": 2658
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "img51",
+      "path": "../assets/images/everpaw-native/2107e1f141011a179401.png",
+      "sha256": "2107e1f141011a179401b4c74c08ef68945a2185fcee06dfcf25db9ec19e8e79",
+      "bytes": 7534
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgRectangle54",
+      "path": "../assets/images/everpaw-native/53827e810c96f71fc7ae.png",
+      "sha256": "53827e810c96f71fc7aede9d1eb0b718a17d3bbbeda22f8cbf8220fa2b37b7bc",
+      "bytes": 9896920
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "img22121",
+      "path": "../assets/images/everpaw-native/a67277979ab868e9561c.png",
+      "sha256": "a67277979ab868e9561cd0b772d089e4cbfbc31029e6239482578c0668a1b232",
+      "bytes": 605057
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgInsights",
+      "path": "../assets/images/everpaw-native/e34e52b7777c1abe3d74.svg",
+      "sha256": "e34e52b7777c1abe3d7473ae7ff1d511e4f6d97303346443d39fe4daa1f0b63f",
+      "bytes": 234
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgGroup",
+      "path": "../assets/images/everpaw-native/a6abfb7c724443a04586.svg",
+      "sha256": "a6abfb7c724443a04586226789910d27e89b23f2ca1a8349dd85342b1f70d086",
+      "bytes": 1303
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgImage2",
+      "path": "../assets/images/everpaw-native/01c1d7845de79f07793e.svg",
+      "sha256": "01c1d7845de79f07793e7439b67611ba5c704be88f0f53843b902846e77a83fa",
+      "bytes": 2332
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgGroup12",
+      "path": "../assets/images/everpaw-native/acbbcdd9311bf2106b06.svg",
+      "sha256": "acbbcdd9311bf2106b0636bfb2b49c0e72677f597aae4e60c3d0a21180b79d0e",
+      "bytes": 2856
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgGroup13",
+      "path": "../assets/images/everpaw-native/6600f3da9831b43ea134.svg",
+      "sha256": "6600f3da9831b43ea134448657473dc9a28946f7ffa5d221a5d00504632ea35d",
+      "bytes": 2633
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgGroup18",
+      "path": "../assets/images/everpaw-native/6347382c2d4e84f1676a.svg",
+      "sha256": "6347382c2d4e84f1676a056020d29d88d28e06f5e027936373349e88c70a788f",
+      "bytes": 1510
+    },
+    {
+      "screen": "theme-profile",
+      "variable": "imgFrame42",
+      "path": "../assets/images/everpaw-native/a95c962832f8a7beb170.svg",
+      "sha256": "a95c962832f8a7beb170e4fc1724ee1795c19263e76948050b05d69db30a1c64",
+      "bytes": 1391
+    }
+  ]
+}

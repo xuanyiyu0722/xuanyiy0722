@@ -1,0 +1,19 @@
+{
+  "figmaFileKey": "6Ki33E78x714iH4wwXD7jA",
+  "frameId": "2721:11409",
+  "sources": [
+    {
+      "file": "testing-servo.mp4",
+      "nodeId": "3661:735",
+      "videoHash": "22074d24682df3130051ed3e9264528a0de0f971",
+      "figmaDurationSeconds": 19
+    },
+    {
+      "file": "testing-lock.mp4",
+      "nodeId": "3664:784",
+      "videoHash": "33c46cdeb1d4435a8fb536aef4c3dc44feb24ff6",
+      "figmaDurationSeconds": 10
+    }
+  ],
+  "processing": "Figma-delivered HLS video remuxed to MP4 with stream copy; no re-encoding."
+}

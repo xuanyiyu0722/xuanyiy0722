@@ -1,0 +1,65 @@
+/* The three main portfolio pages use Alicia's beige and warm brown palette. */
+.portfolio-theme .sidebar .name,
+.portfolio-theme .mobile-bar .mini-brand { color:#cea68b; }
+.portfolio-theme {
+  --bg: #423c30;
+  --paper: #514a3b;
+  --ink: #f6efda;
+  --muted: #dfd6bf;
+  --line: rgba(246,239,218,.28);
+  background: #423c30;
+  color: var(--ink);
+}
+.portfolio-theme .main { background: #423c30; }
+.portfolio-theme .sidebar,
+.portfolio-theme .mobile-bar {
+  --bg: #f8f4ed;
+  --paper: #f8f4ed;
+  --ink: #423c30;
+  --muted: #423c30;
+  --line: rgba(66,60,48,.28);
+  background: #f8f4ed;
+  color: #423c30;
+  backdrop-filter: none;
+}
+.portfolio-theme .sidebar :is(.role,.sidebar-index) { color: #423c30; opacity: .8; }
+.portfolio-theme .sidebar .nav a { color: #423c30; }
+.portfolio-theme .sidebar .nav a:hover { background: rgba(66,60,48,.06); }
+.portfolio-theme .sidebar a:focus-visible,
+.portfolio-theme .mobile-bar a:focus-visible { outline: 2px solid #423c30; outline-offset: 5px; }
+.portfolio-theme::selection,
+.portfolio-theme ::selection { background: #fdd957; color: #423c30; }
+/* Warm light type keeps Gallery and the full resume readable on the brown canvas. */
+.portfolio-theme :is(.gallery-meta span,.about-block h3,.resume-column-heading,
+  .about-copy > .micro,.resume-section-head > .micro) { color: #fdd957; }
+.portfolio-theme :is(.gallery-item,.about-block,.resume-section,.resume-column-heading) { border-color: var(--line); }
+.portfolio-theme .gallery-item .visual { background: #514a3b; }
+.portfolio-theme .gallery-item:focus-visible { outline: 2px solid #fdd957; outline-offset: 6px; }
+.portfolio-theme :is(.internship-date,.internship-company-note,.internship-meta span,
+  .internship-bullets,.activity-note,.activity-bullets,.skill-tools,.skill-list,
+  .support-tools,.language-list li span:last-child) { color: var(--muted); }
+.portfolio-theme .contact-email:is(:hover,:focus-visible) { color: #fdd957; }
+/* Retain the gray / black poster contrast shown in Alicia's reference. */
+.home-page.portfolio-theme .hero-note { color: #f6efda; }
+.portfolio-theme .asset-egg:focus-visible { outline-color: #fdd957; }
+.portfolio-theme .egg-dialog::backdrop { background: rgba(46,42,33,.82); }
+@media print {
+  .portfolio-theme { --ink: #423c30; --muted: #423c30; --line: #c9c3b5; background: #fff; color: #423c30; }
+  .portfolio-theme .main { background: #fff; }
+  .portfolio-theme :is(.gallery-meta span,.about-block h3,.resume-column-heading,
+    .about-copy > .micro,.resume-section-head > .micro) { color: #423c30; }
+}
+
+/* Keep the watercolor assets in their original colors on the yellow navigation. */
+.portfolio-theme .watercolor-egg > svg { mix-blend-mode: normal; }
+.portfolio-theme .sidebar .nav { border-top:1px solid var(--line); }
+.portfolio-theme .sidebar .nav a { border-bottom:1px solid var(--line); }
+
+/* Hatching changes the icon state without shifting the navigation row. */
+.portfolio-theme .sidebar .nav a,
+.portfolio-theme .sidebar .nav a:is(:hover,:focus-visible,.active,.is-hatching) { padding-left: 0; padding-right: 0; }
+
+/* Keep navigation text the same brown in every state, including nested labels. */
+.portfolio-theme .sidebar .nav a:is(:link,:visited,:hover,:focus-visible,.active,.is-hatching),
+.portfolio-theme .sidebar .nav a > span:last-child,
+.portfolio-theme .mobile-bar .mobile-nav a { color:#423c30; }

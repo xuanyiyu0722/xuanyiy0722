@@ -1,0 +1,8 @@
+v74 — Reference-style information and Lenis smooth scrolling
+
+- Rearranged each Gallery project with Role / Timeline / Project metadata and a large #1–#4 index on the left, a centered level cover, and type / name / summary on the right.
+- Used the existing project details for roles and dates; no awards or recognition were invented.
+- Added a gentle first-entry fade for the Gallery.
+- Added Lenis smooth wheel scrolling, driven by Motion's frame.setup loop, and restrained scroll-linked cover / index parallax.
+- Bundled Lenis locally with its official CSS and MIT license.
+- Preserved native touch behavior, reduced-motion / printing fallbacks, and all other pages.

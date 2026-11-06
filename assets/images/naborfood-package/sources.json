@@ -1,0 +1,45 @@
+{
+  "file_key": "XTil8wIvFdojVQuMRvLz2Q",
+  "frame": {
+    "id": "1:2998",
+    "name": "Frame 356"
+  },
+  "assets": {
+    "standard-flavor-series.png": "1:3070",
+    "standard-single-bar.png": "1:3308",
+    "custom-recipe-series.png": "1:3337",
+    "custom-single-bar.png": "1:3628",
+    "product-rendering.png": "1:7272",
+    "haagen-dazs-reference.png": "1:3758",
+    "ritter-sport-reference.png": "1:3759",
+    "frame-356-original.png": "1:2998"
+  },
+  "flavor_collection": {
+    "source": "frame-356-hd.png",
+    "viewport": [
+      2627,
+      219,
+      1243,
+      1150
+    ],
+    "note": "Code-native SVG viewport preserves all twelve cartons and wrappers from the 3x Frame 356 export."
+  },
+  "copy_nodes": [
+    "1:3756",
+    "1:3760"
+  ],
+  "method": "Native HTML copy; original artwork exports downloaded from Figma. No temporary asset URLs at runtime.",
+  "v54_high_resolution": {
+    "file_key": "EYPD74NT5Swk9RaquEmfw8",
+    "frame": "3704:38430",
+    "scale": 3,
+    "exports": {
+      "standard-flavor-series.png": "3704:38502",
+      "standard-single-bar.png": "3704:38740",
+      "custom-recipe-series.png": "3704:38769",
+      "custom-single-bar.png": "3704:39060",
+      "frame-356-hd.png": "3704:38430"
+    },
+    "flavor_collection_source": "frame-356-hd.png"
+  }
+}

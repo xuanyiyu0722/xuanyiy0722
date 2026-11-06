@@ -1,0 +1,7 @@
+v75 — Layered Gallery entrances and consistent accents
+
+- Made Gallery side information appear first, followed by the centered cover with a short delay.
+- Offset cover fade-in during scrolling so the information leads each project naturally.
+- Changed Gallery numbers, project titles, dividers, and interaction accents to #FDD957.
+- Explicitly set main navigation and project-table-of-contents text to #423C30 in normal, selected, visited, and hover states.
+- Preserved the name color, beige sidebar, level covers, Lenis smooth scroll, and all project content.

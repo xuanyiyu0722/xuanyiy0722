@@ -1,0 +1,9 @@
+v65 — Headline consistency and original Gallery grid
+
+- Unified Home headline typography, with one font size and letter spacing and equal baseline intervals across all five lines.
+- Removed the separate EGGshell width stretching and integrated the full stop into the final line.
+- Restored the Gallery to a two-column project grid (one column on mobile), preserving its updated title and description.
+- Removed slider controls, progress, and Drag or swipe to explore.
+- Removed the requested Home explanatory paragraph and About placeholder paragraph.
+- Preserved the restored Home sidebar position and existing motion interactions.
+- Removed the upper-left egg marks on Gallery and About, matching the Home sidebar and retaining all three navigation illustrations.

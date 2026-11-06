@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="326.717" height="50.8906" viewBox="0 0 326.717 50.8906" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="HiWave" clip-path="url(#clip0_0_4)">
+<path id="Vector" d="M-0.000976562 33.9267C40.8387 16.9632 81.6784 46.6493 122.518 29.6858C163.358 12.7223 204.197 38.1676 245.037 25.4449C285.877 12.7223 313.103 33.9267 326.717 23.7486V50.8902H-0.000976562V33.9267Z" fill="url(#paint0_linear_0_4)"/>
+<path id="Vector_2" d="M-0.000976562 33.9267C40.8387 16.9632 81.6784 46.6493 122.518 29.6858C163.358 12.7223 204.197 38.1676 245.037 25.4449C285.877 12.7223 313.103 33.9267 326.717 23.7486" stroke-width="2.14909" stroke-linecap="round" stroke="#2741E8"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_4" x1="-0.000976562" y1="21.2427" x2="-0.000976562" y2="50.8902" gradientUnits="userSpaceOnUse">
+<stop stop-color="#7B95FF" stop-opacity="0.45"/>
+<stop offset="1" stop-color="#7B95FF" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_0_4">
+<rect width="326.717" height="50.8906" fill="white"/>
+</clipPath>
+</defs>
+</svg>

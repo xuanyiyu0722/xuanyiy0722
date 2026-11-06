@@ -1,0 +1,7 @@
+{
+  "method": "Built-in imagegen, background-extraction",
+  "input": "background-original.png",
+  "output": "grief-girl-transparent.png",
+  "prompt": "Extract only the original small crying girl from the lower-right white rectangle; remove the white background and board; preserve pose, facial expression, tears, hair, uniform, skirt, hands, feet, colors, shapes and proportions; standalone PNG with actual alpha transparency.",
+  "display": "The small residual pixels below the illustration are outside its CSS clipping boundary."
+}

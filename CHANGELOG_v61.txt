@@ -1,0 +1,38 @@
+v61 — 更大的蛋盒入场、水彩导航、Fade Up In 与横向 Gallery
+
+基于 v60 修改。
+
+首页
+- 开场整板鸡蛋的最大尺寸进一步放大，桌面约比 v60 大 20%。
+- There’s more beneath the EGGshell 的逐行入场整体放慢约四分之一。
+- 保留整盒落位后的原有点击、放大和敲蛋交互。
+
+侧栏 Home / Project Gallery / About
+- 使用用户提供的完整蛋、裂开的蛋和孵化小鸡水彩 PNG 素材。
+- 原始 PNG 文件不作改动，通过 SVG 视口和裁切组合显示。
+- 保留悬停出现裂缝、轻晃、点击蛋壳弹开和小鸡跃出后跳转的逻辑。
+
+四个项目详情页
+- 66 个章节全部覆盖 Fade Up In，内容块进入视口时淡入并轻微上移。
+- 按标题、研究模块、图表和视觉内容分块，长章节按阅读进度进入。
+- 桌面上移 28px，手机上移 20px；同时进入的内容有轻微错落。
+- 已读内容保持可见，键盘聚焦内容立即显示。
+- 系统减少动态效果、观察器不可用及打印时直接显示内容。
+- 数字递增动画沿用 v60：仅在调研章节，共 33 处。
+
+Project Gallery
+- 四个项目改为横向卡片轨道，缓慢循环移动。
+- 支持鼠标拖动、触摸横滑、触控板、方向按钮和键盘左右键。
+- 悬停、聚焦及手动操作时暂停自动移动；可用 Pause / Play 明确暂停和恢复。
+- 保留原项目封面、标题、简介和详情页链接。
+- 手机端显示一张主卡片与下一张的边缘，提供横向浏览线索。
+
+新增主要文件
+- gallery-carousel.css / gallery-carousel.js
+- projects/project-fade-up.css / projects/project-fade-up.js
+- assets/images/nav-watercolor/egg-closed.png
+- assets/images/nav-watercolor/egg-and-chick.png
+
+参考
+- https://motion.dev/examples/js-scroll-fade
+- https://zoah.com/solutions/founders

@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+node_bin="$(command -v node || git config --local --get portfolio.nodePath || true)"
+if [ -z "$node_bin" ] || [ ! -x "$node_bin" ]; then
+  echo 'Node.js is required for deployment checks. Install Node.js 24 LTS and run npm run setup:git.' >&2
+  exit 1
+fi
+exec "$node_bin" scripts/check-push.mjs "$@"

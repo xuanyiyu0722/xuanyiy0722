@@ -1,0 +1,5 @@
+v64 — Restore the Home sidebar position
+
+- Restored the Home identity and navigation to their positions before the upper-left egg mark was removed.
+- Kept the upper-left mark removed and preserved the navigation egg illustrations and interactions.
+- Retained all v63 Gallery refinements and other site content.

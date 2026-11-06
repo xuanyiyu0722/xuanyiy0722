@@ -1,0 +1,6 @@
+/* The wrapper owns the device outline and rounded clipping.
+   Exported screens must not add a second scaled device rim inside it. */
+.phone-art:not(.joined-art) > .design-scale > [data-node-id] {
+  border-radius: 0;
+  box-shadow: none;
+}

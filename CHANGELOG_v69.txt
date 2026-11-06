@@ -1,0 +1,7 @@
+v69 — v67 base with yellow / warm-brown main pages
+
+- Started from v67, retaining its original carton and background-text entrance.
+- Set the Home, Gallery, and About sidebars to #FDD957 with #5C5546 text.
+- Set their main canvases to #5C5546, with warm light text, yellow labels, and soft dividers on Gallery and About.
+- Anchored the two-line egg instruction just above the carton, avoiding collisions with the poster text.
+- Preserved Euclid Circular A and the unified headline spacing.

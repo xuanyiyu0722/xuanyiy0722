@@ -1,0 +1,475 @@
+{
+  "version": 31,
+  "inputBoards": {
+    "wireframe-iteration-board-original.png": {
+      "source": "codex-clipboard-da72c783-27e1-4953-9640-8c641a42a643.png",
+      "sha256": "cb28c6ec928b38926b15e4de90be3b70d78e3d5c16deda23fdf7ef1a49ed9c7e",
+      "size": [
+        8000,
+        3000
+      ]
+    },
+    "wireframe-screens-original.png": {
+      "source": "codex-clipboard-6e1a9749-ac7d-464c-a021-97bbe38ccaf4.png",
+      "sha256": "e5db19bec973f2dea33bf3b5f5cc00230db1134c3fdb722bb504cd2c6853e946",
+      "size": [
+        6450,
+        4082
+      ]
+    }
+  },
+  "screens": [
+    {
+      "file": "welcome.png",
+      "label": "Welcome",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        403,
+        0,
+        875,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "user-type-selection.png",
+      "label": "User Type Selection",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        1056,
+        0,
+        1528,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "log-in-sign-up.png",
+      "label": "Log In / Sign Up",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        1709,
+        0,
+        2181,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "pair-your-locker.png",
+      "label": "Pair Your Locker",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        2362,
+        0,
+        2834,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "personal-home.png",
+      "label": "Personal Home",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        3562,
+        0,
+        4033,
+        978
+      ],
+      "size": [
+        471,
+        978
+      ]
+    },
+    {
+      "file": "personal-locker-detail.png",
+      "label": "My Locker Detail",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        4166,
+        0,
+        4638,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "add-food.png",
+      "label": "Add Food",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        4770,
+        0,
+        5242,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "share-access.png",
+      "label": "Share Access",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        5374,
+        0,
+        5846,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "history.png",
+      "label": "History",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        5978,
+        0,
+        6450,
+        978
+      ],
+      "size": [
+        472,
+        978
+      ]
+    },
+    {
+      "file": "group-setup.png",
+      "label": "Group Setup",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        173,
+        1544,
+        645,
+        2525
+      ],
+      "size": [
+        472,
+        981
+      ]
+    },
+    {
+      "file": "join-group.png",
+      "label": "Join Group",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        778,
+        1544,
+        1249,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "create-group.png",
+      "label": "Create Group",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        1382,
+        1544,
+        1853,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "register-lockers.png",
+      "label": "Register Lockers",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        1986,
+        1544,
+        2457,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "role-detection.png",
+      "label": "Role Detection",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        2590,
+        1544,
+        3061,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "admin-dashboard.png",
+      "label": "Admin Dashboard",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        3867,
+        1544,
+        4338,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "manage-members.png",
+      "label": "Manage Members",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        4471,
+        1544,
+        4942,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "manage-lockers.png",
+      "label": "Manage Lockers",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        5075,
+        1544,
+        5546,
+        2525
+      ],
+      "size": [
+        471,
+        981
+      ]
+    },
+    {
+      "file": "assign-locker.png",
+      "label": "Assign Locker",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        5679,
+        1544,
+        6151,
+        2525
+      ],
+      "size": [
+        472,
+        981
+      ]
+    },
+    {
+      "file": "member-home.png",
+      "label": "Member Home",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        0,
+        3099,
+        472,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "request-locker.png",
+      "label": "Request Locker",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        604,
+        3099,
+        1076,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "member-locker-detail.png",
+      "label": "My Locker Detail",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        1208,
+        3099,
+        1680,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "share-my-locker.png",
+      "label": "Share My Locker",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        1812,
+        3099,
+        2284,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "group-overview.png",
+      "label": "Group Overview",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        2416,
+        3099,
+        2888,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "report-issue.png",
+      "label": "Report Issue",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        3020,
+        3099,
+        3492,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "alerts.png",
+      "label": "Alerts",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        3624,
+        3099,
+        4096,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "emergency-unlock.png",
+      "label": "Emergency Unlock",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        4642,
+        3099,
+        5114,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "admin-access-log.png",
+      "label": "Admin Access Log",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        5246,
+        3099,
+        5718,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    },
+    {
+      "file": "group-settings.png",
+      "label": "Group Settings",
+      "source": "wireframe-screens-original.png",
+      "crop": [
+        5850,
+        3099,
+        6322,
+        4082
+      ],
+      "size": [
+        472,
+        983
+      ]
+    }
+  ],
+  "iterations": [
+    {
+      "file": "share-my-locker-before.png",
+      "source": "wireframe-iteration-board-original.png",
+      "crop": [
+        6018,
+        449,
+        6362,
+        1156
+      ]
+    },
+    {
+      "file": "personal-home-before.png",
+      "source": "wireframe-iteration-board-original.png",
+      "crop": [
+        6018,
+        1223,
+        6364,
+        1932
+      ]
+    },
+    {
+      "file": "member-home-before.png",
+      "source": "wireframe-iteration-board-original.png",
+      "crop": [
+        6020,
+        1998,
+        6368,
+        2707
+      ]
+    }
+  ]
+}

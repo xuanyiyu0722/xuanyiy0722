@@ -1,0 +1,33 @@
+{
+  "design": "https://www.figma.com/design/XTil8wIvFdojVQuMRvLz2Q/Untitled?node-id=5-2",
+  "prototype": "https://www.figma.com/make/E3fsqKFdE4P1xN4XESRKaR/Generate-High-Fidelity-Screen",
+  "nodes": {
+    "product_art": "5:12",
+    "interface_icons": "5:1064",
+    "pickup_qr": "5:1744"
+  },
+  "assets": [
+    "1671b.webp",
+    "2fc7c.svg",
+    "37218.webp",
+    "445d1.webp",
+    "46f7c.svg",
+    "69388.webp",
+    "6c685.svg",
+    "707e2.webp",
+    "7411b.webp",
+    "785b3.webp",
+    "8e6ba.svg",
+    "9d4d9.webp",
+    "a537a.svg",
+    "b1377.svg",
+    "bc15d.webp",
+    "c3b33.svg",
+    "c3d4c.webp",
+    "d12f4.svg",
+    "d208c.svg",
+    "f2e0f.webp",
+    "pickup-qr.svg"
+  ],
+  "note": "Original artwork downloaded from Figma. High-Fidelity interactions adapted to the local portfolio; no Low-Fi canvas included."
+}

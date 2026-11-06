@@ -1,0 +1,312 @@
+{
+  "file_key": "zTIdWCxTskOIyGOYJgiT0R",
+  "frames": {
+    "wireframes": "277:1766",
+    "storyboard": "102:326"
+  },
+  "export_scale": 6,
+  "export_format": "PNG",
+  "exports": {
+    "explore-home.png": {
+      "node_id": "277:1773"
+    },
+    "country-timeline.png": {
+      "node_id": "277:1922"
+    },
+    "garment-detail.png": {
+      "node_id": "277:2075"
+    },
+    "material-list.png": {
+      "node_id": "277:5995"
+    },
+    "link-platform.png": {
+      "node_id": "277:6241"
+    },
+    "detail-specs.png": {
+      "node_id": "277:6579"
+    },
+    "detail-photos.png": {
+      "node_id": "277:6731"
+    },
+    "fabric-map.png": {
+      "node_id": "416:7266"
+    },
+    "claim-state.png": {
+      "node_id": "416:8340"
+    },
+    "splitting-tab.png": {
+      "node_id": "277:3065"
+    },
+    "saved-tab.png": {
+      "node_id": "277:3162"
+    },
+    "owned-tab.png": {
+      "node_id": "277:3253"
+    },
+    "split-detail.png": {
+      "node_id": "277:3338"
+    },
+    "projects-home.png": {
+      "node_id": "277:3512"
+    },
+    "create-brief-1.png": {
+      "node_id": "277:3621"
+    },
+    "create-brief-2.png": {
+      "node_id": "277:3776"
+    },
+    "create-brief-3.png": {
+      "node_id": "277:3932"
+    },
+    "project-tracking.png": {
+      "node_id": "277:4292"
+    },
+    "find-maker.png": {
+      "node_id": "277:4428"
+    },
+    "studio-locked.png": {
+      "node_id": "277:4602"
+    },
+    "audit-form.png": {
+      "node_id": "277:4691"
+    },
+    "dashboard.png": {
+      "node_id": "437:12465"
+    },
+    "dashboard-state.png": {
+      "node_id": "437:12667"
+    },
+    "profile-home.png": {
+      "node_id": "277:5137"
+    },
+    "revision-globe-before.png": {
+      "node_id": "310:2050"
+    },
+    "revision-globe-after.png": {
+      "node_id": "311:2184"
+    },
+    "revision-share-before.png": {
+      "node_id": "312:2446"
+    },
+    "revision-share-after.png": {
+      "node_id": "437:10207"
+    },
+    "revision-filter-before.png": {
+      "node_id": "313:2816"
+    },
+    "revision-filter-after.png": {
+      "node_id": "313:3545"
+    }
+  },
+  "notes": [
+    {
+      "id": "277:1772",
+      "text": "Features: Search or spin the globe to choose a country; enter a country timeline by period; open garment details to review use, region, wearer, meaning, and related garments; save references as patterns."
+    },
+    {
+      "id": "277:3064",
+      "text": "Features: Manage owned, splitting, and saved fabrics; see claim percentage and participants; claim sleeves, collars, body panels, or leftover fabric; track deadline, cutting, shipping, and receipt; convert a claimed part into a project."
+    },
+    {
+      "id": "277:3511",
+      "text": "Features: Manage active commissions and pattern sheets; combine garment reference, doll size, owned material, and style choices into a brief; after submission, track maker, measurements, fabric shipping, making, preview, and Material Passport."
+    },
+    {
+      "id": "277:4427",
+      "text": "Features: Buyers filter makers by region, garment type, and doll size; makers complete a one-time platform audit for identity, samples, account, and terms; approved studios manage availability, requests, active projects, garment categories, and portfolio."
+    },
+    {
+      "id": "277:5136",
+      "text": "Features: Show collector identity and preferences; summarize projects, splits, orders, and saved materials; open Material Passport to preserve source, material, and making records for each finished garment."
+    },
+    {
+      "id": "277:2194",
+      "text": "Features: Browse and filter vintage kimono, obi, and textiles; review material, technique, condition, flaws, dimensions, and detail photos; estimate reuse potential; buy the full item or enter Fabric Map to claim sections."
+    },
+    {
+      "id": "313:3673",
+      "text": "Silk bolt"
+    },
+    {
+      "id": "313:3707",
+      "text": "What changed: \nReplaced the flat regional map with an interactive globe as the main cultural exploration entry point. "
+    },
+    {
+      "id": "313:3710",
+      "text": "What changed: \nAdded a Share with Friends action directly under each ongoing split"
+    },
+    {
+      "id": "313:3708",
+      "text": "Benefit: \nMakes global exploration more intuitive.\nCreates a more engaging entry point for cultural discovery."
+    },
+    {
+      "id": "313:3712",
+      "text": "Benefit: \nMakes it easier to fill remaining fabric sections faster.\nEncourages users to share the app with friends."
+    },
+    {
+      "id": "313:3986",
+      "text": "What changed: \nFilters were reorganized into location, garment type, price range, and post time"
+    },
+    {
+      "id": "313:3987",
+      "text": "Benefit: \nKeeps the material browsing page cleaner.\nMakes it easier for users to find materials within their preferred price range.\nCreates a more familiar marketplace-style browsing experience."
+    }
+  ],
+  "story": [
+    {
+      "id": "234:37",
+      "text": "Storyboard"
+    },
+    {
+      "id": "314:4050",
+      "text": "Interested"
+    },
+    {
+      "id": "314:4055",
+      "text": "She explores kimono types, styling rules, and accessories to understand what would suit her SDGr doll."
+    },
+    {
+      "id": "314:4056",
+      "text": "Explore"
+    },
+    {
+      "id": "314:4065",
+      "text": "She checks the recommended fabric amount for her doll size, selects the sections she needs, and joins a fabric split with other users."
+    },
+    {
+      "id": "314:4066",
+      "text": "Plan & Split"
+    },
+    {
+      "id": "314:4070",
+      "text": "She creates a project and compares makers by style, doll size, price, availability, and portfolio before sending a commission request."
+    },
+    {
+      "id": "314:4076",
+      "text": "Track Progress"
+    },
+    {
+      "id": "314:4085",
+      "text": "She receives the finished kimono, loves the final result, and shares it on social media."
+    },
+    {
+      "id": "314:4086",
+      "text": "Receive & Share"
+    },
+    {
+      "id": "102:330",
+      "text": "Future Enhancement"
+    },
+    {
+      "id": "310:1870",
+      "text": "Hannah was scrolling through her social media. She sees another collector sharing a pic of her BJD wearing a kimono and becomes interested in creating one for her own doll."
+    },
+    {
+      "id": "314:4061",
+      "text": "Find Fabric"
+    },
+    {
+      "id": "314:4060",
+      "text": "She browses the Materials section and uses filters to find fabrics that match her preferred kimono type, budget, and style."
+    },
+    {
+      "id": "314:4071",
+      "text": "Find Maker"
+    },
+    {
+      "id": "314:4075",
+      "text": "She searches for makers who work with her doll size and kimono type. After comparing and contrasting their portfolios, pricing, availability, she confirmed one maker and invite them to join the project."
+    }
+  ],
+  "future": [
+    {
+      "id": "336:90",
+      "name": "Enhancement Card 1",
+      "w": 658,
+      "h": 504,
+      "text": [
+        "Expand Pattern & Fabric Types",
+        "Beyond kimono, expand traditional garment patterns and materials.",
+        "e.g. Hanfu, Saree, Dirndl, Victorian dress.\ne.g. Song brocad, French lace, silk satin\nHelp users explore and customize a wider range of traditional garments.\nProvide size, usage, and compatibility information for each material."
+      ]
+    },
+    {
+      "id": "336:97",
+      "name": "Enhancement Card 2",
+      "w": 658,
+      "h": 504,
+      "text": [
+        "Finished Kimono Marketplace",
+        "Create a space for users to resell or auction completed BJD kimono they no longer use.",
+        "• Supports secondhand circulation.\n• Gives handmade garments a longer life cycle.\n• Helps collectors discover unique finished pieces."
+      ]
+    },
+    {
+      "id": "336:104",
+      "name": "Enhancement Card 3",
+      "w": 658,
+      "h": 504,
+      "text": [
+        "Maker-Owned Fabrics",
+        "Allow makers to display fabrics they already own and are available to use for future commissions.",
+        "• Users can choose materials directly from a maker's collection.\n• Reduces the source fabric step.\n• Provide a channel for makers to consume materials they already bought. "
+      ]
+    },
+    {
+      "id": "336:111",
+      "name": "Enhancement Card 4",
+      "w": 658,
+      "h": 504,
+      "text": [
+        "Fabric-Led Commission Posts",
+        "Makers can post a specific fabric as an open commission opportunity.",
+        "• Turns leftover or special fabrics into new commission opportunities.\n• Helps makers attract users based on specific materials.\n• Creates a more direct connection between fabric, maker, and collector."
+      ]
+    }
+  ],
+  "originals": [
+    "storyboard-future-original.png",
+    "wireframes-revision-original.png"
+  ],
+  "method": "Original Figma node exports for every wireframe and comparison. Native HTML for project copy, feature descriptions, revision explanations, and future enhancements. Original uploaded storyboard is displayed through a code-native SVG viewport.",
+  "storyline": {
+    "sourceFrame": "102:326",
+    "illustrations": {
+      "story-interested.png": "314:4785",
+      "story-explore.png": "344:262",
+      "story-fabric.png": "344:378",
+      "story-maker.png": "316:5384",
+      "story-receive.png": "350:1655"
+    },
+    "route": "347:383",
+    "returnRoute": "347:384",
+    "notes": "Original alpha layers and original route; scene descriptions rendered as HTML; timed progression, pause, replay and chapter selection.",
+    "screens": {
+      "story-country.png": "350:1525",
+      "story-garment.png": "476:96",
+      "story-materials.png": "503:273",
+      "story-split.png": "503:105",
+      "story-tracking.png": "503:520",
+      "story-makers.png": "350:448",
+      "story-fabric-map.png": "350:421"
+    },
+    "update_v32": {
+      "newSources": "../musubi-story-update/sources.json",
+      "step4FabricMap": "../musubi-story-update/fabric-map.png",
+      "step5MakersScreen": "../musubi-story-update/makers.png",
+      "step5LayerOrder": [
+        "Makers phone (background)",
+        "Brown-haired maker (foreground)"
+      ],
+      "originalCharacterUnchanged": true,
+      "fullSvgUpdated": true
+    },
+    "update_v33": {
+      "step4FabricMapY": 850,
+      "previousY": 900,
+      "phoneY": 679,
+      "phoneHeight": 260.1526,
+      "notes": "Move only the fabric map upward by 50 SVG units to overlap the lower quarter of the phone, matching the supplied overlap reference. Inline and full-view SVG are synchronized."
+    }
+  }
+}

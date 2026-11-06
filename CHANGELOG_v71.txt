@@ -1,0 +1,8 @@
+v71 — Beige sidebar, Euclid counter fills, and stronger Gallery scroll animation
+
+- Changed the main-page sidebars and mobile header to #F8F4ED.
+- Kept navigation rows in the same horizontal position when selected, hovered, or hatching.
+- Filled the ten closed letter counters in the Home poster with #776B61 sampled from the reference image, using the actual Euclid Circular A glyph outlines.
+- Enlarged the centered Gallery covers and aligned project names with the page heading.
+- Read Motion's scroll-fade source and used its animate/scroll opacity sequence and four offsets, with a larger cover movement and scale change.
+- Bundled Motion locally with its MIT license; no online script dependency is required.

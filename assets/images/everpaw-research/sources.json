@@ -1,0 +1,1546 @@
+{
+  "inputs": {
+    "background-original.png": {
+      "sha256": "7de850b24da49e188ad35d9df62b27c7a828e7fa88d5d8aea9183386751b630a"
+    },
+    "questionnaire-original.png": {
+      "sha256": "cea3cf172d0aa89f37a841136e24b960875b02e98f33ecf41deb8c395882b3dc"
+    },
+    "loss-interview-original.png": {
+      "sha256": "5483ea5c88262fd140a5d938e021c282ddec444b7eea025e552c19d91ca91af3"
+    },
+    "persona-original.png": {
+      "sha256": "3018421bb550d9d99cf23bdc6b17057da669769611c693d285777c7d528a1bb9"
+    },
+    "brainstorm-original.png": {
+      "sha256": "84179cec864c67ddd056f693889c5e55952140bd02bb38755a3e7cef29136cd9"
+    },
+    "journey-original.png": {
+      "sha256": "b1ae9c0b04077dba8f23343b0a674ead85136d3b63ffb9338d61a55c7231729a"
+    },
+    "competitor-ia-original.png": {
+      "sha256": "3e8455b704263f423172e7f84d634850c427da5a9376d4adee619bae0a1366a6"
+    },
+    "wireframe-testing-exploration-original.png": {
+      "sha256": "4d4426cd7b356c234017251bc023596e69cf0e530d59a16cc97edff0a5dcfd33"
+    },
+    "mvp-bone-original.png": {
+      "sha256": "fdb00924ec5cdd17f8f2e03c61e137a4c219bb3027f234691bcb72a6c6ba35f9"
+    },
+    "market-icons-original.png": {
+      "sha256": "d71e9b397276199d0f2b3d77b8f3a2c59754241e38406b60134ab4cc200e1453"
+    },
+    "high-fidelity-board-original.png": {
+      "sha256": "2310e1e0de4cd539a94b85b36c19b4144f716dc0af1c839e6b32215b25a6e77b",
+      "description": "User supplied original, unaltered"
+    },
+    "moodboard-complete-original.png": {
+      "sha256": "08098e5abf39bf93a42d1d35b482eb82aa6f27997abbaf35d0e4dd46e96238c1",
+      "description": "User supplied original, unaltered"
+    },
+    "app-logo-original.png": {
+      "sha256": "b38d7b18e23e8ecc67b3d001a28e8ce46297d71e544c9083c42ab6274aa9b701",
+      "description": "User-supplied original, unaltered"
+    },
+    "user-journey-art-original.png": {
+      "sha256": "e0181deccc8b48ef5b07094851d03f0e775c170b0908436dcbf9590b64cb9ee8",
+      "description": "User-supplied original, unaltered"
+    },
+    "journey-devices-original.png": {
+      "sha256": "57bc64eae9fd218bdf7a22a3b30f041f1d639726c3ccd860430fec989f963025",
+      "description": "User-supplied original, unaltered"
+    },
+    "logo-journey-board-original.png": {
+      "sha256": "bb1bfd706f76d0b6a389ca3972d93726bc89550afb52b3090c80377a8f25936f",
+      "description": "User-supplied original, unaltered"
+    },
+    "storyboard-original.png": {
+      "sha256": "2959c8e37d85ca66c5d9972318c5bfe32182bb25c95f67af543d8a0ffb089403",
+      "description": "User-supplied original, unaltered"
+    },
+    "future-exploration-original.png": {
+      "sha256": "aa09bc4b124eac6e0b26e7a3171d06647fdc1871bfcf50d8b5cee61e8e4871e4",
+      "description": "User-supplied original, unaltered"
+    },
+    "storyboard-future-board-original.png": {
+      "sha256": "21288b58f607baf2ade32b271518689120398920eb99df4bf4dcd0d1b11598bc",
+      "description": "User-supplied original, unaltered"
+    },
+    "storyboard-clear-original.png": {
+      "sha256": "d3bf31450c3f42ab381be0f08f87e3c1d0fe12af1536510f61170e285678cc42",
+      "size": [
+        3340,
+        2114
+      ],
+      "source": "User supplied latest storyboard image"
+    }
+  },
+  "dataHandling": {
+    "devicePurchase": {
+      "labels": [
+        "Yes",
+        "No"
+      ],
+      "counts": [
+        40,
+        15
+      ],
+      "percentages": [
+        72.7,
+        27.3
+      ],
+      "status": "Confirmed by the user on 2026-10-18; supersedes inconsistent original board labels."
+    },
+    "tvCounts": [
+      0,
+      2,
+      13,
+      15,
+      25
+    ],
+    "preferenceScores": [
+      4.4,
+      3.9,
+      3.3,
+      3.2,
+      2.5
+    ],
+    "petLoss": [
+      36,
+      19
+    ],
+    "sadness": [
+      1,
+      3,
+      4,
+      10,
+      13,
+      5
+    ],
+    "continuingPresence": [
+      13,
+      7,
+      10,
+      3,
+      3
+    ],
+    "validResponses": 55,
+    "confirmation": "User confirmed 55 valid responses and Yes 40 / No 15."
+  },
+  "assets": "Original Background spending chart and grief illustration are rendered in native SVG viewports; original PNGs are preserved unchanged. Participant identifiers use initials because the supplied boards contain photo placeholders.",
+  "sources": [
+    "https://americanpetproducts.org/news/the-american-pet-products-association-appa-releases-2025-state-of-the-industry-report-archive",
+    "https://www.pewresearch.org/short-reads/2023/07/07/about-half-us-of-pet-owners-say-their-pets-are-as-much-a-part-of-their-family-as-a-human-member/",
+    "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0339213"
+  ],
+  "v21": {
+    "personas": [
+      {
+        "name": "Emily",
+        "type": "Primary user · Pet owner",
+        "image": [
+          430,
+          905,
+          410,
+          410
+        ],
+        "facts": [
+          [
+            "Gender",
+            "Female"
+          ],
+          [
+            "Age",
+            "28"
+          ],
+          [
+            "Status",
+            "Single"
+          ],
+          [
+            "Residence",
+            "Urban apartment"
+          ],
+          [
+            "Living situation",
+            "Lives alone"
+          ],
+          [
+            "Pet",
+            "A dog"
+          ]
+        ],
+        "bio": "Emily is a 28-year-old working professional living alone in an urban apartment with her dog. On weekdays, her dog is often home alone for long stretches, and Emily feels guilty when she can’t be there. She is not a “hardcore pet-tech” user, but she is willing to buy practical devices that make daily care easier and help her dog feel less lonely.",
+        "frustrationTitle": "Frustrations",
+        "frustrations": [
+          "Uncertain about her dog’s emotional state when she is away",
+          "Feels sorry for not being able to provide constant companionship",
+          "Concerned about gradual changes in her dog’s wellbeing over time"
+        ],
+        "needs": [
+          "Reduce her dog’s loneliness during long hours alone",
+          "Detect her dog’s emotional state",
+          "Provide easy, low-effort enrichment that actually keeps her dog engaged"
+        ],
+        "spending": [
+          "Monthly salary of approximately $5,000",
+          "Spends about 5% of her income on her pet",
+          "Willing to pay for products that clearly improve her pet’s quality of life",
+          "Prefers mid-priced solutions over premium luxury options"
+        ],
+        "traits": [
+          [
+            "Tech hesitant",
+            "Tech savvy",
+            58
+          ],
+          [
+            "Independent",
+            "Sociable",
+            33
+          ],
+          [
+            "Busy",
+            "Time rich",
+            26
+          ],
+          [
+            "Detached",
+            "Attached",
+            78
+          ],
+          [
+            "Price sensitive",
+            "Premium buyer",
+            64
+          ]
+        ]
+      },
+      {
+        "name": "Riley",
+        "type": "Secondary user · Pet",
+        "image": [
+          2144,
+          1397,
+          420,
+          420
+        ],
+        "facts": [
+          [
+            "Species",
+            "Dog"
+          ],
+          [
+            "Age",
+            "8"
+          ],
+          [
+            "Breed",
+            "Border Collie"
+          ],
+          [
+            "Residence",
+            "Urban apartment"
+          ],
+          [
+            "Owner",
+            "Emily"
+          ]
+        ],
+        "bio": "Riley is an indoor Border Collie living in a city apartment with a single owner. She has a strong attachment to Emily and relies on consistent routines for a sense of security. During weekdays, she spends 8–10 hours per day alone at home, alternating between resting, exploring the environment, and waiting for her owner to return. She enjoys familiar sounds, gentle stimulation, and predictable interactions.",
+        "frustrationTitle": "Distress",
+        "frustrations": [
+          "Separation from her owner for extended periods",
+          "Lack of interaction leading to boredom or anxiety",
+          "Gradual decline in energy and comfort with aging"
+        ],
+        "needs": [
+          "Mental stimulation to prevent boredom",
+          "A sense of safety and stability in the home environment",
+          "Safe outlets for energy within a limited indoor space"
+        ],
+        "traits": [
+          [
+            "Cautious",
+            "Curious",
+            62
+          ],
+          [
+            "Calm",
+            "Energetic",
+            81
+          ],
+          [
+            "Busy",
+            "Time rich",
+            75
+          ],
+          [
+            "Detached",
+            "Attached",
+            68
+          ],
+          [
+            "Routine-flexible",
+            "Routine-oriented",
+            52
+          ]
+        ]
+      }
+    ],
+    "petJourney": [
+      [
+        "Entering New Home",
+        "I must stay alert in this unfamiliar environment.",
+        [
+          "Explore the environment",
+          "Establish territory",
+          "Observe the owner"
+        ],
+        "Alert",
+        [
+          "Environmental stress",
+          "Lack of routine",
+          "Sensory overload"
+        ],
+        [
+          "Learn comfort zones early",
+          "Support a smooth adjustment period",
+          "Use stress signals to understand baseline behavior"
+        ]
+      ],
+      [
+        "Bonding with Owner",
+        "My owner provides food and comfort. I am getting familiar with my owner and the routine.",
+        [
+          "Follow the owner around",
+          "Seek touch and attention",
+          "Stay close during rest",
+          "React to familiar stimuli"
+        ],
+        "Comforted",
+        [
+          "Anxiety when left alone",
+          "Limited ways to communicate needs",
+          "Boredom without interaction"
+        ],
+        [
+          "Support emotional comfort, especially when left alone",
+          "Preserve bonding patterns for future reference",
+          "Facilitate communication by predicting pets’ reactions"
+        ]
+      ],
+      [
+        "Getting Used to the Device",
+        "There is something new. I feel strange.",
+        [
+          "Inspect cameras",
+          "Gradually get used to them"
+        ],
+        "Curious",
+        [
+          "Physical irritation",
+          "Stress from unfamiliar objects",
+          "Temporary behavior changes"
+        ],
+        [
+          "Allow gradual adaptation",
+          "Prioritize comfort over constant monitoring"
+        ]
+      ],
+      [
+        "Engaging with Device",
+        "There are many new and interesting things to look at and listen to. I feel excited and stimulated.",
+        [
+          "Watch or listen attentively",
+          "React to movement and sound",
+          "Move closer or shift position"
+        ],
+        "Enjoyment",
+        [
+          "Too much stimulation can feel overwhelming"
+        ],
+        [
+          "Establish reliable patterns after adjustment",
+          "Provide mental enrichment"
+        ]
+      ],
+      [
+        "Settled Routine",
+        "I know this place well. I expect things to happen at certain times.",
+        [
+          "Maintain daily cycles"
+        ],
+        "Comfortable",
+        [
+          "Stress if the routine is disrupted",
+          "Loneliness during long absences"
+        ],
+        [
+          "Preserve “signature behaviors”",
+          "Detect health or mood changes early",
+          "Build an accurate long-term behavioral model"
+        ]
+      ],
+      [
+        "Aging",
+        "I get tired more easily. I prefer quiet and familiar places.",
+        [
+          "Move less",
+          "Sleep more",
+          "Seek attention"
+        ],
+        "Sensitive",
+        [
+          "Physical discomfort",
+          "Reduced mobility",
+          "Sensitivity to strong stimuli"
+        ],
+        [
+          "Shift focus from stimulation to comfort",
+          "Maintain familiar routines"
+        ]
+      ],
+      [
+        "Late Stage Dependence",
+        "I feel weak. I want to stay somewhere safe.",
+        [
+          "Stay in one place for long periods",
+          "Seek closeness and reassurance",
+          "Minimal movement"
+        ],
+        "Exhausted",
+        [
+          "Physical distress",
+          "Sensitivity to change",
+          "Limited effort"
+        ],
+        [
+          "Maintain comfort and dignity",
+          "Avoid unnecessary stimulation",
+          "Capture authentic late-life patterns"
+        ]
+      ]
+    ],
+    "ownerJourney": [
+      [
+        "Getting Pet",
+        "I hope I can get along well with my pet! I am excited to meet my pet!",
+        [
+          "Buy supplies and toys",
+          "Observe habits",
+          "Set daily routines"
+        ],
+        "Excited",
+        [
+          "Too many supplies to get",
+          "Unfamiliar with the new pet and need to bond"
+        ],
+        [
+          "One-stop shop for supplies",
+          "Instructions on how to quickly bond with a new pet"
+        ]
+      ],
+      [
+        "Getting Device",
+        "What devices are on the market? What do I need from the device?",
+        [
+          "Compare different pet products",
+          "Browse information online and in stores"
+        ],
+        "Overwhelmed",
+        [
+          "Unsure which one to buy",
+          "Some devices can be pricey",
+          "Some devices may have a technology barrier"
+        ],
+        [
+          "Product recommendations based on specific customer needs"
+        ]
+      ],
+      [
+        "First-Time User",
+        "Will my pet accept this device? What information can I get, and how do I keep on track?",
+        [
+          "Read instructions",
+          "Install camera and chip",
+          "Connect to the mobile app",
+          "Test features"
+        ],
+        "Hopeful",
+        [
+          "Pet may not cooperate",
+          "Difficult setup"
+        ],
+        [
+          "A more pet-friendly method of use",
+          "An easy-to-follow user guide"
+        ]
+      ],
+      [
+        "Daily Usage",
+        "My pet is happier. I feel reassured when I’m away. It’s interesting to see my pet’s preferences!",
+        [
+          "Adjust settings",
+          "Check the monitor during the workday",
+          "Check app insights",
+          "Observe pet reactions"
+        ],
+        "Satisfied",
+        [
+          "Pet may get tired after repeated use",
+          "Data is sometimes inaccurate"
+        ],
+        [
+          "Ongoing stimulation to keep the pet engaged",
+          "A reliable, understandable way to track data"
+        ]
+      ],
+      [
+        "Pet Aging",
+        "My pet is slowing down. I want my pet to feel comfortable. I don’t want to lose them. Every moment feels precious.",
+        [
+          "Spend more time together",
+          "Check the “Understand” section frequently"
+        ],
+        "Concerned",
+        [
+          "Pet is getting older and weaker",
+          "Worry about losing the pet",
+          "Preferences and behavior can change with aging"
+        ],
+        [
+          "Adapt engagement to aging",
+          "Prepare sound, image, and video material for a later memorial experience"
+        ]
+      ],
+      [
+        "Loss",
+        "My home feels empty. I miss my pet’s presence.",
+        [
+          "Preserve pet belongings",
+          "Experience loneliness",
+          "Seek comfort or memorial options"
+        ],
+        "Grief",
+        [
+          "Hesitation to revisit memories",
+          "Difficulty adjusting to new routines"
+        ],
+        [
+          "Introduce features gently based on emotional state and preferences",
+          "Help adjust to a new lifestyle",
+          "Provide memorial services",
+          "Preserve memories"
+        ]
+      ],
+      [
+        "Long-Term Bonding",
+        "I still feel connected to my pet. Seeing them again is comforting. They remain part of my life.",
+        [
+          "Look back at pet videos and photos",
+          "Imagine the pet is still there",
+          "Use the avatar and 3D projection to stay connected to the pet"
+        ],
+        "Peace",
+        [
+          "Images and videos do not feel the same as the pet",
+          "Cannot interact with the pet anymore",
+          "Feelings can be unstable and come and go"
+        ],
+        [
+          "Activate avatar projection",
+          "Allow a sense of presence in daily life",
+          "Occasionally interact",
+          "Simulate real, learned behaviors",
+          "Provide timely support when needed"
+        ]
+      ]
+    ],
+    "brainstorm": [
+      [
+        "Monitoring & Safety",
+        [
+          [
+            "Alert system when unusual behavior happens",
+            "p1"
+          ],
+          [
+            "Camera that records pets’ behaviors",
+            "p1"
+          ],
+          [
+            "Emergency service when the system detects something alarming",
+            "p1"
+          ],
+          [
+            "AI camera that recognizes whether the owner is at home",
+            "idea"
+          ],
+          [
+            "Injury detection system",
+            "p1"
+          ],
+          [
+            "Health alerts for aging symptoms",
+            "p1"
+          ]
+        ]
+      ],
+      [
+        "Emotional Support",
+        [
+          [
+            "Audio/video chat that can be enjoyed by the pet",
+            "p1"
+          ],
+          [
+            "AI-generated avatar that accompanies the pet when the owner is away",
+            "p1"
+          ],
+          [
+            "Record the pet’s voice and play it back in a way they can understand",
+            "idea"
+          ],
+          [
+            "AI owner-voice interaction that comforts pets when they are scared",
+            "idea"
+          ],
+          [
+            "Translator between pet and owner",
+            "idea"
+          ],
+          [
+            "A device that mimics the owner’s patting behavior",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Behavior & Data Insight",
+        [
+          [
+            "Daily behavior summary for owners",
+            "idea"
+          ],
+          [
+            "Visualization of the pet’s emotional and physical status",
+            "idea"
+          ],
+          [
+            "AI assessment of the pet’s mental excitement level",
+            "idea"
+          ],
+          [
+            "Data analysis and AI insights to help owners understand and care for their pets",
+            "idea"
+          ],
+          [
+            "Pet knowledge base for owners",
+            "idea"
+          ],
+          [
+            "Crowdsourced pet behavior study",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Engagement Activities",
+        [
+          [
+            "Control the amount of stimulation",
+            "idea"
+          ],
+          [
+            "Reward mechanism to help pets adapt to the device",
+            "idea"
+          ],
+          [
+            "Bonding games customized to the pet’s and owner’s preferences",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Memorize",
+        [
+          [
+            "AI-generated memory album",
+            "mvp"
+          ],
+          [
+            "AI avatar that studies and mimics the pet’s behavior",
+            "mvp"
+          ],
+          [
+            "A plush doll or digital avatar that resembles the pet",
+            "p1"
+          ]
+        ]
+      ],
+      [
+        "Community",
+        [
+          [
+            "Pets can talk to each other and make friends online",
+            "idea"
+          ],
+          [
+            "Share pet stories with other pet owners",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Customization",
+        [
+          [
+            "Pricing based on the range of functions, with lower-cost options",
+            "idea"
+          ],
+          [
+            "Let owners choose whether to see their pet after loss",
+            "idea"
+          ],
+          [
+            "AI-controlled color adjustment that suits pets’ preferences",
+            "idea"
+          ]
+        ]
+      ],
+      [
+        "Usability",
+        [
+          [
+            "Simple equipment with an instructional manual",
+            "idea"
+          ]
+        ]
+      ]
+    ],
+    "metricWeights": {
+      "Emotional impact": 45,
+      "User need": 25,
+      "Uniqueness": 15,
+      "Market potential": 15
+    },
+    "emojiViewports": [
+      [
+        [
+          734,
+          1690,
+          157,
+          155
+        ],
+        [
+          1223,
+          1586,
+          157,
+          155
+        ],
+        [
+          1711,
+          1626,
+          156,
+          156
+        ],
+        [
+          2199,
+          1487,
+          157,
+          156
+        ],
+        [
+          2688,
+          1514,
+          156,
+          156
+        ],
+        [
+          3176,
+          1762,
+          157,
+          156
+        ],
+        [
+          3664,
+          1815,
+          156,
+          156
+        ]
+      ],
+      [
+        [
+          4495,
+          1570,
+          157,
+          156
+        ],
+        [
+          4984,
+          1762,
+          156,
+          156
+        ],
+        [
+          5471,
+          1628,
+          157,
+          156
+        ],
+        [
+          5960,
+          1499,
+          156,
+          156
+        ],
+        [
+          6449,
+          1753,
+          156,
+          156
+        ],
+        [
+          6938,
+          1829,
+          157,
+          156
+        ],
+        [
+          7426,
+          1643,
+          156,
+          156
+        ]
+      ]
+    ],
+    "notes": "All original source boards are preserved. Portraits, process photos and emotion artwork use original PNG viewports; all research text, journey table cells, notes and priorities are native HTML. Source personality slider marker positions are replicated approximately, without numerical score labels."
+  },
+  "v22": {
+    "chapterOrder": [
+      [
+        "background",
+        "Background"
+      ],
+      [
+        "questionnaire",
+        "Questionnaire"
+      ],
+      [
+        "interview",
+        "Interview"
+      ],
+      [
+        "persona",
+        "Persona"
+      ],
+      [
+        "journey-owner",
+        "Journey Map · Owner"
+      ],
+      [
+        "journey-pet",
+        "Journey Map · Pet"
+      ],
+      [
+        "function-brainstorm",
+        "Function Brainstorm"
+      ],
+      [
+        "competitor-analysis",
+        "Competitor Analysis"
+      ],
+      [
+        "information-architecture",
+        "Information Architecture"
+      ],
+      [
+        "wireframes",
+        "Wireframes"
+      ],
+      [
+        "wireframe-testing",
+        "Wireframe User Testing"
+      ],
+      [
+        "moodboard",
+        "Moodboard"
+      ],
+      [
+        "vibe-coding",
+        "Vibe Coding"
+      ]
+    ],
+    "competitorProducts": [
+      "Furbo Camera",
+      "FitBark 2",
+      "PetSnap",
+      "DogTV",
+      "Pawp",
+      "Cuddle Clones",
+      "EverPaw"
+    ],
+    "competitorMatrix": [
+      {
+        "feature": "Live Monitoring",
+        "included": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "feature": "Smart Alerts",
+        "included": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "feature": "Behavior Analytics",
+        "included": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "feature": "Memory Album",
+        "included": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "feature": "Enrichment",
+        "included": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "feature": "Post-Loss Remembrance",
+        "included": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      }
+    ],
+    "architecture": [
+      {
+        "name": "Monitor",
+        "groups": [
+          {
+            "name": "Camera",
+            "children": [
+              "Live View",
+              "Automatic Call",
+              {
+                "name": "Stimulus",
+                "crosslink": "Companion"
+              },
+              "Widgets"
+            ]
+          },
+          {
+            "name": "AI Status",
+            "children": [
+              "Warning",
+              "Emergency",
+              "Aging Signs",
+              "Behavior Changes",
+              "Daily Highlights",
+              "Activity Logs"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Companion",
+        "groups": [
+          {
+            "name": "Sound",
+            "children": [
+              "Record Voice",
+              "Play Voice",
+              "Sound Control"
+            ]
+          },
+          {
+            "name": "Visual",
+            "children": [
+              "Pet TV Color Setup",
+              "Play TV"
+            ]
+          },
+          {
+            "name": "Food",
+            "children": [
+              "Give Treat",
+              "Connect Smart Feeder"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Understand",
+        "groups": [
+          {
+            "name": "Emotional State",
+            "children": [
+              {
+                "name": "Behavior Insights",
+                "children": [
+                  "Sleeping Behavior",
+                  "Barking",
+                  "Activity",
+                  "Eating Behavior"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Memory",
+        "groups": [
+          {
+            "name": "Regular Mode",
+            "note": "On by default",
+            "children": [
+              {
+                "name": "AI Memory Album",
+                "children": [
+                  "Photos",
+                  "Video",
+                  "Timeline"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Memory Mode",
+            "note": "When a pet has passed away",
+            "children": [
+              {
+                "name": "Pet Digital Avatar",
+                "children": [
+                  "Motion Control",
+                  "Sound Control"
+                ]
+              },
+              "Pet 3D Projection"
+            ]
+          },
+          {
+            "name": "Behavior Simulation",
+            "children": [
+              {
+                "name": "In-App Simulation",
+                "children": [
+                  "Behavior Reconstruction",
+                  "Viewing Controls",
+                  "Simulation Environment"
+                ]
+              },
+              {
+                "name": "Spatial Projection",
+                "children": [
+                  "Scanning Space Setup",
+                  "Projection Behavior",
+                  "Optional Interaction"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "wireframes": [
+      {
+        "name": "Home · Monitor",
+        "group": "Monitor",
+        "viewBox": [
+          293,
+          518,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Activity Log · Date",
+        "group": "Monitor",
+        "viewBox": [
+          712,
+          518,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Emergency 1",
+        "group": "Monitor",
+        "viewBox": [
+          1114,
+          519,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Mode Switch",
+        "group": "Memory",
+        "viewBox": [
+          1536,
+          519,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Memory Mode",
+        "group": "Memory",
+        "viewBox": [
+          1955,
+          518,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Customize · Recording",
+        "group": "Companion",
+        "viewBox": [
+          293,
+          1283,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Interaction Settings",
+        "group": "Companion",
+        "viewBox": [
+          712,
+          1284,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Understand",
+        "group": "Understand",
+        "viewBox": [
+          1114,
+          1284,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Regular Mode · Photo Wall",
+        "group": "Memory",
+        "viewBox": [
+          1536,
+          1283,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Regular Mode · AI Cam",
+        "group": "Memory",
+        "viewBox": [
+          1949,
+          1282,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Customize · TV Color",
+        "group": "Companion",
+        "viewBox": [
+          293,
+          2047,
+          309,
+          673
+        ]
+      },
+      {
+        "name": "Emergency 2",
+        "group": "Monitor",
+        "viewBox": [
+          712,
+          2048,
+          309,
+          672
+        ]
+      },
+      {
+        "name": "Switch Pet",
+        "group": "Profile",
+        "viewBox": [
+          1108,
+          2048,
+          309,
+          672
+        ]
+      },
+      {
+        "name": "Regular Mode · Timeline",
+        "group": "Memory",
+        "viewBox": [
+          1536,
+          2047,
+          309,
+          673
+        ]
+      }
+    ],
+    "testing": {
+      "participantCount": 2,
+      "iterations": [
+        {
+          "title": "Prioritize warnings and recent activity",
+          "question": "Are there any features you think should be included but are currently missing?",
+          "quote": "Recent activity previews are more important than setting features. I would prefer to see those as I open the app.",
+          "finding": "Warning & Activity Log are the primary functions.",
+          "change": "I exchanged the location of Warning & Activity Log with interaction settings.",
+          "box": [
+            2585,
+            690,
+            1815,
+            955
+          ]
+        },
+        {
+          "title": "Make the transition to Memory Mode gentler",
+          "quote": "I think the transition feels too sudden. Seeing a message that my pet hasn’t been detected for a long time could be emotionally difficult.",
+          "finding": "The mode-switching experience should feel more gentle and emotionally supportive.",
+          "change": "I redesigned the transition to Memory Mode with softer wording and clearer reassurance.",
+          "box": [
+            2700,
+            1780,
+            1700,
+            950
+          ]
+        }
+      ]
+    },
+    "moodboardViewport": [
+      6160,
+      555,
+      1640,
+      1030
+    ],
+    "vibeCoding": [
+      {
+        "name": "Memory",
+        "viewBox": [
+          6384,
+          1846,
+          400,
+          866
+        ]
+      },
+      {
+        "name": "Companion",
+        "viewBox": [
+          6832,
+          1846,
+          474,
+          866
+        ]
+      },
+      {
+        "name": "Pet Monitoring",
+        "viewBox": [
+          7346,
+          1846,
+          390,
+          866
+        ]
+      }
+    ],
+    "notes": "Original boards are unaltered. Original logos, wireframes, testing comparisons, moodboard and interface studies are shown through SVG viewports. Tables, headings, research text and all architecture nodes are native HTML. Competitor comparison is presented as the original project research, not a new market audit.",
+    "iconUpdate": {
+      "date": "2026-10-19",
+      "mvpMarker": "mvp-bone-original.png",
+      "marketIcons": "market-icons-original.png",
+      "marketViewports": [
+        [
+          0,
+          35,
+          122,
+          68
+        ],
+        [
+          677,
+          0,
+          109,
+          136
+        ],
+        [
+          1335,
+          0,
+          133,
+          132
+        ],
+        [
+          2000,
+          61,
+          144,
+          28
+        ]
+      ],
+      "notes": "User-provided PNG artwork preserved without modification. Native SVG viewports present the four market icons; MVP markers use the original transparent bone PNG."
+    }
+  },
+  "v24": {
+    "date": "2026-10-19",
+    "highFidelityPhoneViewports": {
+      "monitor": [
+        260,
+        260,
+        410,
+        810
+      ],
+      "widgets": [
+        690,
+        260,
+        410,
+        810
+      ],
+      "activity": [
+        1120,
+        260,
+        420,
+        810
+      ],
+      "settings": [
+        1730,
+        1090,
+        415,
+        810
+      ],
+      "voice": [
+        2165,
+        1090,
+        415,
+        810
+      ],
+      "color": [
+        2600,
+        1090,
+        415,
+        810
+      ],
+      "pets": [
+        4080,
+        1090,
+        420,
+        810
+      ],
+      "warning": [
+        260,
+        1930,
+        420,
+        815
+      ],
+      "emergency": [
+        690,
+        1930,
+        420,
+        815
+      ],
+      "understand": [
+        2675,
+        1930,
+        420,
+        815
+      ],
+      "mode": [
+        4880,
+        925,
+        595,
+        1160
+      ],
+      "album": [
+        5920,
+        270,
+        595,
+        1165
+      ],
+      "ai-cam": [
+        6530,
+        270,
+        595,
+        1165
+      ],
+      "timeline": [
+        7140,
+        270,
+        595,
+        1165
+      ],
+      "avatar": [
+        7140,
+        1580,
+        595,
+        1165
+      ]
+    },
+    "palette": [
+      "442F24",
+      "AB7F65",
+      "EC9C9E",
+      "DCB89C",
+      "FFD5D0",
+      "F6F1EE"
+    ],
+    "changes": [
+      "Static grouped high-fidelity layout",
+      "Complete moodboard collage preserved",
+      "Single User Journey Map menu entry",
+      "Competitor logo outer margins trimmed",
+      "Transparent grief illustration"
+    ]
+  },
+  "v25": {
+    "date": "2026-10-19",
+    "figmaFileKey": "Eut6Z0WDtmcQNCv78rlIBD",
+    "frames": {
+      "Frame 10425": "4384:5888",
+      "Frame 10426": "4384:5890"
+    },
+    "chapters": [
+      "app-logo",
+      "user-journey",
+      "storyboard",
+      "future-exploration"
+    ],
+    "journeyStages": 12,
+    "storyboardPanels": 11,
+    "futureDirections": 2,
+    "staticAssets": [
+      "app-logo-original.png",
+      "user-journey-art-original.png",
+      "journey-devices-original.png",
+      "logo-journey-board-original.png",
+      "storyboard-original.png",
+      "future-exploration-original.png",
+      "storyboard-future-board-original.png"
+    ],
+    "figmaSvgAssets": [
+      "1ea56.svg",
+      "54e5c.svg",
+      "07d72.svg",
+      "eb712.svg"
+    ]
+  },
+  "v26": {
+    "date": "2026-10-19",
+    "screenSource": "../everpaw-screens/screens-original.png",
+    "screenSourceManifest": "../everpaw-screens/sources.json",
+    "highFidelity": {
+      "ordinary": 10,
+      "core": 5,
+      "layout": "Everyday care above Core Function",
+      "ordinaryFinish": "Original beige frame",
+      "coreFinish": "Original black frame",
+      "shadow": "Removed via hardware silhouette clip paths, not by modifying the source image"
+    },
+    "futureThemeNodes": [
+      "4384:11913",
+      "4416:6797"
+    ],
+    "journey": {
+      "moments": 12,
+      "connections": 11,
+      "interaction": [
+        "select nodes",
+        "play / pause",
+        "replay",
+        "previous / next",
+        "keyboard navigation",
+        "related app screen"
+      ]
+    }
+  },
+  "v27": {
+    "date": "2026-10-19",
+    "journey": {
+      "art": "user-journey-art-hd.png",
+      "artSha256": "704a7e013f1743833f34067a30e9183a11202700b1e590b6b827660ddd6c3fa3",
+      "artSize": [
+        10283,
+        4506
+      ],
+      "reference": "user-journey-media-reference.png",
+      "referenceSha256": "bc8b15bc4a4dc2cd1bec535993533357fc98c10b7d9c9a4896adb340a52a68ba",
+      "stageToStageOverlayLinks": 0,
+      "mediaConnections": {
+        "computer": 3,
+        "television": 6,
+        "work-phone": 4,
+        "speaker": 5,
+        "phone": 11
+      },
+      "moments": 12,
+      "interaction": [
+        "zoom to scene",
+        "zoom controls",
+        "drag to pan",
+        "overview",
+        "play / pause tour",
+        "replay",
+        "previous / next",
+        "keyboard controls",
+        "related screen"
+      ]
+    },
+    "personalizedTheme": {
+      "source": "../everpaw-screens/theme-screens-original.png",
+      "manifest": "../everpaw-screens/theme-sources.json",
+      "screens": 2,
+      "hardware": "Original beige frame",
+      "shadow": "External translucent shadow excluded with native SVG silhouette clipping; source PNG unchanged"
+    }
+  },
+  "v28": {
+    "journey": "Zoom in/out, pan and fit overview only; extra scene/media rings and tour controls removed. Original art and five media arrows retained.",
+    "storyboard": "Eleven integrated scene figures with original image viewports and native captions; shared enlargement viewer keeps each caption with its scene.",
+    "source": "storyboard-clear-original.png",
+    "rasterResampling": false
+  }
+}

@@ -1,0 +1,398 @@
+/* Native text around the user's unaltered doll photographs and kimono artwork. */
+.musubi-background{padding:72px 5.5vw 78px;border-top:1px solid var(--line);}
+.musubi-background>h2{font-family:var(--font-heading);font-size:clamp(34px,3.5vw,48px);font-weight:600;line-height:1.15;margin:0 0 48px;letter-spacing:-.02em;}
+.musubi-part{font-size:10px;line-height:1.4;letter-spacing:.13em;text-transform:uppercase;color:#8b6977;margin:0 0 20px;}
+.musubi-bjd-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start;}
+.musubi-bjd-copy h3{font-family:var(--font-heading);font-size:clamp(26px,2.8vw,36px);font-weight:500;line-height:1.2;margin:0 0 22px;}
+.musubi-bjd-copy>p:last-child{font-size:17px;line-height:1.7;color:#61665b;margin:0;max-width:420px;}
+.musubi-dolls{margin:0;min-width:0;}
+.musubi-doll-pair{display:grid;grid-template-columns:1168fr 587fr;gap:12px;align-items:start;}
+.musubi-doll-pair a{display:block;cursor:zoom-in;min-width:0;}
+.musubi-doll-pair img{width:100%;height:auto;display:block;}
+.musubi-dolls figcaption{font-size:11px;line-height:1.5;color:#7c8075;margin-top:13px;}
+.musubi-kimono{margin-top:80px;padding-top:32px;border-top:1px solid var(--line);}
+.kimono-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:24px;}
+.kimono-toolbar .musubi-part{margin:0;}
+.kimono-controls{display:flex;align-items:center;gap:8px;}
+.kimono-controls[hidden]{display:none;}
+.kimono-controls p{font-size:11px;color:#808476;margin:0 10px 0 0;}
+.kimono-controls button{display:grid;place-items:center;width:34px;height:34px;border:1px solid #c8c7bc;border-radius:50%;background:none;color:#2e3327;cursor:pointer;font-size:17px;transition:background .2s,border-color .2s;}
+.kimono-controls button:hover:not(:disabled){border-color:#8c6777;background:#e9dfe4;}
+.kimono-controls button:disabled{opacity:.3;cursor:default;}
+.kimono-scroll{width:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#b27e93 #e2e1d9;padding-bottom:16px;}
+.kimono-scroll:focus-visible,.kimono-controls button:focus-visible{outline:2px solid #93697b;outline-offset:4px;}
+.kimono-map{position:relative;min-width:1380px;width:100%;height:920px;}
+.kimono-intro{position:absolute;left:0;top:0;width:450px;}
+.kimono-intro h3{font-family:var(--font-heading);font-weight:500;font-size:30px;line-height:1.2;margin:0 0 16px;}
+.kimono-intro>p{font-size:15px;line-height:1.6;color:#61665b;margin:0;}
+.kimono-intro .kimono-direction{max-width:310px;margin-top:34px;font-size:14px;line-height:1.6;color:#32372b;}
+.kimono-direction strong{font-weight:700;color:#a16d85;}
+.kimono-type{position:absolute;display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;width:420px;align-items:start;}
+.kimono-art{display:block;width:88px;height:142px;overflow:hidden;align-self:start;pointer-events:none;}
+.kimono-type h4{font-family:var(--font-heading);font-size:22px;font-weight:600;line-height:1.2;margin:0 0 3px;}
+.kimono-type .kimono-japanese{font-size:12px;color:#6e7367;line-height:1.4;margin:0 0 10px;}
+.kimono-description{font-size:13.5px;line-height:1.5;color:#555b4d;margin:0;}
+.kimono-iro-uchikake{left:0;top:495px;}
+.kimono-furisode{left:320px;top:330px;}
+.kimono-kurotomesode{left:320px;top:710px;}
+.kimono-homongi{left:640px;top:165px;}
+.kimono-tsukesage{left:640px;top:495px;}
+.kimono-hakama{left:960px;top:0;}
+.kimono-iromuji{left:960px;top:330px;}
+.kimono-komon{left:960px;top:710px;}
+.kimono-reading-line{display:flex;align-items:center;gap:18px;margin-top:20px;color:#986f81;font-size:10px;}
+.kimono-reading-line>span{white-space:nowrap;}
+.kimono-progress{height:1px;background:#d6c8ce;position:relative;flex:1;}
+.kimono-progress i{display:block;height:2px;width:0;background:#a16d85;}
+.musubi-original{display:inline-block;font-size:11px;color:#73796c;border-bottom:1px solid #939b88;margin-top:22px;padding-bottom:2px;}
+.project-musubi .musubi-chapters{margin-bottom:76px;}
+/* Same viewer controls as the other case study; fit, zoom and drag preserve originals. */
+.viewer-open{overflow:hidden;}
+.image-viewer{width:calc(100vw - 32px);height:calc(100dvh - 32px);max-width:1500px;max-height:none;padding:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);}
+.image-viewer::backdrop{background:#1119;backdrop-filter:blur(5px);}
+.image-viewer[open]{display:flex;flex-direction:column;}
+.image-viewer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border-bottom:1px solid var(--line);}
+.image-viewer-title{font-size:14px;line-height:1.3;margin:0;}
+.image-viewer-actions{display:flex;align-items:center;gap:8px;}
+.image-viewer-actions button{border:1px solid var(--line);background:transparent;color:inherit;border-radius:3px;min-height:32px;min-width:34px;cursor:pointer;font:inherit;font-size:13px;}
+.image-viewer-actions button:disabled{opacity:.35;cursor:default;}
+.image-viewer-actions output{font-size:11px;min-width:38px;text-align:center;}
+.image-viewer-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:24px;touch-action:pan-x pan-y;}
+.image-viewer-scroll img{max-width:none;width:100%;height:auto;display:block;margin-inline:auto;user-select:none;-webkit-user-drag:none;}
+.image-viewer-scroll.is-zoomed{cursor:grab;}
+.image-viewer-scroll.is-dragging{cursor:grabbing;}
+@media(min-width:1600px){.musubi-background{padding-inline:max(5.5vw,calc((100vw - var(--sidebar) - 1380px)/2));}.musubi-bjd-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:65px;}.musubi-bjd-copy>p:last-child{font-size:19px;}.musubi-bjd-copy h3{font-size:38px;}.musubi-doll-pair{gap:18px;}}
+@media(max-width:1100px){.musubi-bjd-grid{gap:30px;}.musubi-bjd-copy>p:last-child{font-size:16px;}.musubi-bjd-copy h3{font-size:29px;}}
+@media(max-width:820px){.musubi-background{padding:56px 20px 64px;}.musubi-background>h2{font-size:36px;margin-bottom:36px;}.musubi-bjd-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:30px;}.musubi-kimono{margin-top:58px;}.project-musubi .musubi-chapters{margin-bottom:56px;}}
+@media(max-width:640px){.musubi-bjd-grid{grid-template-columns:1fr;gap:28px;}.musubi-bjd-copy h3{font-size:30px;margin-bottom:18px;}.musubi-bjd-copy>p:last-child{max-width:none;font-size:16px;line-height:1.65;}.musubi-part{margin-bottom:15px;}.musubi-doll-pair{gap:10px;}.musubi-dolls figcaption{font-size:10px;}.musubi-kimono{margin-top:48px;padding-top:26px;}.kimono-toolbar{gap:10px;}.kimono-controls{gap:6px;}.kimono-controls p{font-size:9px;margin-right:3px;max-width:58px;line-height:1.3;}.kimono-controls button{width:31px;height:31px;}.kimono-toolbar .musubi-part{font-size:9px;}.kimono-map{min-width:1300px;height:1010px;}.kimono-intro{width:310px;max-width:calc(100vw - 50px);}.kimono-intro h3{font-size:28px;}.kimono-intro>p{font-size:15px;line-height:1.6;}.kimono-intro .kimono-direction{font-size:14px;margin-top:28px;}.kimono-type{grid-template-columns:72px minmax(0,1fr);gap:10px;width:340px;}.kimono-art{width:72px;height:132px;}.kimono-type h4{font-size:21px;}.kimono-type .kimono-japanese{font-size:11px;}.kimono-description{font-size:13.5px;line-height:1.5;}.kimono-iro-uchikake{top:540px;}.kimono-furisode,.kimono-iromuji{top:360px;}.kimono-homongi{top:180px;}.kimono-tsukesage{top:540px;}.kimono-kurotomesode,.kimono-komon{top:760px;}.kimono-reading-line{gap:12px;}.image-viewer{width:calc(100vw - 16px);height:calc(100dvh - 16px);}.image-viewer-toolbar{padding:10px;gap:10px;}.image-viewer-title{font-size:12px;}.image-viewer-actions{gap:4px;}.image-viewer-actions button{min-width:30px;}.image-viewer-scroll{padding:12px;}}
+@media(prefers-reduced-motion:reduce){.kimono-controls button{transition:none;}}
+/* Phone view keeps one complete garment and its copy in each horizontal stop. */
+@media(max-width:640px){.kimono-map{min-width:1320px;}.kimono-type{width:310px;}.kimono-furisode,.kimono-kurotomesode{left:330px;}.kimono-homongi,.kimono-tsukesage{left:660px;}.kimono-hakama,.kimono-iromuji,.kimono-komon{left:990px;}}
+
+/* The commission process pairs an untouched sewing pattern with unaltered BJD kimono photographs. */
+.musubi-market{display:grid;grid-template-columns:minmax(260px,.76fr) minmax(0,1.24fr);gap:clamp(32px,5vw,78px);align-items:start;margin-top:82px;padding-top:34px;border-top:1px solid var(--line);}
+.musubi-market-copy h3{font-family:var(--font-heading);font-size:clamp(26px,2.8vw,36px);font-weight:500;line-height:1.2;margin:0 0 22px;}
+.musubi-market-copy>p:last-child{max-width:460px;margin:0;color:#61665b;font-size:17px;line-height:1.7;}
+.musubi-market-copy strong{color:#543844;font-weight:700;}
+.musubi-market-art{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(180px,.75fr);gap:16px;align-items:start;}
+.furisode-pattern{margin:0;background:#362a31;padding:clamp(14px,2vw,25px);}
+.furisode-pattern a{display:block;cursor:zoom-in;}
+.furisode-pattern img{display:block;width:100%;height:auto;}
+.furisode-pattern figcaption{font-size:11px;line-height:1.45;color:#eadde1;margin-top:13px;}
+.musubi-market-photos{display:grid;gap:16px;}
+.musubi-market-photos a{display:block;cursor:zoom-in;}
+.musubi-market-photos img{display:block;width:100%;height:auto;}
+.musubi-original-board{margin:30px 0 0;background:transparent;overflow:hidden;}
+.musubi-original-board a{display:block;cursor:zoom-in;}
+.musubi-original-board img{display:block;width:100%;height:auto;}
+.musubi-original-board figcaption{font-size:11px;line-height:1.45;color:#787e71;background:var(--bg);padding-top:12px;}
+.musubi-brainstorm{margin-top:84px;}
+@media(max-width:820px){.musubi-market{grid-template-columns:1fr;gap:32px;margin-top:62px;padding-top:28px;}.musubi-market-copy>p:last-child{max-width:none;font-size:16px;}.musubi-market-art{max-width:760px;}.musubi-brainstorm{margin-top:60px;}}
+@media(max-width:520px){.musubi-market-art{grid-template-columns:1fr;}.musubi-market-photos{grid-template-columns:1fr 1fr;gap:10px;align-items:start;}.furisode-pattern{padding:14px;}.musubi-original-board{margin-top:24px;}}
+
+/* The market research and the journey board sit as one editorial spread, matching the original composition. */
+.musubi-discovery-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(38px,5vw,88px);padding:72px 5.5vw 0;align-items:start;}
+.musubi-discovery-layout .musubi-market{display:block;margin:0;padding:0;border:0;}
+.musubi-discovery-layout .musubi-market-copy{max-width:none;}
+.musubi-discovery-layout .musubi-market-copy>p:last-child{max-width:none;}
+.musubi-discovery-layout .musubi-market-art{margin-top:28px;grid-template-columns:minmax(0,1.15fr) minmax(168px,.85fr);}
+.musubi-journey-inline{margin:0;padding:0;border:0;min-width:0;}
+.musubi-journey-inline h2{font-family:var(--font-heading);font-size:clamp(26px,2.45vw,36px);font-weight:500;line-height:1.2;margin:0;letter-spacing:-.015em;}
+.musubi-journey-inline h2 small{font-family:inherit;font-size:.46em;font-weight:400;letter-spacing:0;white-space:nowrap;}
+.musubi-journey-inline .musubi-original-board{margin-top:26px;}
+.musubi-journey-inline .musubi-original-board img{width:100%;}
+.musubi-brainstorm{margin-top:70px;}
+.musubi-brainstorm .musubi-original-board{max-width:100%;margin-top:26px;}
+@media(min-width:1600px){.musubi-discovery-layout{padding-inline:max(5.5vw,calc((100vw - var(--sidebar) - 1380px)/2));}}
+@media(max-width:900px){.musubi-discovery-layout{grid-template-columns:1fr;gap:64px;padding:58px 5.5vw 0;}.musubi-journey-inline{max-width:880px;}.musubi-journey-inline .musubi-original-board{max-width:880px;}.musubi-discovery-layout .musubi-market-art{max-width:760px;}.musubi-brainstorm{margin-top:56px;}}
+@media(max-width:640px){.musubi-discovery-layout{padding:50px 20px 0;gap:52px;}.musubi-journey-inline h2{font-size:29px;}.musubi-journey-inline h2 small{display:block;font-size:.52em;margin-top:7px;white-space:normal;}.musubi-discovery-layout .musubi-market-art{margin-top:22px;}.musubi-brainstorm{margin-top:48px;}}
+
+/* Research pages need a reading rhythm before the artifacts.  These sections use an
+   editorial lead-in and let the original boards do the visual work. */
+.musubi-discovery-layout{grid-template-columns:minmax(270px,.78fr) minmax(0,1.22fr);align-items:start;gap:clamp(44px,7vw,118px);}
+.musubi-journey-inline{padding-top:clamp(2px,1.6vw,24px);}
+.research-section-intro{max-width:640px;}
+.research-label{font-size:10px;line-height:1.35;letter-spacing:.14em;text-transform:uppercase;color:#93697b;margin:0 0 18px;}
+.research-section-intro h2,.brainstorm-intro h2{font-family:var(--font-heading);font-size:clamp(30px,3.1vw,44px);font-weight:500;letter-spacing:-.028em;line-height:1.08;margin:0;}
+.research-section-intro>p{max-width:590px;color:#61665b;font-size:15px;line-height:1.63;margin:24px 0 0;}
+.research-insight{display:grid;grid-template-columns:98px minmax(0,1fr);gap:16px;border-top:1px solid var(--line);margin-top:35px;padding-top:15px;}
+.research-insight span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#93697b;}
+.research-insight em{font-family:var(--font-heading);font-size:16px;font-style:normal;line-height:1.45;color:#523844;}
+.musubi-journey-inline .journey-board{margin-top:40px;}
+.journey-board{position:relative;padding-top:16px;border-top:1px solid #cfcfc3;}
+.journey-board img{width:100%;height:auto;box-shadow:0 18px 44px rgba(45,38,41,.08);}
+.journey-board figcaption{max-width:440px;padding-top:14px;}
+
+.musubi-brainstorm{margin-top:clamp(104px,13vw,184px);padding-top:30px;border-top:1px solid var(--line);}
+.brainstorm-intro{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(260px,.68fr);gap:clamp(34px,8vw,144px);align-items:end;}
+.brainstorm-summary{padding-bottom:3px;}
+.brainstorm-summary>p{color:#61665b;font-size:15px;line-height:1.63;margin:0;}
+.brainstorm-summary ul{display:flex;flex-wrap:wrap;gap:9px 19px;margin:25px 0 0;padding:0;list-style:none;}
+.brainstorm-summary li{font-size:11px;line-height:1.35;color:#443239;padding-top:7px;border-top:2px solid #bf7a8b;}
+.brainstorm-summary li:nth-child(2),.brainstorm-summary li:nth-child(4){border-top-color:#643641;}
+.brainstorm-summary li:nth-child(3){border-top-color:#e3b36c;}
+.musubi-brainstorm .brainstorm-board{margin-top:48px;padding:0;overflow:visible;}
+.brainstorm-board img{border:1px solid #e5e2dd;box-shadow:0 20px 50px rgba(45,38,41,.06);}
+.brainstorm-board figcaption{padding-top:15px;}
+@media(max-width:900px){.musubi-discovery-layout{grid-template-columns:1fr;gap:74px;}.musubi-journey-inline{max-width:none;padding-top:0;}.research-section-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(230px,.7fr);column-gap:40px;max-width:none;}.research-section-intro .research-label,.research-section-intro h2{grid-column:1;}.research-section-intro>p{grid-column:2;grid-row:1 / span 2;align-self:end;margin:0;}.research-insight{grid-column:1 / -1;}.musubi-journey-inline .journey-board{max-width:none;margin-top:32px;}.brainstorm-intro{gap:44px;}.musubi-brainstorm{margin-top:95px;}}
+@media(max-width:640px){.musubi-discovery-layout{gap:56px;}.research-section-intro{display:block;}.research-section-intro h2,.brainstorm-intro h2{font-size:32px;}.research-section-intro>p{font-size:15px;margin-top:21px;}.research-insight{grid-template-columns:1fr;gap:8px;margin-top:28px;}.research-insight em{font-size:15px;}.musubi-journey-inline .journey-board{margin-top:28px;padding-top:12px;}.musubi-brainstorm{margin-top:72px;padding-top:24px;}.brainstorm-intro{grid-template-columns:1fr;gap:27px;}.brainstorm-summary>p{font-size:15px;}.brainstorm-summary ul{margin-top:21px;gap:9px 15px;}.brainstorm-board{margin-top:31px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:#b27e93 #e2e1d9;}.brainstorm-board a{min-width:780px;}.brainstorm-board figcaption{position:sticky;left:0;max-width:370px;padding-top:10px;}}
+
+/* Native recreations of the original research boards: every card remains a real,
+   selectable piece of content instead of a flattened screenshot. */
+.project-musubi .musubi-journey{padding:clamp(78px,9vw,132px) 5.5vw 0;border-top:1px solid var(--line);}
+.musubi-research-heading{max-width:760px;}
+.musubi-research-heading h2{font-family:var(--font-heading);font-size:clamp(36px,4vw,54px);font-weight:500;letter-spacing:-.03em;line-height:1.06;margin:0;}
+.musubi-research-heading>p:last-child{max-width:670px;margin:22px 0 0;color:#61665b;font-size:17px;line-height:1.65;}
+.musubi-journey-stage-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;border-top:1px solid var(--ink);margin-top:48px;padding-top:15px;}
+.musubi-journey-stage-index span{display:block;font-size:12px;line-height:1.4;color:#3c4037;}
+.musubi-journey-stage-index b{font-family:var(--font-heading);font-weight:500;font-size:17px;}
+.musubi-journey-stage-index small{display:block;margin-top:5px;font-size:10px;line-height:1.4;color:#7d8077;text-transform:uppercase;letter-spacing:.08em;}
+.musubi-journey-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px;}
+.musubi-journey-stage{display:flex;flex-direction:column;min-height:236px;padding:19px 18px 14px;background:#fffefc;border:1px solid #e5e1dc;}
+.journey-stage-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:1px solid #e5e1dc;padding-bottom:9px;margin-bottom:15px;}
+.journey-stage-heading p{margin:0;font-family:var(--font-heading);font-size:17px;font-weight:500;line-height:1.2;}
+.journey-stage-heading span{font-size:9px;text-transform:uppercase;letter-spacing:.11em;color:#966d7d;white-space:nowrap;}
+.musubi-journey-stage h3{font-family:var(--font-heading);font-size:18px;font-weight:600;line-height:1.22;margin:0 0 7px;}
+.musubi-journey-stage>p:not(.journey-pain){margin:0;color:#555b50;font-size:13px;line-height:1.48;}
+.journey-pain{display:flex;align-items:flex-start;gap:7px;margin:auto 0 0;padding:10px 9px;background:#eee7e8;color:#62575a;font-size:11px;line-height:1.4;}
+.journey-pain i,.musubi-journey-key-pain i{display:grid;flex:none;place-items:center;width:16px;height:16px;border-radius:50%;background:#b77e93;color:#fff;font-family:Arial,sans-serif;font-size:11px;font-style:normal;font-weight:700;line-height:1;}
+.journey-pain b{font-weight:600;color:#40373a;}
+.musubi-journey-source,.musubi-journey-key-pain{min-height:132px;padding:17px 18px;background:#eee9e8;border:1px solid #e2dcda;}
+.journey-source-learning{grid-column:1 / -1;display:grid;grid-template-columns:minmax(180px,.85fr) minmax(0,2.15fr);align-items:center;gap:22px;}
+.musubi-journey-source h3,.musubi-journey-key-pain span{font-family:var(--font-heading);font-size:16px;font-weight:600;line-height:1.2;margin:0;}
+.musubi-journey-source p{margin:5px 0 0;color:#64645f;font-size:11px;line-height:1.45;}
+.journey-platforms{display:flex;flex-wrap:wrap;align-content:center;gap:9px;}
+.journey-platforms span{display:grid;place-items:center;min-height:42px;padding:8px 11px;border:1px solid #fff;background:#fffdfc;color:#54494d;font-size:11px;line-height:1.25;text-align:center;}
+.musubi-journey-row--making{margin-top:46px;}
+.musubi-journey-row--making .musubi-journey-source{display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;gap:17px;}
+.musubi-journey-row--making .journey-platforms span{flex:1;min-width:78px;}
+.musubi-journey-row--finish{margin-top:46px;margin-bottom:0;}
+.musubi-journey-key-pain{display:flex;flex-direction:column;justify-content:center;gap:13px;background:#e7d9dc;}
+.musubi-journey-key-pain span{display:flex;align-items:center;gap:8px;}
+.musubi-journey-key-pain p{margin:0;color:#5b4a50;font-size:13px;line-height:1.5;}
+
+.project-musubi .musubi-brainstorm{margin-top:clamp(90px,11vw,150px);padding:30px 5.5vw 0;border-top:1px solid var(--line);}
+.musubi-brainstorm>h2{font-family:var(--font-heading);font-size:clamp(34px,3.5vw,48px);font-weight:500;line-height:1.1;letter-spacing:-.025em;margin:0;}
+.musubi-research-intro{max-width:670px;margin:22px 0 0;color:#61665b;font-size:17px;line-height:1.65;}
+.musubi-brainstorm-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-top:43px;}
+.musubi-brainstorm-group{padding-top:11px;border-top:3px solid #dfa95c;}
+.musubi-brainstorm-group h3{font-family:var(--font-heading);font-size:20px;font-weight:600;line-height:1.25;margin:0 0 17px;padding-bottom:7px;border-bottom:1px solid #ded7d4;}
+.musubi-brainstorm-group ul{display:grid;gap:11px;list-style:none;padding:0;margin:0;}
+.musubi-brainstorm-group li{position:relative;display:grid;place-items:center;min-height:66px;padding:11px 24px 11px 11px;background:#eee9e8;border-top:3px solid #dfa95c;color:#57565b;font-size:13px;line-height:1.25;text-align:center;}
+.musubi-brainstorm-group li::after{content:"✦";position:absolute;right:7px;top:-14px;color:#dfa95c;font-size:22px;line-height:1;}
+.musubi-fabric,.musubi-visualisation{border-top-color:#6b3f48;}
+.musubi-fabric li,.musubi-visualisation li{border-top-color:#6b3f48;}
+.musubi-fabric li::after,.musubi-visualisation li::after{color:#b77e93;}
+@media(min-width:1600px){.project-musubi .musubi-journey,.project-musubi .musubi-brainstorm{padding-inline:max(5.5vw,calc((100vw - var(--sidebar) - 1380px)/2));}.musubi-journey-stage{min-height:246px;}.musubi-brainstorm-groups{gap:23px;}}
+@media(max-width:1100px){.musubi-journey-stage{min-height:258px;}.musubi-brainstorm-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 22px;}.musubi-brainstorm-group li{min-height:58px;}.musubi-brainstorm-group h3{font-size:19px;}}
+@media(max-width:820px){.project-musubi .musubi-journey,.project-musubi .musubi-brainstorm{padding-inline:5.5vw;}.musubi-journey-row{gap:12px;}.musubi-journey-stage{padding:16px 14px 12px;min-height:282px;}.journey-stage-heading p{font-size:15px;}.musubi-journey-stage h3{font-size:17px;}.musubi-journey-stage>p:not(.journey-pain){font-size:12px;}.journey-pain{font-size:10px;}.musubi-journey-source,.musubi-journey-key-pain{padding:14px;}.journey-platforms{gap:6px;}.journey-platforms span{font-size:10px;padding:7px 8px;}}
+@media(max-width:640px){.project-musubi .musubi-journey{padding:62px 20px 0;}.musubi-research-heading h2,.musubi-brainstorm>h2{font-size:34px;}.musubi-research-heading>p:last-child,.musubi-research-intro{font-size:16px;}.musubi-journey-stage-index{grid-template-columns:1fr;gap:10px;margin-top:33px;}.musubi-journey-stage-index span{display:flex;align-items:baseline;gap:11px;}.musubi-journey-stage-index small{margin:0;}.musubi-journey-row{grid-template-columns:1fr;gap:12px;margin-top:28px;}.musubi-journey-row--making,.musubi-journey-row--finish{margin-top:40px;}.musubi-journey-stage{min-height:0;padding:18px 16px 14px;}.journey-pain{margin-top:18px;font-size:11px;}.journey-source-learning{grid-column:auto;display:flex;flex-direction:column;align-items:stretch;gap:14px;}.musubi-journey-source{min-height:0;padding:17px 16px;}.musubi-journey-row--making .musubi-journey-source{gap:15px;}.musubi-journey-key-pain{min-height:0;padding:18px 16px;}.project-musubi .musubi-brainstorm{margin-top:72px;padding:25px 20px 0;}.musubi-brainstorm-groups{grid-template-columns:1fr;gap:30px;margin-top:34px;}.musubi-brainstorm-group li{min-height:59px;font-size:14px;}.musubi-brainstorm-group h3{margin-bottom:14px;}}
+
+/* Refined from the original research boards: card scale, four-column rhythm,
+   and the source-platform marks remain visible as individual interface pieces. */
+.project-musubi .musubi-journey{padding:clamp(78px,9vw,132px) 5.5vw 0;}
+.musubi-research-heading{max-width:none;}
+.musubi-research-heading h2{font-size:clamp(34px,3.25vw,48px);line-height:1.13;letter-spacing:-.025em;}
+.musubi-research-heading h2 small{font-size:.47em;font-weight:400;letter-spacing:0;white-space:nowrap;}
+.musubi-research-heading>p:last-child,.musubi-journey-stage-index{display:none;}
+.musubi-journey-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(15px,1.45vw,24px);margin-top:48px;}
+.musubi-journey-row--making,.musubi-journey-row--finish{margin-top:64px;}
+.journey-stage-unit{min-width:0;}
+.journey-stage-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border:0;border-bottom:1px solid #d8d2d0;padding:0 10px 3px;margin:0 0 0;}
+.journey-stage-heading h3{font-family:var(--font-heading);font-size:clamp(18px,1.65vw,25px);font-weight:500;line-height:1.1;margin:0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;}
+.journey-stage-heading span{font-size:10px;letter-spacing:.075em;color:#c6aaa3;text-transform:uppercase;}
+.musubi-journey-stage{min-height:122px;padding:13px 11px 10px;background:#fffefc;border:1px solid #e8e2e0;border-radius:7px;}
+.musubi-journey-stage h4{font-family:var(--font-heading);font-size:15px;font-weight:600;line-height:1.18;margin:0 0 4px;text-align:center;}
+.musubi-journey-stage>p:not(.journey-pain){margin:0;color:#4f4d4f;font-size:12px;line-height:1.33;text-align:center;}
+.journey-pain{gap:8px;margin:11px 0 0;padding:8px 10px;background:#eee7e8;color:#554e50;font-size:10px;line-height:1.25;}
+.journey-pain i,.musubi-journey-key-pain i{width:18px;height:18px;background:#bc8297;font-size:12px;}
+.journey-pain b{font-weight:600;}
+.musubi-journey-source,.musubi-journey-key-pain{min-height:0;padding:18px;background:#eee9e8;border:0;border-radius:7px;}
+.journey-source-learning{grid-column:1 / -1;display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,2.2fr);align-items:center;gap:26px;margin-top:-8px;}
+.musubi-journey-source h3,.musubi-journey-key-pain span{font-size:15px;}
+.musubi-journey-source p{font-size:10px;line-height:1.35;}
+.journey-platforms{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.journey-platform{display:flex !important;align-items:center;flex:1 1 116px;min-height:50px !important;padding:7px 10px !important;background:#fffdfc;border:0 !important;border-radius:12px;color:#50494c;font-size:11px !important;line-height:1.2;text-align:left !important;}
+/* SVG viewports preserve the complete original app marks at every width. */
+.journey-platform-icon{display:block;flex:0 0 34px;width:34px;height:34px;overflow:hidden;}
+.journey-platform em{min-width:0;font-style:normal;overflow-wrap:normal;}
+.platform-kimono{flex-basis:230px;}
+.musubi-journey-row--making .musubi-journey-source{min-height:150px;padding:15px;gap:14px;}
+.musubi-journey-row--making .journey-platforms{gap:8px;}
+.musubi-journey-row--making .journey-platform{flex:1 1 88px;min-height:42px !important;padding:5px 6px !important;font-size:10px !important;}
+
+.journey-platforms--symbols .journey-platform{flex:0 0 auto;width:45px;height:45px;min-height:45px !important;padding:0 !important;border-radius:50%;}
+
+.journey-platforms--symbols .journey-platform em{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.musubi-journey-key-pain{display:flex;flex-direction:column;justify-content:center;gap:10px;background:#eee9e8;}
+.musubi-journey-key-pain p{font-size:12px;line-height:1.4;}
+
+/* This chapter lives within .chapter-outline, which already supplies the
+   shared horizontal margin used by the other research sections. */
+.project-musubi .musubi-brainstorm{margin-top:clamp(90px,11vw,150px);padding:30px 0 0;}
+.musubi-brainstorm>h2{font-size:clamp(34px,3.25vw,48px);}
+.musubi-research-intro{display:none;}
+.musubi-brainstorm-groups{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,2.1fr) minmax(0,1fr);gap:clamp(20px,2.55vw,42px);margin-top:37px;align-items:start;}
+.musubi-brainstorm-group{padding:0;border:0;}
+.musubi-brainstorm-group h3{font-size:clamp(18px,1.6vw,24px);font-weight:500;text-align:center;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;line-height:1.2;margin:0 0 25px;padding:0;border:0;}
+.musubi-brainstorm-group ul{display:grid;gap:27px;}
+.musubi-brainstorm-group li{min-height:112px;padding:16px 13px;background:#f0edeb;border-top:4px solid #dfaa63;color:#57565b;font-size:clamp(12px,1vw,15px);line-height:1.18;}
+.musubi-brainstorm-group li::after{display:none;}
+.musubi-brainstorm-group li.has-flower::after{content:"✿";display:block;position:absolute;right:-11px;top:-19px;color:#dca450;font-family:Georgia,serif;font-size:29px;line-height:1;text-shadow:0 0 0 #dca450;}
+.musubi-fabric li,.musubi-visualisation li{background:#f0ebed;border-top-color:#663741;}
+.musubi-fabric li.has-flower::after,.musubi-visualisation li.has-flower::after{color:#bc839a;text-shadow:0 0 0 #bc839a;}
+.musubi-commission h3{grid-column:1 / -1;}
+.musubi-commission-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,31px);}
+
+@media(min-width:1600px){.project-musubi .musubi-journey{padding-inline:max(5.5vw,calc((100vw - var(--sidebar) - 1380px)/2));}.musubi-brainstorm-groups{gap:46px;}.musubi-brainstorm-group ul{gap:30px;}.musubi-brainstorm-group li{min-height:120px;}}
+@media(max-width:1100px){.musubi-journey-row{gap:14px;}.musubi-journey-row--making .musubi-journey-source{min-height:175px;}.musubi-brainstorm-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 30px;}.musubi-commission{grid-column:1 / -1;}.musubi-commission-columns{gap:30px;}}
+@media(max-width:820px){.project-musubi .musubi-journey{padding-inline:5.5vw;}.musubi-journey-row{gap:12px;}.journey-stage-heading{padding-inline:3px;}.journey-stage-heading h3{font-size:19px;}.journey-stage-heading span{font-size:9px;}.musubi-journey-stage{padding:12px 9px 9px;}.musubi-journey-stage h4{font-size:14px;}.musubi-journey-stage>p:not(.journey-pain),.journey-pain{font-size:9px;}.journey-pain{padding:7px;}.journey-pain i{width:16px;height:16px;font-size:10px;}.journey-source-learning{grid-template-columns:1fr;gap:15px;}.journey-platform{font-size:9px !important;}.project-musubi .musubi-brainstorm{padding-inline:0;}.musubi-brainstorm-group li{min-height:98px;font-size:13px;}.musubi-brainstorm-group ul{gap:20px;}}
+@media(max-width:640px){.project-musubi .musubi-journey{padding:62px 20px 0;}.musubi-research-heading h2,.musubi-brainstorm>h2{font-size:33px;}.musubi-research-heading h2 small{display:block;font-size:.5em;margin-top:6px;white-space:normal;}.musubi-journey-row{grid-template-columns:1fr;gap:22px;margin-top:36px;}.musubi-journey-row--making,.musubi-journey-row--finish{margin-top:52px;}.musubi-journey-stage{min-height:0;padding:16px 13px 12px;}.musubi-journey-stage h4{font-size:16px;}.musubi-journey-stage>p:not(.journey-pain){font-size:12px;}.journey-pain{font-size:11px;margin-top:14px;padding:9px;}.journey-source-learning{grid-column:auto;margin-top:-8px;padding:16px;}.musubi-journey-row--making .musubi-journey-source{min-height:0;padding:16px;}.journey-platform{flex-basis:136px;font-size:11px !important;}.musubi-journey-row--making .journey-platform{font-size:10px !important;}.project-musubi .musubi-brainstorm{margin-top:72px;padding:25px 0 0;}.musubi-brainstorm-groups{grid-template-columns:1fr;gap:36px;margin-top:32px;}.musubi-commission{grid-column:auto;}.musubi-commission-columns{grid-template-columns:1fr;gap:20px;}.musubi-brainstorm-group li{min-height:80px;font-size:14px;}.musubi-brainstorm-group ul{gap:16px;}}
+
+/* MUSUBI is organised as a sequence of original project boards.  The market
+   returns to its source composition: an editorial lead followed by the pattern
+   and two reference photographs as a single visual group. */
+.musubi-market{display:block;margin-top:88px;padding-top:34px;}
+.musubi-market-copy{max-width:none;}
+.musubi-market-copy h3{font-size:clamp(30px,3vw,43px);margin-bottom:12px;}
+.musubi-market-copy>p:last-child{max-width:1120px;color:#403e40;font-size:clamp(15px,1.34vw,19px);line-height:1.55;}
+.musubi-market-art{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(320px,.92fr);gap:clamp(24px,3.2vw,54px);margin-top:18px;align-items:start;}
+.furisode-pattern{background:transparent;padding:0;}
+.furisode-pattern img{width:100%;}
+.furisode-pattern figcaption{color:#525154;margin-top:7px;text-align:right;}
+.musubi-market-photos{position:relative;display:block;min-height:min(35vw,490px);}
+.musubi-market-photos a{position:absolute;z-index:1;box-shadow:none;}
+.musubi-market-photos a:first-child{left:0;top:0;width:61%;}
+.musubi-market-photos a:last-child{right:0;bottom:0;width:91%;}
+
+/* Persona: profile and biography on the left; needs and pain points on the right. */
+.musubi-persona{padding-top:42px;}
+.musubi-persona>h2,.musubi-name-logo>h2,.musubi-information>h2{font-family:var(--font-heading);font-size:clamp(34px,3.25vw,48px);font-weight:500;line-height:1.08;letter-spacing:-.025em;margin:0 0 30px;}
+.musubi-persona-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start;}
+.persona-overview{min-width:0;border:1px solid #b8acae;}
+.persona-hero{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);}
+.persona-illustration{display:flex;align-items:center;justify-content:center;margin:0;overflow:hidden;background:#f9f9f9;}
+.persona-illustration img{display:block;width:100%;height:auto;object-fit:contain;}
+.persona-voice{display:flex;flex-direction:column;justify-content:center;padding:clamp(22px,2.2vw,36px);background:#b8879a;color:#fff;}
+.persona-voice>p{margin:0 0 12px;font-size:16px;line-height:1.3;}
+.persona-voice strong{font-family:var(--font-heading);font-size:clamp(42px,4.5vw,70px);font-weight:600;letter-spacing:-.055em;line-height:1;}
+.persona-voice blockquote{margin:24px 0 0;font-size:15px;font-style:italic;line-height:1.5;}
+.persona-details{display:grid;grid-template-columns:1fr;gap:28px;padding:30px clamp(22px,2.3vw,36px);border-top:1px solid #b8acae;}
+.persona-details h3,.persona-priorities h3{font-family:var(--font-heading);font-size:22px;font-weight:600;line-height:1.2;margin:0 0 15px;}
+.persona-bio p{margin:0;color:#68625f;font-size:16px;line-height:1.65;}
+.persona-profile{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+.persona-profile p{margin:0;color:#494448;font-size:14px;line-height:1.7;}
+.persona-profile p b{font-weight:600;}
+.persona-tags{color:#766f6e;font-size:13px !important;line-height:1.7 !important;overflow-wrap:anywhere;}
+.persona-experience>div{display:grid;grid-template-columns:minmax(0,1fr) 99px;gap:16px;align-items:center;margin:0 0 13px;color:#494448;font-size:14px;}
+.persona-experience>div:last-child{margin-bottom:0;}
+.persona-priorities{display:grid;grid-template-columns:1fr;gap:27px;padding:30px clamp(24px,2.5vw,40px);background:#211c1d;color:#eee4e3;}
+.persona-priorities>section{min-width:0;}
+.persona-priorities h3{color:#e2abbd;margin-bottom:14px;}
+.persona-priorities ul{margin:0;padding:0;list-style:none;display:grid;gap:9px;}
+.persona-priorities li{position:relative;padding-left:17px;font-size:14px;line-height:1.5;}
+.persona-priorities li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:50%;background:#c88aa3;}
+.persona-preferences label{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,.8fr);align-items:center;gap:16px;margin:0 0 12px;color:#eee4e3;font-size:13px;line-height:1.4;}
+.persona-preferences label:last-child{margin-bottom:0;}
+.persona-preferences label i{display:block;height:8px;border-radius:999px;background:#e8e2e1;overflow:hidden;}
+.persona-preferences label i b{display:block;height:100%;border-radius:inherit;background:#c1889f;}
+
+/* Body copy follows NABORFOOD's 16–17px scale; the name remains the focal point. */
+.musubi-name-logo{padding-top:82px;}
+.name-logo-intro{max-width:800px;}
+.name-logo-intro>p:first-child{margin:0 0 22px;font-size:17px;line-height:1.65;color:#61665b;}
+.name-logo-intro h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:24px 48px;margin:0;color:#dfad6d;font-family:var(--font-heading);font-size:clamp(56px,7vw,96px);font-weight:500;letter-spacing:.02em;line-height:1.05;}
+.name-logo-intro h3 span{font-size:.85em;}
+.name-logo-intro>p:last-child{max-width:670px;margin:24px 0 0;font-size:17px;line-height:1.65;color:#61665b;}
+.name-logo-reason{margin-top:36px;max-width:800px;}
+.name-logo-reason>p{margin:0 0 22px;font-size:17px;line-height:1.65;}
+.name-logo-reason ol{display:grid;gap:20px;margin:0;padding:0;list-style:none;}
+.name-logo-reason li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:18px;align-items:start;font-size:16px;line-height:1.65;color:#61665b;}
+.name-logo-reason li b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#dfad6d;color:#fff;font-family:var(--font-heading);font-size:20px;font-weight:500;line-height:1;}
+.logo-meaning{display:grid;grid-template-columns:minmax(180px,.9fr) minmax(140px,.5fr) minmax(260px,1fr);gap:clamp(22px,3vw,48px);align-items:center;margin-top:56px;}
+.logo-meaning figure{margin:0;}
+.logo-meaning figure a{display:block;cursor:zoom-in;}
+.logo-app img{display:block;width:100%;height:auto;}
+.logo-symbol{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;align-items:center;}
+.logo-symbol img{width:56px;height:auto;justify-self:center;}
+.logo-symbol p,.logo-knot p{margin:0;font-size:15px;line-height:1.6;color:#61665b;}
+.logo-knot{display:grid;grid-template-columns:92px minmax(130px,1fr);gap:18px;align-items:end;}
+.logo-knot img{display:block;width:100%;height:auto;}
+.logo-knot p{grid-column:1 / -1;}
+.musubi-palette{display:grid;grid-template-columns:repeat(5,1fr);max-width:920px;height:44px;margin-top:38px;}
+.musubi-palette i:nth-child(1){background:#eee8e9;}.musubi-palette i:nth-child(2){background:#b9889a;}.musubi-palette i:nth-child(3){background:#dfad6d;}.musubi-palette i:nth-child(4){background:#66343e;}.musubi-palette i:nth-child(5){background:#c7c9a9;}
+
+/* The diagram already has alpha transparency; let the page show through. */
+.musubi-information{padding-top:82px;padding-bottom:42px;}
+.musubi-ia-graph{margin:38px 0 0;padding:0;background:transparent;overflow:auto;}
+.musubi-ia-graph a{display:block;min-width:790px;cursor:zoom-in;}
+.musubi-ia-graph img{display:block;width:100%;height:auto;}
+.musubi-ia-graph figcaption{margin-top:16px;color:#756e6f;font-size:12px;line-height:1.45;}
+
+/* Platform chips size to their labels, and wrap before an icon or name is clipped. */
+.project-musubi .journey-platform{display:flex;justify-content:flex-start;align-items:center;gap:9px;flex:1 1 120px;min-width:0;min-height:52px !important;padding:8px 10px !important;}
+.project-musubi .platform-kimono{flex-basis:230px;}
+.project-musubi .musubi-journey-row--making .journey-platform{flex:0 1 auto;min-width:0;min-height:48px !important;padding:7px 9px !important;gap:7px;font-size:11px !important;}
+.project-musubi .journey-platforms--symbols{gap:12px;}
+.project-musubi .journey-platforms--symbols .journey-platform{flex:0 0 52px;justify-content:center;width:52px;height:52px;min-height:52px !important;padding:0 !important;border-radius:50%;}
+.journey-contact-icon{flex-basis:30px;width:30px;height:30px;}
+
+@media(max-width:1100px){
+ .journey-source-learning{grid-template-columns:1fr;gap:16px;}
+ .musubi-journey-row--making .musubi-journey-source{min-height:0;justify-content:flex-start;gap:22px;}
+ .musubi-persona-layout{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;}
+ .persona-hero{grid-template-columns:1fr;}
+ .persona-illustration img{max-width:220px;}
+ .persona-voice{padding:26px;}
+ .persona-profile{grid-template-columns:1fr;gap:24px;}
+ .persona-preferences label{grid-template-columns:1fr;gap:7px;}
+ .logo-meaning{grid-template-columns:minmax(160px,.8fr) minmax(170px,1fr);gap:30px;}
+ .logo-symbol{grid-column:2;}
+ .logo-knot{grid-column:1 / -1;grid-template-columns:100px minmax(180px,1fr);max-width:560px;}
+}
+@media(max-width:900px){
+ .musubi-market-art{grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);}
+ .musubi-market-photos{min-height:39vw;}
+}
+@media(max-width:820px){
+ .musubi-persona-layout{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);}
+ .project-musubi .journey-platform{font-size:11px !important;}
+}
+@media(max-width:640px){
+ .musubi-market{margin-top:56px;padding-top:26px;}
+ .musubi-market-copy h3{font-size:31px;}
+ .musubi-market-copy>p:last-child{font-size:16px;line-height:1.6;}
+ .musubi-market-art{grid-template-columns:1fr;margin-top:20px;gap:14px;}
+ .musubi-market-photos{min-height:72vw;}
+ .musubi-market-photos a:first-child{width:53%;}
+ .musubi-market-photos a:last-child{width:81%;}
+ .musubi-persona,.musubi-name-logo,.musubi-information{padding-top:56px;}
+ .musubi-persona-layout{grid-template-columns:1fr;gap:0;}
+ .persona-illustration img{max-width:320px;}
+ .persona-voice{padding:30px 24px;}
+ .persona-voice strong{font-size:64px;}
+ .persona-voice blockquote{font-size:16px;}
+ .persona-details{padding:30px 22px;}
+ .persona-profile{grid-template-columns:1fr 1fr;gap:18px;}
+ .persona-priorities{padding:32px 24px;gap:28px;}
+ .persona-preferences label{grid-template-columns:minmax(0,1fr) minmax(90px,.8fr);}
+ .name-logo-intro h3{font-size:56px;gap:16px 25px;}
+ .name-logo-intro>p:first-child,.name-logo-intro>p:last-child,.name-logo-reason>p{font-size:16px;}
+ .name-logo-reason{margin-top:30px;}
+ .name-logo-reason li{gap:14px;}
+ .logo-meaning{grid-template-columns:1fr;gap:32px;margin-top:42px;}
+ .logo-app{max-width:280px;}
+ .logo-symbol{grid-column:auto;}
+ .logo-knot{grid-column:auto;grid-template-columns:90px minmax(130px,1fr);max-width:none;}
+ .musubi-palette{height:32px;}
+ .musubi-ia-graph{margin-top:25px;}
+ .musubi-ia-graph a{min-width:700px;}
+ .project-musubi .journey-source-learning .journey-platforms{display:grid;grid-template-columns:1fr 1fr;}
+ .project-musubi .platform-kimono{grid-column:1 / -1;}
+}
+@media(max-width:380px){.persona-profile{grid-template-columns:1fr;}.persona-preferences label{grid-template-columns:1fr;}}
+
+/* Seven distinct familiarity dots, matching the original persona score treatment. */
+.rating{position:relative;display:block;width:99px;height:10px;background:radial-gradient(circle at 4.5px 4.5px,#f7f4f3 0 3px,#b9879a 3.4px 4.4px,transparent 4.8px) 0 0 / 15px 10px repeat-x;}
+.rating::before{content:"";position:absolute;inset:0 auto 0 0;height:10px;background:radial-gradient(circle at 4.5px 4.5px,#b9879a 0 4.4px,transparent 4.8px) 0 0 / 15px 10px repeat-x;}
+.rating::after{display:none;}.rating-7::before{width:99px;}.rating-5::before{width:69px;}.rating-2::before{width:24px;}.rating-1::before{width:9px;}

@@ -1,0 +1,36 @@
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+.cache/
+tmp/
+output/
+
+# Local hosting state and credentials
+.vercel/
+.openai/
+.env
+.env.*
+!.env.example
+.npmrc
+*.local
+*credentials*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Archives and local backups
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.bak
+*.log
+
+# OS and editor state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*~

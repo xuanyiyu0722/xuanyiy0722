@@ -1,0 +1,8 @@
+v67 — Home hero fills the viewport
+
+- Removed both horizontal rules around the Home hero and its top/bottom inset.
+- Enlarged the carton illustration while preserving its original interaction and entrance.
+- Set all five headline lines in Euclid Circular A Light, bundled from the supplied local font installation.
+- Used one font size, one tracking ratio, and equal baseline spacing across all five rows, fitted from the actual font metrics.
+- Preserved natural font proportions while fitting the headline vertically.
+- Retained the prior Gallery, About, sidebar, and footer changes.

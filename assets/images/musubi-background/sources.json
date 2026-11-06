@@ -1,0 +1,393 @@
+{
+  "source": "User-provided original images, 2026-10-16",
+  "originals": {
+    "bjd-portrait.png": {
+      "file": "codex-clipboard-027035ab-f0e1-4fa9-a43c-7783465a14ce.png",
+      "sha256": "e02cefb78138071199330c8bf202383c62b659628c58bfa823cc0dc0ca3060af"
+    },
+    "bjd-joints.png": {
+      "file": "codex-clipboard-32bc303d-b4ab-4b74-b943-142966415242.png",
+      "sha256": "70c6753a436a5962f2fbc522c4fa1e9ac97f5a2016f435ae6f8e229106667685"
+    },
+    "kimono-original.png": {
+      "file": "codex-clipboard-3cbdf1a4-ce01-4d2b-97aa-53470560feac.png",
+      "sha256": "b4855748805e4e2cf557fde14ea669f9d3bd7f97dfd52121694a9eef4e121998"
+    },
+    "furisode-sewing-pattern.png": {
+      "file": "codex-clipboard-49ba50a0-3d30-47c4-8d7a-8f2ee37e0231.png",
+      "sha256": "750438fee85e0259a68cc1839cab7b4ad6b02b58febfb04eb30c6f3802ece01c"
+    },
+    "kimono-purple.png": {
+      "file": "codex-clipboard-4b8585f7-2980-448e-a90a-af3ac0b22ce3.png",
+      "sha256": "97461d4eacf6dd85311a1e3792da5a57eb47040a6510cb2e1c25b4cc83df0042"
+    },
+    "kimono-window.png": {
+      "file": "codex-clipboard-67599766-ab46-425b-920c-eb762ccb12ff.png",
+      "sha256": "5a750de42983546598f2e32b4c273b08116c909612c9708745243b8b0629b7af"
+    },
+    "user-journey-map-original.png": {
+      "file": "a5d3b9e5e8b55d0c4754f44cbbc9d058.png",
+      "sha256": "49e99dc5674f4cf265e67810e3637b634948700d5b39d3be6b93e4ac42e7665e"
+    },
+    "function-brainstorm-original.png": {
+      "file": "codex-clipboard-ec5b1152-b7a8-4374-a2ab-9a6a2e436b02.png",
+      "sha256": "c57eccfc5cc4517177bc82b24de090f8cce765c2a0153c7638e804071fd73784"
+    },
+    "market-questionnaire-brainstorm-original.png": {
+      "file": "codex-clipboard-e36145d4-dbe1-4db3-9712-c28986cc43e5.png",
+      "sha256": "db9658c4261f5f2a8cf86a5905722f6c08eb32246255be77b6a4944db9cb57b0"
+    },
+    "persona-reference-original.png": {
+      "file": "codex-clipboard-468eb669-e97c-4592-bbbb-637b90f37d4f.png",
+      "sha256": "3a416af048adf3cf415b7c456838805cff7f4947a735ba32a8028d4727161104"
+    },
+    "information-architecture-graph.png": {
+      "file": "codex-clipboard-1c33dfc9-bea2-4e67-aa90-3775f1d1aec2.png",
+      "sha256": "f947eb2a40f1b4c2db0a3c913c371c3830fd2ae9800e683754bb4488c3990193"
+    },
+    "musubi-app-icon.png": {
+      "file": "codex-clipboard-b2e833ea-c24c-4d3f-b142-79f5c0948da7.png",
+      "sha256": "962d2a060a8f765c99131bf4848df8ec6cf85e4e0ce808db1f5d5429efa2970e"
+    },
+    "musubi-user-doll-mark.png": {
+      "file": "codex-clipboard-b14774f1-c6d3-4f1c-85f8-48e98a6a5858.png",
+      "sha256": "ff0b3f4ffc0731df83505f78530e4044b4855c6cfbd5089bfdf33b5619d3c942"
+    },
+    "musubi-obi-reference.png": {
+      "file": "codex-clipboard-43869a7c-047b-41d1-83d8-b7791f986c25.png",
+      "sha256": "40ce018473c14530c5d127f9188e9854e54601ad79c7f430a7a8704d4e9224fa"
+    },
+    "musubi-lettermark.png": {
+      "file": "codex-clipboard-6768353b-972b-4417-b871-755087f814ab.png",
+      "sha256": "deaaf8cd61d3110ed50fe4003c25eb385147c1a68b6d8b6a03add71ceff51eca"
+    }
+  },
+  "kimono_viewports": {
+    "iro-uchikake": [
+      1,
+      1433,
+      347,
+      448
+    ],
+    "furisode": [
+      1271,
+      986,
+      327,
+      432
+    ],
+    "kurotomesode": [
+      1271,
+      1878,
+      327,
+      458
+    ],
+    "homongi": [
+      2518,
+      472,
+      332,
+      430
+    ],
+    "tsukesage": [
+      2518,
+      1436,
+      333,
+      447
+    ],
+    "hakama": [
+      3793,
+      24,
+      283,
+      430
+    ],
+    "iromuji": [
+      3753,
+      970,
+      350,
+      464
+    ],
+    "komon": [
+      3768,
+      1903,
+      334,
+      441
+    ]
+  },
+  "note": "Original user-provided visuals retained byte-identically where possible. Native text and layout recreate the supplied project compositions; the Hannah illustration is a documented crop from the complete persona board.",
+  "derived": {
+    "persona-hannah-illustration.png": {
+      "source": "persona-reference-original.png",
+      "crop": [
+        0,
+        0,
+        735,
+        765
+      ],
+      "note": "Cropped only to isolate Hannah’s illustration for the native persona layout; the complete user-provided source board is retained unchanged."
+    }
+  },
+  "journey_icon_viewports": {
+    "reddit": [
+      1009,
+      704,
+      132,
+      132
+    ],
+    "xiaohongshu": [
+      1469,
+      704,
+      132,
+      132
+    ],
+    "kimono": [
+      1930,
+      704,
+      136,
+      136
+    ],
+    "weibo": [
+      437,
+      1610,
+      136,
+      136
+    ],
+    "taobao": [
+      727,
+      1610,
+      136,
+      136
+    ],
+    "xianyu": [
+      2269,
+      1648,
+      136,
+      136
+    ],
+    "mercari": [
+      2592,
+      1648,
+      136,
+      136
+    ],
+    "douyin": [
+      2929,
+      1648,
+      136,
+      136
+    ],
+    "yahoo": [
+      2674,
+      1831,
+      136,
+      136
+    ]
+  },
+  "journey_icon_note": "Individual SVG viewports reference the original journey board unchanged. Contact marks are native SVG paths. The IA PNG already contains alpha transparency; its CSS background frame is removed.",
+  "mergedResearchSource": {
+    "source": "User-provided original images, 2026-10-16",
+    "originals": {
+      "bjd-portrait.png": {
+        "file": "codex-clipboard-027035ab-f0e1-4fa9-a43c-7783465a14ce.png",
+        "sha256": "e02cefb78138071199330c8bf202383c62b659628c58bfa823cc0dc0ca3060af"
+      },
+      "bjd-joints.png": {
+        "file": "codex-clipboard-32bc303d-b4ab-4b74-b943-142966415242.png",
+        "sha256": "70c6753a436a5962f2fbc522c4fa1e9ac97f5a2016f435ae6f8e229106667685"
+      },
+      "kimono-original.png": {
+        "file": "codex-clipboard-3cbdf1a4-ce01-4d2b-97aa-53470560feac.png",
+        "sha256": "b4855748805e4e2cf557fde14ea669f9d3bd7f97dfd52121694a9eef4e121998"
+      },
+      "furisode-sewing-pattern.png": {
+        "file": "codex-clipboard-49ba50a0-3d30-47c4-8d7a-8f2ee37e0231.png",
+        "sha256": "750438fee85e0259a68cc1839cab7b4ad6b02b58febfb04eb30c6f3802ece01c"
+      },
+      "kimono-purple.png": {
+        "file": "codex-clipboard-4b8585f7-2980-448e-a90a-af3ac0b22ce3.png",
+        "sha256": "97461d4eacf6dd85311a1e3792da5a57eb47040a6510cb2e1c25b4cc83df0042"
+      },
+      "kimono-window.png": {
+        "file": "codex-clipboard-67599766-ab46-425b-920c-eb762ccb12ff.png",
+        "sha256": "5a750de42983546598f2e32b4c273b08116c909612c9708745243b8b0629b7af"
+      },
+      "user-journey-map-original.png": {
+        "file": "a5d3b9e5e8b55d0c4754f44cbbc9d058.png",
+        "sha256": "49e99dc5674f4cf265e67810e3637b634948700d5b39d3be6b93e4ac42e7665e"
+      },
+      "function-brainstorm-original.png": {
+        "file": "codex-clipboard-ec5b1152-b7a8-4374-a2ab-9a6a2e436b02.png",
+        "sha256": "c57eccfc5cc4517177bc82b24de090f8cce765c2a0153c7638e804071fd73784"
+      },
+      "market-questionnaire-brainstorm-original.png": {
+        "file": "codex-clipboard-e36145d4-dbe1-4db3-9712-c28986cc43e5.png",
+        "sha256": "db9658c4261f5f2a8cf86a5905722f6c08eb32246255be77b6a4944db9cb57b0"
+      },
+      "persona-reference-original.png": {
+        "file": "codex-clipboard-468eb669-e97c-4592-bbbb-637b90f37d4f.png",
+        "sha256": "3a416af048adf3cf415b7c456838805cff7f4947a735ba32a8028d4727161104"
+      },
+      "information-architecture-graph.png": {
+        "file": "codex-clipboard-1c33dfc9-bea2-4e67-aa90-3775f1d1aec2.png",
+        "sha256": "f947eb2a40f1b4c2db0a3c913c371c3830fd2ae9800e683754bb4488c3990193"
+      },
+      "musubi-app-icon.png": {
+        "file": "codex-clipboard-b2e833ea-c24c-4d3f-b142-79f5c0948da7.png",
+        "sha256": "962d2a060a8f765c99131bf4848df8ec6cf85e4e0ce808db1f5d5429efa2970e"
+      },
+      "musubi-user-doll-mark.png": {
+        "file": "codex-clipboard-b14774f1-c6d3-4f1c-85f8-48e98a6a5858.png",
+        "sha256": "ff0b3f4ffc0731df83505f78530e4044b4855c6cfbd5089bfdf33b5619d3c942"
+      },
+      "musubi-obi-reference.png": {
+        "file": "codex-clipboard-43869a7c-047b-41d1-83d8-b7791f986c25.png",
+        "sha256": "40ce018473c14530c5d127f9188e9854e54601ad79c7f430a7a8704d4e9224fa"
+      },
+      "musubi-lettermark.png": {
+        "file": "codex-clipboard-6768353b-972b-4417-b871-755087f814ab.png",
+        "sha256": "deaaf8cd61d3110ed50fe4003c25eb385147c1a68b6d8b6a03add71ceff51eca"
+      },
+      "brainstorm-flower-gold.png": {
+        "file": "codex-clipboard-33a71300-436a-4409-a76f-ec1d67564f4f.png",
+        "sha256": "ece20495f5bd6510d553eb92a392cd1f1e8a3409cc2d0f0901dd8b4fe200fe9d"
+      },
+      "brainstorm-flower-pink.png": {
+        "file": "codex-clipboard-8cab5e12-5930-45d0-ac27-05b62c6491b6.png",
+        "sha256": "6fbe3c24b5e626d599227a7cd2eda7f0577e528865c56e559903c631db03f319"
+      }
+    },
+    "kimono_viewports": {
+      "iro-uchikake": [
+        1,
+        1433,
+        347,
+        448
+      ],
+      "furisode": [
+        1271,
+        986,
+        327,
+        432
+      ],
+      "kurotomesode": [
+        1271,
+        1878,
+        327,
+        458
+      ],
+      "homongi": [
+        2518,
+        472,
+        332,
+        430
+      ],
+      "tsukesage": [
+        2518,
+        1436,
+        333,
+        447
+      ],
+      "hakama": [
+        3793,
+        24,
+        283,
+        430
+      ],
+      "iromuji": [
+        3753,
+        970,
+        350,
+        464
+      ],
+      "komon": [
+        3768,
+        1903,
+        334,
+        441
+      ]
+    },
+    "note": "Original user-provided visuals retained byte-identically where possible. Native text and layout recreate the supplied project compositions; the Hannah illustration is a documented crop from the complete persona board.",
+    "derived": {
+      "persona-hannah-illustration.png": {
+        "source": "persona-reference-original.png",
+        "crop": [
+          0,
+          0,
+          735,
+          765
+        ],
+        "note": "Cropped only to isolate Hannah’s illustration for the native persona layout; the complete user-provided source board is retained unchanged."
+      },
+      "journey_platform_marks": {
+        "source": "user-journey-map-original.png",
+        "files": {
+          "journey-icon-reddit.png": [
+            1018,
+            705,
+            1107,
+            794
+          ],
+          "journey-icon-xiaohongshu.png": [
+            1466,
+            705,
+            1568,
+            797
+          ],
+          "journey-icon-kimono-site.png": [
+            1944,
+            705,
+            2040,
+            798
+          ],
+          "journey-icon-weibo.png": [
+            445,
+            1612,
+            542,
+            1700
+          ],
+          "journey-icon-taobao.png": [
+            744,
+            1612,
+            842,
+            1700
+          ],
+          "journey-icon-message.png": [
+            1152,
+            1603,
+            1271,
+            1723
+          ],
+          "journey-icon-email.png": [
+            1344,
+            1624,
+            1410,
+            1690
+          ],
+          "journey-icon-xianyu.png": [
+            2273,
+            1640,
+            2362,
+            1728
+          ],
+          "journey-icon-mercari.png": [
+            2645,
+            1640,
+            2729,
+            1724
+          ],
+          "journey-icon-douyin.png": [
+            2925,
+            1638,
+            3022,
+            1734
+          ],
+          "journey-icon-yahoo.png": [
+            2653,
+            1818,
+            2734,
+            1896
+          ]
+        },
+        "note": "Tight source crops isolate only each original platform or communication mark; the responsive Journey Map owns card geometry and icon placement."
+      }
+    }
+  }
+}

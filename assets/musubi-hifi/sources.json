@@ -1,0 +1,363 @@
+{
+  "primaryDesign": {
+    "file": "zTIdWCxTskOIyGOYJgiT0R",
+    "frame": "540:130",
+    "name": "Frame 16"
+  },
+  "homeArtworkSource": "436:8862 (editable content used in Frame 16 perspective mockup)",
+  "implementation": "Original Figma screen components and original uploaded image/vector layers; no Make app, routes or data are imported. Interactive links are bounded to the supplied screen registry. Unsupported controls remain disabled.",
+  "guidedTour": {
+    "presentation": "one fixed interactive phone viewport",
+    "stops": 28,
+    "autoplay": "starts when chapter is visible; reveals and clicks the original controls through the same handlers used for manual interaction",
+    "manualInteraction": "pauses; Play continues",
+    "longScreens": "original content scrolls inside the same phone",
+    "reviewState": "original application followed by the separately supplied approved state; no fake submission or approval control"
+  },
+  "newOriginalAssets": [
+    {
+      "node": "context-540-2985",
+      "asset": "context-540-2985-9039f.png",
+      "bytes": 2228913,
+      "sha256": "899d0df05681ee5f6f0729eaad379b010de17166ca0b5ef52bf7dea092cf1458"
+    },
+    {
+      "node": "context-540-2984",
+      "asset": "context-540-2984-da08b.png",
+      "bytes": 2292558,
+      "sha256": "93c97795ef87614a628cdd7681f2f455a513e8b35fbcf79af1aa004d42663de0"
+    },
+    {
+      "node": "context-540-2986",
+      "asset": "context-540-2986-408bf.png",
+      "bytes": 87014,
+      "sha256": "1b9c676d3c0453a23a2c7580aa53f9e12c09f2d660db5d70ae904bee6c954d37"
+    },
+    {
+      "node": "context-540-2987",
+      "asset": "context-540-2987-a3106.png",
+      "bytes": 2643173,
+      "sha256": "875529a50803b52fb30707a4b684a366185353b5fad619912fd3063c03fea1dc"
+    },
+    {
+      "node": "context-540-2983",
+      "asset": "context-540-2983-15dbc.png",
+      "bytes": 101232,
+      "sha256": "6217cc2b3436646d93857c1fb0ef6dbeb590d65f9b611bebb5197198712153c4"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-a3491.png",
+      "bytes": 1467870,
+      "sha256": "0d7bd985c67939208f07efc775a58913c970cd3b9ecf6968e8e6be0c6edc55e3"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-47807.png",
+      "bytes": 1468400,
+      "sha256": "219a7922723811497828dd1e0f501941adcc0545e63b1a377f1ada9986d3f647"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-e96ee.png",
+      "bytes": 1828671,
+      "sha256": "62a5e22e5fe9920f8ef7c108d213beb726ac0098ba00e4cedbd14e2b41d404c3"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-1e8e7.svg",
+      "bytes": 759,
+      "sha256": "4af385bbf7468a03beaa4d2db28cddb6671da6126cd32646afca344f361c9878"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-c3acd.svg",
+      "bytes": 679,
+      "sha256": "ee54ee27069753fd1b8016d096062ab4786314a4561e1fe63be22d0658c5b9d6"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-5f38e.svg",
+      "bytes": 474,
+      "sha256": "88d1a9c89ac5c64bfa5184f099318bed0b396a2c5db385470ea231ac7370f84b"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-9db95.svg",
+      "bytes": 472,
+      "sha256": "86f2a433b29a0c73695363a9d73dac235003a2f3001e72fe2a851428e96b9f92"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-00c62.svg",
+      "bytes": 488,
+      "sha256": "92dc5a45738d4464aa962684fadaf340556fe31643885991379de90a17d319de"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-c0c6f.svg",
+      "bytes": 632,
+      "sha256": "cac8db21e3c7b45c399293525b446300249abad86fbbe5f022902c456429e7eb"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-4c451.svg",
+      "bytes": 767,
+      "sha256": "b0c44a37f5576b27c925e2b90d113e42630ea5275bd767c0676d5135855a71b9"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-4fcb2.svg",
+      "bytes": 824,
+      "sha256": "a5602ebfca51694470e59049737ba962382eac8c15955e7470427e80c65636f4"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-51609.svg",
+      "bytes": 897,
+      "sha256": "c271eb065ca92e1380bcf47c5ae5bef04cec7da583fc13f3239132b889761379"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-0fb16.svg",
+      "bytes": 1062,
+      "sha256": "348d5d603cf970867c25edcf42067b3de8faa09db70972ece8b85b515a48c4f8"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-43656.svg",
+      "bytes": 194,
+      "sha256": "42f0a15fbd864f9cbbda6ccc3b4426d6bb4992be4024cf8bcda837c561089a75"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-fcfe9.svg",
+      "bytes": 373,
+      "sha256": "180bc2c0d4c897faf3dc815522201ffbad14bff264d8742b861fa2f3871f5081"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-85d00.svg",
+      "bytes": 489,
+      "sha256": "e8a8e1e655730b111d64d4c0558ebfb80330d2056c2f977ed1fffc9c0c16bc48"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-0db5b.svg",
+      "bytes": 719,
+      "sha256": "d9a3d94d0b3c46615f42c409efa0e687d7fe3560626ad10c48baf4757b8d87c5"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-4f678.svg",
+      "bytes": 763,
+      "sha256": "266c009e36e39352f25fc38c67f73c1667151691087f20ecae6fabf73297718e"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-2f2f6.svg",
+      "bytes": 774,
+      "sha256": "60a97374beac693bed18b32c5e0ba1993ef3fb6bac47c67b677447ce07517594"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-98823.svg",
+      "bytes": 779,
+      "sha256": "1d9b0aeab666994877f78aeb03ba823b9a19c704270b52ab36fa5deea9b51a2f"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-a1aec.svg",
+      "bytes": 750,
+      "sha256": "24c892b50c2e78d0f45c226c121f531f9f8c3bcb20f4d9b6ef509249040f8dad"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-2b11b.svg",
+      "bytes": 624,
+      "sha256": "29086c06a081b04a9e66807b4094319dd137d3b32031235179905e3e2631b891"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-7964a.svg",
+      "bytes": 396,
+      "sha256": "0be2de6afdbd62c693217b114a6584f88d16ea75cabfa10994f39f6251d51546"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-2e25b.svg",
+      "bytes": 340,
+      "sha256": "73e9ea5a7a48697712580c71e6ae516c5be233c3c673fa4f8624f8d196ef0faf"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-64746.svg",
+      "bytes": 325,
+      "sha256": "a838537785ac5f7064ae2160cdde1fad7b71f34a2edb0e8fe2213ae21d755a8c"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-285ea.svg",
+      "bytes": 342,
+      "sha256": "9a7fa0e9f51b0a150813b28b4c53e71e033bf1cf9efb53e42522d2a59866c207"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-c3d36.svg",
+      "bytes": 473,
+      "sha256": "bd8958c5a934237f89f2abadd5a02316cac6ae74654f81856351c54bc0effa02"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-ec3e4.svg",
+      "bytes": 1131,
+      "sha256": "0ff44a2e46194f4b3b21aa2abe0a1d0ff4ae7094f5ed27641607d2d46d9e1182"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-3362a.svg",
+      "bytes": 1137,
+      "sha256": "95f990f8045d91bc20f0be5685479c5c0bf5361aec75bcf22906afe692c67884"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-8ffd8.svg",
+      "bytes": 1140,
+      "sha256": "40e94606df2f4818df82ea6383f857093f4c326925e7acd59a39bd417b9fd55a"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-ba5fc.svg",
+      "bytes": 1136,
+      "sha256": "7a3acc3948adfcc0dd171fe702cbf679977cd650b10f9603783d0c3fbd5a2587"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-61274.svg",
+      "bytes": 724,
+      "sha256": "98815d9e28a06aaf7adee16e840e33a096652c84b59d28b3f082e864e0e86cee"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-c282b.svg",
+      "bytes": 715,
+      "sha256": "3c1a43978fd387de17e00e9dbcf8f1fff11d11b18c5edc250d4f2d69cf0af5cf"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-ef229.svg",
+      "bytes": 772,
+      "sha256": "1c0630424c323c190f72869281cd3e1e0f7bdb11276109d9a1e634057d3917ca"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-3ddd7.svg",
+      "bytes": 738,
+      "sha256": "7bc3c96b3c9cdf9dc2f7ffed2fb89407050468be50f8bd505c1807778240be7e"
+    },
+    {
+      "node": "context-home",
+      "asset": "context-home-92251.svg",
+      "bytes": 753,
+      "sha256": "eb40a9d172e77560a280b457fcdc78e749743f9fb4a07301d84c5b8b06bc7aec"
+    },
+    {
+      "node": "context-540-2431",
+      "asset": "context-540-2431-3c291.png",
+      "bytes": 1237185,
+      "sha256": "35ab88e24ab5fd071e4f0d72a9fee6d465eac728c76fea0832fcfbf648a78ede"
+    },
+    {
+      "node": "context-540-2989",
+      "asset": "context-540-2989-a3106.png",
+      "bytes": 2643173,
+      "sha256": "875529a50803b52fb30707a4b684a366185353b5fad619912fd3063c03fea1dc"
+    },
+    {
+      "node": "context-540-2988",
+      "asset": "context-540-2988-015a9.png",
+      "bytes": 1139305,
+      "sha256": "d2aa29a59e0873de2f00d62e1851f24e6e6ff0dfbcd294e2a2d5e2ffb424f0c5"
+    }
+  ],
+  "fabricImageGeometry": [
+    {
+      "id": "540:1390",
+      "x": 5331.42236328125,
+      "y": 2427.53759765625,
+      "width": 610.7012939453125,
+      "height": 1563.3953857421875,
+      "type": "FRAME",
+      "name": "Container"
+    },
+    {
+      "id": "540:2983",
+      "x": 5510.09716796875,
+      "y": 2806.94775390625,
+      "width": 44.27584457397461,
+      "height": 312.9844055175781,
+      "type": "VECTOR",
+      "name": "Vector 24"
+    },
+    {
+      "id": "540:2984",
+      "x": 5563.53369140625,
+      "y": 2753.900634765625,
+      "width": 70.61502838134766,
+      "height": 366.0320129394531,
+      "type": "RECTANGLE",
+      "name": "Rectangle 69"
+    },
+    {
+      "id": "540:2985",
+      "x": 5643.3095703125,
+      "y": 2753.900634765625,
+      "width": 70.61502838134766,
+      "height": 366.0320129394531,
+      "type": "RECTANGLE",
+      "name": "Rectangle 74"
+    },
+    {
+      "id": "540:2986",
+      "x": 5723.08544921875,
+      "y": 2806.0517578125,
+      "width": 45.34910202026367,
+      "height": 313.88055419921875,
+      "type": "VECTOR",
+      "name": "Vector 23"
+    },
+    {
+      "id": "540:2987",
+      "x": 5412.38525390625,
+      "y": 2753.900634765625,
+      "width": 82.924072265625,
+      "height": 220.2670440673828,
+      "type": "RECTANGLE",
+      "name": "Rectangle 67"
+    },
+    {
+      "id": "540:2988",
+      "x": 5410.8134765625,
+      "y": 2702.353271484375,
+      "width": 453.4910583496094,
+      "height": 23.322397232055664,
+      "type": "RECTANGLE",
+      "name": "Rectangle 75"
+    },
+    {
+      "id": "540:2989",
+      "x": 5782.3037109375,
+      "y": 2753.900634765625,
+      "width": 82.924072265625,
+      "height": 220.2670440673828,
+      "type": "RECTANGLE",
+      "name": "Rectangle 68"
+    }
+  ],
+  "manualGuidance": {
+    "activeControl": "visible finger while paused",
+    "chapterEnd": "external next-step call to action",
+    "offscreenTarget": "external reveal action, then finger",
+    "terminalState": "no finger or next-step prompt"
+  }
+}

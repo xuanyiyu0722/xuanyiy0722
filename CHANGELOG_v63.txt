@@ -1,0 +1,6 @@
+v63 — Gallery spacing and heading refinement
+
+- Increased the Project Gallery heading size while preserving the title and description arrangement.
+- Removed the divider below the Gallery heading.
+- Reduced spacing before the project cards to bring them slightly upward.
+- Preserved v62's four unique project cards, horizontal browsing, and text entrance animations.

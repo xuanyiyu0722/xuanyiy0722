@@ -1,0 +1,176 @@
+{
+  "source": "screens-original.png",
+  "sha256": "0e2d64f17d5d008311d4b339f9559e82bcc41bc543cbf5e2d6b0cf8c2f9d377b",
+  "size": [
+    5780,
+    4987
+  ],
+  "method": "Original PNG is unchanged. Per-screen SVG viewports use opaque hardware silhouettes as clip paths to exclude the external translucent shadow. No replacement or redraw of UI or bezels.",
+  "screens": {
+    "monitor": {
+      "viewport": [
+        584,
+        202,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 195,
+      "frame": "light",
+      "nodeId": "4384:10140"
+    },
+    "status": {
+      "viewport": [
+        1204,
+        202,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 190,
+      "frame": "light",
+      "nodeId": "4384:10042"
+    },
+    "activity": {
+      "viewport": [
+        1824,
+        202,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 181,
+      "frame": "light",
+      "nodeId": "4384:10277"
+    },
+    "settings": {
+      "viewport": [
+        2689,
+        202,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 200,
+      "frame": "light",
+      "nodeId": "4384:10375"
+    },
+    "voice": {
+      "viewport": [
+        3309,
+        202,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 191,
+      "frame": "light",
+      "nodeId": "4384:10405"
+    },
+    "color": {
+      "viewport": [
+        3929,
+        202,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 182,
+      "frame": "light",
+      "nodeId": "4384:10451"
+    },
+    "warning": {
+      "viewport": [
+        584,
+        1534,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 187,
+      "frame": "light",
+      "nodeId": "4384:10516"
+    },
+    "emergency": {
+      "viewport": [
+        1204,
+        1534,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 179,
+      "frame": "light",
+      "nodeId": "4384:10598"
+    },
+    "understand": {
+      "viewport": [
+        2689,
+        1534,
+        544,
+        1099
+      ],
+      "hardwareClipPoints": 186,
+      "frame": "light",
+      "nodeId": "4384:10614"
+    },
+    "pets": {
+      "viewport": [
+        3929,
+        1534,
+        545,
+        1099
+      ],
+      "hardwareClipPoints": 182,
+      "frame": "light",
+      "nodeId": "4384:10757"
+    },
+    "mode": {
+      "viewport": [
+        609,
+        2901,
+        738,
+        1490
+      ],
+      "hardwareClipPoints": 254,
+      "frame": "dark",
+      "nodeId": "4384:9609"
+    },
+    "album": {
+      "viewport": [
+        1970,
+        2867,
+        737,
+        1490
+      ],
+      "hardwareClipPoints": 248,
+      "frame": "dark",
+      "nodeId": "4384:9712"
+    },
+    "ai-cam": {
+      "viewport": [
+        2774,
+        2867,
+        737,
+        1490
+      ],
+      "hardwareClipPoints": 241,
+      "frame": "dark",
+      "nodeId": "4384:9509"
+    },
+    "timeline": {
+      "viewport": [
+        3573,
+        2867,
+        738,
+        1490
+      ],
+      "hardwareClipPoints": 252,
+      "frame": "dark",
+      "nodeId": "4384:9824"
+    },
+    "avatar": {
+      "viewport": [
+        4844,
+        2901,
+        737,
+        1490
+      ],
+      "hardwareClipPoints": 256,
+      "frame": "dark",
+      "nodeId": "4384:9926"
+    }
+  }
+}

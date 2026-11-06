@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="187.742" height="407.014" viewBox="0 0 187.742 407.014" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="PhoneBg" clip-path="url(#clip0_0_4)">
+<path id="Vector" d="M187.743 -3.60788e-05H0.000620126V407.014H187.743V-3.60788e-05Z" fill="url(#paint0_radial_0_4)"/>
+<path id="Vector_2" d="M187.743 -3.60788e-05H0.000620126V407.014H187.743V-3.60788e-05Z" fill="url(#paint1_radial_0_4)"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(37.5491 40.7014) scale(112.645 244.208)">
+<stop stop-color="#B9CCFF" stop-opacity="0.55"/>
+<stop offset="1" stop-color="#B9CCFF" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint1_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(168.969 345.962) scale(103.258 223.858)">
+<stop stop-color="#7B95FF" stop-opacity="0.35"/>
+<stop offset="1" stop-color="#7B95FF" stop-opacity="0"/>
+</radialGradient>
+<clipPath id="clip0_0_4">
+<rect width="187.742" height="407.014" fill="white"/>
+</clipPath>
+</defs>
+</svg>

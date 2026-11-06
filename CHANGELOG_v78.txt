@@ -1,0 +1,6 @@
+v78 — Gallery cleanup
+
+- Replaced the NABORFOOD Gallery cover with Alicia’s latest supplied PNG, preserving the exact original file.
+- Removed the Portfolio / 2026 sidebar footer and its divider from Home, Gallery, and About.
+- Removed the round arrow overlay from all four Gallery covers, including its hover, touch, and print styling.
+- Kept the covers clickable and retained the existing layout, scroll animations, sounds, and other cover images.
