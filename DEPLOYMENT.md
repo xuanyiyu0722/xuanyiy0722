@@ -12,7 +12,10 @@ HTML、CSS、JavaScript、字体、图片、音效和详情页结构。外层旧
 - `origin` 已连接到 `https://github.com/xuanyiyu0722/xuanyiy0722.git`。
   已于 2026-11-06 确认远程为空仓库。
 - GitHub 官方登录和仓库写入权限已验证；提交身份使用该账号的 GitHub noreply 邮箱。
-- 首次提交/推送正在进行；Vercel Git 连接待完成及验证。
+- 首次提交与推送已完成，本地 `main` 已跟踪 `origin/main`。
+- Vercel Git 连接和首次生产部署尚待完成与验证；使用 Vercel 官方页面导入该仓库。
+  本次 Vercel CLI 登录未保存凭据，自动部署将使用 Vercel 的 GitHub 集成，
+  日常提交和推送不依赖本机 Vercel CLI 登录。
   实际连接信息以 `git remote -v`、Git 历史和 Vercel 控制台为准。
   不要把 Token 写到本文或其他文件中。
 
