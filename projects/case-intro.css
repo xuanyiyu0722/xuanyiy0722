@@ -1,14 +1,14 @@
-/* Shared text introduction for all four project pages. */
+/* Gallery covers with a translucent reading layer for each case introduction. */
 .project-page .case-hero{
-  --case-image:url("../assets/images/naborfood-gallery-cover.png");
+  --case-image:url("../assets/images/naborfood-gallery-cover-v78.png");
   position:relative;
   isolation:isolate;
   overflow:hidden;
-  background:var(--paper);
+  background:transparent;
 }
-.project-fridgekey .case-hero{--case-image:url("../assets/images/fridgekey-development/high-fidelity-original.png");}
-.project-everpaw .case-hero{--case-image:url("../assets/images/everpaw-gallery-cover.png");}
-.project-musubi .case-hero{--case-image:url("../assets/images/musubi-gallery-cover.png");}
+.project-fridgekey .case-hero{--case-image:url("../assets/images/fridgekey-cover.webp");}
+.project-everpaw .case-hero{--case-image:url("../assets/images/everpaw-gallery-cover-v77.png");}
+.project-musubi .case-hero{--case-image:url("../assets/images/musubi-gallery-cover-v77.png");}
 .project-page .case-hero::before,
 .project-page .case-hero::after{
   content:"";
@@ -17,17 +17,17 @@
 }
 .project-page .case-hero::before{
   z-index:-2;
-  inset:-32px;
+  inset:0;
   background-image:var(--case-image);
   background-position:center;
   background-size:cover;
-  filter:blur(18px);
 }
 .project-page .case-hero::after{
   z-index:-1;
   inset:0;
-  background:linear-gradient(110deg,rgba(248,247,243,.7),rgba(248,247,243,.88));
+  background:linear-gradient(110deg,rgba(248,244,237,.88),rgba(248,244,237,.78));
 }
+.project-page .case-hero .case-meta>span{color:#423c30;}
 .summary--project .case-tagline{
   max-width:880px;
   margin:0 0 18px;
@@ -40,6 +40,7 @@
 .case-title .summary--project>p{max-width:760px;}
 .summary--project .case-meta{grid-template-columns:minmax(0,1.2fr) minmax(0,1.7fr) minmax(0,1fr) minmax(0,.8fr);}
 @media(max-width:820px){
+  .project-page .case-hero::after{background:linear-gradient(110deg,rgba(248,244,237,.92),rgba(248,244,237,.86));}
   .summary--project .case-meta{grid-template-columns:repeat(2,minmax(0,1fr));}
   .summary--project .case-meta>span:nth-child(-n+2){grid-column:1/-1;}
 }
