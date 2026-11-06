@@ -7,14 +7,17 @@
   };
   let enabled = readPreference();
   let unlocked = false;
+  let lastSelect = -Infinity;
   let lastEgg = -Infinity;
   let lastTurn = -Infinity;
   let eggUntil = 0;
   let pageSerial = 0;
   let priming = false;
+  const selection = new Audio('assets/audio/egg-select-mechanical.mp3');
   const egg = new Audio('assets/audio/egg-crack.mp3');
   const page = new Audio('assets/audio/gallery-page-turn.mp3');
-  egg.preload = page.preload = 'auto';
+  selection.preload = egg.preload = page.preload = 'auto';
+  selection.volume = .2;
   egg.volume = .28;
   page.volume = .23;
   const isGallery = document.body.classList.contains('gallery-page');
@@ -27,6 +30,8 @@
   };
   const stopAll = () => {
     stopPage();
+    selection.pause();
+    selection.currentTime = 0;
     egg.pause();
     egg.currentTime = 0;
     eggUntil = 0;
@@ -77,12 +82,23 @@
   document.body.append(button);
   render();
   window.PortfolioSound = Object.freeze({
+    eggSelect() {
+      const now = performance.now();
+      if (!enabled || !unlocked || document.hidden || now < eggUntil || now - lastSelect < 180) return;
+      lastSelect = now;
+      stopPage();
+      selection.pause();
+      selection.currentTime = 0;
+      play(selection);
+    },
     eggCrack() {
       const now = performance.now();
       if (!enabled || !unlocked || document.hidden || now - lastEgg < 180) return;
       lastEgg = now;
       eggUntil = now + 850;
       stopPage();
+      selection.pause();
+      selection.currentTime = 0;
       egg.pause();
       egg.currentTime = 0;
       play(egg);

@@ -8,6 +8,7 @@
  function close(){if(!dialog.open)return;token++;motions.forEach(a=>a.cancel());motions=[];dialog.close();if(source){source.classList.remove('is-lifted');source.focus({preventScroll:true});}document.body.style.overflow=oldOverflow;phase='closed';source=null;}
  document.querySelectorAll('.asset-egg').forEach(button=>button.addEventListener('click',async()=>{
   if(phase!=='closed')return;
+  window.PortfolioSound?.eggSelect();
   const current=++token;source=button;phase='moving';const start=button.getBoundingClientRect();
   link.classList.remove('visible');link.style.opacity='0';link.querySelector('span').textContent=button.dataset.project;link.href=urls[button.dataset.project];
   crack.disabled=false;hint.textContent='';dialog.showModal();oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';source.classList.add('is-lifted');

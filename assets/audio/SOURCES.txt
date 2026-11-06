@@ -6,3 +6,10 @@ gallery-page-turn.mp3
 Reference: https://huyml.co/ Work page transition sound
 Source: https://framerusercontent.com/assets/NwRpkuqMO8dekRRBn6RJjQlpM.mp3
 The reference site configures transitionSoundVolume at 23; this site uses 0.23.
+
+Home egg selection: UI SFX 0.4.0 — Mechanical / Select.
+Official file: uisfx/sounds/mechanical/select.mp3 (copied without changes).
+Source: https://github.com/romainsimon/uisfx
+Package: https://registry.npmjs.org/uisfx/-/uisfx-0.4.0.tgz
+Audio license: CC0 1.0; see UISFX-LICENSE-AUDIO.txt.
+Playback volume: 0.20 (official default); shared Sound On/Off preference applies.
