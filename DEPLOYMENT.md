@@ -10,13 +10,18 @@ HTML、CSS、JavaScript、字体、图片、音效和详情页结构。外层旧
 - 已配置静态资源检查、原样复制的构建步骤、Vercel 配置和 `.gitignore`。
 - 已准备并在本机启用推送前检查。
 - `origin` 已连接到 `https://github.com/xuanyiyu0722/xuanyiy0722.git`。
-  已于 2026-11-06 确认远程为空仓库。
+  首次导入前已于 2026-11-06 确认远程为空仓库，现已包含正式网站源码。
 - GitHub 官方登录和仓库写入权限已验证；提交身份使用该账号的 GitHub noreply 邮箱。
 - 首次提交与推送已完成，本地 `main` 已跟踪 `origin/main`。
-- Vercel Git 连接和首次生产部署尚待完成与验证；使用 Vercel 官方页面导入该仓库。
-  本次 Vercel CLI 登录未保存凭据，自动部署将使用 Vercel 的 GitHub 集成，
-  日常提交和推送不依赖本机 Vercel CLI 登录。
-  实际连接信息以 `git remote -v`、Git 历史和 Vercel 控制台为准。
+- Vercel 工作区 `xuanyiyu` 已授权；项目 `alicia-portfolio` 已连接到上述正确仓库。
+- 生产分支为 `main`，Node.js 为 `24.x`；首次生产部署已达到 READY，
+  来源提交为 `abfb793`（详情页封面与 Gallery 顺序更新）。
+- 正式访问地址：https://alicia-portfolio-three.vercel.app/
+- Vercel 控制台：https://vercel.com/xuanyiyu/alicia-portfolio
+- 后续发布使用 Vercel 的 GitHub 集成，不依赖本机 Vercel CLI 登录。
+  团队预览地址可能需要 Vercel 登录，给访客分享上面的正式地址。
+  原有连接到 `xuanyiy_0722`（带下划线）的项目保持不变；它不是本项目的部署目标。
+- 实际连接信息以 `git remote -v`、Git 历史和 Vercel 控制台为准，
   不要把 Token 写到本文或其他文件中。
 
 ## 项目结构
@@ -46,8 +51,9 @@ dist/                       自动生成的发布目录，不入 Git，不手动
 
 ## Vercel 一次性配置
 
-在 Vercel 导入上面的 **同一个 GitHub 仓库**，授权 Vercel GitHub App 访问该
-仓库。若已有 Vercel 项目，先检查其当前 Git 连接，避免改错项目。
+以下连接已经完成，日常修改无需重新导入：GitHub 仓库 `xuanyiyu0722/xuanyiy0722`
+连接到 `xuanyiyu` 工作区的 `alicia-portfolio`。不要改用另一个带下划线的仓库。
+本地 `.vercel/project.json` 只保存项目 ID 和工作区 ID，已忽略，不随 ZIP 或 Git 上传。
 
 | 设置 | 值 |
 | --- | --- |

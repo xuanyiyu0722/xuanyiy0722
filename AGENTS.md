@@ -35,3 +35,16 @@
   commit messages, or chat responses.
 - A Git push is not evidence that Vercel succeeded. Report the commit and the
   verified deployment result/URL, or clearly state that deployment is pending.
+
+## Verified production target
+
+- GitHub: `xuanyiyu0722/xuanyiy0722`, production branch `main`.
+- Vercel team: `xuanyiyu` (`team_mP62URmHletBdL8FX5SuAAl4`).
+- Vercel project: `alicia-portfolio` (`prj_lDuAS9euU6OYyFjNW5oO48jD3R9C`).
+- Public URL: https://alicia-portfolio-three.vercel.app/
+- Keep the separate `xuanyiy_0722` project and repository unchanged.
+- Git integration is enabled; use a normal checked push to main. Verify the exact
+  commit status and public URL before reporting deployment success. Do not create
+  another Vercel project or require another initial import for routine edits.
+- For local ZIP delivery, export tracked source files only. Exclude `.git/`,
+  `.cache/`, `.vercel/`, generated `dist/`, dependencies, and any credentials.
