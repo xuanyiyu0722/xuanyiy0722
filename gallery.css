@@ -16,7 +16,7 @@ html.gallery-lenis-active { scroll-behavior:auto !important; }
 .gallery-showcase { padding:0 5.5vw 5svh; }
 .gallery-project { min-height:100vh; min-height:100svh; display:flex; align-items:center; justify-content:center; padding:0; }
 .gallery-project-card { position:relative; display:block; width:100%; margin:0; }
-.gallery-cover-stage { position:relative; z-index:1; width:58%; max-width:min(680px,calc((100svh - 200px) * 100 / 76)); aspect-ratio:100 / 76; margin-inline:auto; transform:none; }
+.gallery-cover-stage { position:relative; z-index:1; display:block; width:58%; max-width:min(680px,calc((100svh - 200px) * 100 / 76)); aspect-ratio:100 / 76; margin-inline:auto; transform:none; }
 .gallery-cover { width:100%; height:100%; aspect-ratio:100 / 76; margin:0; overflow:hidden; background:var(--paper); }
 .gallery-cover img { display:block; width:100%; height:100%; object-fit:cover; filter:none; transition:transform 550ms var(--ease); }
 .gallery-cover img[src*="fridgekey-cover"] { object-fit:contain; background:#292a36; }
@@ -35,19 +35,21 @@ html.gallery-lenis-active { scroll-behavior:auto !important; }
 .gallery-project-type { margin:0 0 10px; color:var(--muted); font-size:12px; line-height:1.5; }
 .gallery-project-info h2 { margin:0; font-family:"Euclid Gallery",var(--font-heading); color:var(--gallery-title-color,#fdd957); font-size:clamp(18px,1.9vw,32px); font-weight:700; line-height:1.1; letter-spacing:-.025em; }
 /* These accents apply only to the right-hand project name. */
-.gallery-project-card[href="projects/project-04.html"] .gallery-project-info h2 { --gallery-title-color:#b58092; }
-.gallery-project-card[href="projects/fridgekey.html"] .gallery-project-info h2 { --gallery-title-color:#fff; }
-.gallery-project-card[href="projects/fridgekey.html"] .gallery-title-key { color:#3b5bff; }
-.gallery-project-card[href="projects/naborfood.html"] .gallery-project-info h2 { --gallery-title-color:#a5cf4a; }
-.gallery-project-card[href="projects/project-03.html"] .gallery-project-info h2 { --gallery-title-color:#ffd5d0; }
+.gallery-project-title-link { display:inline-block; max-width:100%; color:var(--gallery-title-color,#fdd957); }
+.gallery-project-title-link[href="projects/project-04.html"] { --gallery-title-color:#b58092; }
+.gallery-project-title-link[href="projects/fridgekey.html"] { --gallery-title-color:#fff; }
+.gallery-title-key { color:#3b5bff; }
+.gallery-project-title-link[href="projects/naborfood.html"] { --gallery-title-color:#a5cf4a; }
+.gallery-project-title-link[href="projects/project-03.html"] { --gallery-title-color:#ffd5d0; }
 .gallery-project-divider { display:block; width:20px; height:1px; margin:20px auto; background:#fdd957; }
 .gallery-project-summary { margin:0 auto; max-width:30ch; color:var(--ink); font-size:13px; line-height:1.6; }
 .gallery-scroll-linked .gallery-project-card { will-change:opacity; }
-.gallery-project-card:is(:hover,:focus-visible) .gallery-project-info h2 { color:var(--gallery-title-color,#fdd957); }
-.gallery-project-card:hover .gallery-cover img { transform:scale(1.025); }
-.gallery-project-card:focus-visible { outline:2px solid #fdd957; outline-offset:10px; opacity:1 !important; }
-.gallery-project-card:focus-visible :is(.gallery-cover,.gallery-project-number) { transform:none !important; }
-.gallery-project-card:focus-visible .gallery-cover { opacity:1 !important; }
+.gallery-cover-stage:hover .gallery-cover img { transform:scale(1.025); }
+.gallery-project-title-link:hover { text-decoration:underline; text-underline-offset:.15em; }
+.gallery-project-card a:focus-visible { outline:2px solid #fdd957; outline-offset:6px; }
+.gallery-project-card:has(a:focus-visible) { opacity:1 !important; }
+.gallery-project-card:has(a:focus-visible) :is(.gallery-cover,.gallery-project-number) { transform:none !important; }
+.gallery-project-card:has(a:focus-visible) .gallery-cover { opacity:1 !important; }
 @media (max-width:1100px) {
   .gallery-project-facts { gap:14px; }
   .gallery-project-facts > div { display:block; }
@@ -94,5 +96,5 @@ html.gallery-lenis-active { scroll-behavior:auto !important; }
   .gallery-entry-pending .gallery-page .gallery-showcase,.gallery-scroll-linked .gallery-project-card { opacity:1 !important; }
   .gallery-showcase,.gallery-cover-stage,.gallery-cover { opacity:1 !important; }
   .gallery-showcase,.gallery-cover,.gallery-project-number { transform:none !important; translate:none !important; }
-  .gallery-project-number,.gallery-project-info h2 { color:#423c30; }
+  .gallery-project-number,.gallery-project-title-link,.gallery-title-key { color:#423c30; }
 }

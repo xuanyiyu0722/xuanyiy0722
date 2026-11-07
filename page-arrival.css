@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Arrival Euclid";
+  src: url("assets/fonts/EuclidCircularA-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+.page-arrival-active { overflow: hidden; }
+
+.page-arrival {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: none;
+  background: radial-gradient(ellipse at 50% 60%, #514a3b, #423c30 73%);
+  color: #f6efda;
+}
+
+.page-arrival-scene {
+  container-type: inline-size;
+  width: min(88vw, 1000px, 140svh);
+}
+
+.page-arrival-name {
+  display: flex;
+  justify-content: center;
+  gap: .23em;
+  font-family: "Arrival Euclid", var(--font-heading);
+  font-size: 9cqi;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+}
+
+.page-arrival-letter {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.page-arrival-letter > span {
+  display: block;
+  transform: translateY(110%);
+}
+
+.page-arrival-formation {
+  position: relative;
+  aspect-ratio: 2.35;
+  perspective: 140cqi;
+  perspective-origin: 50% 23%;
+}
+
+.page-arrival-egg {
+  position: absolute;
+  left: 43.5%;
+  bottom: 17%;
+  width: 13%;
+  aspect-ratio: 868 / 1078;
+  transform-origin: center bottom;
+}
+
+.page-arrival-egg::before {
+  position: absolute;
+  inset: auto 9% -6%;
+  height: 10%;
+  border-radius: 50%;
+  background: #19150f;
+  filter: blur(.5cqi);
+  opacity: .28;
+  content: "";
+}
+
+.page-arrival-egg svg {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  transform-origin: center bottom;
+}
+
+.page-arrival-bird,
+.page-arrival-cap { opacity: 0; }
+
+.page-arrival-egg .page-arrival-cap {
+  top: -2%;
+  bottom: auto;
+  left: 12%;
+  transform-origin: 34% 75%;
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .page-arrival { display: none; }
+  .page-arrival-active { overflow: visible; }
+}

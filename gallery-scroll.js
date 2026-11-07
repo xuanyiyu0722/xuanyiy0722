@@ -13,7 +13,7 @@
   window.PortfolioGalleryScroll = Object.freeze({
     to(top, { immediate = false } = {}) {
       if (!Number.isFinite(top)) return;
-      if (lenis) lenis.scrollTo(top, { immediate, force:true });
+      if (lenis) lenis.scrollTo(top, { immediate, force:true, duration:.33, easing:progress => 1 - (1 - progress) ** 3 });
       else window.scrollTo({ top, behavior:immediate || reduce.matches ? 'instant' : 'smooth' });
     }
   });
@@ -45,7 +45,7 @@
     if (lenis || !window.Lenis || !window.Motion?.frame?.setup || !window.Motion?.cancelFrame) return;
     try {
       root.classList.add('gallery-lenis-active');
-      lenis = new Lenis({ autoRaf:false, lerp:0.1, smoothWheel:true, syncTouch:false, anchors:true });
+      lenis = new Lenis({ autoRaf:false, lerp:0.15, wheelMultiplier:1.12, smoothWheel:true, syncTouch:false, anchors:true });
       Motion.frame.setup(advance, true);
       root.dataset.gallerySmoothEngine = 'lenis';
     } catch (error) {
