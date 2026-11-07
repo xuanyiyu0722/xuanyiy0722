@@ -36,7 +36,11 @@
   story.addEventListener('focusout', event => {
     if (!story.contains(event.relatedTarget) && !story.matches(':hover')) dismiss();
   });
-  trigger.addEventListener('click', () => { pinned = !pinned; setOpen(pinned); });
+  trigger.addEventListener('click', () => {
+    pinned = !pinned;
+    if (pinned) window.PortfolioSound?.eggCrack();
+    setOpen(pinned);
+  });
   document.addEventListener('pointerdown', event => {
     if (!story.contains(event.target)) dismiss();
   });
