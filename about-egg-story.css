@@ -1,5 +1,11 @@
 .about-egg-story{position:relative;margin:0 0 14px;z-index:3;}
 .about-story-trigger{position:relative;display:block;width:50px;height:62px;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;}
+@font-face {
+  font-family: "Euclid About Bold";
+  src: url("assets/fonts/EuclidCircularA-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
 .about-mosaic {
   display: grid;
   width: 100%;
@@ -14,13 +20,36 @@
   gap: 4px;
   container-type: inline-size;
 }
-.about-mosaic__tile { min-height: 0; overflow: hidden; }
+.about-mosaic__tile {
+  position: relative;
+  display: block;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  cursor: zoom-in;
+}
+.about-mosaic__tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(145deg, rgba(255,248,232,.19), rgba(255,248,232,.02) 60%);
+  box-shadow: inset 0 0 0 1px rgba(255,248,232,.17);
+}
 .about-mosaic__tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: var(--photo-focus, 50% 45%);
+  filter: blur(.85px);
+  transform: scale(1.024);
 }
+.about-mosaic__tile:focus-visible { outline: 2px solid #fdd957; outline-offset: -3px; }
+.about-mosaic__tile[aria-expanded="true"] { cursor: zoom-out; }
+.about-mosaic__tile[aria-expanded="true"] img { filter: none; }
+.about-mosaic__tile[aria-expanded="true"]::after { opacity: 0; }
 .about-mosaic__portrait { grid-area: portrait; --photo-focus: 50% 39%; --tile-delay: 0ms; }
 .about-mosaic__roses { grid-area: roses; --photo-focus: 50% 37%; --tile-delay: 70ms; }
 .about-mosaic__pink { grid-area: pink; --photo-focus: 43% 25%; --tile-delay: 105ms; }
@@ -32,23 +61,52 @@
 .about-mosaic__wings { grid-area: wings; --photo-focus: 49% 70%; --tile-delay: 350ms; }
 /* Trim the narrow border baked into the boat portrait. */
 .about-mosaic__portrait img { transform: scale(1.035); }
-.about-page .about-mosaic .about-mosaic__name {
+.about-mosaic__title {
   grid-area: name;
-  display: grid;
-  place-items: center;
   min-height: 0;
-  margin: 0;
-  padding: 0 4%;
+  container-type: size;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
   overflow: hidden;
-  background: #f8f4ed;
-  color: #423c30;
-  font-family: var(--font-heading);
-  font-size: 10.8cqw;
-  font-weight: 400;
-  letter-spacing: -.055em;
-  line-height: 1;
+}
+.about-page .about-mosaic .about-mosaic__name {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  color: #f8f4ed;
+  font-family: "Euclid About Bold", var(--font-heading);
+  font-size: min(13.4cqw, 80cqh);
+  font-weight: 700;
+  letter-spacing: -.065em;
+  line-height: .94;
   white-space: nowrap;
 }
+.about-mosaic__ticker { overflow: hidden; }
+.about-mosaic__ticker-track {
+  display: flex;
+  width: max-content;
+  color: #e3d5ba;
+  font-size: clamp(8px, 2.2cqw, 12px);
+  letter-spacing: .075em;
+  line-height: 1.2;
+}
+.about-mosaic__ticker-track span { min-width: 100cqw; text-align: center; }
+.about-photo-preview {
+  position: fixed;
+  z-index: 45;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(.96);
+  box-shadow: 0 14px 40px rgba(18, 14, 9, .32);
+  transition: opacity 200ms ease, transform 250ms var(--ease), visibility 200ms;
+}
+.about-photo-preview.is-visible { visibility: visible; opacity: 1; transform: none; }
+.about-photo-preview img { width: 100%; height: 100%; object-fit: contain; }
+.about-photo-preview.is-portrait img { clip-path: inset(0 0 0 .6%); }
 @media (prefers-reduced-motion: no-preference) {
   .project-fade-ready .about-mosaic.is-in-view .about-mosaic__tile {
     animation: about-tile-reveal 730ms var(--ease) var(--tile-delay) both;
@@ -56,7 +114,13 @@
   .project-fade-ready .about-mosaic.is-in-view .about-mosaic__name span {
     animation: about-name-reveal 680ms var(--ease) 190ms both;
   }
+  .project-fade-ready .about-mosaic.is-in-view .about-mosaic__ticker-track {
+    animation: about-ticker-scroll 22s linear infinite;
+  }
+  .about-mosaic__ticker:hover .about-mosaic__ticker-track { animation-play-state: paused; }
 }
+@media (prefers-reduced-motion: reduce) { .about-photo-preview { transition: none; } }
+@keyframes about-ticker-scroll { to { transform: translateX(-50%); } }
 @keyframes about-tile-reveal {
   from { clip-path: inset(0 0 100% 0); }
   to { clip-path: inset(0); }
