@@ -1,139 +1,92 @@
 (() => {
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const navigation = performance.getEntriesByType('navigation')[0];
-  if (reduceMotion.matches || !Element.prototype.animate || navigation?.type === 'back_forward') return;
-
-  const sprite = 'assets/images/about-ostrich-egg.png';
-  const artwork = `<image href="${sprite}" width="2888" height="1502"/>`;
-  const closedEgg = `<svg class="page-arrival-closed" viewBox="2020 424 868 1078">${artwork}</svg>`;
-  const hatch = `
-    <svg class="page-arrival-bird" viewBox="286 312 858 1190">
-      <defs><clipPath id="arrival-bird-clip"><path d="M448 312H1144V1502H286V612H448Z"/></clipPath></defs>
-      <g clip-path="url(#arrival-bird-clip)">${artwork}</g>
-    </svg>
-    <svg class="page-arrival-cap" viewBox="0 0 880 596">
-      <defs><clipPath id="arrival-cap-clip"><path d="M0 0H880V312H448V596H0Z"/></clipPath></defs>
-      <g clip-path="url(#arrival-cap-clip)">${artwork}</g>
-    </svg>`;
-  const title = 'Alicia Xuanyi Yu'.split(' ').map(word => `<span>${[...word].map(letter =>
-    `<span class="page-arrival-letter"><span>${letter}</span></span>`
-  ).join('')}</span>`).join('');
-  const formation = [-2, -1, 0, 1, 2].map(slot => `
-    <div class="page-arrival-egg" data-slot="${slot}" style="transform:translate3d(${slot * 17}cqi,0,0)">
-      ${closedEgg}${slot === 0 ? hatch : ''}
-    </div>`).join('');
-
   const root = document.documentElement;
-  const curtain = document.createElement('div');
-  curtain.className = 'page-arrival';
-  curtain.setAttribute('aria-hidden', 'true');
-  curtain.innerHTML = `
-    <div class="page-arrival-scene">
-      <div class="page-arrival-name">${title}</div>
-      <div class="page-arrival-formation">${formation}</div>
-    </div>`;
-  document.body.prepend(curtain);
-  root.classList.add('page-arrival-active');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  if (!Element.prototype.animate) return;
 
-  const animations = [];
-  let finished = false;
-  const finish = () => {
-    if (finished) return;
-    finished = true;
+  const destinations = ['gallery.html', 'about.html'].map(page => new URL(page, document.currentScript.src));
+  const samePage = (a, b) => a.origin === b.origin && a.pathname === b.pathname;
+  const currentPage = new URL(location.href);
+  const shell = 'M-48 350C24 171 234 8 500 8S976 171 1048 350V955L931 895L806 970L672 910L545 992L404 927L263 978L131 900L-48 958Z';
+  const covered = 'translateY(-37%)';
+  let curtain;
+  let animation;
+  let watchdog;
+  let finish;
+
+  function clear() {
     clearTimeout(watchdog);
-    animations.forEach(animation => animation.cancel());
-    curtain.remove();
+    finish = null;
+    animation?.cancel();
+    animation = null;
+    curtain?.remove();
+    curtain = null;
     root.classList.remove('page-arrival-active');
-    window.removeEventListener('keydown', skip);
-    window.removeEventListener('pagehide', finish);
-    window.removeEventListener('beforeprint', finish);
-    reduceMotion.removeEventListener('change', finish);
-  };
-  const skip = event => {
-    if (event.key === 'Escape' || event.key === 'Tab') finish();
-  };
-  let watchdog = setTimeout(finish, 1400);
-  window.addEventListener('keydown', skip);
-  window.addEventListener('pagehide', finish);
-  window.addEventListener('beforeprint', finish);
-  reduceMotion.addEventListener('change', finish);
-
-  function animate(element, frames, duration, delay, easing = 'linear') {
-    const animation = element.animate(frames, { duration, delay, easing, fill: 'both' });
-    animations.push(animation);
-    return animation;
   }
 
-  function play() {
-    if (finished) return;
-    clearTimeout(watchdog);
-    const eggs = [...curtain.querySelectorAll('.page-arrival-egg')];
-    const center = eggs[2];
-    const spreadDelay = 160;
-    const spreadDuration = 500;
-    const hatchAt = 950;
-    const hatchDuration = 395;
-    const letters = [...curtain.querySelectorAll('.page-arrival-letter > span')];
-    const letterDuration = 390;
-    const letterStagger = 28;
-    const moveOut = 'cubic-bezier(.22,.68,.22,1)';
+  function sweep(destination) {
+    const leaving = Boolean(destination);
+    const layer = document.createElement('div');
+    layer.className = leaving ? 'page-arrival page-arrival--leaving' : 'page-arrival';
+    layer.setAttribute('aria-hidden', 'true');
+    layer.innerHTML = `
+      <svg class="page-arrival-shell" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false">
+        <defs><clipPath id="page-arrival-shell-shape"><path d="${shell}"/></clipPath></defs>
+        <path d="${shell}" fill="#f3e8c8"/>
+        <path d="M350 0H1060V1000H743C703 932 651 904 675 838C702 765 823 747 808 650C795 566 674 554 631 488C584 416 645 345 610 277C573 202 425 230 373 162C344 124 359 67 350 0Z"
+          fill="#ecd58f" clip-path="url(#page-arrival-shell-shape)"/>
+      </svg>`;
+    curtain = layer;
+    document.body.prepend(layer);
+    root.classList.add('page-arrival-active');
 
-    eggs.forEach(egg => {
-      const slot = Number(egg.dataset.slot);
-      const distance = Math.abs(slot);
-      if (!distance) return;
-      const x = Math.sign(slot) * (distance === 1 ? 26 : 48);
-      const y = distance === 1 ? -6 : -11;
-      const z = distance === 1 ? -24 : -48;
-      animate(egg, [
-        { transform: `translate3d(${slot * 17}cqi,0,0) scale(1)`, opacity: 1 },
-        { transform: `translate3d(${x}cqi,${y}cqi,${z}cqi) scale(${distance === 1 ? .98 : .88})`,
-          opacity: distance === 1 ? .72 : .47 }
-      ], spreadDuration, spreadDelay, moveOut);
+    const duration = leaving ? 520 : 680;
+    const start = leaving ? 'translateY(52%)' : covered;
+    const end = leaving ? covered : 'translateY(-105%)';
+    const complete = () => {
+      if (curtain !== layer || finish !== complete) return;
+      clearTimeout(watchdog);
+      finish = null;
+      if (leaving) location.assign(destination);
+      else clear();
+    };
+    finish = complete;
+    watchdog = setTimeout(complete, duration + 250);
+    animation = layer.querySelector('svg').animate([
+      { transform: start },
+      { transform: end }
+    ], {
+      duration,
+      easing: leaving ? 'cubic-bezier(.63,.04,.28,1)' : 'cubic-bezier(.55,.02,.20,1)',
+      fill: 'both'
     });
-    animate(center, [
-      { transform: 'translate3d(0,0,0) scale(1)', easing: 'cubic-bezier(.2,.75,.27,1)' },
-      { transform: 'translate3d(0,3.8cqi,8cqi) scale(1.86)', offset: .65 },
-      { transform: 'translate3d(0,2.8cqi,6cqi) scale(1.73)', offset: .85 },
-      { transform: 'translate3d(0,3cqi,6cqi) scale(1.77)' }
-    ], spreadDuration, spreadDelay);
-
-    const shell = center.querySelector('.page-arrival-closed');
-    animate(shell, [
-      { transform: 'rotate(0deg)', opacity: 1 },
-      { transform: 'rotate(-9deg)', offset: .23 },
-      { transform: 'rotate(8deg)', offset: .47 },
-      { transform: 'rotate(-5deg)', offset: .68 },
-      { transform: 'rotate(0deg) scale(1.04,.94)', opacity: 1, offset: .9 },
-      { transform: 'rotate(0deg) scale(1.04,.94)', opacity: 0 }
-    ], hatchAt - spreadDelay - spreadDuration, spreadDelay + spreadDuration);
-    animate(center.querySelector('.page-arrival-bird'), [
-      { transform: 'translateY(9%) scale(.84)', opacity: 0 },
-      { transform: 'translateY(-10%) scale(1.04)', opacity: 1, offset: .55 },
-      { transform: 'translateY(0) scale(1)', opacity: 1 }
-    ], hatchDuration, hatchAt, moveOut);
-    animate(center.querySelector('.page-arrival-cap'), [
-      { transform: 'translate(0,14%) rotate(0deg) scale(.7)', opacity: 0 },
-      { opacity: 1, offset: .28 },
-      { transform: 'translate(-48%,-24%) rotate(-26deg) scale(.88)', opacity: 1 }
-    ], hatchDuration, hatchAt, moveOut);
-    letters.forEach((letter, index) => {
-      animate(letter, [
-        { transform: 'translateY(110%)', easing: 'cubic-bezier(.24,.76,.28,1)' },
-        { transform: 'translateY(-7%)', offset: .79 },
-        { transform: 'translateY(0)' }
-      ], letterDuration, hatchAt + index * letterStagger);
-    });
-
-    const lastLetter = hatchAt + letterDuration + (letters.length - 1) * letterStagger;
-    const fadeAt = lastLetter + 500;
-    const fadeDuration = 220;
-    watchdog = setTimeout(finish, fadeAt + fadeDuration + 400);
-    animate(curtain, [{ opacity: 1 }, { opacity: 0 }], fadeDuration, fadeAt, 'ease-in-out')
-      .finished.then(finish, finish);
+    animation.finished.then(complete, complete);
   }
 
-  const image = new Image();
-  image.src = sprite;
-  image.decode().then(play, finish).catch(finish);
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey ||
+        event.shiftKey || event.altKey || reduceMotion.matches) return;
+    const link = event.target.closest('a[href]');
+    if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return;
+    const url = new URL(link.href);
+    if (samePage(url, currentPage) || !destinations.some(page => samePage(url, page))) return;
+    event.preventDefault();
+    if (curtain) return;
+    if (link.closest('.nav')) window.PortfolioSound?.eggCrack();
+    sweep(url.href);
+  }, { capture: true });
+
+  window.addEventListener('keydown', event => {
+    if (event.key === 'Escape' || event.key === 'Tab') finish?.();
+  });
+  window.addEventListener('pagehide', clear);
+  window.addEventListener('beforeprint', clear);
+  reduceMotion.addEventListener('change', () => {
+    if (reduceMotion.matches) finish?.();
+  });
+
+  const navigation = performance.getEntriesByType('navigation')[0];
+  if (!reduceMotion.matches && navigation?.type !== 'back_forward' &&
+      destinations.some(page => samePage(currentPage, page))) {
+    sweep();
+  }
 })();

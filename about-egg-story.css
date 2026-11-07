@@ -7,10 +7,8 @@
   font-display: swap;
 }
 .about-mosaic {
-  position: relative;
   display: grid;
   width: 100%;
-  overflow: clip;
   aspect-ratio: 1;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr)) minmax(0, .72fr) minmax(0, 1fr);
@@ -31,8 +29,6 @@
   overflow: hidden;
   background: transparent;
   cursor: zoom-in;
-  translate: var(--make-way-x, 0px) var(--make-way-y, 0px);
-  transition: translate 500ms cubic-bezier(.22,.77,.26,1), filter 300ms ease;
 }
 .about-mosaic__tile img {
   width: 100%;
@@ -43,8 +39,6 @@
 }
 .about-mosaic__tile:focus-visible { outline: 2px solid #fdd957; outline-offset: -3px; }
 .about-mosaic__tile[aria-expanded="true"] { cursor: zoom-out; }
-.about-mosaic__tile[aria-expanded="true"] img { opacity: 0; }
-.about-mosaic.is-making-way .about-mosaic__tile:not([aria-expanded="true"]) { filter: brightness(.78); }
 .about-mosaic__portrait { grid-area: portrait; --photo-focus: 50% 39%; --tile-delay: 0ms; }
 .about-mosaic__roses { grid-area: roses; --photo-focus: 50% 37%; --tile-delay: 70ms; }
 .about-mosaic__pink { grid-area: pink; --photo-focus: 43% 25%; --tile-delay: 105ms; }
@@ -92,11 +86,15 @@
   position: fixed;
   z-index: 45;
   overflow: hidden;
-  cursor: zoom-out;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(6px) scale(.97);
   box-shadow: 0 14px 40px rgba(18, 14, 9, .32);
+  transition: opacity 200ms ease, transform 250ms var(--ease), visibility 200ms;
 }
-.about-photo-preview[hidden] { display: none; }
-.about-photo-preview img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo-preview.is-visible { visibility: visible; opacity: 1; transform: none; }
+.about-photo-preview img { width: 100%; height: 100%; object-fit: contain; }
 .about-photo-preview.is-portrait img { clip-path: inset(0 0 0 .6%); }
 @media (prefers-reduced-motion: no-preference) {
   .project-fade-ready .about-mosaic.is-in-view .about-mosaic__tile {
@@ -110,9 +108,7 @@
   }
   .about-mosaic__ticker:hover .about-mosaic__ticker-track { animation-play-state: paused; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .about-mosaic__tile { translate: none; transition: none; }
-}
+@media (prefers-reduced-motion: reduce) { .about-photo-preview { transition: none; } }
 @keyframes about-ticker-scroll { to { transform: translateX(-50%); } }
 @keyframes about-tile-reveal {
   from { opacity: 0; transform: translateY(8px); }
