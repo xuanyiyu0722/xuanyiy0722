@@ -14,13 +14,20 @@
   let active = null;
   let pinned = false;
 
-  function revealPixels(container, source, isThumbnail) {
-    container.querySelector('canvas')?.remove();
-    if (reduce.matches || !source.naturalWidth) return;
+  function addPixelLayer(container) {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'about-photo-pixels';
+    canvas.setAttribute('aria-hidden', 'true');
+    container.append(canvas);
+    return canvas;
+  }
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    if (!width || !height) return;
+  function drawPixels(canvas, source, blockSize, isThumbnail = false) {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (!width || !height || !source.naturalWidth) return;
+    const context = canvas.getContext('2d');
+    if (!context) return;
 
     let sx = 0, sy = 0, sw = source.naturalWidth, sh = source.naturalHeight;
     if (isThumbnail) {
@@ -36,15 +43,17 @@
       sh = cropHeight / zoom;
     }
 
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (!context) return;
-    canvas.className = 'about-photo-pixels';
-    canvas.setAttribute('aria-hidden', 'true');
-    container.append(canvas);
+    canvas.width = Math.max(1, Math.round(width / blockSize));
+    canvas.height = Math.max(1, Math.round(height / blockSize));
+    context.drawImage(source, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+  }
 
+  function revealPreview(source) {
+    preview.querySelector('canvas')?.remove();
+    if (reduce.matches) return;
+    const canvas = addPixelLayer(preview);
     const blockSizes = [30, 19, 11, 6, 3];
-    const duration = isThumbnail ? 560 : 360;
+    const duration = 360;
     const start = performance.now();
     let stage = -1;
     function draw(now) {
@@ -54,9 +63,7 @@
       const next = Math.floor(progress * blockSizes.length);
       if (next !== stage) {
         stage = next;
-        canvas.width = Math.max(1, Math.round(width / blockSizes[stage]));
-        canvas.height = Math.max(1, Math.round(height / blockSizes[stage]));
-        context.drawImage(source, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+        drawPixels(canvas, source, blockSizes[stage]);
       }
       canvas.style.opacity = Math.min(1, (1 - progress) * 6);
       requestAnimationFrame(draw);
@@ -96,16 +103,19 @@
     preview.classList.toggle('is-portrait', tile.classList.contains('about-mosaic__portrait'));
     Object.assign(preview.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` });
     preview.classList.add('is-visible');
-    if (changed) revealPixels(preview, source, false);
+    if (changed) revealPreview(source);
   }
 
+  const resizePixels = new ResizeObserver(entries => {
+    for (const { target: tile } of entries) {
+      drawPixels(tile.querySelector('canvas'), tile.querySelector('img'), 24, true);
+    }
+  });
   for (const tile of mosaic.querySelectorAll('.about-mosaic__tile')) {
-    tile.addEventListener('animationstart', event => {
-      if (event.animationName !== 'about-tile-reveal') return;
-      const source = tile.querySelector('img');
-      if (source.complete) revealPixels(tile, source, true);
-      else source.addEventListener('load', () => revealPixels(tile, source, true), { once: true });
-    });
+    const source = tile.querySelector('img');
+    const canvas = addPixelLayer(tile);
+    source.addEventListener('load', () => drawPixels(canvas, source, 24, true), { once: true });
+    resizePixels.observe(tile);
     tile.addEventListener('pointerenter', event => {
       if (event.pointerType === 'mouse' && !pinned) show(tile);
     });
