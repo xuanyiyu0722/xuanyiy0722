@@ -1,8 +1,8 @@
-/* Give only EGG a brief lean, keeping the fitted EGGshell line unchanged. */
+/* Hold only EGG in a gentle lean while hovered, preserving the fitted line. */
 (() => {
   const poster = document.querySelector('.home-page .hero-poster');
   const anchor = poster?.querySelector('.poster-ink');
-  if (!anchor || typeof Element.prototype.animate !== 'function') return;
+  if (!anchor) return;
   const row = anchor.closest('.hero-poster-row');
   const line = anchor.parentElement;
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
@@ -21,12 +21,8 @@
   drawing.append(copy);
   hover.append(hit, drawing);
   row.append(hover);
-  let animation = null;
   let frame = 0;
-  const reset = () => {
-    animation?.cancel();
-    animation = null;
-  };
+  const reset = () => hover.classList.remove('is-tilted');
   const sync = () => {
     frame = 0;
     reset();
@@ -47,18 +43,10 @@
   document.fonts?.ready.then(queueSync);
   window.addEventListener('resize', queueSync, { passive:true });
   hover.addEventListener('pointerenter', event => {
-    if (!fine.matches || reduce.matches || event.pointerType !== 'mouse' || animation) return;
-    const current = drawing.animate([
-      { transform:'translateY(0) skewX(0deg)', offset:0 },
-      { transform:'translateY(-3px) skewX(-7deg)', offset:.35 },
-      { transform:'translateY(-1px) skewX(2deg)', offset:.72 },
-      { transform:'translateY(0) skewX(0deg)', offset:1 }
-    ], { duration:800, easing:'cubic-bezier(.3,.7,.3,1)' });
-    animation = current;
-    current.finished.catch(() => {}).then(() => {
-      if (animation === current) animation = null;
-    });
+    if (fine.matches && !reduce.matches && event.pointerType === 'mouse') hover.classList.add('is-tilted');
   });
+  hover.addEventListener('pointerleave', reset);
+  hover.addEventListener('pointercancel', reset);
   reduce.addEventListener('change', reset);
   fine.addEventListener('change', reset);
   document.addEventListener('visibilitychange', reset);

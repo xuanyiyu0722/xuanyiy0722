@@ -18,7 +18,7 @@
   const page = new Audio('assets/audio/gallery-page-turn.mp3');
   selection.preload = egg.preload = page.preload = 'auto';
   selection.volume = .2;
-  egg.volume = .28;
+  egg.volume = .28 * 2 / 3;
   page.volume = .23;
   const isGallery = document.body.classList.contains('gallery-page');
   const stopPage = () => {

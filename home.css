@@ -97,9 +97,11 @@
 .home-page .hero-poster .poster-egg-anchor{opacity:0;}
 .home-page .hero-poster .poster-egg-hover{pointer-events:all;cursor:default;}
 .home-page .hero-poster .poster-egg-hit{fill:transparent;pointer-events:all;}
-.home-page .hero-poster .poster-egg-motion{transform-box:fill-box;transform-origin:center bottom;pointer-events:none;}
+.home-page .hero-poster .poster-egg-motion{transform-box:fill-box;transform-origin:center bottom;pointer-events:none;transition:transform 800ms cubic-bezier(.3,.7,.3,1);}
+.home-page .hero-poster .poster-egg-hover.is-tilted .poster-egg-motion{transform:translateY(-3px) skewX(-7deg);}
 .home-page .hero-poster .poster-egg-copy{fill:#111210;pointer-events:none;}
 @media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){.home-page .hero-poster .poster-egg-hover,.home-page .hero-poster .poster-egg-hit{pointer-events:none;}}
+@media(prefers-reduced-motion:reduce){.home-page .hero-poster .poster-egg-motion{transition:none;transform:none!important;}}
 
 /* Action feedback is decorative; the native egg buttons remain the click targets. */
 .egg-crack-cursor{position:fixed;left:0;top:0;z-index:1000;width:56px;height:56px;pointer-events:none;user-select:none;opacity:0;transition:opacity 140ms ease;}

@@ -5,9 +5,6 @@
   if (!guide || stages.length < 2) return;
   const track = guide.querySelector('.gallery-scroll-track');
   const thumb = guide.querySelector('.gallery-scroll-thumb');
-  const count = guide.querySelector('.gallery-scroll-count');
-  const up = guide.querySelector('.gallery-scroll-up');
-  const down = guide.querySelector('.gallery-scroll-down');
   let current = 0, frame = 0, dragging = false;
   const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
   const positions = () => stages.map(stage => {
@@ -25,9 +22,6 @@
     thumb.style.transform = `translate3d(-50%,${progress * (track.clientHeight - thumb.clientHeight)}px,0)`;
     track.setAttribute('aria-valuenow', current + 1);
     track.setAttribute('aria-valuetext', `${current + 1} of ${stages.length} — ${stages[current].querySelector('h2').textContent}`);
-    count.textContent = `${current + 1} / ${stages.length}`;
-    up.disabled = current === 0;
-    down.disabled = current === stages.length - 1;
   };
   const queue = () => { if (!frame) frame = requestAnimationFrame(update); };
   const scrollTo = (top, immediate = false) => {
@@ -61,8 +55,6 @@
     event.preventDefault();
     select(actions[event.key]);
   });
-  up.addEventListener('click', () => select(current - 1));
-  down.addEventListener('click', () => select(current + 1));
   guide.hidden = false;
   track.setAttribute('aria-valuemax', stages.length);
   window.addEventListener('scroll', queue, { passive:true });
