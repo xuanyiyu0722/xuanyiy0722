@@ -52,6 +52,12 @@
 
 /* Keep the watercolor assets in their original colors on the yellow navigation. */
 .portfolio-theme .watercolor-egg > svg { mix-blend-mode: normal; }
+
+.nav .nav-egg.ostrich-egg { flex-basis: 32px; width: 32px; height: 36px; }
+.ostrich-egg svg svg { overflow: hidden; }
+.nav a .ostrich-egg svg svg { animation: none !important; }
+.nav-ostrich-closed { transition: opacity 220ms ease; }
+.nav a:is(.active,.is-hatching) .nav-ostrich-closed { opacity: 0; }
 .portfolio-theme .sidebar .nav { border-top:1px solid var(--line); }
 .portfolio-theme .sidebar .nav a { border-bottom:1px solid var(--line); }
 

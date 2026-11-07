@@ -11,29 +11,29 @@
   const positionNote = () => {
     frame = 0;
     if (note.hidden) return;
+    note.dataset.placement = 'right';
     const anchor = trigger.getBoundingClientRect();
     const host = story.getBoundingClientRect();
-    const margin = 16, gap = 14;
-    const availableRight = innerWidth - anchor.right - gap - margin;
-    const availableLeft = anchor.left - gap - margin;
-    let placement = availableRight >= 220 ? 'right' : availableLeft >= 220 ? 'left' : 'above';
-    const beside = placement !== 'above';
-    const width = Math.min(320, placement === 'right' ? availableRight
-      : placement === 'left' ? availableLeft : innerWidth - margin * 2);
+    const gap = 14;
+    const sideWidth = Math.min(260, host.width - anchor.width - gap);
+    let placement = sideWidth >= 174 ? 'right' : 'above';
+    let width = placement === 'right' ? sideWidth : Math.min(290, host.width);
     note.style.width = `${width}px`;
-    const height = note.offsetHeight;
-    if (!beside && anchor.top < height + gap + margin && innerHeight - anchor.bottom >= height + gap + margin) placement = 'below';
+    let y = host.bottom - note.offsetHeight;
+    if (placement === 'above' || y < 12) {
+      placement = 'above';
+      width = Math.min(290, host.width);
+      note.style.width = `${width}px`;
+      y = anchor.top - gap - note.offsetHeight;
+      if (y < 12) placement = 'below';
+    }
     note.dataset.placement = placement;
-    const x = placement === 'right' ? anchor.right + gap : placement === 'left' ? anchor.left - gap - width
-      : clamp(anchor.left + anchor.width / 2 - width / 2, margin, innerWidth - width - margin);
-    const y = clamp(beside ? anchor.top + anchor.height / 2 - height + 24
-      : placement === 'above' ? anchor.top - height - gap : anchor.bottom + gap,
-      margin, innerHeight - height - margin);
-    note.style.left = `${x - host.left}px`;
-    note.style.top = `${y - host.top}px`;
+    const offset = placement === 'below' ? 0 : host.width - width;
+    note.style.left = `${offset}px`;
+    note.style.top = placement === 'below' ? '0' : `${y - host.top}px`;
     note.style.bottom = 'auto';
-    note.style.setProperty('--note-tail-y', `${clamp(anchor.top + anchor.height / 2 - y, 18, height - 18)}px`);
-    note.style.setProperty('--note-tail-x', `${clamp(anchor.left + anchor.width / 2 - x, 20, width - 20)}px`);
+    note.style.setProperty('--note-tail-y', `${clamp(anchor.top + anchor.height / 2 - y, 18, note.offsetHeight - 18)}px`);
+    note.style.setProperty('--note-tail-x', `${clamp(anchor.width / 2 - offset, 20, width - 20)}px`);
   };
   const queuePosition = () => { if (!note.hidden && !frame) frame = requestAnimationFrame(positionNote); };
   const setOpen = open => {
