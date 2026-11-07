@@ -4,7 +4,7 @@
   const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const targets = new Set(document.querySelectorAll(
-    '.about-copy > *, .about-intro .lead, .about-egg-story, .about-block, .resume-section-head, .resume-column-heading, '
+    '.about-copy > *, .about-intro > *, .about-egg-story, .about-block, .resume-section-head, .resume-column-heading, '
     + '.internship, .activity, .skill-group'
   ));
   const animations = new Map();
@@ -31,10 +31,15 @@
         }
         if (node.classList.contains('is-in-view')) return;
         node.classList.add('is-in-view');
+        const portrait = node.classList.contains('about-portrait');
+        const delay = Math.min(order++, 3) * 65;
         const animation = node.animate([
           { opacity: 0, translate: `0 ${innerWidth <= 820 ? 20 : 28}px` },
           { opacity: 1, translate: '0 0' }
-        ], { duration: 850, delay: Math.min(order++, 3) * 65, easing: 'cubic-bezier(.22,.72,.18,1)', fill: 'backwards' });
+        ], {
+          duration: portrait ? 1080 : 850, delay: portrait ? 0 : delay,
+          easing: 'cubic-bezier(.22,.72,.18,1)', fill: 'backwards'
+        });
         animations.set(node, animation);
         animation.finished.catch(() => {}).then(() => {
           if (animations.get(node) === animation) animations.delete(node);
