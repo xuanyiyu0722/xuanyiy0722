@@ -80,8 +80,6 @@
 (() => {
   const scroll = document.querySelector('#kimono-scroll');
   if (!scroll) return;
-  const map = scroll.querySelector('.kimono-map');
-  const firstCard = map.querySelector('.kimono-type');
   const previous = document.querySelector('[data-kimono-prev]');
   const next = document.querySelector('[data-kimono-next]');
   const progress = document.querySelector('.kimono-progress i');
@@ -95,10 +93,7 @@
     next.disabled = scroll.scrollLeft >= max - 1;
     progress.style.width = `${max > 0 ? (scroll.scrollLeft / max) * 100 : 100}%`;
   };
-  const move = direction => {
-    const step = firstCard.offsetWidth + parseFloat(getComputedStyle(map).columnGap);
-    scroll.scrollBy({left: direction * step, behavior: motion()});
-  };
+  const move = direction => scroll.scrollBy({left:direction * (matchMedia('(max-width:640px)').matches ? 330 : 320),behavior:motion()});
   previous.addEventListener('click', () => move(-1));
   next.addEventListener('click', () => move(1));
   scroll.addEventListener('scroll', update, {passive:true});
@@ -110,8 +105,6 @@
       event.preventDefault();scroll.scrollTo({left:event.key==='Home'?0:scroll.scrollWidth,behavior:motion()});
     }
   });
-  const observer = new ResizeObserver(update);
-  observer.observe(scroll);
-  observer.observe(map);
+  new ResizeObserver(update).observe(scroll);
   update();
 })();
