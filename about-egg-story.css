@@ -127,17 +127,6 @@
   .about-page .about-side .about-block:last-child{padding-bottom:0;}
 }
 .about-story-trigger:focus-visible{outline:2px solid #fdd957;outline-offset:7px;border-radius:45%;}
-.about-story-cue {
-  position: absolute;
-  left: 0;
-  bottom: -12px;
-  color: #fdd957;
-  font-size: 10px;
-  line-height: 1.2;
-  letter-spacing: .06em;
-  white-space: nowrap;
-}
-.about-egg-story.is-open .about-story-cue { opacity: 0; }
 .about-story-state{position:absolute;inset:2px;display:block;pointer-events:none;transform-origin:left bottom;transition:opacity 180ms ease,transform 380ms cubic-bezier(.22,.72,.18,1);}
 .about-story-state svg{display:block;width:100%;height:100%;overflow:hidden;}
 /* Align the actual egg and lower shell with the information column. */
