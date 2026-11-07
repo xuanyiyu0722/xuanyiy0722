@@ -31,13 +31,13 @@
         }
         if (node.classList.contains('is-in-view')) return;
         node.classList.add('is-in-view');
-        const portrait = node.classList.contains('about-portrait');
+        const mosaic = node.classList.contains('about-mosaic');
         const delay = Math.min(order++, 3) * 65;
         const animation = node.animate([
           { opacity: 0, translate: `0 ${innerWidth <= 820 ? 20 : 28}px` },
           { opacity: 1, translate: '0 0' }
         ], {
-          duration: portrait ? 1080 : 850, delay: portrait ? 0 : delay,
+          duration: mosaic ? 1080 : 850, delay: mosaic ? 0 : delay,
           easing: 'cubic-bezier(.22,.72,.18,1)', fill: 'backwards'
         });
         animations.set(node, animation);
