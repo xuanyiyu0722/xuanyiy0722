@@ -9,6 +9,9 @@
   const samePage = (a, b) => a.origin === b.origin && a.pathname === b.pathname;
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
+  const soundPreference = 'alicia-portfolio-sound';
+  const boilingSound = new Audio(new URL('assets/audio/loading-boiling-water.mp4', scriptURL).href);
+  boilingSound.preload = 'auto';
   const expansionDuration = 800;
   const progressStepDuration = 345;
   const eggShakeDuration = 240;
@@ -88,7 +91,20 @@
       </div>
     </div>`;
 
+  function stopBoilingSound() {
+    boilingSound.pause();
+    boilingSound.currentTime = 0;
+  }
+
+  function playBoilingSound() {
+    if (document.hidden) return;
+    try { if (localStorage.getItem(soundPreference) === 'off') return; }
+    catch { /* Local storage can be unavailable. */ }
+    boilingSound.play()?.catch(() => { /* The browser may block autoplay. */ });
+  }
+
   function clear() {
+    stopBoilingSound();
     finish = null;
     progressAnimations.forEach(motion => motion.cancel());
     progressAnimations = [];
@@ -134,6 +150,7 @@
     };
     finish = () => {
       if (!leaving) { clear(); return; }
+      stopBoilingSound();
       finish = null;
       try {
         sessionStorage.setItem(handoffKey, JSON.stringify({ destination, startTime }));
@@ -142,6 +159,8 @@
     };
 
     if (startedAt) { reveal(); return; }
+    layer.append(boilingSound);
+    playBoilingSound();
 
     const width = layer.clientWidth;
     const height = layer.clientHeight;
@@ -213,6 +232,12 @@
 
   window.addEventListener('keydown', event => {
     if (event.key === 'Escape' || event.key === 'Tab') finish?.();
+  });
+  window.addEventListener('storage', event => {
+    if (event.key === soundPreference && event.newValue === 'off') stopBoilingSound();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopBoilingSound();
   });
   window.addEventListener('pagehide', clear);
   window.addEventListener('beforeprint', clear);

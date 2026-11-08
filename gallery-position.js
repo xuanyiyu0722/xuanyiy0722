@@ -10,23 +10,44 @@
   let pendingStop = null;
   let snapTimer;
   let touching = false;
+  let geometry;
+  let announced = -1;
+  let thumbOffset = -1;
+  const titles = stages.map(stage => stage.querySelector('h2').textContent);
   const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
-  const positions = () => stages.map(stage => {
-    const rect = stage.getBoundingClientRect();
+  // Scroll updates use page coordinates. Read layout again only when the geometry changes.
+  const measure = () => {
+    const pageY = scrollY;
+    const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
     const header = innerWidth <= 820 ? 56 : 0;
-    return clamp(rect.top + scrollY + rect.height/2 - (innerHeight + header)/2,
-      0, document.documentElement.scrollHeight - innerHeight);
-  });
-  const closest = stops => stops.reduce((best, stop, index) =>
-    Math.abs(stop - scrollY) < Math.abs(stops[best] - scrollY) ? index : best, 0);
+    const center = (innerHeight + header) / 2;
+    const stops = stages.map(stage => {
+      const rect = stage.getBoundingClientRect();
+      return clamp(rect.top + pageY + rect.height / 2 - center, 0, max);
+    });
+    const trackRect = track.getBoundingClientRect();
+    return { stops, trackRect, travel: track.clientHeight - thumb.clientHeight };
+  };
+  const layout = () => geometry ??= measure();
+  const positions = () => layout().stops;
+  const closest = (stops, pageY = scrollY) => stops.reduce((best, stop, index) =>
+    Math.abs(stop - pageY) < Math.abs(stops[best] - pageY) ? index : best, 0);
   const update = () => {
     frame = 0;
-    const stops = positions();
-    const progress = clamp((scrollY - stops[0]) / Math.max(1, stops.at(-1) - stops[0]), 0, 1);
-    current = closest(stops);
-    thumb.style.transform = `translate3d(-50%,${progress * (track.clientHeight - thumb.clientHeight)}px,0)`;
-    track.setAttribute('aria-valuenow', current + 1);
-    track.setAttribute('aria-valuetext', `${current + 1} of ${stages.length} — ${stages[current].querySelector('h2').textContent}`);
+    const { stops, travel } = layout();
+    const pageY = scrollY;
+    const progress = clamp((pageY - stops[0]) / Math.max(1, stops.at(-1) - stops[0]), 0, 1);
+    current = closest(stops, pageY);
+    const offset = progress * travel;
+    if (offset !== thumbOffset) {
+      thumbOffset = offset;
+      thumb.style.transform = `translate3d(-50%,${offset}px,0)`;
+    }
+    if (current !== announced) {
+      announced = current;
+      track.setAttribute('aria-valuenow', current + 1);
+      track.setAttribute('aria-valuetext', `${current + 1} of ${stages.length} — ${titles[current]}`);
+    }
   };
   const queue = () => { if (!frame) frame = requestAnimationFrame(update); };
   const scrollTo = (top, immediate = false) => {
@@ -59,14 +80,14 @@
     snapTimer = setTimeout(snap, 130);
   };
   const reset = () => {
+    geometry = null;
     clearTimeout(snapTimer);
     pendingStop = null;
     resting = closest(positions());
     queue();
   };
   const drag = event => {
-    const rect = track.getBoundingClientRect();
-    const stops = positions();
+    const { stops, trackRect: rect } = layout();
     const progress = clamp((event.clientY - rect.top) / rect.height, 0, 1);
     scrollTo(stops[0] + progress * (stops.at(-1) - stops[0]), true);
     queue();
@@ -119,6 +140,16 @@
     dragging = false;
     touching = false;
   });
-  document.fonts?.ready.then(queue);
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(() => {
+      geometry = null;
+      queue();
+    });
+    [track, thumb, stages[0].parentElement, ...stages].forEach(node => observer.observe(node));
+  }
+  document.fonts?.ready.then(() => {
+    geometry = null;
+    queue();
+  });
   update();
 })();

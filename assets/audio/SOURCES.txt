@@ -13,3 +13,9 @@ Source: https://github.com/romainsimon/uisfx
 Package: https://registry.npmjs.org/uisfx/-/uisfx-0.4.0.tgz
 Audio license: CC0 1.0; see UISFX-LICENSE-AUDIO.txt.
 Playback volume: 0.20 (official default); shared Sound On/Off preference applies.
+
+loading-boiling-water.mp4
+Boiling Water Sound by andatha (Freesound), CC0 1.0.
+Requested listing: https://pixabay.com/sound-effects/household-boiling-water-sound-62556/
+Original recording: https://freesound.org/people/andatha/sounds/568112/
+Trimmed to the loading animation with short fades. Uses the site's Sound On/Off preference.

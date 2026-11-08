@@ -5,13 +5,19 @@
   let active = -1;
   let frame = 0;
   let suppressUntil = 0;
-  const distances = () => {
-    const top = innerWidth <= 820 ? 56 : 0;
-    const center = top + (innerHeight - top) / 2;
+  let centers;
+  const measureCenters = () => {
+    const pageY = scrollY;
     return stages.map(stage => {
       const rect = stage.getBoundingClientRect();
-      return Math.abs(rect.top + rect.height / 2 - center);
+      return rect.top + pageY + rect.height / 2;
     });
+  };
+  const distances = () => {
+    const top = innerWidth <= 820 ? 56 : 0;
+    const center = scrollY + (innerHeight + top) / 2;
+    centers ??= measureCenters();
+    return centers.map(value => Math.abs(value - center));
   };
   const update = (silent = false) => {
     const values = distances();
@@ -27,6 +33,7 @@
     frame = requestAnimationFrame(() => { frame = 0; update(); });
   };
   const reset = () => {
+    centers = null;
     suppressUntil = performance.now() + 300;
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
@@ -36,6 +43,10 @@
   window.addEventListener('resize', reset, { passive:true });
   window.addEventListener('pageshow', reset);
   window.addEventListener('pagehide', () => { if (frame) cancelAnimationFrame(frame); frame = 0; });
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(() => { centers = null; });
+    [stages[0].parentElement, ...stages].forEach(node => observer.observe(node));
+  }
   document.fonts?.ready.then(reset);
   reset();
 })();
