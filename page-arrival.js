@@ -6,17 +6,62 @@
   const destinations = ['gallery.html', 'about.html'].map(page => new URL(page, document.currentScript.src));
   const samePage = (a, b) => a.origin === b.origin && a.pathname === b.pathname;
   const currentPage = new URL(location.href);
-  // Both paths have matching segments so the silhouette can morph as it rises.
-  const eggCap = 'M22 735 C30 535 114 336 218 220 C309 116 410 46 500 46 C590 46 691 116 782 220 C886 336 970 535 978 735 C983 807 954 861 929 866 L847 805 L727 925 L619 849 L510 969 L385 866 L270 933 L151 814 L71 878 C44 861 17 807 22 735 Z';
-  const fullShell = 'M-80 560 C-50 415 -20 270 165 115 C256 42 395 8 500 8 C605 8 744 42 835 115 C1020 270 1050 415 1080 560 C1090 733 1087 892 1074 955 L931 895 L806 970 L672 910 L545 992 L404 927 L263 978 L131 900 L-74 958 C-87 892 -90 733 -80 560 Z';
-  const covered = 'translateY(-37%)';
-  const coverDuration = 1120;
-  const morphStart = .65;
   const handoffKey = 'portfolio-arrival-covered';
+  const simmerDuration = 1360;
   let curtain;
   let animation;
   let watchdog;
   let finish;
+
+  const illustration = `
+    <div class="page-arrival-atmosphere"><i></i><i></i><i></i></div>
+    <div class="page-arrival-scene">
+      <svg class="page-arrival-pot" viewBox="0 0 400 474" focusable="false">
+        <g fill="none" stroke="#B49BBF" stroke-width="4.5" stroke-linecap="round">
+          <path class="boiling-steam" d="M116 93c-15-14 12-19 3-35" />
+          <path class="boiling-steam" d="M261 36c-13-11 8-18 2-29" style="--beat: 220ms"/>
+          <path class="boiling-steam" d="M314 101c-15-14 11-22 3-35" style="--beat: 410ms"/>
+        </g>
+        <ellipse cx="200" cy="456" rx="113" ry="8" fill="#493757" opacity=".09"/>
+        <g transform="translate(-25 25)"><g class="boiling-fire">
+          <path fill="#E49B61" d="M180 424c-25 2-49-9-53-29-4-17 7-28 6-47 10 14 23 14 30 32 7-7 11-13 10-24 26 18 32 53 7 68Z"/>
+          <path fill="#F0CF78" d="M171 423c-13 1-25-7-26-16-1-8 3-13 3-21 8 5 9 10 14 14 7-4 10-10 12-16 15 11 14 36-3 39Z"/>
+        </g></g>
+        <g transform="translate(25 25)"><g class="boiling-fire" style="--beat: 170ms">
+          <path fill="#E49B61" d="M220 424c25 2 49-9 53-29 4-17-7-28-6-47-10 14-23 14-30 32-7-7-11-13-10-24-26 18-32 53-7 68Z"/>
+          <path fill="#F0CF78" d="M229 423c13 1 25-7 26-16 1-8-3-13-3-21-8 5-9 10-14 14-7-4-10-10-12-16-15 11-14 36 3 39Z"/>
+        </g></g>
+        <g transform="translate(0 19)"><g class="boiling-fire" style="--beat: 330ms">
+          <path fill="#E49B61" d="M202 430c-26 0-42-12-41-31 1-17 17-28 15-47 9 11 17 16 17 28 11-12 20-25 16-45 22 20 30 39 30 57 0 22-16 38-37 38Z"/>
+          <path fill="#F0CF78" d="M202 429c-13 0-23-7-23-17 0-10 9-16 10-26 4 6 7 10 7 15 7-5 13-14 14-23 9 9 13 19 12 31-1 11-8 20-20 20Z"/>
+        </g></g>
+        <g transform="translate(11 54)">
+          <path fill="#493757" d="M22 139c-34 50-29 104 6 146 37 44 89 51 161 51s124-7 161-51c35-42 40-96 6-146Z"/>
+          <path fill="#68567E" d="M32 190c8-11 19-10 21 0 2 8-3 16 2 28 3 8 14 18 10 23-6 11-23 1-31-12-8-13-8-30-2-39Zm40 62c4-9 19-6 22 3 4 12-16 13-22 1Z"/>
+          <ellipse cx="189" cy="108" rx="185" ry="87.5" fill="#68567E"/>
+          <ellipse cx="189" cy="105" rx="153.5" ry="63.5" fill="#F8F5F1"/>
+          <ellipse class="boiling-ripple" cx="205" cy="96" rx="80.5" ry="22.5" fill="#E9CD77"/>
+          <g fill="#F0E6C7">
+            <path class="boiling-ripple" d="M70 87c11-7 25-9 29-5 6 6-8 11-8 18 0 11 29 20 55 26 6 1 3 4 13 3 11-1 17 4 14 9-3 7-36 9-47 4-9-4-3-7-12-10-12-5-30-6-43-14-14-8-14-21-1-31Z"/>
+            <path class="boiling-ripple" d="M229 138c10-2 20 0 32-4 6-2 10 0 10 4 0 6-18 11-38 11-8 0-12-9-4-11Zm66-18c10-7 4-15 14-15 13 1 8 16-7 23-12 6-16-2-7-8Z" style="--beat: 250ms"/>
+          </g>
+          <g fill="#E9CD77">
+            <circle class="boiling-bubble" cx="112" cy="110" r="4.5" style="--beat: 230ms"/>
+            <circle class="boiling-bubble" cx="296" cy="100" r="5"/>
+            <circle class="boiling-bubble" cx="311" cy="113" r="3" style="--beat: 560ms"/>
+          </g>
+          <g class="boiling-egg">
+            <path fill="#F0E6C7" d="M137 54C154 26 178 1 209 0c34-2 58 22 67 53 6 18 8 38-3 45-20 14-107 13-134-3-12-7-11-23-2-41Z"/>
+            <path fill="#B9A4C8" d="M151 51c10-6 12-8 23-20 3-3 5-1 9 1 8 5 15 5 24 2 8-2 8 1 8 10 0 10 3 16 4 23-8 3-22 7-25 15l-35-2Z"/>
+            <path fill="#CFB6E3" d="M151 51c14-1 20-4 28-12 11 7 17 6 27 4 1 12 6 17 12 23 4 5-11 1-19 13-4 6-4 10-7 9-5-1-11-4-16-3-7 1-14 5-15 4-2-3-2-8-6-11-4-2-9-3-14-5 7-5 11-9 10-22Z"/>
+            <circle cx="167" cy="58.5" r="3" fill="#202132"/>
+            <circle cx="186.5" cy="59.5" r="3" fill="#202132"/>
+            <path fill="#F0E6C7" d="M171 62c3-4 6-4 8 0 3 1 6 1 5 4 0 4-12 4-16 1-2-2 0-4 3-5Z"/>
+          </g>
+        </g>
+      </svg>
+      <p class="page-arrival-caption">Idea Boiling<span class="boiling-dot">.</span><span class="boiling-dot" style="--beat: 140ms">.</span><span class="boiling-dot" style="--beat: 280ms">.</span></p>
+    </div>`;
 
   function clear() {
     clearTimeout(watchdog);
@@ -28,79 +73,46 @@
     root.classList.remove('page-arrival-active');
   }
 
-  function sweep(destination, showIntro = false) {
+  function boil(destination, startedAt) {
     const leaving = Boolean(destination);
-    const startWithCap = leaving || showIntro;
     const layer = document.createElement('div');
-    layer.className = 'page-arrival';
-    layer.classList.toggle('page-arrival--starting', startWithCap);
-    layer.classList.toggle('page-arrival--intro', showIntro);
+    layer.className = startedAt ? 'page-arrival' : 'page-arrival page-arrival--opening';
     layer.setAttribute('aria-hidden', 'true');
-    layer.innerHTML = `
-      <svg class="page-arrival-shell" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false">
-        <path d="${startWithCap ? eggCap : fullShell}" fill="#FAF4EF">
-          ${startWithCap ? `<animate attributeName="d" begin="indefinite" dur="${coverDuration}ms" fill="freeze"
-            values="${eggCap};${eggCap};${fullShell}" keyTimes="0;${morphStart};1"
-            calcMode="spline" keySplines="0 0 1 1;.58 .04 .25 1"/>` : ''}
-        </path>
-      </svg>`;
+    layer.innerHTML = illustration;
+    const startTime = startedAt || Date.now();
+    if (startedAt) {
+      // Continue the simmer at the same phase after the new document loads.
+      layer.style.setProperty('--boil-phase', `${startedAt - Date.now()}ms`);
+    }
     curtain = layer;
     document.body.prepend(layer);
     root.classList.add('page-arrival-active');
 
-    const drawing = layer.querySelector('svg');
-    function play(frames, duration, onEnd) {
-      clearTimeout(watchdog);
-      animation?.cancel();
-      const motion = drawing.animate(frames, { duration, fill: 'both' });
-      animation = motion;
-      const complete = () => {
-        if (animation !== motion || !finish) return;
-        clearTimeout(watchdog);
-        onEnd();
-      };
-      watchdog = setTimeout(complete, duration + 250);
-      motion.finished.then(complete, complete);
-    }
-
     const reveal = () => {
-      layer.classList.remove('page-arrival--intro', 'page-arrival--starting');
-      play([
-        { transform: covered, easing: 'cubic-bezier(.55,.02,.20,1)' },
-        { transform: 'translateY(-105%)' }
-      ], 680, clear);
+      animation = layer.animate([
+        { opacity: 1, clipPath: 'inset(0)' },
+        { opacity: 0, clipPath: 'inset(0)' }
+      ], { duration: 380, easing: 'cubic-bezier(.45, 0, .30, 1)', fill: 'both' });
+      const close = () => { if (curtain === layer) clear(); };
+      animation.finished.then(close, close);
     };
     finish = () => {
       if (!leaving) { clear(); return; }
       clearTimeout(watchdog);
       finish = null;
-      try { sessionStorage.setItem(handoffKey, destination); } catch { /* Storage can be unavailable for local files. */ }
+      try {
+        sessionStorage.setItem(handoffKey, JSON.stringify({ destination, startTime }));
+      } catch { /* Storage can be unavailable for local files. */ }
       location.assign(destination);
     };
 
-    if (!startWithCap) { reveal(); return; }
-
-    // Give the shell its natural silhouette before expanding it into the wipe.
-    const width = layer.clientWidth;
-    const height = layer.clientHeight;
-    const capWidth = Math.min(width * .72, height * .62, 450);
-    const capHeight = capWidth * .68;
-    const pose = top => `translateY(${top}px) scale(${capWidth / width},${capHeight / drawing.clientHeight})`;
-    const visible = pose((height - capHeight) * .55);
-    const outline = drawing.querySelector('path');
-    const morph = outline.querySelector('animate');
-    play([
-      { transform: pose(height + 12), easing: 'cubic-bezier(.20,.75,.32,1)' },
-      { transform: visible, offset: .36 },
-      { transform: visible, offset: morphStart, easing: 'cubic-bezier(.58,.04,.25,1)' },
-      { transform: covered }
-    ], coverDuration, () => {
-      outline.setAttribute('d', fullShell);
-      morph.remove();
-      if (leaving) finish();
-      else reveal();
-    });
-    morph.beginElement?.();
+    if (leaving) {
+      animation = layer.animate([
+        { clipPath: 'circle(0% at 50% 50%)' },
+        { clipPath: 'circle(76% at 50% 50%)' }
+      ], { duration: 510, easing: 'cubic-bezier(.60, .05, .27, 1)', fill: 'both' });
+    }
+    watchdog = setTimeout(leaving ? finish : reveal, startedAt ? 0 : simmerDuration);
   }
 
   document.addEventListener('click', event => {
@@ -113,7 +125,7 @@
     event.preventDefault();
     if (curtain) return;
     if (link.closest('.nav')) window.PortfolioSound?.eggCrack();
-    sweep(url.href);
+    boil(url.href);
   }, { capture: true });
 
   window.addEventListener('keydown', event => {
@@ -127,13 +139,15 @@
 
   const navigation = performance.getEntriesByType('navigation')[0];
   if (destinations.some(page => samePage(currentPage, page))) {
-    let coveredByPreviousPage = false;
+    let startedAt;
     try {
-      coveredByPreviousPage = sessionStorage.getItem(handoffKey) === currentPage.href;
+      const stored = sessionStorage.getItem(handoffKey);
       sessionStorage.removeItem(handoffKey);
+      const handoff = JSON.parse(stored);
+      if (handoff?.destination === currentPage.href && Date.now() - handoff.startTime < 30000) {
+        startedAt = handoff.startTime;
+      }
     } catch { /* Direct entry uses the full sequence. */ }
-    if (!reduceMotion.matches && navigation?.type !== 'back_forward') {
-      sweep(undefined, !coveredByPreviousPage);
-    }
+    if (!reduceMotion.matches && navigation?.type !== 'back_forward') boil(undefined, startedAt);
   }
 })();
