@@ -83,7 +83,6 @@
         </svg>
         ${progressGroup}
       </div>
-      <p class="page-arrival-caption">Idea Boiling</p>
     </div>`;
 
   function clear() {
