@@ -13,38 +13,6 @@
   color: #493757;
 }
 
-.page-arrival-atmosphere,
-.page-arrival-atmosphere i { position: absolute; pointer-events: none; }
-.page-arrival-atmosphere { inset: 0; }
-.page-arrival-atmosphere i {
-  --cloud-angle: -14deg;
-  --cloud-beat: 0ms;
-  display: block;
-  width: 66vmax;
-  height: 49vmax;
-  border-radius: 53% 47% 56% 44% / 51% 60% 40% 49%;
-  background: #F2E8DC;
-  animation: boiling-atmosphere 3400ms ease-in-out calc(var(--boil-phase) - var(--cloud-beat)) infinite alternate;
-}
-.page-arrival-atmosphere i:nth-child(1) { top: -34vmax; right: -21vmax; }
-.page-arrival-atmosphere i:nth-child(2) {
-  --cloud-angle: 19deg;
-  --cloud-beat: 1150ms;
-  bottom: -36vmax;
-  left: -25vmax;
-  background: #EEE4F0;
-}
-.page-arrival-atmosphere i:nth-child(3) {
-  --cloud-angle: -13deg;
-  --cloud-beat: 2100ms;
-  top: 21%;
-  left: 22%;
-  width: 56%;
-  height: 46%;
-  background: none;
-  border: 1px solid #E9DBCE;
-}
-
 .page-arrival-scene {
   position: relative;
   display: grid;
@@ -53,16 +21,14 @@
 }
 .page-arrival-pot {
   display: block;
-  width: clamp(120px, 43vmin, 300px);
-  max-width: 76vw;
-  max-height: 64vh;
+  width: min(61vmin, 420px, 65svh);
   overflow: visible;
   transform-origin: 50% 57%;
 }
 .page-arrival-caption {
   margin: 0;
   font-family: var(--font-heading, "Avenir Next", sans-serif);
-  font-size: clamp(18px, 4.2vmin, 28px);
+  font-size: clamp(25px, 6vmin, 40px);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -74,8 +40,14 @@
   transform-box: fill-box;
   transform-origin: center bottom;
 }
-.boiling-egg { animation: boiling-bob 920ms ease-in-out calc(var(--boil-phase) - 110ms) infinite; }
-.boiling-fire { animation: boiling-flicker 540ms ease-in-out calc(var(--boil-phase) - var(--beat)) infinite; }
+.boiling-egg { animation: boiling-bob 760ms ease-in-out calc(var(--boil-phase) - 110ms) infinite; }
+.boiling-fire {
+  animation: boiling-flicker 580ms ease-in-out var(--boil-phase) infinite;
+}
+.boiling-fire > g {
+  animation: boiling-flame-frame 290ms steps(1, end) var(--boil-phase) infinite;
+}
+.boiling-fire > g + g { animation-delay: calc(var(--boil-phase) - 145ms); }
 .boiling-ripple {
   transform-origin: center;
   animation: boiling-water 850ms ease-in-out calc(var(--boil-phase) - var(--beat)) infinite alternate;
@@ -96,14 +68,19 @@
   to { opacity: 1; transform: none; }
 }
 @keyframes boiling-bob {
-  0%, 100% { transform: translateY(1%) rotate(-3deg); }
-  33% { transform: translateY(-9%) rotate(4deg); }
-  68% { transform: translateY(-3%) rotate(1deg); }
+  0%, 100% { transform: translateY(5%) rotate(-2deg) scale(1.02, .97); }
+  35% { transform: translateY(-20%) rotate(3deg); }
+  65% { transform: translateY(-4%) rotate(-1deg); }
+  80% { transform: translateY(-9%) rotate(1deg); }
 }
 @keyframes boiling-flicker {
-  0%, 100% { transform: scale(.91,.81) skewX(-7deg); }
-  37% { transform: scale(1.02,1.11) skewX(4deg); }
-  67% { transform: scale(.92,.93) skewX(-2deg); }
+  0%, 100% { transform: scale(.99, .94) skewX(-2deg); }
+  40% { transform: scale(1.02, 1.04) skewX(2deg); }
+  70% { transform: scale(.98, .97); }
+}
+@keyframes boiling-flame-frame {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 @keyframes boiling-water {
   from { opacity: .78; transform: scale(.96,.91); }
@@ -113,10 +90,6 @@
   0% { opacity: 0; transform: translateY(5px) scale(.72); }
   34% { opacity: .70; }
   100% { opacity: 0; transform: translateY(-18px) scale(1.10); }
-}
-@keyframes boiling-atmosphere {
-  from { transform: translate(-3vw, 2vh) rotate(var(--cloud-angle)); }
-  to { transform: translate(4vw, -5vh) rotate(calc(var(--cloud-angle) + 13deg)) scale(1.12); }
 }
 @keyframes boiling-punctuation {
   0%, 100% { opacity: .85; }

@@ -14,7 +14,6 @@
   let finish;
 
   const illustration = `
-    <div class="page-arrival-atmosphere"><i></i><i></i><i></i></div>
     <div class="page-arrival-scene">
       <svg class="page-arrival-pot" viewBox="0 0 400 474" focusable="false">
         <g fill="none" stroke="#B49BBF" stroke-width="4.5" stroke-linecap="round">
@@ -22,19 +21,7 @@
           <path class="boiling-steam" d="M261 36c-13-11 8-18 2-29" style="--beat: 220ms"/>
           <path class="boiling-steam" d="M314 101c-15-14 11-22 3-35" style="--beat: 410ms"/>
         </g>
-        <ellipse cx="200" cy="456" rx="113" ry="8" fill="#493757" opacity=".09"/>
-        <g transform="translate(-25 25)"><g class="boiling-fire">
-          <path fill="#E49B61" d="M180 424c-25 2-49-9-53-29-4-17 7-28 6-47 10 14 23 14 30 32 7-7 11-13 10-24 26 18 32 53 7 68Z"/>
-          <path fill="#F0CF78" d="M171 423c-13 1-25-7-26-16-1-8 3-13 3-21 8 5 9 10 14 14 7-4 10-10 12-16 15 11 14 36-3 39Z"/>
-        </g></g>
-        <g transform="translate(25 25)"><g class="boiling-fire" style="--beat: 170ms">
-          <path fill="#E49B61" d="M220 424c25 2 49-9 53-29 4-17-7-28-6-47-10 14-23 14-30 32-7-7-11-13-10-24-26 18-32 53-7 68Z"/>
-          <path fill="#F0CF78" d="M229 423c13 1 25-7 26-16 1-8-3-13-3-21-8 5-9 10-14 14-7-4-10-10-12-16-15 11-14 36 3 39Z"/>
-        </g></g>
-        <g transform="translate(0 19)"><g class="boiling-fire" style="--beat: 330ms">
-          <path fill="#E49B61" d="M202 430c-26 0-42-12-41-31 1-17 17-28 15-47 9 11 17 16 17 28 11-12 20-25 16-45 22 20 30 39 30 57 0 22-16 38-37 38Z"/>
-          <path fill="#F0CF78" d="M202 429c-13 0-23-7-23-17 0-10 9-16 10-26 4 6 7 10 7 15 7-5 13-14 14-23 9 9 13 19 12 31-1 11-8 20-20 20Z"/>
-        </g></g>
+        <ellipse cx="200" cy="442" rx="123" ry="8" fill="#493757" opacity=".09"/>
         <g transform="translate(11 54)">
           <path fill="#493757" d="M22 139c-34 50-29 104 6 146 37 44 89 51 161 51s124-7 161-51c35-42 40-96 6-146Z"/>
           <path fill="#68567E" d="M32 190c8-11 19-10 21 0 2 8-3 16 2 28 3 8 14 18 10 23-6 11-23 1-31-12-8-13-8-30-2-39Zm40 62c4-9 19-6 22 3 4 12-16 13-22 1Z"/>
@@ -59,6 +46,16 @@
             <path fill="#F0E6C7" d="M171 62c3-4 6-4 8 0 3 1 6 1 5 4 0 4-12 4-16 1-2-2 0-4 3-5Z"/>
           </g>
         </g>
+        <g class="boiling-fire">
+          <g>
+            <path fill="#E49B61" d="M200 436c-54 0-106-9-112-46-4-25 13-38 9-64 13 9 27 26 28 43 17-20 13-40 38-62-1 22 10 34 19 39 18-17 28-34 22-62 28 19 43 45 39 69 13-9 22-25 25-44 21 16 19 40 19 47 10-4 19-13 25-23 13 35 8 69-18 87-24 16-62 16-94 16Z"/>
+            <path fill="#F0CF78" d="M204 433c-45 0-80-10-83-34-2-12 4-21 8-30 6 13 16 23 29 27 2-17 9-30 21-43-1 17 10 26 20 32 12-10 19-23 17-41 18 15 26 32 25 51 16-5 27-17 33-27 12 20 7 40-7 50-15 10-35 15-63 15Z"/>
+          </g>
+          <g>
+            <path fill="#E49B61" d="M200 436c-54 0-107-9-114-43-5-23 11-37 17-55 10 12 14 21 15 34 17-13 19-39 13-56 25 11 38 24 41 44 16-14 24-37 19-61 14 9 25 21 30 36 18-14 25-29 27-53 26 25 31 52 27 75 16-9 24-23 30-42 20 32 16 69-6 91-22 23-60 30-99 30Z"/>
+            <path fill="#F0CF78" d="M202 433c-43 0-79-11-83-34-2-13 6-21 10-32 4 12 14 21 27 26 7-12 9-25 7-38 18 6 31 16 36 30 14-10 25-25 29-44 15 15 21 33 17 51 16-7 29-18 35-31 8 21 5 41-12 53-18 13-43 19-66 19Z"/>
+          </g>
+        </g>
       </svg>
       <p class="page-arrival-caption">Idea Boiling<span class="boiling-dot">.</span><span class="boiling-dot" style="--beat: 140ms">.</span><span class="boiling-dot" style="--beat: 280ms">.</span></p>
     </div>`;
@@ -71,6 +68,15 @@
     curtain?.remove();
     curtain = null;
     root.classList.remove('page-arrival-active');
+  }
+
+  function eggMask(width, height, radius) {
+    const point = (x, y) => `${(width / 2 + x * radius).toFixed(2)} ${(height / 2 + y * radius).toFixed(2)}`;
+    return `path("M ${point(0, -1)}
+      C ${point(.37, -1)} ${point(.67, -.44)} ${point(.73, .05)}
+      C ${point(.81, .62)} ${point(.51, 1)} ${point(0, 1)}
+      C ${point(-.51, 1)} ${point(-.81, .62)} ${point(-.73, .05)}
+      C ${point(-.67, -.44)} ${point(-.37, -1)} ${point(0, -1)} Z")`.replace(/\s+/g, ' ');
   }
 
   function boil(destination, startedAt) {
@@ -89,9 +95,10 @@
     root.classList.add('page-arrival-active');
 
     const reveal = () => {
+      animation?.cancel();
       animation = layer.animate([
-        { opacity: 1, clipPath: 'inset(0)' },
-        { opacity: 0, clipPath: 'inset(0)' }
+        { opacity: 1 },
+        { opacity: 0 }
       ], { duration: 380, easing: 'cubic-bezier(.45, 0, .30, 1)', fill: 'both' });
       const close = () => { if (curtain === layer) clear(); };
       animation.finished.then(close, close);
@@ -106,11 +113,15 @@
       location.assign(destination);
     };
 
-    if (leaving) {
+    if (!startedAt) {
+      const width = layer.clientWidth;
+      const height = layer.clientHeight;
       animation = layer.animate([
-        { clipPath: 'circle(0% at 50% 50%)' },
-        { clipPath: 'circle(76% at 50% 50%)' }
-      ], { duration: 510, easing: 'cubic-bezier(.60, .05, .27, 1)', fill: 'both' });
+        { clipPath: eggMask(width, height, 1), easing: 'cubic-bezier(.25, .68, .35, 1)' },
+        { clipPath: eggMask(width, height, Math.min(width, height) * .29), offset: .4,
+          easing: 'cubic-bezier(.48, .12, .24, 1)' },
+        { clipPath: eggMask(width, height, Math.hypot(width, height)) }
+      ], { duration: 650, fill: 'backwards' });
     }
     watchdog = setTimeout(leaving ? finish : reveal, startedAt ? 0 : simmerDuration);
   }
