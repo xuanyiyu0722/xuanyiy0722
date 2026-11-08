@@ -10,7 +10,9 @@
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
   const expansionDuration = 800;
-  const progressStepDuration = 145;
+  const progressStepDuration = 645;
+  const eggShakeDuration = 240;
+  const eggCrackDuration = 95;
   const hatchDuration = 210;
   const progressHoldDuration = 500;
   let curtain;
@@ -152,6 +154,8 @@
 
     const markers = Array.from(layer.querySelectorAll('.page-arrival-marker'));
     const progressStart = expansionDuration - 160;
+    const shakeAndCrackDuration = eggShakeDuration + eggCrackDuration;
+    const shakeEnd = eggShakeDuration / shakeAndCrackDuration;
     const hatches = markers.map((marker, index) => {
       const egg = marker.querySelector('.page-arrival-marker-egg');
       const chick = marker.querySelector('.page-arrival-marker-chick');
@@ -164,9 +168,18 @@
         { opacity: 1, transform: 'scale(1)' }
       ], { delay: eggStart, duration: 125, easing: 'ease-out', fill: 'both' });
       const crack = egg.animate([
-        { opacity: 1, transform: 'scale(1)' },
+        { opacity: 1, transform: 'scale(1) rotate(0deg)' },
+        { opacity: 1, transform: 'scale(1) rotate(-10deg)', offset: shakeEnd * .22 },
+        { opacity: 1, transform: 'scale(1) rotate(9deg)', offset: shakeEnd * .44 },
+        { opacity: 1, transform: 'scale(1) rotate(-7deg)', offset: shakeEnd * .64 },
+        { opacity: 1, transform: 'scale(1) rotate(5deg)', offset: shakeEnd * .83 },
+        { opacity: 1, transform: 'scale(1) rotate(0deg)', offset: shakeEnd, easing: 'ease-out' },
         { opacity: 0, transform: 'scale(1.12) rotate(-9deg)' }
-      ], { delay: hatchStart, duration: 95, easing: 'ease-out', fill: 'both' });
+      ], {
+        delay: hatchStart - eggShakeDuration,
+        duration: shakeAndCrackDuration,
+        fill: 'both'
+      });
       const hatch = chick.animate([
         { opacity: 0, transform: 'translateY(12%) scale(.75)' },
         { opacity: 1, transform: 'translateY(-8%) scale(1.13)', offset: 125 / hatchAndHold },
