@@ -12,10 +12,12 @@
   display: block;
   width: 100%;
   height: 205%;
+  transform-origin: center top;
   transform: translateY(-37%);
 }
 
-.page-arrival--leaving .page-arrival-shell { transform: translateY(52%); }
+.page-arrival--starting .page-arrival-shell { transform: translateY(52%); }
+.page-arrival--intro { background: #423c30; }
 
 @media (prefers-reduced-motion: reduce), print {
   .page-arrival { display: none; }
