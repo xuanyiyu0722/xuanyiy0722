@@ -8,64 +8,68 @@
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
   const expansionDuration = 800;
-  const captionRevealDuration = 700;
-  const captionHoldDuration = 500;
+  const progressDuration = 700;
+  const dotRevealDuration = 180;
+  const progressHoldDuration = 500;
   let curtain;
   let animation;
-  let captionAnimation;
+  let progressAnimations = [];
   let finish;
 
   const illustration = `
     <div class="page-arrival-scene">
-      <svg class="page-arrival-pot" viewBox="0 0 400 474" focusable="false">
-        <g fill="none" stroke="#B49BBF" stroke-width="4.5" stroke-linecap="round">
-          <path class="boiling-steam" d="M116 93c-15-14 12-19 3-35" />
-          <path class="boiling-steam" d="M261 36c-13-11 8-18 2-29" style="--beat: 220ms"/>
-          <path class="boiling-steam" d="M314 101c-15-14 11-22 3-35" style="--beat: 410ms"/>
-        </g>
-        <ellipse cx="200" cy="442" rx="123" ry="8" fill="#493757" opacity=".09"/>
-        <g transform="translate(11 54)">
-          <path fill="#493757" d="M22 139c-34 50-29 104 6 146 37 44 89 51 161 51s124-7 161-51c35-42 40-96 6-146Z"/>
-          <path fill="#68567E" d="M32 190c8-11 19-10 21 0 2 8-3 16 2 28 3 8 14 18 10 23-6 11-23 1-31-12-8-13-8-30-2-39Zm40 62c4-9 19-6 22 3 4 12-16 13-22 1Z"/>
-          <ellipse cx="189" cy="108" rx="185" ry="87.5" fill="#68567E"/>
-          <ellipse cx="189" cy="105" rx="153.5" ry="63.5" fill="#F8F5F1"/>
-          <ellipse class="boiling-ripple" cx="205" cy="96" rx="80.5" ry="22.5" fill="#E9CD77"/>
-          <g fill="#F0E6C7">
-            <path class="boiling-ripple" d="M70 87c11-7 25-9 29-5 6 6-8 11-8 18 0 11 29 20 55 26 6 1 3 4 13 3 11-1 17 4 14 9-3 7-36 9-47 4-9-4-3-7-12-10-12-5-30-6-43-14-14-8-14-21-1-31Z"/>
-            <path class="boiling-ripple" d="M229 138c10-2 20 0 32-4 6-2 10 0 10 4 0 6-18 11-38 11-8 0-12-9-4-11Zm66-18c10-7 4-15 14-15 13 1 8 16-7 23-12 6-16-2-7-8Z" style="--beat: 250ms"/>
+      <div class="page-arrival-stage">
+        <div class="page-arrival-dots"><span></span><span></span><span></span></div>
+        <svg class="page-arrival-pot" viewBox="0 0 400 474" focusable="false">
+          <g fill="none" stroke="#B49BBF" stroke-width="4.5" stroke-linecap="round">
+            <path class="boiling-steam" d="M116 93c-15-14 12-19 3-35" />
+            <path class="boiling-steam" d="M261 36c-13-11 8-18 2-29" style="--beat: 220ms"/>
+            <path class="boiling-steam" d="M314 101c-15-14 11-22 3-35" style="--beat: 410ms"/>
           </g>
-          <g fill="#E9CD77">
-            <circle class="boiling-bubble" cx="112" cy="110" r="4.5" style="--beat: 230ms"/>
-            <circle class="boiling-bubble" cx="296" cy="100" r="5"/>
-            <circle class="boiling-bubble" cx="311" cy="113" r="3" style="--beat: 560ms"/>
+          <g transform="translate(11 54)">
+            <path fill="#493757" d="M22 139c-34 50-29 104 6 146 37 44 89 51 161 51s124-7 161-51c35-42 40-96 6-146Z"/>
+            <path fill="#68567E" d="M32 190c8-11 19-10 21 0 2 8-3 16 2 28 3 8 14 18 10 23-6 11-23 1-31-12-8-13-8-30-2-39Zm40 62c4-9 19-6 22 3 4 12-16 13-22 1Z"/>
+            <ellipse cx="189" cy="108" rx="185" ry="87.5" fill="#68567E"/>
+            <ellipse cx="189" cy="105" rx="153.5" ry="63.5" fill="#F8F5F1"/>
+            <ellipse class="boiling-ripple" cx="205" cy="96" rx="80.5" ry="22.5" fill="#E9CD77"/>
+            <g fill="#F0E6C7">
+              <path class="boiling-ripple" d="M70 87c11-7 25-9 29-5 6 6-8 11-8 18 0 11 29 20 55 26 6 1 3 4 13 3 11-1 17 4 14 9-3 7-36 9-47 4-9-4-3-7-12-10-12-5-30-6-43-14-14-8-14-21-1-31Z"/>
+              <path class="boiling-ripple" d="M229 138c10-2 20 0 32-4 6-2 10 0 10 4 0 6-18 11-38 11-8 0-12-9-4-11Zm66-18c10-7 4-15 14-15 13 1 8 16-7 23-12 6-16-2-7-8Z" style="--beat: 250ms"/>
+            </g>
+            <g fill="#E9CD77">
+              <circle class="boiling-bubble" cx="112" cy="110" r="4.5" style="--beat: 230ms"/>
+              <circle class="boiling-bubble" cx="296" cy="100" r="5"/>
+              <circle class="boiling-bubble" cx="311" cy="113" r="3" style="--beat: 560ms"/>
+            </g>
+            <g class="boiling-egg">
+              <path fill="#F0E6C7" d="M137 54C154 26 178 1 209 0c34-2 58 22 67 53 6 18 8 38-3 45-20 14-107 13-134-3-12-7-11-23-2-41Z"/>
+              <path fill="#B9A4C8" d="M151 51c10-6 12-8 23-20 3-3 5-1 9 1 8 5 15 5 24 2 8-2 8 1 8 10 0 10 3 16 4 23-8 3-22 7-25 15l-35-2Z"/>
+              <path fill="#CFB6E3" d="M151 51c14-1 20-4 28-12 11 7 17 6 27 4 1 12 6 17 12 23 4 5-11 1-19 13-4 6-4 10-7 9-5-1-11-4-16-3-7 1-14 5-15 4-2-3-2-8-6-11-4-2-9-3-14-5 7-5 11-9 10-22Z"/>
+              <circle cx="167" cy="58.5" r="3" fill="#202132"/>
+              <circle cx="186.5" cy="59.5" r="3" fill="#202132"/>
+              <path fill="#F0E6C7" d="M171 62c3-4 6-4 8 0 3 1 6 1 5 4 0 4-12 4-16 1-2-2 0-4 3-5Z"/>
+            </g>
           </g>
-          <g class="boiling-egg">
-            <path fill="#F0E6C7" d="M137 54C154 26 178 1 209 0c34-2 58 22 67 53 6 18 8 38-3 45-20 14-107 13-134-3-12-7-11-23-2-41Z"/>
-            <path fill="#B9A4C8" d="M151 51c10-6 12-8 23-20 3-3 5-1 9 1 8 5 15 5 24 2 8-2 8 1 8 10 0 10 3 16 4 23-8 3-22 7-25 15l-35-2Z"/>
-            <path fill="#CFB6E3" d="M151 51c14-1 20-4 28-12 11 7 17 6 27 4 1 12 6 17 12 23 4 5-11 1-19 13-4 6-4 10-7 9-5-1-11-4-16-3-7 1-14 5-15 4-2-3-2-8-6-11-4-2-9-3-14-5 7-5 11-9 10-22Z"/>
-            <circle cx="167" cy="58.5" r="3" fill="#202132"/>
-            <circle cx="186.5" cy="59.5" r="3" fill="#202132"/>
-            <path fill="#F0E6C7" d="M171 62c3-4 6-4 8 0 3 1 6 1 5 4 0 4-12 4-16 1-2-2 0-4 3-5Z"/>
+          <g class="boiling-fire">
+            <g>
+              <path fill="#E49B61" d="M200 436c-54 0-106-9-112-46-4-25 13-38 9-64 13 9 27 26 28 43 17-20 13-40 38-62-1 22 10 34 19 39 18-17 28-34 22-62 28 19 43 45 39 69 13-9 22-25 25-44 21 16 19 40 19 47 10-4 19-13 25-23 13 35 8 69-18 87-24 16-62 16-94 16Z"/>
+              <path fill="#F0CF78" d="M204 433c-45 0-80-10-83-34-2-12 4-21 8-30 6 13 16 23 29 27 2-17 9-30 21-43-1 17 10 26 20 32 12-10 19-23 17-41 18 15 26 32 25 51 16-5 27-17 33-27 12 20 7 40-7 50-15 10-35 15-63 15Z"/>
+            </g>
+            <g>
+              <path fill="#E49B61" d="M200 436c-54 0-107-9-114-43-5-23 11-37 17-55 10 12 14 21 15 34 17-13 19-39 13-56 25 11 38 24 41 44 16-14 24-37 19-61 14 9 25 21 30 36 18-14 25-29 27-53 26 25 31 52 27 75 16-9 24-23 30-42 20 32 16 69-6 91-22 23-60 30-99 30Z"/>
+              <path fill="#F0CF78" d="M202 433c-43 0-79-11-83-34-2-13 6-21 10-32 4 12 14 21 27 26 7-12 9-25 7-38 18 6 31 16 36 30 14-10 25-25 29-44 15 15 21 33 17 51 16-7 29-18 35-31 8 21 5 41-12 53-18 13-43 19-66 19Z"/>
+            </g>
           </g>
-        </g>
-        <g class="boiling-fire">
-          <g>
-            <path fill="#E49B61" d="M200 436c-54 0-106-9-112-46-4-25 13-38 9-64 13 9 27 26 28 43 17-20 13-40 38-62-1 22 10 34 19 39 18-17 28-34 22-62 28 19 43 45 39 69 13-9 22-25 25-44 21 16 19 40 19 47 10-4 19-13 25-23 13 35 8 69-18 87-24 16-62 16-94 16Z"/>
-            <path fill="#F0CF78" d="M204 433c-45 0-80-10-83-34-2-12 4-21 8-30 6 13 16 23 29 27 2-17 9-30 21-43-1 17 10 26 20 32 12-10 19-23 17-41 18 15 26 32 25 51 16-5 27-17 33-27 12 20 7 40-7 50-15 10-35 15-63 15Z"/>
-          </g>
-          <g>
-            <path fill="#E49B61" d="M200 436c-54 0-107-9-114-43-5-23 11-37 17-55 10 12 14 21 15 34 17-13 19-39 13-56 25 11 38 24 41 44 16-14 24-37 19-61 14 9 25 21 30 36 18-14 25-29 27-53 26 25 31 52 27 75 16-9 24-23 30-42 20 32 16 69-6 91-22 23-60 30-99 30Z"/>
-            <path fill="#F0CF78" d="M202 433c-43 0-79-11-83-34-2-13 6-21 10-32 4 12 14 21 27 26 7-12 9-25 7-38 18 6 31 16 36 30 14-10 25-25 29-44 15 15 21 33 17 51 16-7 29-18 35-31 8 21 5 41-12 53-18 13-43 19-66 19Z"/>
-          </g>
-        </g>
-      </svg>
-      <p class="page-arrival-caption">Idea Boiling......</p>
+        </svg>
+        <div class="page-arrival-dots"><span></span><span></span><span></span></div>
+      </div>
+      <p class="page-arrival-caption">Idea Boiling</p>
     </div>`;
 
   function clear() {
     finish = null;
-    captionAnimation?.cancel();
-    captionAnimation = null;
+    progressAnimations.forEach(motion => motion.cancel());
+    progressAnimations = [];
     animation?.cancel();
     animation = null;
     curtain?.remove();
@@ -128,13 +132,18 @@
       fill: 'backwards'
     });
 
-    const captionDuration = captionRevealDuration + captionHoldDuration;
-    captionAnimation = layer.querySelector('.page-arrival-caption').animate([
-      { clipPath: 'inset(0 100% 0 0)' },
-      { clipPath: 'inset(0 0 0 0)', offset: captionRevealDuration / captionDuration },
-      { clipPath: 'inset(0 0 0 0)' }
-    ], { delay: expansionDuration - 160, duration: captionDuration, fill: 'both' });
-    captionAnimation.finished.then(() => {
+    const dots = Array.from(layer.querySelectorAll('.page-arrival-dots span'));
+    const stagger = (progressDuration - dotRevealDuration) / (dots.length - 1);
+    progressAnimations = dots.map((dot, index) => {
+      const delay = index * stagger;
+      const duration = progressDuration + progressHoldDuration - delay;
+      return dot.animate([
+        { opacity: 0, transform: 'scale(.6)', easing: 'ease-out' },
+        { opacity: 1, transform: 'scale(1)', offset: dotRevealDuration / duration },
+        { opacity: 1, transform: 'scale(1)' }
+      ], { delay: expansionDuration - 160 + delay, duration, fill: 'both' });
+    });
+    progressAnimations.at(-1).finished.then(() => {
       if (curtain !== layer || !finish) return;
       if (leaving) finish();
       else reveal();
