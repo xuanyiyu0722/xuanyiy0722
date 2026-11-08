@@ -108,6 +108,30 @@
       C ${point(-.67, -.44)} ${point(-.37, -1)} ${point(0, -1)} Z")`.replace(/\s+/g, ' ');
   }
 
+  function applyMosaicEdge(layer) {
+    const width = layer.clientWidth;
+    const height = layer.clientHeight;
+    const tile = Math.max(14, Math.min(30, Math.round(width / 48)));
+    const rows = 5;
+    const edgeHeight = tile * rows;
+    const tiles = [];
+
+    for (let row = 0; row < rows; row++) {
+      for (let x = 0, column = 0; x < width; x += tile, column++) {
+        const variation = ((column * 17 + row * 13 + column * row * 7) % 23) / 22 - .5;
+        const opacity = Math.max(0, Math.min(1, 1 - (row + 1) / (rows + 1) + variation * .43));
+        tiles.push(`<rect x="${x}" y="${height + row * tile}" width="${tile}" height="${tile}" opacity="${opacity.toFixed(2)}"/>`);
+      }
+    }
+
+    // Start the mosaic just beyond the viewport so the cover is solid before it lifts.
+    const mask = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height + edgeHeight}" preserveAspectRatio="none" shape-rendering="crispEdges" fill="white"><rect width="${width}" height="${height}"/>${tiles.join('')}</svg>`;
+    layer.style.maskImage = `url("data:image/svg+xml,${encodeURIComponent(mask)}")`;
+    layer.style.maskSize = `100% calc(100% + ${edgeHeight}px)`;
+    layer.style.maskRepeat = 'no-repeat';
+    return edgeHeight;
+  }
+
   function boil(destination, startedAt) {
     const leaving = Boolean(destination);
     const layer = document.createElement('div');
@@ -125,10 +149,13 @@
 
     const reveal = () => {
       animation?.cancel();
+      const edgeHeight = applyMosaicEdge(layer);
+      const mosaicPosition = `0px -${edgeHeight}px`;
       animation = layer.animate([
-        { transform: 'translateX(0)' },
-        { transform: 'translateX(-100%)' }
-      ], { duration: 540, easing: 'cubic-bezier(.55, .04, .23, 1)', fill: 'both' });
+        { transform: 'translateY(0)', maskPosition: '0px 0px' },
+        { maskPosition: mosaicPosition, offset: .42 },
+        { transform: 'translateY(-100%)', maskPosition: mosaicPosition }
+      ], { duration: 720, easing: 'cubic-bezier(.52, .06, .25, 1)', fill: 'both' });
       const close = () => { if (curtain === layer) clear(); };
       animation.finished.then(close, close);
     };
