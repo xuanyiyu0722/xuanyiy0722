@@ -33,6 +33,7 @@
         ${progressGroup}
         <svg class="page-arrival-pot" viewBox="0 0 400 474" focusable="false">
           <defs>
+            <clipPath id="page-arrival-waterline"><path d="M106 -32H304V94Q205 121 106 94Z"/></clipPath>
             <clipPath id="page-arrival-ostrich-crop"><path d="M448 312H1144V1502H286V612H448Z"/></clipPath>
             <symbol id="page-arrival-closed-egg" viewBox="2020 424 868 1078">
               <image href="${ostrichArtwork}" width="2888" height="1502"/>
@@ -51,7 +52,7 @@
             <path fill="#68567E" d="M32 190c8-11 19-10 21 0 2 8-3 16 2 28 3 8 14 18 10 23-6 11-23 1-31-12-8-13-8-30-2-39Zm40 62c4-9 19-6 22 3 4 12-16 13-22 1Z"/>
             <ellipse cx="189" cy="108" rx="185" ry="87.5" fill="#68567E"/>
             <ellipse cx="189" cy="105" rx="153.5" ry="63.5" fill="#F8F5F1"/>
-            <ellipse class="boiling-ripple" cx="205" cy="96" rx="80.5" ry="22.5" fill="#E9CD77"/>
+            <ellipse cx="205" cy="98" rx="87" ry="23" fill="#E9CD77"/>
             <g fill="#F0E6C7">
               <path class="boiling-ripple" d="M70 87c11-7 25-9 29-5 6 6-8 11-8 18 0 11 29 20 55 26 6 1 3 4 13 3 11-1 17 4 14 9-3 7-36 9-47 4-9-4-3-7-12-10-12-5-30-6-43-14-14-8-14-21-1-31Z"/>
               <path class="boiling-ripple" d="M229 138c10-2 20 0 32-4 6-2 10 0 10 4 0 6-18 11-38 11-8 0-12-9-4-11Zm66-18c10-7 4-15 14-15 13 1 8 16-7 23-12 6-16-2-7-8Z" style="--beat: 250ms"/>
@@ -61,13 +62,15 @@
               <circle class="boiling-bubble" cx="296" cy="100" r="5"/>
               <circle class="boiling-bubble" cx="311" cy="113" r="3" style="--beat: 560ms"/>
             </g>
-            <g class="boiling-egg">
-              <path fill="#F0E6C7" d="M137 54C154 26 178 1 209 0c34-2 58 22 67 53 6 18 8 38-3 45-20 14-107 13-134-3-12-7-11-23-2-41Z"/>
-              <path fill="#B9A4C8" d="M151 51c10-6 12-8 23-20 3-3 5-1 9 1 8 5 15 5 24 2 8-2 8 1 8 10 0 10 3 16 4 23-8 3-22 7-25 15l-35-2Z"/>
-              <path fill="#CFB6E3" d="M151 51c14-1 20-4 28-12 11 7 17 6 27 4 1 12 6 17 12 23 4 5-11 1-19 13-4 6-4 10-7 9-5-1-11-4-16-3-7 1-14 5-15 4-2-3-2-8-6-11-4-2-9-3-14-5 7-5 11-9 10-22Z"/>
-              <circle cx="167" cy="58.5" r="3" fill="#202132"/>
-              <circle cx="186.5" cy="59.5" r="3" fill="#202132"/>
-              <path fill="#F0E6C7" d="M171 62c3-4 6-4 8 0 3 1 6 1 5 4 0 4-12 4-16 1-2-2 0-4 3-5Z"/>
+            <g clip-path="url(#page-arrival-waterline)">
+              <g class="boiling-egg">
+                <path fill="#F0E6C7" d="M209 0C244 -2 271 42 279 80 292 135 268 188 207 188 147 188 119 143 127 93 134 50 169 2 209 0Z"/>
+                <path fill="#B9A4C8" d="M151 51c10-6 12-8 23-20 3-3 5-1 9 1 8 5 15 5 24 2 8-2 8 1 8 10 0 10 3 16 4 23-8 3-22 7-25 15l-35-2Z"/>
+                <path fill="#CFB6E3" d="M151 51c14-1 20-4 28-12 11 7 17 6 27 4 1 12 6 17 12 23 4 5-11 1-19 13-4 6-4 10-7 9-5-1-11-4-16-3-7 1-14 5-15 4-2-3-2-8-6-11-4-2-9-3-14-5 7-5 11-9 10-22Z"/>
+                <circle cx="167" cy="58.5" r="3" fill="#202132"/>
+                <circle cx="186.5" cy="59.5" r="3" fill="#202132"/>
+                <path fill="#F0E6C7" d="M171 62c3-4 6-4 8 0 3 1 6 1 5 4 0 4-12 4-16 1-2-2 0-4 3-5Z"/>
+              </g>
             </g>
           </g>
           <g class="boiling-fire">
