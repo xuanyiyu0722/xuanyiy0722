@@ -126,9 +126,9 @@
     const reveal = () => {
       animation?.cancel();
       animation = layer.animate([
-        { opacity: 1 },
-        { opacity: 0 }
-      ], { duration: 380, easing: 'cubic-bezier(.45, 0, .30, 1)', fill: 'both' });
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-100%)' }
+      ], { duration: 540, easing: 'cubic-bezier(.55, .04, .23, 1)', fill: 'both' });
       const close = () => { if (curtain === layer) clear(); };
       animation.finished.then(close, close);
     };
