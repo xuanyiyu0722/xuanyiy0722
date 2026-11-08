@@ -18,26 +18,38 @@
 .page-arrival-scene {
   position: relative;
   display: grid;
+  width: 100%;
   justify-items: center;
   gap: clamp(12px, 2.5vmin, 24px);
 }
 .page-arrival-stage,
-.page-arrival-dots {
-  display: flex;
+.page-arrival-progress {
+  display: grid;
   align-items: center;
 }
 .page-arrival-stage {
-  gap: clamp(4px, 2vmin, 18px);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  width: 100%;
 }
-.page-arrival-dots {
-  gap: clamp(4px, 1.5vmin, 11px);
+.page-arrival-progress {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  padding-inline: clamp(5px, 1.8vw, 28px);
 }
-.page-arrival-dots span {
-  width: clamp(8px, 1.85vmin, 14px);
+.page-arrival-marker {
+  position: relative;
+  display: block;
+  width: clamp(16px, 4.7vmin, 42px);
   aspect-ratio: 1;
-  border-radius: 50%;
-  background: currentColor;
 }
+.page-arrival-marker > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center bottom;
+}
+.page-arrival-marker-egg { opacity: 0; }
 .page-arrival-pot {
   display: block;
   width: min(61vmin, 420px, 65svh);

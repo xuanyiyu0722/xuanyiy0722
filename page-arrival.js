@@ -3,24 +3,42 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   if (!Element.prototype.animate) return;
 
-  const destinations = ['gallery.html', 'about.html'].map(page => new URL(page, document.currentScript.src));
+  const scriptURL = document.currentScript.src;
+  const destinations = ['gallery.html', 'about.html'].map(page => new URL(page, scriptURL));
+  const ostrichArtwork = new URL('assets/images/about-ostrich-egg.png', scriptURL).href;
   const samePage = (a, b) => a.origin === b.origin && a.pathname === b.pathname;
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
   const expansionDuration = 800;
-  const progressDuration = 700;
-  const dotRevealDuration = 180;
+  const progressStepDuration = 145;
+  const hatchDuration = 210;
   const progressHoldDuration = 500;
   let curtain;
   let animation;
   let progressAnimations = [];
   let finish;
 
+  const progressMarker = `
+    <span class="page-arrival-marker">
+      <svg class="page-arrival-marker-egg" focusable="false"><use href="#page-arrival-closed-egg"/></svg>
+      <svg class="page-arrival-marker-chick" focusable="false"><use href="#page-arrival-hatched-egg"/></svg>
+    </span>`;
+  const progressGroup = `<div class="page-arrival-progress">${progressMarker.repeat(3)}</div>`;
+
   const illustration = `
     <div class="page-arrival-scene">
       <div class="page-arrival-stage">
-        <div class="page-arrival-dots"><span></span><span></span><span></span></div>
+        ${progressGroup}
         <svg class="page-arrival-pot" viewBox="0 0 400 474" focusable="false">
+          <defs>
+            <clipPath id="page-arrival-ostrich-crop"><path d="M448 312H1144V1502H286V612H448Z"/></clipPath>
+            <symbol id="page-arrival-closed-egg" viewBox="2020 424 868 1078">
+              <image href="${ostrichArtwork}" width="2888" height="1502"/>
+            </symbol>
+            <symbol id="page-arrival-hatched-egg" viewBox="286 312 858 1190">
+              <image clip-path="url(#page-arrival-ostrich-crop)" href="${ostrichArtwork}" width="2888" height="1502"/>
+            </symbol>
+          </defs>
           <g fill="none" stroke="#B49BBF" stroke-width="4.5" stroke-linecap="round">
             <path class="boiling-steam" d="M116 93c-15-14 12-19 3-35" />
             <path class="boiling-steam" d="M261 36c-13-11 8-18 2-29" style="--beat: 220ms"/>
@@ -61,7 +79,7 @@
             </g>
           </g>
         </svg>
-        <div class="page-arrival-dots"><span></span><span></span><span></span></div>
+        ${progressGroup}
       </div>
       <p class="page-arrival-caption">Idea Boiling</p>
     </div>`;
@@ -132,18 +150,33 @@
       fill: 'backwards'
     });
 
-    const dots = Array.from(layer.querySelectorAll('.page-arrival-dots span'));
-    const stagger = (progressDuration - dotRevealDuration) / (dots.length - 1);
-    progressAnimations = dots.map((dot, index) => {
-      const delay = index * stagger;
-      const duration = progressDuration + progressHoldDuration - delay;
-      return dot.animate([
-        { opacity: 0, transform: 'scale(.6)', easing: 'ease-out' },
-        { opacity: 1, transform: 'scale(1)', offset: dotRevealDuration / duration },
+    const markers = Array.from(layer.querySelectorAll('.page-arrival-marker'));
+    const progressStart = expansionDuration - 160;
+    const hatches = markers.map((marker, index) => {
+      const egg = marker.querySelector('.page-arrival-marker-egg');
+      const chick = marker.querySelector('.page-arrival-marker-chick');
+      const eggStart = progressStart + index * progressStepDuration;
+      // A new egg appears just as the preceding one cracks. The last hatches before the hold.
+      const hatchStart = eggStart + progressStepDuration;
+      const hatchAndHold = hatchDuration + (index === markers.length - 1 ? progressHoldDuration : 0);
+      const appear = marker.animate([
+        { opacity: 0, transform: 'scale(.65)' },
         { opacity: 1, transform: 'scale(1)' }
-      ], { delay: expansionDuration - 160 + delay, duration, fill: 'both' });
+      ], { delay: eggStart, duration: 125, easing: 'ease-out', fill: 'both' });
+      const crack = egg.animate([
+        { opacity: 1, transform: 'scale(1)' },
+        { opacity: 0, transform: 'scale(1.12) rotate(-9deg)' }
+      ], { delay: hatchStart, duration: 95, easing: 'ease-out', fill: 'both' });
+      const hatch = chick.animate([
+        { opacity: 0, transform: 'translateY(12%) scale(.75)' },
+        { opacity: 1, transform: 'translateY(-8%) scale(1.13)', offset: 125 / hatchAndHold },
+        { opacity: 1, transform: 'none', offset: hatchDuration / hatchAndHold },
+        { opacity: 1, transform: 'none' }
+      ], { delay: hatchStart, duration: hatchAndHold, easing: 'linear', fill: 'both' });
+      progressAnimations.push(appear, crack, hatch);
+      return hatch;
     });
-    progressAnimations.at(-1).finished.then(() => {
+    hatches.at(-1).finished.then(() => {
       if (curtain !== layer || !finish) return;
       if (leaving) finish();
       else reveal();
