@@ -10,7 +10,7 @@
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
   const expansionDuration = 800;
-  const progressStepDuration = 645;
+  const progressStepDuration = 345;
   const eggShakeDuration = 240;
   const eggCrackDuration = 95;
   const hatchDuration = 210;
