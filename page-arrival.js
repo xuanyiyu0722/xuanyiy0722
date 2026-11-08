@@ -141,10 +141,20 @@
 
     const reveal = () => {
       animation?.cancel();
-      animation = layer.animate([
-        { opacity: 1 },
-        { opacity: 0 }
-      ], { duration: 380, easing: 'cubic-bezier(.45, 0, .30, 1)', fill: 'both' });
+      const gradient = 'linear-gradient(to right, transparent 42%, #000 58%)';
+      const supportsGradient = CSS.supports('mask-image', gradient);
+      if (supportsGradient) {
+        // Keep the blend outside the viewport at both ends for full coverage and a clean exit.
+        layer.style.maskImage = gradient;
+        layer.style.maskSize = '250% 100%';
+        layer.style.maskRepeat = 'no-repeat';
+      }
+      const frames = supportsGradient
+        ? [{ maskPosition: '100% 0' }, { maskPosition: '0% 0' }]
+        : [{ opacity: 1 }, { opacity: 0 }];
+      animation = layer.animate(frames, {
+        duration: 620, easing: 'cubic-bezier(.45, 0, .30, 1)', fill: 'both'
+      });
       const close = () => { if (curtain === layer) clear(); };
       animation.finished.then(close, close);
     };
