@@ -32,40 +32,34 @@
   font-weight: 600;
   line-height: 1.2;
 }
-.page-arrival--opening .page-arrival-pot { animation: boiling-unfold 690ms cubic-bezier(.17,.72,.24,1) both; }
-.page-arrival--opening .page-arrival-caption { animation: boiling-caption 450ms cubic-bezier(.2,.72,.28,1) 260ms both; }
+.page-arrival--opening .page-arrival-pot { animation: boiling-unfold 800ms cubic-bezier(.23,.62,.30,1) both; }
 
 .boiling-egg, .boiling-fire, .boiling-ripple, .boiling-steam, .boiling-bubble {
   --beat: 0ms;
   transform-box: fill-box;
   transform-origin: center bottom;
 }
-.boiling-egg { animation: boiling-bob 760ms ease-in-out calc(var(--boil-phase) - 110ms) infinite; }
+.boiling-egg { animation: boiling-bob 1140ms ease-in-out calc(var(--boil-phase) - 110ms) infinite; }
 .boiling-fire {
-  animation: boiling-flicker 580ms ease-in-out var(--boil-phase) infinite;
+  animation: boiling-flicker 800ms ease-in-out var(--boil-phase) infinite;
 }
 .boiling-fire > g {
-  animation: boiling-flame-frame 290ms steps(1, end) var(--boil-phase) infinite;
+  animation: boiling-flame-frame 420ms steps(1, end) var(--boil-phase) infinite;
 }
-.boiling-fire > g + g { animation-delay: calc(var(--boil-phase) - 145ms); }
+.boiling-fire > g + g { animation-delay: calc(var(--boil-phase) - 210ms); }
 .boiling-ripple {
   transform-origin: center;
-  animation: boiling-water 850ms ease-in-out calc(var(--boil-phase) - var(--beat)) infinite alternate;
+  animation: boiling-water 1150ms ease-in-out calc(var(--boil-phase) - var(--beat)) infinite alternate;
 }
 .boiling-steam, .boiling-bubble {
-  animation: boiling-rise 1000ms ease-out calc(var(--boil-phase) - var(--beat)) infinite;
+  animation: boiling-rise 1400ms ease-out calc(var(--boil-phase) - var(--beat)) infinite;
 }
-.boiling-dot { animation: boiling-punctuation 940ms ease-in-out calc(var(--boil-phase) - var(--beat, 0ms)) infinite; }
 
 @keyframes boiling-unfold {
   0% { opacity: 0; transform: translateY(12px) scale(.1, .04); }
   48% { opacity: 1; transform: translateY(-4px) scale(1.08, .87); }
   72% { transform: translateY(-1px) scale(.99, 1.04); }
   100% { transform: none; }
-}
-@keyframes boiling-caption {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: none; }
 }
 @keyframes boiling-bob {
   0%, 100% { transform: translateY(5%) rotate(-2deg) scale(1.02, .97); }
@@ -90,10 +84,6 @@
   0% { opacity: 0; transform: translateY(5px) scale(.72); }
   34% { opacity: .70; }
   100% { opacity: 0; transform: translateY(-18px) scale(1.10); }
-}
-@keyframes boiling-punctuation {
-  0%, 100% { opacity: .85; }
-  50% { opacity: .32; }
 }
 
 @media (prefers-reduced-motion: reduce), print {

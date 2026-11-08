@@ -7,10 +7,12 @@
   const samePage = (a, b) => a.origin === b.origin && a.pathname === b.pathname;
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
-  const simmerDuration = 1360;
+  const expansionDuration = 800;
+  const captionRevealDuration = 700;
+  const captionHoldDuration = 500;
   let curtain;
   let animation;
-  let watchdog;
+  let captionAnimation;
   let finish;
 
   const illustration = `
@@ -57,12 +59,13 @@
           </g>
         </g>
       </svg>
-      <p class="page-arrival-caption">Idea Boiling<span class="boiling-dot">.</span><span class="boiling-dot" style="--beat: 140ms">.</span><span class="boiling-dot" style="--beat: 280ms">.</span></p>
+      <p class="page-arrival-caption">Idea Boiling......</p>
     </div>`;
 
   function clear() {
-    clearTimeout(watchdog);
     finish = null;
+    captionAnimation?.cancel();
+    captionAnimation = null;
     animation?.cancel();
     animation = null;
     curtain?.remove();
@@ -105,7 +108,6 @@
     };
     finish = () => {
       if (!leaving) { clear(); return; }
-      clearTimeout(watchdog);
       finish = null;
       try {
         sessionStorage.setItem(handoffKey, JSON.stringify({ destination, startTime }));
@@ -113,17 +115,30 @@
       location.assign(destination);
     };
 
-    if (!startedAt) {
-      const width = layer.clientWidth;
-      const height = layer.clientHeight;
-      animation = layer.animate([
-        { clipPath: eggMask(width, height, 1), easing: 'cubic-bezier(.25, .68, .35, 1)' },
-        { clipPath: eggMask(width, height, Math.min(width, height) * .29), offset: .4,
-          easing: 'cubic-bezier(.48, .12, .24, 1)' },
-        { clipPath: eggMask(width, height, Math.hypot(width, height)) }
-      ], { duration: 650, fill: 'backwards' });
-    }
-    watchdog = setTimeout(leaving ? finish : reveal, startedAt ? 0 : simmerDuration);
+    if (startedAt) { reveal(); return; }
+
+    const width = layer.clientWidth;
+    const height = layer.clientHeight;
+    animation = layer.animate([
+      { clipPath: eggMask(width, height, 1) },
+      { clipPath: eggMask(width, height, Math.hypot(width, height)) }
+    ], {
+      duration: expansionDuration,
+      easing: 'cubic-bezier(.68, .012, .82, .40)',
+      fill: 'backwards'
+    });
+
+    const captionDuration = captionRevealDuration + captionHoldDuration;
+    captionAnimation = layer.querySelector('.page-arrival-caption').animate([
+      { clipPath: 'inset(0 100% 0 0)' },
+      { clipPath: 'inset(0 0 0 0)', offset: captionRevealDuration / captionDuration },
+      { clipPath: 'inset(0 0 0 0)' }
+    ], { delay: expansionDuration - 160, duration: captionDuration, fill: 'both' });
+    captionAnimation.finished.then(() => {
+      if (curtain !== layer || !finish) return;
+      if (leaving) finish();
+      else reveal();
+    }, () => {});
   }
 
   document.addEventListener('click', event => {
