@@ -9,7 +9,6 @@
   let pinned = false;
   let pointerType;
   let attentionDone = false;
-  let attentionTimer = 0;
   let attentionMotion;
   let viewObserver;
   let arrivalObserver;
@@ -17,24 +16,32 @@
   let frame = 0;
   let closeTimer = 0;
   const stopAttention = () => {
+    if (attentionDone) return;
     attentionDone = true;
-    clearTimeout(attentionTimer);
     attentionMotion?.cancel();
     viewObserver?.disconnect();
     arrivalObserver?.disconnect();
+    document.removeEventListener('visibilitychange', updateAttention);
+    reducedMotion.removeEventListener('change', updateAttention);
   };
-  const queueAttention = () => {
-    clearTimeout(attentionTimer);
-    if (attentionDone || !inView || document.hidden || root.classList.contains('page-arrival-active')) return;
-    attentionTimer = setTimeout(() => {
-      if (document.hidden || reducedMotion.matches) return;
-      stopAttention();
-      attentionMotion = shell.animate([
-        { translate: '0 0', easing: 'ease-out' },
-        { translate: '0 -10px', offset: .42, easing: 'ease-in' },
-        { translate: '0 0' }
-      ], { duration: 500 });
-    }, 1350);
+  const updateAttention = () => {
+    if (attentionDone) return;
+    if (reducedMotion.matches) {
+      attentionMotion?.cancel();
+      attentionMotion = undefined;
+      return;
+    }
+    if (!inView || document.hidden || root.classList.contains('page-arrival-active')) {
+      attentionMotion?.pause();
+      return;
+    }
+    attentionMotion ??= shell.animate([
+      { translate: '0 0', easing: 'ease-out' },
+      { translate: '0 -10px', offset: .2, easing: 'ease-in' },
+      { translate: '0 0', offset: .46 },
+      { translate: '0 0' }
+    ], { duration: 1050, iterations: Infinity });
+    attentionMotion.play();
   };
 
   const cancelClose = () => { clearTimeout(closeTimer); closeTimer = 0; };
@@ -58,33 +65,28 @@
   const dismiss = () => { pinned = false; setOpen(false); };
   const isHovered = () => trigger.matches(':hover') || note.matches(':hover');
   const queueClose = event => {
-    if (event.pointerType !== 'mouse') return;
+    if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
     cancelClose();
     closeTimer = setTimeout(() => {
       if (!pinned && !isHovered() && !story.querySelector(':focus-visible')) setOpen(false);
     }, 180);
   };
   trigger.addEventListener('pointerenter', event => {
-    if (event.pointerType === 'mouse') setOpen(true);
+    if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+    if (note.hidden) window.PortfolioSound?.eggCrack({ hover: true });
+    setOpen(true);
   });
   trigger.addEventListener('pointerleave', queueClose);
   note.addEventListener('pointerenter', cancelClose);
   note.addEventListener('pointerleave', queueClose);
   trigger.addEventListener('pointerdown', event => {
     pointerType = event.pointerType;
-    stopAttention();
   });
-  story.addEventListener('focusin', () => setOpen(true));
   story.addEventListener('focusout', event => {
     if (!story.contains(event.relatedTarget) && !isHovered()) dismiss();
   });
   trigger.addEventListener('click', event => {
-    if (event.detail > 0 && pointerType === 'mouse') {
-      pinned = false;
-      window.PortfolioSound?.eggCrack();
-      setOpen(true);
-      return;
-    }
+    if (event.detail > 0 && (pointerType === 'mouse' || pointerType === 'pen') && !note.hidden) return;
     pinned = !pinned;
     if (pinned) window.PortfolioSound?.eggCrack();
     setOpen(pinned);
@@ -98,29 +100,30 @@
   window.addEventListener('pagehide', () => {
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
-    stopAttention();
+    attentionMotion?.pause();
     dismiss();
   });
 
-  if (shell?.animate && !reducedMotion.matches) {
+  if (shell?.animate) {
     if (root.classList.contains('page-arrival-active')) {
       arrivalObserver = new MutationObserver(() => {
         if (root.classList.contains('page-arrival-active')) return;
         arrivalObserver.disconnect();
-        queueAttention();
+        updateAttention();
       });
       arrivalObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
     }
     if ('IntersectionObserver' in window) {
       viewObserver = new IntersectionObserver(([entry]) => {
         inView = entry.intersectionRatio >= .65;
-        queueAttention();
+        updateAttention();
       }, { threshold: .65 });
       viewObserver.observe(trigger);
     } else {
       inView = true;
-      queueAttention();
+      updateAttention();
     }
-    document.addEventListener('visibilitychange', queueAttention);
+    document.addEventListener('visibilitychange', updateAttention);
+    reducedMotion.addEventListener('change', updateAttention);
   }
 })();

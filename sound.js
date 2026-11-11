@@ -91,9 +91,9 @@
       selection.currentTime = 0;
       play(selection);
     },
-    eggCrack() {
+    eggCrack({ hover = false } = {}) {
       const now = performance.now();
-      if (!enabled || !unlocked || document.hidden || now - lastEgg < 180) return;
+      if (!enabled || (!hover && !unlocked) || document.hidden || now - lastEgg < 180) return;
       lastEgg = now;
       eggUntil = now + 850;
       stopPage();
