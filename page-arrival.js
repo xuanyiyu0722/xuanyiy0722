@@ -12,11 +12,11 @@
   const soundPreference = 'alicia-portfolio-sound';
   const boilingSound = new Audio(new URL('assets/audio/loading-boiling-water.mp4', scriptURL).href);
   boilingSound.preload = 'auto';
-  const expansionDuration = 800;
-  const progressStepDuration = 345;
-  const eggShakeDuration = 240;
-  const eggCrackDuration = 95;
-  const hatchDuration = 210;
+  const expansionDuration = 550;
+  const progressStepDuration = 220;
+  const eggShakeDuration = 150;
+  const eggCrackDuration = 75;
+  const hatchDuration = 170;
   const progressHoldDuration = 500;
   let curtain;
   let animation;
@@ -129,6 +129,7 @@
     const layer = document.createElement('div');
     layer.className = startedAt ? 'page-arrival' : 'page-arrival page-arrival--opening';
     layer.setAttribute('aria-hidden', 'true');
+    layer.style.setProperty('--arrival-expansion-duration', `${expansionDuration}ms`);
     layer.innerHTML = illustration;
     const startTime = startedAt || Date.now();
     if (startedAt) {
@@ -197,7 +198,7 @@
       const appear = marker.animate([
         { opacity: 0, transform: 'scale(.65)' },
         { opacity: 1, transform: 'scale(1)' }
-      ], { delay: eggStart, duration: 125, easing: 'ease-out', fill: 'both' });
+      ], { delay: eggStart, duration: 90, easing: 'ease-out', fill: 'both' });
       const crack = egg.animate([
         { opacity: 1, transform: 'scale(1) rotate(0deg)' },
         { opacity: 1, transform: 'scale(1) rotate(-10deg)', offset: shakeEnd * .22 },
@@ -213,7 +214,7 @@
       });
       const hatch = chick.animate([
         { opacity: 0, transform: 'translateY(12%) scale(.75)' },
-        { opacity: 1, transform: 'translateY(-8%) scale(1.13)', offset: 125 / hatchAndHold },
+        { opacity: 1, transform: 'translateY(-8%) scale(1.13)', offset: 95 / hatchAndHold },
         { opacity: 1, transform: 'none', offset: hatchDuration / hatchAndHold },
         { opacity: 1, transform: 'none' }
       ], { delay: hatchStart, duration: hatchAndHold, easing: 'linear', fill: 'both' });
