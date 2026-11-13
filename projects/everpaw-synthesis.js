@@ -118,7 +118,8 @@
         if (index < headers.length - 1) focus(index + 1);
         else {elapsed = DURATION; completed = true; pause(); return;}
       }
-      update(); frame = requestAnimationFrame(tick);
+      buttons[index].style.setProperty('--map-progress', String(elapsed / DURATION));
+      frame = requestAnimationFrame(tick);
     }
     play.addEventListener('click', () => {
       if (playing) {pause(); return;}

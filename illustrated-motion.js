@@ -203,8 +203,9 @@
         frames.delete(frame);
         const progress = Math.max(0, Math.min(1, (now - started) / 1650));
         const eased = 1 - Math.pow(1 - progress, 3);
-        counter.value.textContent = progress === 1 ? counter.original : counter.parts.map(part =>
+        const text = progress === 1 ? counter.original : counter.parts.map(part =>
           typeof part === 'string' ? part : part.format.format(part.value * eased)).join('');
+        if (counter.value.textContent !== text) counter.value.textContent = text;
         if (progress < 1) { frame = requestAnimationFrame(tick); frames.add(frame); }
         else counter.wrapper.dataset.countState = 'done';
       };

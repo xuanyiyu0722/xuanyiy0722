@@ -10,6 +10,7 @@
   current=names.indexOf(name);const clone=source.cloneNode(true);
   clone.removeAttribute('data-open-screen');clone.removeAttribute('data-screen');clone.removeAttribute('tabindex');
   clone.setAttribute('role','img');clone.setAttribute('aria-label',meta[name].label);clone.querySelector('.ep-native-open')?.remove();
+  window.PortfolioArtwork?.load(clone);
   canvas.replaceChildren(clone);dialog.querySelector('h2').textContent=meta[name].label;
   dialog.querySelector('[data-screen-counter]').textContent=String(current+1).padStart(2,'0')+' / '+names.length;
  }

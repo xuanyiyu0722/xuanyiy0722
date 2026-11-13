@@ -60,6 +60,7 @@
     if (inline) {
       picture = inline.cloneNode(true);
       picture.classList.add('ep-viewer-art');
+      window.PortfolioArtwork?.load(picture);
       picture.querySelectorAll('[id]').forEach(node => {node.id = 'viewer-' + node.id;});
       picture.querySelectorAll('[clip-path],[filter]').forEach(node => {
         for (const attribute of ['clip-path', 'filter']) {
@@ -106,6 +107,9 @@
   viewer.addEventListener('close', () => {
     document.body.classList.remove('viewer-open');
     scroller.classList.remove('is-dragging');
+    if (picture !== raster) picture.remove();
+    picture = raster;
+    raster.removeAttribute('src');
     drag = null;
     opener?.focus({preventScroll:true});
   });

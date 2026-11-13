@@ -15,23 +15,31 @@
   document.body.append(cursor);
   let active = null;
   let frame = 0;
+  let lastFrame = 0;
   let x = 0, y = 0, desiredX = 0, desiredY = 0;
 
   const position = () => {
     cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
   };
-  const tick = () => {
+  const tick = now => {
     frame = 0;
     if (!active) return;
-    const follow = reduce.matches ? 1 : .28;
+    const elapsed = lastFrame ? Math.min(now - lastFrame, 50) : 1000 / 60;
+    lastFrame = now;
+    const follow = reduce.matches ? 1 : 1 - .72 ** (elapsed / (1000 / 60));
     x += (desiredX - x) * follow;
     y += (desiredY - y) * follow;
+    const moving = Math.abs(desiredX - x) + Math.abs(desiredY - y) > .1;
+    if (!moving) { x = desiredX; y = desiredY; }
     position();
-    if (Math.abs(desiredX - x) + Math.abs(desiredY - y) > .1) frame = requestAnimationFrame(tick);
+    if (moving) frame = requestAnimationFrame(tick);
+    else lastFrame = 0;
   };
   const hide = () => {
+    if (!active) return;
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
+    lastFrame = 0;
     active?.classList.remove('egg-cursor-active');
     active = null;
     cursor.classList.remove('is-visible', 'is-pressed');
@@ -52,7 +60,7 @@
     }
     desiredX = event.clientX;
     desiredY = event.clientY;
-    if (!frame) frame = requestAnimationFrame(tick);
+    if (!frame && (desiredX !== x || desiredY !== y)) frame = requestAnimationFrame(tick);
   };
   targets.forEach(target => {
     target.addEventListener('pointerenter', event => show(target, event));

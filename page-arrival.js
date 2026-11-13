@@ -5,18 +5,18 @@
 
   const scriptURL = document.currentScript.src;
   const destinations = ['gallery.html', 'about.html'].map(page => new URL(page, scriptURL));
-  const ostrichArtwork = new URL('assets/images/about-ostrich-egg.png', scriptURL).href;
+  const ostrichArtwork = new URL('assets/images/about-ostrich-egg.webp', scriptURL).href;
   const samePage = (a, b) => a.origin === b.origin && a.pathname === b.pathname;
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
   const soundPreference = 'alicia-portfolio-sound';
   const boilingSound = new Audio(new URL('assets/audio/loading-boiling-water.mp4', scriptURL).href);
   boilingSound.preload = 'auto';
-  const expansionDuration = 550;
-  const progressStepDuration = 220;
-  const eggShakeDuration = 150;
-  const eggCrackDuration = 75;
-  const hatchDuration = 170;
+  const expansionDuration = 800;
+  const progressStepDuration = 180;
+  const eggShakeDuration = 120;
+  const eggCrackDuration = 65;
+  const hatchDuration = 160;
   const progressHoldDuration = 500;
   let curtain;
   let animation;

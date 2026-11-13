@@ -11,6 +11,7 @@
   const fit = section.querySelector('[data-journey-overview]');
   const minus = section.querySelector('[data-journey-zoom-out]');
   const plus = section.querySelector('[data-journey-zoom-in]');
+  const zoomLabel = section.querySelector('[data-journey-zoom]');
   const play = section.querySelector('[data-journey-play]');
   const previous = section.querySelector('[data-journey-prev]');
   const next = section.querySelector('[data-journey-next]');
@@ -18,6 +19,7 @@
   const progress = section.querySelector('[data-journey-progress]');
   const stageButtons = [...section.querySelectorAll('[data-journey-step]')];
   const points = [...section.querySelectorAll('[data-journey-point]')];
+  const markers = points.map(point => [point.querySelector('circle'), point.querySelector('text')]);
   const caption = section.querySelector('.ep-journey-caption');
   const title = section.querySelector('[data-journey-title]');
   const copy = section.querySelector('[data-journey-copy]');
@@ -27,6 +29,7 @@
   const DURATION = 4800;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let camera = {...BASE}, cameraFrame = 0, tourFrame = 0, drag = null;
+  let markerUnit = 0;
   let index = -1, playing = false, elapsed = 0, lastTime = 0, finished = false;
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
   const aspect = () => canvas.clientWidth / canvas.clientHeight || BASE.w / BASE.h;
@@ -37,23 +40,28 @@
     return {x: clamp(rect.x + rect.w / 2 - w / 2, 0, BASE.w - w), y: clamp(rect.y + rect.h / 2 - h / 2, 0, BASE.h - h), w, h};
   }
   function render(rect) {
+    const unit = rect.w / Math.max(1, width);
     camera = rect;
     svg.setAttribute('viewBox', [rect.x, rect.y, rect.w, rect.h].map(n => n.toFixed(2)).join(' '));
     const zoom = BASE.w / rect.w;
     const full = Math.abs(rect.w - BASE.w) < .5;
-    section.querySelector('[data-journey-zoom]').textContent = Math.round(zoom * 100) + '%';
-    minus.disabled = full;
-    plus.disabled = zoom >= 5.98;
-    fit.setAttribute('aria-pressed', String(full));
+    const label = Math.round(zoom * 100) + '%';
+    if (zoomLabel.textContent !== label) zoomLabel.textContent = label;
+    if (minus.disabled !== full) minus.disabled = full;
+    const maxZoom = zoom >= 5.98;
+    if (plus.disabled !== maxZoom) plus.disabled = maxZoom;
+    if (fit.getAttribute('aria-pressed') !== String(full)) fit.setAttribute('aria-pressed', String(full));
     canvas.classList.toggle('is-zoomed', !full);
-    const unit = rect.w / Math.max(1, canvas.clientWidth);
-    points.forEach(point => {
-      point.querySelector('circle').setAttribute('r', String(13 * unit));
-      point.querySelector('text').style.fontSize = 11 * unit + 'px';
-    });
+    if (unit === markerUnit) return;
+    markerUnit = unit;
+    for (const [circle, label] of markers) {
+      circle.setAttribute('r', String(13 * unit));
+      label.style.fontSize = 11 * unit + 'px';
+    }
   }
   function move(target, animate = true) {
     cancelAnimationFrame(cameraFrame);
+    cameraFrame = 0;
     if (!animate || reduced.matches) { render(target); return; }
     const from = {...camera}, start = performance.now();
     function tick(now) {
@@ -62,7 +70,7 @@
       const rect = {};
       for (const key of ['x', 'y', 'w', 'h']) rect[key] = from[key] + (target[key] - from[key]) * ease;
       render(rect);
-      if (p < 1) cameraFrame = requestAnimationFrame(tick);
+      cameraFrame = p < 1 ? requestAnimationFrame(tick) : 0;
     }
     cameraFrame = requestAnimationFrame(tick);
   }
@@ -130,7 +138,7 @@
         return;
       }
     }
-    updateProgress();
+    stageButtons[index].style.setProperty('--stage-progress', String(elapsed / DURATION));
     tourFrame = requestAnimationFrame(advance);
   }
   function start() {
@@ -200,6 +208,7 @@
   canvas.addEventListener('pointerdown', event => {
     if (event.button !== 0 || camera.w >= BASE.w || event.target.closest('button,a,[data-journey-point]')) return;
     pause(); cancelAnimationFrame(cameraFrame);
+    cameraFrame = 0;
     drag = {id: event.pointerId, x: event.clientX, y: event.clientY, camera: {...camera}};
     canvas.setPointerCapture(event.pointerId);
     canvas.classList.add('is-dragging');
@@ -207,17 +216,26 @@
   canvas.addEventListener('pointermove', event => {
     if (!drag || event.pointerId !== drag.id) return;
     event.preventDefault();
-    const unit = drag.camera.w / canvas.clientWidth;
-    render(constrain({...drag.camera, x: drag.camera.x - (event.clientX - drag.x) * unit, y: drag.camera.y - (event.clientY - drag.y) * unit}));
+    const unit = drag.camera.w / Math.max(1, width);
+    drag.next = constrain({...drag.camera, x: drag.camera.x - (event.clientX - drag.x) * unit, y: drag.camera.y - (event.clientY - drag.y) * unit});
+    if (cameraFrame) return;
+    cameraFrame = requestAnimationFrame(() => {
+      cameraFrame = 0;
+      if (drag) render(drag.next);
+    });
   });
   function endDrag(event) {
     if (!drag || event.pointerId !== drag.id) return;
+    cancelAnimationFrame(cameraFrame);
+    cameraFrame = 0;
+    if (drag.next) render(drag.next);
     if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
     drag = null;
     canvas.classList.remove('is-dragging');
   }
   canvas.addEventListener('pointerup', endDrag);
   canvas.addEventListener('pointercancel', endDrag);
+  canvas.addEventListener('lostpointercapture', endDrag);
   let width = canvas.clientWidth;
   if ('ResizeObserver' in window) new ResizeObserver(() => {
     if (Math.abs(width - canvas.clientWidth) < 1) return;

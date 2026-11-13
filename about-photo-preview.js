@@ -14,7 +14,8 @@
   let pinned = false;
 
   function close() {
-    active?.setAttribute('aria-expanded', 'false');
+    if (!active) return;
+    active.setAttribute('aria-expanded', 'false');
     active = null;
     pinned = false;
     preview.classList.remove('is-visible');
@@ -35,11 +36,11 @@
     const left = Math.max(margin, Math.min(rect.left + (rect.width - width) / 2, innerWidth - width - margin));
     const top = Math.max(margin, Math.min(rect.top + (rect.height - height) / 2, innerHeight - height - margin));
 
-    active?.setAttribute('aria-expanded', 'false');
+    if (active !== tile) active?.setAttribute('aria-expanded', 'false');
     active = tile;
     pinned = keepOpen;
     active.setAttribute('aria-expanded', 'true');
-    image.src = source.currentSrc;
+    if (image.src !== source.currentSrc) image.src = source.currentSrc;
     preview.classList.toggle('is-portrait', tile.classList.contains('about-mosaic__portrait'));
     Object.assign(preview.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` });
     preview.classList.add('is-visible');

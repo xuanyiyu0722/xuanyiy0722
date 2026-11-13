@@ -78,20 +78,24 @@
   const points = [...store.querySelectorAll('.store-feature-point')];
   const cards = [...store.querySelectorAll('.store-feature-card')];
   const connectors = store.querySelector('.store-connectors');
+  const paths = [...connectors.querySelectorAll('path')];
   const overview = document.querySelector('[data-store-reset]');
   const play = document.querySelector('[data-store-play]');
   const hint = document.querySelector('[data-store-hint]');
   let mode = 'journey';
   let activeFeature = -1;
   let frame = null;
+  const compact = matchMedia('(max-width: 820px)');
   const drawLeaders = () => {
     frame = null;
-    if (mode !== 'spaces' || window.matchMedia('(max-width: 820px)').matches) return;
+    if (mode !== 'spaces' || compact.matches) return;
     const bounds = store.getBoundingClientRect();
+    const pointBoxes = points.map(point => point.getBoundingClientRect());
+    const cardBoxes = cards.map(card => card.getBoundingClientRect());
     connectors.setAttribute('viewBox',`0 0 ${bounds.width} ${bounds.height}`);
-    connectors.querySelectorAll('path').forEach((path,i) => {
-      const point = points[i].getBoundingClientRect();
-      const card = cards[i].getBoundingClientRect();
+    paths.forEach((path,i) => {
+      const point = pointBoxes[i];
+      const card = cardBoxes[i];
       const x = point.left+point.width/2-bounds.left;
       const y = point.top+point.height/2-bounds.top;
       const endX = card.left-bounds.left;
@@ -101,7 +105,9 @@
       path.classList.toggle('is-active',activeFeature===i);
     });
   };
-  const schedule = () => { if (frame === null) frame = requestAnimationFrame(drawLeaders); };
+  const schedule = () => {
+    if (mode === 'spaces' && !compact.matches && frame === null) frame = requestAnimationFrame(drawLeaders);
+  };
   const clearFeature = () => {
     activeFeature = -1;
     featureButtons.forEach(b=>b.setAttribute('aria-pressed','false'));
@@ -131,7 +137,6 @@
   overview.addEventListener('click',clearFeature);
   new ResizeObserver(schedule).observe(store);
   window.addEventListener('resize',schedule);
-  window.addEventListener('scroll',schedule,{passive:true});
   store.querySelector('.store-base').addEventListener('load',schedule);
   store.querySelector('.store-camera').addEventListener('transitionend',schedule);
   setMode('journey');

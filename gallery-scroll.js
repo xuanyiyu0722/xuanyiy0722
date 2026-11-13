@@ -8,12 +8,24 @@
   let animations = [];
   let resizeTimer;
   let lenis = null;
+  let ticking = false;
   let printing = false;
-  const advance = ({ timestamp }) => lenis?.raf(timestamp);
+  const advance = ({ timestamp }) => {
+    lenis.raf(timestamp);
+    if (lenis.isSmooth) Motion.frame.setup(advance);
+    else ticking = false;
+  };
+  const wake = () => {
+    if (!lenis || ticking) return;
+    ticking = true;
+    // Start the clock at the new gesture rather than counting the idle time.
+    lenis.time = performance.now();
+    Motion.frame.setup(advance);
+  };
   window.PortfolioGalleryScroll = Object.freeze({
     to(top, { immediate = false } = {}) {
       if (!Number.isFinite(top)) return;
-      if (lenis) lenis.scrollTo(top, { immediate, force:true, duration:.33, easing:progress => 1 - (1 - progress) ** 3 });
+      if (lenis) lenis.scrollTo(top, { immediate, force:true, duration:.33, easing:progress => 1 - (1 - progress) ** 3, onStart:wake });
       else window.scrollTo({ top, behavior:immediate || reduce.matches ? 'instant' : 'smooth' });
     }
   });
@@ -36,8 +48,10 @@
   };
   const destroySmooth = () => {
     window.Motion?.cancelFrame?.(advance);
+    document.removeEventListener('click', wake);
     lenis?.destroy();
     lenis = null;
+    ticking = false;
     root.classList.remove('gallery-lenis-active');
     delete root.dataset.gallerySmoothEngine;
   };
@@ -46,7 +60,9 @@
     try {
       root.classList.add('gallery-lenis-active');
       lenis = new Lenis({ autoRaf:false, lerp:0.15, wheelMultiplier:1.12, smoothWheel:true, syncTouch:false, anchors:true });
-      Motion.frame.setup(advance, true);
+      lenis.on('virtual-scroll', wake);
+      // Lenis also handles same-page anchor links independently of wheel events.
+      document.addEventListener('click', wake, { passive:true });
       root.dataset.gallerySmoothEngine = 'lenis';
     } catch (error) {
       destroySmooth();
@@ -94,9 +110,9 @@
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(setup,100); }, { passive:true });
   reduce.addEventListener('change', setup);
   window.addEventListener('pagehide', () => { clearTimeout(resizeTimer); clearEffects(); destroySmooth(); });
-  window.addEventListener('pageshow', setup);
+  window.addEventListener('pageshow', event => { if (event.persisted) setup(); });
   window.addEventListener('beforeprint', () => { printing = true; setup(); });
   window.addEventListener('afterprint', () => { printing = false; setup(); });
-  document.fonts?.ready.then(setup);
+  if (document.fonts?.status === 'loading') document.fonts.ready.then(setup);
   setup();
 })();

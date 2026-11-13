@@ -1,14 +1,19 @@
 /* Gallery covers with a translucent reading layer for each case introduction. */
 .project-page .case-hero{
-  --case-image:url("../assets/images/naborfood-gallery-cover-v78.png");
+  --case-image:url("../assets/images/naborfood-gallery-cover-v78-hero-1440.webp");
   position:relative;
   isolation:isolate;
   overflow:hidden;
   background:transparent;
 }
+.project-everpaw .case-hero{--case-image:url("../assets/images/everpaw-gallery-cover-v77-hero-1440.webp");}
+.project-musubi .case-hero{--case-image:url("../assets/images/musubi-gallery-cover-v77-hero-1440.webp");}
+@media (width > 1600px), (resolution > 1.49dppx) {
+  .project-page .case-hero{--case-image:url("../assets/images/naborfood-gallery-cover-v78-hero-2880.webp");}
+  .project-everpaw .case-hero{--case-image:url("../assets/images/everpaw-gallery-cover-v77-hero-2880.webp");}
+  .project-musubi .case-hero{--case-image:url("../assets/images/musubi-gallery-cover-v77-hero-2880.webp");}
+}
 .project-fridgekey .case-hero{--case-image:url("../assets/images/fridgekey-cover.webp");}
-.project-everpaw .case-hero{--case-image:url("../assets/images/everpaw-gallery-cover-v77.png");}
-.project-musubi .case-hero{--case-image:url("../assets/images/musubi-gallery-cover-v77.png");}
 .project-page .case-hero::before,
 .project-page .case-hero::after{
   content:"";
