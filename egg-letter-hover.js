@@ -29,6 +29,9 @@
     const box = anchor.getBBox();
     copy.setAttribute('x', line.getAttribute('x'));
     copy.setAttribute('y', line.getAttribute('y'));
+    const {fontSize, letterSpacing} = getComputedStyle(line);
+    copy.style.fontSize = fontSize;
+    copy.style.letterSpacing = letterSpacing;
     for (const name of ['x','y','width','height']) hit.setAttribute(name, box[name]);
   };
   const queueSync = () => {
@@ -36,7 +39,7 @@
   };
   sync();
   anchor.classList.add('poster-egg-anchor');
-  // The original text still reserves its full width for the unchanged shell suffix.
+  // Keep the original word in the fitted layout while the visible copy leans.
   new MutationObserver(queueSync).observe(poster, {
     attributes:true, attributeFilter:['viewBox','style']
   });
