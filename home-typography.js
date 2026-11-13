@@ -12,6 +12,8 @@
   const referenceSize = 128;
   const originalWords = ['There’s', 'more', 'under', 'the', 'EGGshell.'];
   const stacked = matchMedia('(max-width: 560px)');
+  // Leftmost opaque edge of carton.webp in successive vertical bands.
+  const cartonContour = [[.09, .106], [.16, .07], [.29, .065], [.39, .049], [.52, .032], [.73, .06], [.80, .088], [.89, 1]];
 
   function positionCarton({ left, top, width, height }) {
     // Keep the carton and caption at the positions set by the original poster.
@@ -65,9 +67,11 @@
     const inkHeight = ink.ascent + ink.descent;
     const scale = Math.min(width / inkWidth, height / inkHeight);
     line.parentElement.style.fontSize = `${referenceSize * scale}px`;
-    line.setAttribute('x', x + (width - inkWidth * scale) * align - ink.left * scale);
-    line.setAttribute('y', top + (height - inkHeight * scale) / 2 + ink.ascent * scale);
-    return top + (height + inkHeight * scale) / 2;
+    const usedHeight = inkHeight * scale;
+    const inkTop = top + (height - usedHeight) * align;
+    line.setAttribute('x', x - ink.left * scale);
+    line.setAttribute('y', inkTop + ink.ascent * scale);
+    return inkTop + usedHeight;
   }
 
   function fit() {
@@ -78,48 +82,66 @@
     positionCarton(canvas);
 
     const ink = lines.map(measure);
-    const margin = Math.max(10, Math.min(26, width * .018));
+    const margin = Math.max(6, Math.min(13, width * .011));
     const [there, more, beneath, the, eggshell] = lines;
     const [thereInk, moreInk, beneathInk, theInk, eggshellInk] = ink;
     if (stacked.matches) {
       const full = width - 2 * margin;
-      place(there, thereInk, { x: margin, top: height * .04, width: full, height: height * .17 });
-      place(more, moreInk, { x: margin, top: height * .23, width: full * .89, height: height * .16, align: 1 });
-      place(beneath, beneathInk, { x: margin, top: height * .42, width: full, height: height * .16 });
-      place(the, theInk, { x: margin, top: height * .60, width: full * .83, height: height * .11, align: 1 });
-      place(eggshell, eggshellInk, { x: margin, top: height * .75, width: full, height: height * .21 });
+      const gap = Math.max(3, height * .007);
+      const usableHeight = height - 2 * margin - 4 * gap;
+      const shares = [.21, .20, .21, .18, .20];
+      let top = margin;
+      lines.forEach((line, i) => {
+        const band = usableHeight * shares[i];
+        place(line, ink[i], { x: margin, top, width: full, height: band, align: i === lines.length - 1 ? 1 : .5 });
+        top += band + gap;
+      });
       return;
     }
 
     const box = carton.getBoundingClientRect();
     const caption = note.getBoundingClientRect();
-    // The artwork includes transparent padding around the front-facing carton.
-    const imageTop = box.top - canvas.top + box.height * .09;
-    const imageBottom = box.top - canvas.top + box.height * .89;
-    const imageLeft = box.left - canvas.left + box.width * .03;
-    const leftColumn = imageLeft - margin - 9;
-    const titleTop = height * .045;
-    const titleHeight = Math.min(height * .19, Math.max(height * .10, imageTop - titleTop - 12));
-    const titleBottom = titleTop + titleHeight;
-    let titleWidth = width * .84 - margin;
-    if (titleBottom > imageTop) titleWidth = Math.min(titleWidth, leftColumn);
-    if (titleBottom > caption.top - canvas.top - 8 && titleTop < caption.bottom - canvas.top + 8) {
-      titleWidth = Math.min(titleWidth, caption.left - canvas.left - margin - 9);
+    const cartonTop = box.top - canvas.top;
+    const imageBottom = cartonTop + box.height * .89;
+    const full = width - 2 * margin;
+
+    function room(top, bottom) {
+      const low = (top - cartonTop) / box.height;
+      const high = (bottom - cartonTop) / box.height;
+      let right = width - margin;
+      cartonContour.slice(0, -1).forEach(([start, edge], i) => {
+        if (high > start && low < cartonContour[i + 1][0]) {
+          right = Math.min(right, box.left - canvas.left + box.width * edge - 6);
+        }
+      });
+      if (bottom > caption.top - canvas.top - 6 && top < caption.bottom - canvas.top + 6) {
+        right = Math.min(right, caption.left - canvas.left - 7);
+      }
+      return right - margin;
     }
+
+    const titleTop = margin;
+    const titleHeight = Math.min(height * .25, Math.max(height * .12, cartonTop + box.height * .09 - titleTop - 3));
+    const titleWidth = room(titleTop, titleTop + titleHeight);
     const headingBottom = place(there, thereInk, { x: margin, top: titleTop, width: titleWidth, height: titleHeight });
 
     const bottom = height - margin;
-    const footerTop = Math.max(height * .75, imageBottom + 10);
-    const fullFooter = bottom - footerTop >= Math.max(68, height * .115);
-    const footerStart = fullFooter ? footerTop : height * .79;
-    const middleTop = Math.max(height * .265, headingBottom + 13);
+    const footerTop = Math.max(height * .69, imageBottom + 2);
+    const fullFooter = bottom - footerTop >= Math.max(46, height * .08);
+    const footerStart = fullFooter ? footerTop : height * .81;
+    const middleTop = headingBottom + Math.max(5, height * .009);
     const middle = footerStart - middleTop;
-    place(more, moreInk, { x: margin, top: middleTop, width: leftColumn * .88, height: middle * .31, align: .9 });
-    place(beneath, beneathInk, { x: margin, top: middleTop + middle * .37, width: leftColumn, height: middle * .30 });
-    place(the, theInk, { x: margin, top: middleTop + middle * .70, width: leftColumn * .84, height: middle * .16, align: 1 });
+    function middleLine(line, bounds, start, end, align) {
+      const top = middleTop + middle * start;
+      const lineHeight = middle * (end - start);
+      place(line, bounds, { x: margin, top, width: room(top, top + lineHeight), height: lineHeight, align });
+    }
+    middleLine(more, moreInk, 0, .30, .62);
+    middleLine(beneath, beneathInk, .31, .56, .50);
+    middleLine(the, theInk, .57, .99, .68);
     place(eggshell, eggshellInk, {
-      x: margin, top: footerStart, width: fullFooter ? width * .89 - margin : leftColumn,
-      height: bottom - footerStart
+      x: margin, top: footerStart, width: fullFooter ? full : room(footerStart, bottom),
+      height: bottom - footerStart, align: 1
     });
   }
 
