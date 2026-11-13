@@ -18,8 +18,11 @@
   const eggCrackDuration = 65;
   const hatchDuration = 160;
   const progressHoldDuration = 500;
+  const sceneExitDuration = 160;
+  const soundFadeDuration = 460;
   let curtain;
   let animation;
+  let soundFrame;
   let progressAnimations = [];
   let finish;
 
@@ -92,15 +95,30 @@
     </div>`;
 
   function stopBoilingSound() {
+    cancelAnimationFrame(soundFrame);
     boilingSound.pause();
     boilingSound.currentTime = 0;
+    boilingSound.volume = 1;
   }
 
   function playBoilingSound() {
-    if (document.hidden) return;
-    try { if (localStorage.getItem(soundPreference) === 'off') return; }
+    if (document.hidden) return false;
+    try { if (localStorage.getItem(soundPreference) === 'off') return false; }
     catch { /* Local storage can be unavailable. */ }
     boilingSound.play()?.catch(() => { /* The browser may block autoplay. */ });
+    return true;
+  }
+
+  function fadeBoilingSound(endsAt) {
+    cancelAnimationFrame(soundFrame);
+    if (boilingSound.paused) return;
+    const fade = () => {
+      const remaining = (endsAt - Date.now()) / soundFadeDuration;
+      if (remaining <= 0) { stopBoilingSound(); return; }
+      boilingSound.volume = Math.min(1, remaining) ** 2;
+      soundFrame = requestAnimationFrame(fade);
+    };
+    fade();
   }
 
   function clear() {
@@ -124,52 +142,71 @@
       C ${point(-.67, -.44)} ${point(-.37, -1)} ${point(0, -1)} Z")`.replace(/\s+/g, ' ');
   }
 
-  function boil(destination, startedAt) {
+  function boil(destination, handoff) {
+    const startedAt = handoff?.startTime;
     const leaving = Boolean(destination);
     const layer = document.createElement('div');
     layer.className = startedAt ? 'page-arrival' : 'page-arrival page-arrival--opening';
     layer.setAttribute('aria-hidden', 'true');
     layer.style.setProperty('--arrival-expansion-duration', `${expansionDuration}ms`);
-    layer.innerHTML = illustration;
+    if (!startedAt) layer.innerHTML = illustration;
     const startTime = startedAt || Date.now();
-    if (startedAt) {
-      // Continue the simmer at the same phase after the new document loads.
-      layer.style.setProperty('--boil-phase', `${startedAt - Date.now()}ms`);
-    }
     curtain = layer;
     document.body.prepend(layer);
     root.classList.add('page-arrival-active');
 
+    const scene = layer.firstElementChild;
+    let soundEndsAt;
+
     const reveal = () => {
       animation?.cancel();
-      const gradient = 'linear-gradient(to right, transparent 42%, #000 58%)';
-      const supportsGradient = CSS.supports('mask-image', gradient);
-      if (supportsGradient) {
-        // Keep the blend outside the viewport at both ends for full coverage and a clean exit.
-        layer.style.maskImage = gradient;
-        layer.style.maskSize = '250% 100%';
-        layer.style.maskRepeat = 'no-repeat';
+      if (!startedAt) {
+        progressAnimations.push(scene.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: sceneExitDuration, easing: 'ease-out', fill: 'both'
+        }));
+        fadeBoilingSound(Date.now() + soundFadeDuration);
       }
-      const frames = supportsGradient
-        ? [{ maskPosition: '100% 0' }, { maskPosition: '0% 0' }]
-        : [{ opacity: 1 }, { opacity: 0 }];
-      animation = layer.animate(frames, {
-        duration: 620, easing: 'cubic-bezier(.45, 0, .30, 1)', fill: 'both'
-      });
+      const duration = 560;
+      const delay = startedAt ? 0 : sceneExitDuration;
+      const easing = 'cubic-bezier(.68, 0, .26, 1)';
+      const main = document.querySelector('main');
+      if (main) progressAnimations.push(main.animate([
+        { transform: 'translateY(13svh)' }, { transform: 'translateY(0)' }
+      ], { duration, delay, easing, fill: 'backwards' }));
+      animation = layer.animate([
+        { transform: 'translateY(0) scaleX(1)', borderRadius: '0px', offset: 0 },
+        { transform: 'translateY(-2%) scaleX(.973)', borderRadius: '14px', offset: .25 },
+        { transform: 'translateY(-105%) scaleX(.973)', borderRadius: '14px', offset: 1 }
+      ], { duration, delay, easing, fill: 'both' });
       const close = () => { if (curtain === layer) clear(); };
       animation.finished.then(close, close);
     };
     finish = () => {
       if (!leaving) { clear(); return; }
-      stopBoilingSound();
       finish = null;
       try {
-        sessionStorage.setItem(handoffKey, JSON.stringify({ destination, startTime }));
+        const audioTail = !boilingSound.paused && Date.now() < soundEndsAt
+          ? { position: boilingSound.currentTime, endsAt: soundEndsAt }
+          : undefined;
+        sessionStorage.setItem(handoffKey, JSON.stringify({ destination, startTime, audioTail }));
       } catch { /* Storage can be unavailable for local files. */ }
       location.assign(destination);
     };
 
-    if (startedAt) { reveal(); return; }
+    if (startedAt) {
+      const tail = handoff.audioTail;
+      if (tail && tail.endsAt > Date.now()) {
+        // Continue only the soft tail when the browser carries autoplay permission forward.
+        boilingSound.currentTime = tail.position;
+        if (playBoilingSound()) fadeBoilingSound(tail.endsAt);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          if (curtain === layer) reveal();
+        }, { once: true });
+      } else reveal();
+      return;
+    }
     layer.append(boilingSound);
     playBoilingSound();
 
@@ -183,7 +220,6 @@
       easing: 'cubic-bezier(.68, .012, .82, .40)',
       fill: 'backwards'
     });
-
     const markers = Array.from(layer.querySelectorAll('.page-arrival-marker'));
     const progressStart = expansionDuration - 160;
     const shakeAndCrackDuration = eggShakeDuration + eggCrackDuration;
@@ -223,8 +259,14 @@
     });
     hatches.at(-1).finished.then(() => {
       if (curtain !== layer || !finish) return;
-      if (leaving) finish();
-      else reveal();
+      if (!leaving) { reveal(); return; }
+      soundEndsAt = Date.now() + soundFadeDuration;
+      fadeBoilingSound(soundEndsAt);
+      const exit = scene.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: sceneExitDuration, easing: 'ease-out', fill: 'both'
+      });
+      progressAnimations.push(exit);
+      exit.finished.then(() => { if (curtain === layer) finish?.(); }, () => {});
     }, () => {});
   }
 
@@ -258,15 +300,15 @@
 
   const navigation = performance.getEntriesByType('navigation')[0];
   if (destinations.some(page => samePage(currentPage, page))) {
-    let startedAt;
+    let handoff;
     try {
       const stored = sessionStorage.getItem(handoffKey);
       sessionStorage.removeItem(handoffKey);
-      const handoff = JSON.parse(stored);
-      if (handoff?.destination === currentPage.href && Date.now() - handoff.startTime < 30000) {
-        startedAt = handoff.startTime;
+      const saved = JSON.parse(stored);
+      if (saved?.destination === currentPage.href && Date.now() - saved.startTime < 30000) {
+        handoff = saved;
       }
     } catch { /* Direct entry uses the full sequence. */ }
-    if (!reduceMotion.matches && navigation?.type !== 'back_forward') boil(undefined, startedAt);
+    if (!reduceMotion.matches && navigation?.type !== 'back_forward') boil(undefined, handoff);
   }
 })();
