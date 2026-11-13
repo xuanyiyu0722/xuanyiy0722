@@ -71,7 +71,6 @@
     const inkTop = top + (height - usedHeight) * align;
     line.setAttribute('x', x - ink.left * scale);
     line.setAttribute('y', inkTop + ink.ascent * scale);
-    return inkTop + usedHeight;
   }
 
   function fit() {
@@ -83,13 +82,11 @@
 
     const ink = lines.map(measure);
     const margin = Math.max(6, Math.min(13, width * .011));
-    const [there, more, beneath, the, eggshell] = lines;
-    const [thereInk, moreInk, beneathInk, theInk, eggshellInk] = ink;
     if (stacked.matches) {
       const full = width - 2 * margin;
       const gap = Math.max(3, height * .007);
       const usableHeight = height - 2 * margin - 4 * gap;
-      const shares = [.21, .20, .21, .18, .20];
+      const shares = [.22, .16, .21, .20, .21];
       let top = margin;
       lines.forEach((line, i) => {
         const band = usableHeight * shares[i];
@@ -105,13 +102,13 @@
     const imageBottom = cartonTop + box.height * .89;
     const full = width - 2 * margin;
 
-    function room(top, bottom) {
+    function room(top, bottom, bleed = 0) {
       const low = (top - cartonTop) / box.height;
       const high = (bottom - cartonTop) / box.height;
       let right = width - margin;
       cartonContour.slice(0, -1).forEach(([start, edge], i) => {
         if (high > start && low < cartonContour[i + 1][0]) {
-          right = Math.min(right, box.left - canvas.left + box.width * edge - 6);
+          right = Math.min(right, box.left - canvas.left + box.width * edge + bleed);
         }
       });
       if (bottom > caption.top - canvas.top - 6 && top < caption.bottom - canvas.top + 6) {
@@ -120,28 +117,29 @@
       return right - margin;
     }
 
-    const titleTop = margin;
-    const titleHeight = Math.min(height * .25, Math.max(height * .12, cartonTop + box.height * .09 - titleTop - 3));
-    const titleWidth = room(titleTop, titleTop + titleHeight);
-    const headingBottom = place(there, thereInk, { x: margin, top: titleTop, width: titleWidth, height: titleHeight });
-
+    // Keep the same rhythm as the supplied poster: the tall stems in “below”
+    // and “the” can reach into the space above their own rows.
     const bottom = height - margin;
-    const footerTop = Math.max(height * .69, imageBottom + 2);
-    const fullFooter = bottom - footerTop >= Math.max(46, height * .08);
-    const footerStart = fullFooter ? footerTop : height * .81;
-    const middleTop = headingBottom + Math.max(5, height * .009);
-    const middle = footerStart - middleTop;
-    function middleLine(line, bounds, start, end, align) {
-      const top = middleTop + middle * start;
-      const lineHeight = middle * (end - start);
-      place(line, bounds, { x: margin, top, width: room(top, top + lineHeight), height: lineHeight, align });
-    }
-    middleLine(more, moreInk, 0, .30, .62);
-    middleLine(beneath, beneathInk, .31, .56, .50);
-    middleLine(the, theInk, .57, .99, .68);
-    place(eggshell, eggshellInk, {
-      x: margin, top: footerStart, width: fullFooter ? full : room(footerStart, bottom),
-      height: bottom - footerStart, align: 1
+    const footerTop = Math.max(height * .77, imageBottom - height * .067);
+    const rowEnds = [.205, .385, .535, .77].map(fraction => fraction * footerTop / .77);
+    const rowStarts = [margin, rowEnds[0] + height * .016, rowEnds[1] - height * .027, rowEnds[2] - height * .012];
+    const edgeOverlap = Math.min(width * .009, 14);
+    rowEnds.forEach((end, i) => {
+      const top = rowStarts[i];
+      const bleed = i <= 2 ? edgeOverlap : 0;
+      // Fit against the actual ink range. Shorter words can use the extra
+      // space where the carton curves away from the column.
+      const inkHeight = ink[i].ascent + ink[i].descent;
+      const widthAtEnd = room(top, end, bleed);
+      const fittedHeight = Math.min(end - top, widthAtEnd * inkHeight / (ink[i].right - ink[i].left));
+      place(lines[i], ink[i], {
+        x: margin, top, width: room(end - fittedHeight, end, bleed),
+        height: Math.min(end - top, height * (i === 1 ? .14 : .205)), align: 1
+      });
+    });
+    place(lines[4], ink[4], {
+      x: margin, top: footerTop, width: full,
+      height: Math.max(1, bottom - footerTop), align: 1
     });
   }
 
