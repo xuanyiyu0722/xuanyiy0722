@@ -67,6 +67,11 @@
       // Keep the title in the left column while allowing the artwork to meet the carton.
       const columnWidth = (cartonEdge - margin + Math.min(42, width * .035)) * artworkWidth / 764;
       posterWidth = Math.min(posterWidth, columnWidth, Math.max(height * .25, height - 2 * captionInset) * aspectRatio);
+
+      // Enlarge the whole artwork within the inset marked in the desktop reference.
+      const currentInset = (height - posterWidth / aspectRatio) / 2;
+      const targetInset = Math.min(currentInset, height * .038);
+      posterWidth = Math.min(posterWidth * 1.065, width - 2 * margin, (height - 2 * targetInset) * aspectRatio);
     }
     const verticalSpace = height - posterWidth / aspectRatio;
     svg.style.left = `${margin}px`;
