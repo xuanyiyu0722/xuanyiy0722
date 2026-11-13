@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="styles.css?v=34">
   <link rel="preload" href="assets/fonts/EuclidCircularA-Light.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="home.css?v=143">
+  <link rel="stylesheet" href="home.css?v=148">
 <link rel="stylesheet" href="illustrated-motion.css?v=61">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof Element.prototype.animate==='function'){document.documentElement.classList.add('egg-intro-pending');setTimeout(function(){document.documentElement.classList.remove('egg-intro-pending')},4000)}</script>
 <link rel="stylesheet" href="sidebar-layout.css?v=65">
@@ -53,98 +53,76 @@
     <div class="hero-grid">
       <div class="hero-intro">
         <h2 aria-label="There’s more below the eggshell.">
-          <svg class="hero-poster" viewBox="0 0 1276 1395" aria-hidden="true" focusable="false">
+          <svg class="hero-poster" viewBox="0 0 1167 1284" aria-hidden="true" focusable="false">
             <defs>
-              <image id="headline-artwork" href="assets/home-headline-v143.png" width="1276" height="1307"/>
-              <path id="headline-egg-area" d="M12 1048H677V1130L668 1155 669 1208 662 1234 654 1252 647 1258 630 1286 603 1307H12Z"/>
+              <image id="headline-artwork" href="assets/home-headline-v148.png" width="1167" height="1284"/>
+              <path id="headline-egg-area" d="M12 1040H611V1176L610 1188 607 1204 603 1216 597 1228 591 1238 581 1249 569 1261 557 1270 541 1278 525 1284H12Z"/>
               <clipPath id="headline-egg"><use href="#headline-egg-area"/></clipPath>
-              <mask id="headline-without-egg" x="0" y="0" width="1276" height="1307" maskUnits="userSpaceOnUse">
-                <rect width="1276" height="1307" fill="white"/>
+              <mask id="headline-without-egg" x="0" y="0" width="1167" height="1284" maskUnits="userSpaceOnUse">
+                <rect width="1167" height="1284" fill="white"/>
                 <use href="#headline-egg-area" fill="black"/>
               </mask>
-              <clipPath id="select-there"><rect width="1276" height="305"/></clipPath>
-              <clipPath id="select-more"><rect y="305" width="1276" height="245"/></clipPath>
-              <clipPath id="select-below"><rect y="550" width="1276" height="248"/></clipPath>
-              <clipPath id="select-the"><rect y="798" width="1276" height="250"/></clipPath>
-              <clipPath id="select-eggshell"><rect y="1048" width="1276" height="259"/></clipPath>
+              <!-- Each boundary sits in a transparent gap in the supplied artwork. -->
+              <clipPath id="select-there"><rect width="1167" height="290"/></clipPath>
+              <clipPath id="select-more"><rect y="290" width="1167" height="222"/></clipPath>
+              <clipPath id="select-below"><rect y="512" width="1167" height="260"/></clipPath>
+              <clipPath id="select-the"><rect y="772" width="1167" height="260"/></clipPath>
+              <clipPath id="select-eggshell"><rect y="1032" width="1167" height="252"/></clipPath>
               <clipPath id="headline-selection"></clipPath>
               <filter id="headline-selected-ink">
                 <feFlood flood-color="#423c30"/>
                 <feComposite in2="SourceAlpha" operator="in"/>
               </filter>
-              <!-- These shapes follow the enclosed counters in the supplied headline PNG. -->
               <path id="headline-counters" fill="#776b61" d="
-                M417 106L405 110 393 116 383 124 376 133 372 141 367 161H486L485 155 481 142 471 125 458 114 450 110 438 106Z
-                M667 106L653 111 645 115 629 129 621 144 617 161H737L731 141 722 126 708 114 700 110 688 106Z
-                M363 366L350 370 341 374 331 381 323 389 313 405 307 423 308 451 313 464 319 475 332 489 339 494 350 499 363 503H386L401 498 411 493 427 478 436 463 442 442V427L439 415 434 402 427 391 415 379 409 375 401 371 386 366Z
-                M622 366L610 370 598 376 587 385 576 403 571 421H691L690 415 686 402 676 385 663 374 652 369 643 366Z
-                M100 626L85 631 77 635 61 649 50 668 45 685V704L48 715 57 735 75 753 87 759 100 763H122L143 755 158 743 165 734 172 720 177 699 174 676 171 667 162 651 146 636 134 630 122 626Z
-                M255 626L243 630 231 636 217 649 210 661 204 681H324L320 664 309 645 296 634 288 630 276 626Z
-                M440 626L430 629 416 635 399 650 389 667 385 682 383 693 387 716 398 738 410 750 416 754 424 758 440 763H462L472 760 486 754 492 750 503 739 513 722 516 713 519 699 516 676 513 667 506 654 493 640 486 635 478 631 462 626Z
-                M320 886L305 891 289 900 278 911 272 920 266 935 264 941H385L384 930 382 920 375 906 362 894 354 890 341 886Z
-                M1035 1146L1021 1151 1013 1155 997 1169 989 1184 984 1201H1105L1099 1181 1090 1166 1076 1154 1068 1150 1056 1146Z"/>
-              <!-- The cuts follow the original artwork where the letter strokes meet. -->
-              <clipPath id="reveal-more"><rect y="305" width="1276" height="222"/></clipPath>
-              <clipPath id="reveal-below"><path d="M0 527H1276V788H162V776Q150 780 130 787H0Z"/></clipPath>
-              <clipPath id="reveal-the"><path d="M133 780H162V788H1276V1039H600V1048H0V788H133Z"/></clipPath>
-              <clipPath id="reveal-eggshell"><path d="M0 1048H600V1039H1276V1307H0Z"/></clipPath>
-              <g id="headline-line-there"><use href="#headline-artwork" clip-path="url(#select-there)"/></g>
-              <g id="headline-line-more"><use href="#headline-artwork" clip-path="url(#reveal-more)"/></g>
-              <g id="headline-line-below"><use href="#headline-artwork" clip-path="url(#reveal-below)"/></g>
-              <g id="headline-line-the"><use href="#headline-artwork" clip-path="url(#reveal-the)"/></g>
-              <g id="headline-line-eggshell"><use href="#headline-artwork" clip-path="url(#reveal-eggshell)"/></g>
+                M381 97Q346 103 336 147H445Q435 105 401 97Z
+                M610 97Q575 103 564 147H674Q664 105 630 97Z
+                M342 357C378 357 404 383 404 420S378 483 342 483 281 457 281 420 307 357 342 357Z
+                M568 357Q533 363 523 407H632Q622 365 588 357Z
+                M102 617C136 617 162 643 162 680S136 743 102 743 42 717 42 680 68 617 102 617Z
+                M233 617Q198 623 188 667H297Q287 625 253 617Z
+                M412 617C448 617 474 643 474 680S448 743 412 743 351 717 351 680 377 617 412 617Z
+                M292 877Q253 883 243 927H352Q354 884 313 877Z
+                M946 1137Q911 1143 901 1187H1010Q1000 1145 966 1137Z"/>
             </defs>
-            <g class="hero-poster-row">
-              <use href="#headline-counters" clip-path="url(#select-there)"/>
-              <use href="#headline-line-there"/>
+            <g class="hero-poster-row" clip-path="url(#select-there)">
+              <use href="#headline-counters"/>
+              <use href="#headline-artwork"/>
+            </g>
+            <g class="hero-poster-row" clip-path="url(#select-more)">
+              <use href="#headline-counters"/>
+              <use href="#headline-artwork"/>
+            </g>
+            <g class="hero-poster-row" clip-path="url(#select-below)">
+              <use href="#headline-counters"/>
+              <use href="#headline-artwork"/>
+            </g>
+            <g class="hero-poster-row" clip-path="url(#select-the)">
+              <use href="#headline-counters"/>
+              <use href="#headline-artwork"/>
             </g>
             <g class="hero-poster-row">
-              <g transform="translate(0 22)">
-                <use href="#headline-counters" clip-path="url(#reveal-more)"/>
-                <use href="#headline-line-more"/>
+              <g clip-path="url(#select-eggshell)">
+                <use href="#headline-counters"/>
+                <use href="#headline-artwork" mask="url(#headline-without-egg)"/>
               </g>
-            </g>
-            <g class="hero-poster-row">
-              <g transform="translate(0 44)">
-                <use href="#headline-counters" clip-path="url(#reveal-below)"/>
-                <use href="#headline-line-below"/>
-              </g>
-            </g>
-            <g class="hero-poster-row">
-              <g transform="translate(0 66)">
-                <use href="#headline-counters" clip-path="url(#reveal-the)"/>
-                <use href="#headline-line-the"/>
-              </g>
-            </g>
-            <g class="hero-poster-row">
-              <g transform="translate(0 88)">
-                <use href="#headline-counters" clip-path="url(#reveal-eggshell)"/>
-                <use href="#headline-line-eggshell" mask="url(#headline-without-egg)"/>
-                <g class="poster-egg-hover">
-                  <g class="poster-egg-motion">
-                    <use href="#headline-artwork" clip-path="url(#headline-egg)"/>
-                  </g>
+              <g class="poster-egg-hover">
+                <g class="poster-egg-motion">
+                  <use href="#headline-artwork" clip-path="url(#headline-egg)"/>
                 </g>
               </g>
             </g>
             <g class="poster-highlight" pointer-events="none" fill="#fdd957">
               <g class="poster-highlight-bands"></g>
               <g clip-path="url(#headline-selection)">
-                <g filter="url(#headline-selected-ink)">
-                  <use href="#headline-line-there"/>
-                  <use href="#headline-line-more" y="22"/>
-                  <use href="#headline-line-below" y="44"/>
-                  <use href="#headline-line-the" y="66"/>
-                  <use href="#headline-line-eggshell" y="88"/>
-                </g>
+                <use href="#headline-artwork" filter="url(#headline-selected-ink)"/>
               </g>
             </g>
             <g class="poster-selectable">
-              <text clip-path="url(#select-there)" x="0" y="263" textLength="927" lengthAdjust="spacing">There’s</text>
-              <text transform="translate(0 22)" clip-path="url(#select-more)" x="6" y="523" textLength="728" lengthAdjust="spacing">more</text>
-              <text transform="translate(0 44)" clip-path="url(#select-below)" x="5" y="783" textLength="777" lengthAdjust="spacing">below</text>
-              <text transform="translate(0 66)" clip-path="url(#select-the)" x="0" y="1043" textLength="420" lengthAdjust="spacing" font-style="italic">the</text>
-              <text transform="translate(0 88)" clip-path="url(#select-eggshell)" x="0" y="1303"><tspan class="poster-egg-select" textLength="650" lengthAdjust="spacing">EGG</tspan><tspan x="650" textLength="626" lengthAdjust="spacing">shell.</tspan></text>
+              <text clip-path="url(#select-there)" x="0" y="240" textLength="848" lengthAdjust="spacing">There’s</text>
+              <text clip-path="url(#select-more)" x="6" y="500" textLength="656" lengthAdjust="spacing">more</text>
+              <text clip-path="url(#select-below)" x="5" y="760" textLength="705" lengthAdjust="spacing">below</text>
+              <text clip-path="url(#select-the)" x="0" y="1020" textLength="384" lengthAdjust="spacing" font-style="italic">the</text>
+              <text clip-path="url(#select-eggshell)" x="0" y="1280"><tspan class="poster-egg-select" textLength="600" lengthAdjust="spacing">EGG</tspan><tspan x="600" textLength="567" lengthAdjust="spacing">shell.</tspan></text>
             </g>
           </svg>
         </h2>
@@ -176,10 +154,10 @@
 <button class="close-preview" type="button" aria-label="Close project preview"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
 <div class="zoom-egg"><button class="crack-button" type="button" aria-label="Crack the egg to reveal the project"><img class="egg-half egg-top" src="assets/egg.webp" alt=""><img class="egg-half egg-bottom" src="assets/egg.webp" alt=""></button><a class="project-reveal"><span></span><small>Explore project ↗</small></a></div>
 <p class="preview-hint" aria-live="polite">Click again to crack</p></dialog>
-<script src="home-typography.js?v=146"></script>
+<script src="home-typography.js?v=148"></script>
 <script src="home.js?v=80"></script>
 <script src="egg-cursor.js?v=124"></script>
 <script src="egg-letter-hover.js?v=143"></script>
-<script src="illustrated-motion.js?v=131"></script>
+<script src="illustrated-motion.js?v=148"></script>
 </body>
 </html>

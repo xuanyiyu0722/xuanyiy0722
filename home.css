@@ -88,9 +88,9 @@
 .home-page .hero-note .crack-invitation { color:#fdd957; }
 
 /* The transparent text stays selectable over the supplied artwork. */
-.home-page .hero-poster .poster-selectable{font:300 358px "Euclid Circular A",sans-serif;fill:transparent;cursor:text;user-select:text;-webkit-user-select:text;pointer-events:all;}
+.home-page .hero-poster .poster-selectable{font:300 328px "Euclid Circular A",sans-serif;fill:transparent;cursor:text;user-select:text;-webkit-user-select:text;pointer-events:all;}
 .home-page .hero-poster .poster-selectable ::selection{background:transparent;fill:transparent;}
-.home-page .hero-poster .poster-egg-motion{transform-origin:347px 1307px;pointer-events:none;transition:transform 800ms cubic-bezier(.3,.7,.3,1);}
+.home-page .hero-poster .poster-egg-motion{transform-origin:318px 1284px;pointer-events:none;transition:transform 800ms cubic-bezier(.3,.7,.3,1);}
 .home-page .hero-poster .poster-egg-hover.is-tilted .poster-egg-motion{transform:translateY(-3px) skewX(-7deg);}
 @media(prefers-reduced-motion:reduce){.home-page .hero-poster .poster-egg-motion{transition:none;transform:none!important;}}
 

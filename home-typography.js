@@ -65,7 +65,7 @@
       const captionInset = Math.max(margin, caption.top - canvas.top);
       const cartonEdge = box.left - canvas.left + box.width * .048;
       // Keep the title in the left column while allowing the artwork to meet the carton.
-      const columnWidth = (cartonEdge - margin + Math.min(42, width * .035)) * artworkWidth / 764;
+      const columnWidth = (cartonEdge - margin + Math.min(42, width * .035)) * artworkWidth / 699;
       posterWidth = Math.min(posterWidth, columnWidth, Math.max(height * .25, height - 2 * captionInset) * aspectRatio);
 
       // Enlarge the whole artwork within the inset marked in the desktop reference.
@@ -109,9 +109,7 @@
         if (end <= start) continue;
         const rect = document.createElementNS(svg.namespaceURI, 'rect');
         rect.setAttribute('x', Math.max(0, start));
-        const transforms = row.transform.baseVal;
-        const rowOffset = transforms.numberOfItems ? transforms.getItem(0).matrix.f : 0;
-        rect.setAttribute('y', Number(band.getAttribute('y')) + rowOffset);
+        rect.setAttribute('y', band.getAttribute('y') || '0');
         rect.setAttribute('width', Math.min(svg.viewBox.baseVal.width, end) - Math.max(0, start));
         rect.setAttribute('height', band.getAttribute('height'));
         bands.push(rect);
