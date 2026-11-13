@@ -169,7 +169,7 @@
       animation = layer.animate([
         { transform: 'translateY(0)' },
         { transform: 'translateY(-100%)' }
-      ], { duration: 450, easing: 'cubic-bezier(.68, 0, .26, 1)', fill: 'both' });
+      ], { duration: 600, easing: 'cubic-bezier(.68, 0, .26, 1)', fill: 'both' });
       animation.finished.then(
         () => { if (curtain === layer) clear(true); },
         () => { if (curtain === layer) clear(); }
