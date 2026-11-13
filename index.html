@@ -53,7 +53,7 @@
     <div class="hero-grid">
       <div class="hero-intro">
         <h2 aria-label="There’s more below the eggshell.">
-          <svg class="hero-poster" viewBox="0 0 1276 1307" aria-hidden="true" focusable="false">
+          <svg class="hero-poster" viewBox="0 0 1276 1395" aria-hidden="true" focusable="false">
             <defs>
               <image id="headline-artwork" href="assets/home-headline-v143.png" width="1276" height="1307"/>
               <path id="headline-egg-area" d="M12 1048H677V1130L668 1155 669 1208 662 1234 654 1252 647 1258 630 1286 603 1307H12Z"/>
@@ -72,10 +72,8 @@
                 <feFlood flood-color="#423c30"/>
                 <feComposite in2="SourceAlpha" operator="in"/>
               </filter>
-            </defs>
-            <g class="hero-poster-row">
               <!-- These shapes follow the enclosed counters in the supplied headline PNG. -->
-              <path fill="#776b61" d="
+              <path id="headline-counters" fill="#776b61" d="
                 M417 106L405 110 393 116 383 124 376 133 372 141 367 161H486L485 155 481 142 471 125 458 114 450 110 438 106Z
                 M667 106L653 111 645 115 629 129 621 144 617 161H737L731 141 722 126 708 114 700 110 688 106Z
                 M363 366L350 370 341 374 331 381 323 389 313 405 307 423 308 451 313 464 319 475 332 489 339 494 350 499 363 503H386L401 498 411 493 427 478 436 463 442 442V427L439 415 434 402 427 391 415 379 409 375 401 371 386 366Z
@@ -85,25 +83,68 @@
                 M440 626L430 629 416 635 399 650 389 667 385 682 383 693 387 716 398 738 410 750 416 754 424 758 440 763H462L472 760 486 754 492 750 503 739 513 722 516 713 519 699 516 676 513 667 506 654 493 640 486 635 478 631 462 626Z
                 M320 886L305 891 289 900 278 911 272 920 266 935 264 941H385L384 930 382 920 375 906 362 894 354 890 341 886Z
                 M1035 1146L1021 1151 1013 1155 997 1169 989 1184 984 1201H1105L1099 1181 1090 1166 1076 1154 1068 1150 1056 1146Z"/>
-              <use href="#headline-artwork" mask="url(#headline-without-egg)"/>
-              <g class="poster-egg-hover">
-                <g class="poster-egg-motion">
-                  <use href="#headline-artwork" clip-path="url(#headline-egg)"/>
+              <!-- The cuts follow the original artwork where the letter strokes meet. -->
+              <clipPath id="reveal-more"><rect y="305" width="1276" height="222"/></clipPath>
+              <clipPath id="reveal-below"><path d="M0 527H1276V786H133V784H0Z"/></clipPath>
+              <clipPath id="reveal-the"><path d="M133 784V786H1276V1039H600V1048H0V784Z"/></clipPath>
+              <clipPath id="reveal-eggshell"><path d="M0 1048H600V1039H1276V1307H0Z"/></clipPath>
+              <g id="headline-line-there"><use href="#headline-artwork" clip-path="url(#select-there)"/></g>
+              <g id="headline-line-more"><use href="#headline-artwork" clip-path="url(#reveal-more)"/></g>
+              <g id="headline-line-below"><use href="#headline-artwork" clip-path="url(#reveal-below)"/></g>
+              <g id="headline-line-the"><use href="#headline-artwork" clip-path="url(#reveal-the)"/></g>
+              <g id="headline-line-eggshell"><use href="#headline-artwork" clip-path="url(#reveal-eggshell)"/></g>
+            </defs>
+            <g class="hero-poster-row">
+              <use href="#headline-counters" clip-path="url(#select-there)"/>
+              <use href="#headline-line-there"/>
+            </g>
+            <g class="hero-poster-row">
+              <g transform="translate(0 22)">
+                <use href="#headline-counters" clip-path="url(#reveal-more)"/>
+                <use href="#headline-line-more"/>
+              </g>
+            </g>
+            <g class="hero-poster-row">
+              <g transform="translate(0 44)">
+                <use href="#headline-counters" clip-path="url(#reveal-below)"/>
+                <use href="#headline-line-below"/>
+              </g>
+            </g>
+            <g class="hero-poster-row">
+              <g transform="translate(0 66)">
+                <use href="#headline-counters" clip-path="url(#reveal-the)"/>
+                <use href="#headline-line-the"/>
+              </g>
+            </g>
+            <g class="hero-poster-row">
+              <g transform="translate(0 88)">
+                <use href="#headline-counters" clip-path="url(#reveal-eggshell)"/>
+                <use href="#headline-line-eggshell" mask="url(#headline-without-egg)"/>
+                <g class="poster-egg-hover">
+                  <g class="poster-egg-motion">
+                    <use href="#headline-artwork" clip-path="url(#headline-egg)"/>
+                  </g>
                 </g>
               </g>
-              <g class="poster-highlight" pointer-events="none" fill="#fdd957">
-                <g class="poster-highlight-bands"></g>
-                <g clip-path="url(#headline-selection)">
-                  <use href="#headline-artwork" filter="url(#headline-selected-ink)"/>
+            </g>
+            <g class="poster-highlight" pointer-events="none" fill="#fdd957">
+              <g class="poster-highlight-bands"></g>
+              <g clip-path="url(#headline-selection)">
+                <g filter="url(#headline-selected-ink)">
+                  <use href="#headline-line-there"/>
+                  <use href="#headline-line-more" y="22"/>
+                  <use href="#headline-line-below" y="44"/>
+                  <use href="#headline-line-the" y="66"/>
+                  <use href="#headline-line-eggshell" y="88"/>
                 </g>
               </g>
-              <g class="poster-selectable">
-                <text clip-path="url(#select-there)" x="0" y="263" textLength="927" lengthAdjust="spacing">There’s</text>
-                <text clip-path="url(#select-more)" x="6" y="523" textLength="728" lengthAdjust="spacing">more</text>
-                <text clip-path="url(#select-below)" x="5" y="783" textLength="777" lengthAdjust="spacing">below</text>
-                <text clip-path="url(#select-the)" x="0" y="1043" textLength="420" lengthAdjust="spacing" font-style="italic">the</text>
-                <text clip-path="url(#select-eggshell)" x="0" y="1303"><tspan class="poster-egg-select" textLength="650" lengthAdjust="spacing">EGG</tspan><tspan x="650" textLength="626" lengthAdjust="spacing">shell.</tspan></text>
-              </g>
+            </g>
+            <g class="poster-selectable">
+              <text clip-path="url(#select-there)" x="0" y="263" textLength="927" lengthAdjust="spacing">There’s</text>
+              <text transform="translate(0 22)" clip-path="url(#select-more)" x="6" y="523" textLength="728" lengthAdjust="spacing">more</text>
+              <text transform="translate(0 44)" clip-path="url(#select-below)" x="5" y="783" textLength="777" lengthAdjust="spacing">below</text>
+              <text transform="translate(0 66)" clip-path="url(#select-the)" x="0" y="1043" textLength="420" lengthAdjust="spacing" font-style="italic">the</text>
+              <text transform="translate(0 88)" clip-path="url(#select-eggshell)" x="0" y="1303"><tspan class="poster-egg-select" textLength="650" lengthAdjust="spacing">EGG</tspan><tspan x="650" textLength="626" lengthAdjust="spacing">shell.</tspan></text>
             </g>
           </svg>
         </h2>
@@ -135,7 +176,7 @@
 <button class="close-preview" type="button" aria-label="Close project preview"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
 <div class="zoom-egg"><button class="crack-button" type="button" aria-label="Crack the egg to reveal the project"><img class="egg-half egg-top" src="assets/egg.webp" alt=""><img class="egg-half egg-bottom" src="assets/egg.webp" alt=""></button><a class="project-reveal"><span></span><small>Explore project ↗</small></a></div>
 <p class="preview-hint" aria-live="polite">Click again to crack</p></dialog>
-<script src="home-typography.js?v=145"></script>
+<script src="home-typography.js?v=146"></script>
 <script src="home.js?v=80"></script>
 <script src="egg-cursor.js?v=124"></script>
 <script src="egg-letter-hover.js?v=143"></script>

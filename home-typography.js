@@ -109,7 +109,9 @@
         if (end <= start) continue;
         const rect = document.createElementNS(svg.namespaceURI, 'rect');
         rect.setAttribute('x', Math.max(0, start));
-        rect.setAttribute('y', band.getAttribute('y') || '0');
+        const transforms = row.transform.baseVal;
+        const rowOffset = transforms.numberOfItems ? transforms.getItem(0).matrix.f : 0;
+        rect.setAttribute('y', Number(band.getAttribute('y')) + rowOffset);
         rect.setAttribute('width', Math.min(svg.viewBox.baseVal.width, end) - Math.max(0, start));
         rect.setAttribute('height', band.getAttribute('height'));
         bands.push(rect);
