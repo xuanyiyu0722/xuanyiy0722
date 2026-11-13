@@ -1,12 +1,16 @@
-/* Fit five equal-baseline rows using the actual Euclid font, without stretching glyphs. */
+/* Fit five evenly spaced baselines, then condense the two words beside the carton. */
 (() => {
   const svg = document.querySelector('.home-page .hero-poster');
   const frame = svg?.closest('h2');
   const lines = svg ? [...svg.querySelectorAll('text')] : [];
+  const carton = document.querySelector('#assetCarton');
+  const layout = carton?.closest('.carton-layout');
+  const note = layout?.querySelector('.hero-note');
   const context = document.createElement('canvas').getContext('2d');
   if (!frame || lines.length !== 5 || !context) return;
   const referenceSize = 128;
   const counterData = {"units":1000,"shapes":{"a":["M167.5 111.5Q219 55 300.0 55.0Q381 55 432.5 111.5Q484 168 484.0 250.0Q484 332 432.5 388.5Q381 445 300.0 445.0Q219 445 167.5 388.5Q116 332 116.0 250.0Q116 168 167.5 111.5Z"],"b":["M201.5 111.5Q253 55 334.0 55.0Q415 55 466.5 111.5Q518 168 518.0 250.0Q518 332 466.5 388.5Q415 445 334.0 445.0Q253 445 201.5 388.5Q150 332 150.0 250.0Q150 168 201.5 111.5Z"],"e":["M293 445Q230 445 182.0 407.5Q134 370 121 291H457Q445 365 401.0 405.0Q357 445 293 445Z"],"o":["M168.5 111.5Q221 55 305.0 55.0Q389 55 441.5 111.5Q494 168 494.0 250.0Q494 332 441.5 388.5Q389 445 305.0 445.0Q221 445 168.5 388.5Q116 332 116.0 250.0Q116 168 168.5 111.5Z"]}};
+  counterData.shapes.d = ["M167 111Q219 55 300 55Q381 55 432.5 111.5Q484 168 484 250Q484 332 432.5 388.5Q381 445 300 445Q219 445 167.5 388.5Q116 332 116 250Q116 168 167 111Z"];
   let countersReady = false;
   const paintCounters = fontSize => {
     lines.forEach(line => {
@@ -35,7 +39,8 @@
   };
 
   const fit = () => {
-    const { width, height } = frame.getBoundingClientRect();
+    const canvas = frame.getBoundingClientRect();
+    const { width, height } = canvas;
     if (width <= 0 || height <= 0) return;
     context.font = '300 128px "Euclid Circular A", sans-serif';
     const metrics = lines.map(line => {
@@ -62,18 +67,41 @@
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.fontSize = `${fontSize}px`;
     svg.style.letterSpacing = `${-fontSize / 64}px`;
+    if (layout) layout.style.transform = 'none';
+    const cartonBox = carton?.getBoundingClientRect();
     lines.forEach((line, index) => {
+      const baseline = firstBaseline + index * baselineStep;
       line.setAttribute('x', padding);
-      line.setAttribute('y', firstBaseline + index * baselineStep);
+      line.setAttribute('y', baseline);
+      const word = line.closest('.poster-condensed-word');
+      if (!word) return;
+
+      const metric = metrics[index];
+      const bottom = canvas.top + baseline + metric.descent * scale;
+      const top = canvas.top + baseline - metric.ascent * scale;
+      let squeeze = .88;
+      if (cartonBox && cartonBox.left > canvas.left + padding
+        && bottom > cartonBox.top + cartonBox.height * .09
+        && top < cartonBox.top + cartonBox.height * .89) {
+        // Use the visible left edge of the front-facing artwork, including its transparent margin.
+        const depth = (bottom - cartonBox.top) / cartonBox.height;
+        const inset = Math.max(.032, .085 - depth * .09);
+        const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 10;
+        squeeze = Math.min(squeeze, available / (metric.width * scale));
+      }
+      // Share the reduction with the height when the available width would make the letters too thin.
+      const heightScale = Math.min(1, Math.max(.68, squeeze / .8));
+      const center = (top + bottom) / 2 - canvas.top;
+      word.setAttribute('transform', `translate(${padding} ${center}) scale(${squeeze} ${heightScale}) translate(${-padding} ${-center})`);
+      metric.width *= squeeze;
+      const trim = (metric.ascent + metric.descent) * (1 - heightScale) / 2;
+      metric.ascent -= trim;
+      metric.descent -= trim;
     });
     paintCounters(fontSize);
     // Keep the caption clear of the poster while it stays anchored to the carton.
-    const layout = document.querySelector('.carton-layout');
-    const note = layout?.querySelector('.hero-note');
     if (note) {
-      layout.style.transform = 'none';
       const caption = note.getBoundingClientRect();
-      const canvas = frame.getBoundingClientRect();
       let shift = 0;
       metrics.forEach((metric, index) => {
         const baseline = canvas.top + firstBaseline + index * baselineStep;
