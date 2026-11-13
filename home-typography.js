@@ -1,11 +1,10 @@
-/* Fit the five headline rows at one size using Euclid's natural spacing. */
+/* Fit all five headline rows at one size without changing the glyph proportions. */
 (() => {
   const svg = document.querySelector('.home-page .hero-poster');
   const frame = svg?.closest('h2');
   const lines = svg ? [...svg.querySelectorAll('text')] : [];
   const layout = document.querySelector('.carton-layout');
   const note = layout?.querySelector('.hero-note');
-  const stacked = matchMedia('(max-width: 560px)');
   const context = document.createElement('canvas').getContext('2d');
   if (!frame || lines.length !== 5 || !context) return;
   const referenceSize = 128;
@@ -46,45 +45,41 @@
       const metric = context.measureText(line.textContent);
       return {
         width: metric.width,
+        anchorWidth: metric.width - 2 * Math.max(0, [...line.textContent].length - 1),
         ascent: metric.actualBoundingBoxAscent,
         descent: metric.actualBoundingBoxDescent
       };
     });
     const padding = 2;
-    const widest = Math.max(...metrics.map(metric => metric.width));
     const firstAscent = metrics[0].ascent;
     const lastDescent = Math.max(0, metrics[4].descent);
-    const besideCarton = !stacked.matches && layout
-      ? (layout.getBoundingClientRect().left - canvas.left - padding - 10)
-        * referenceSize / Math.max(metrics[1].width, metrics[2].width)
-      : Infinity;
-    const fontSize = Math.min(
-      (width - padding * 2) * referenceSize / widest,
-      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + 4 * .82),
-      besideCarton
-    );
-    const scale = fontSize / referenceSize;
-    const firstBaseline = padding + firstAscent * scale;
-    const lastBaseline = height - padding - lastDescent * scale;
-    const baselineStep = (lastBaseline - firstBaseline) / 4;
+    const heightLimit = (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + 4 * .82);
+    const sizeForWidth = widest => Math.min((width - padding * 2) * referenceSize / widest, heightLimit);
+    const baselineAt = (index, scale) => {
+      const first = padding + firstAscent * scale;
+      const last = height - padding - lastDescent * scale;
+      return first + index * (last - first) / 4;
+    };
+    const fontSize = sizeForWidth(Math.max(...metrics.map(metric => metric.width)));
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.fontSize = `${fontSize}px`;
     lines.forEach((line, index) => {
       line.setAttribute('x', padding);
-      line.setAttribute('y', firstBaseline + index * baselineStep);
+      line.setAttribute('y', baselineAt(index, fontSize / referenceSize));
     });
     paintCounters(fontSize);
-    // Keep the caption clear of the poster while it stays anchored to the carton.
+    // Anchor the carton and its caption to the v135 positions as the headline spacing changes.
     if (note) {
+      const scale = sizeForWidth(Math.max(...metrics.map(metric => metric.anchorWidth))) / referenceSize;
       layout.style.transform = 'none';
       const caption = note.getBoundingClientRect();
       let shift = 0;
       metrics.forEach((metric, index) => {
-        const baseline = canvas.top + firstBaseline + index * baselineStep;
+        const baseline = canvas.top + baselineAt(index, scale);
         const top = baseline - metric.ascent * scale;
         const bottom = baseline + metric.descent * scale;
         const left = canvas.left + padding;
-        const right = left + metric.width * scale;
+        const right = left + metric.anchorWidth * scale;
         if (caption.left < right && caption.right > left
           && caption.top + shift < bottom + 12 && caption.bottom + shift > top - 12) {
           shift = Math.max(shift, bottom + 12 - caption.top);
