@@ -5,8 +5,9 @@
   if (!hover || !target) return;
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  const uprightTime = 2300;
-  const tiltedTime = 1400;
+  // Each interval includes the transition into the corresponding pose.
+  const uprightTime = 1350;
+  const tiltedTime = 1150;
   let timer;
 
   function resume() {
