@@ -70,8 +70,8 @@
 
       // Enlarge the whole artwork within the inset marked in the desktop reference.
       const currentInset = (height - posterWidth / aspectRatio) / 2;
-      const targetInset = Math.min(currentInset, height * .038);
-      posterWidth = Math.min(posterWidth * 1.065, width - 2 * margin, (height - 2 * targetInset) * aspectRatio);
+      const targetInset = Math.min(currentInset, height * .033);
+      posterWidth = Math.min(posterWidth * 1.075, width - 2 * margin, (height - 2 * targetInset) * aspectRatio);
     }
     const verticalSpace = height - posterWidth / aspectRatio;
     svg.style.left = `${margin}px`;
