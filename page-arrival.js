@@ -18,11 +18,12 @@
   const eggCrackDuration = 65;
   const hatchDuration = 160;
   const progressHoldDuration = 500;
-  const sceneExitDuration = 160;
-  const soundFadeDuration = 460;
+  const soundFadeLead = 160;
+  const soundFadeDuration = 650;
   let curtain;
   let animation;
   let soundFrame;
+  let navigationTimer;
   let progressAnimations = [];
   let finish;
 
@@ -121,8 +122,9 @@
     fade();
   }
 
-  function clear() {
-    stopBoilingSound();
+  function clear(keepSound = false) {
+    if (!keepSound) stopBoilingSound();
+    clearTimeout(navigationTimer);
     finish = null;
     progressAnimations.forEach(motion => motion.cancel());
     progressAnimations = [];
@@ -149,41 +151,34 @@
     layer.className = startedAt ? 'page-arrival' : 'page-arrival page-arrival--opening';
     layer.setAttribute('aria-hidden', 'true');
     layer.style.setProperty('--arrival-expansion-duration', `${expansionDuration}ms`);
-    if (!startedAt) layer.innerHTML = illustration;
+    layer.innerHTML = illustration;
     const startTime = startedAt || Date.now();
+    if (startedAt) {
+      // Show the completed hatch and keep the simmer in phase across navigation.
+      layer.style.setProperty('--boil-phase', `${startedAt - Date.now()}ms`);
+    }
     curtain = layer;
     document.body.prepend(layer);
     root.classList.add('page-arrival-active');
 
-    const scene = layer.firstElementChild;
     let soundEndsAt;
 
     const reveal = () => {
       animation?.cancel();
-      if (!startedAt) {
-        progressAnimations.push(scene.animate([{ opacity: 1 }, { opacity: 0 }], {
-          duration: sceneExitDuration, easing: 'ease-out', fill: 'both'
-        }));
-        fadeBoilingSound(Date.now() + soundFadeDuration);
-      }
-      const duration = 560;
-      const delay = startedAt ? 0 : sceneExitDuration;
-      const easing = 'cubic-bezier(.68, 0, .26, 1)';
-      const main = document.querySelector('main');
-      if (main) progressAnimations.push(main.animate([
-        { transform: 'translateY(13svh)' }, { transform: 'translateY(0)' }
-      ], { duration, delay, easing, fill: 'backwards' }));
+      if (!startedAt) fadeBoilingSound(Date.now() + soundFadeDuration);
       animation = layer.animate([
-        { transform: 'translateY(0) scaleX(1)', borderRadius: '0px', offset: 0 },
-        { transform: 'translateY(-2%) scaleX(.973)', borderRadius: '14px', offset: .25 },
-        { transform: 'translateY(-105%) scaleX(.973)', borderRadius: '14px', offset: 1 }
-      ], { duration, delay, easing, fill: 'both' });
-      const close = () => { if (curtain === layer) clear(); };
-      animation.finished.then(close, close);
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-100%)' }
+      ], { duration: 450, easing: 'cubic-bezier(.68, 0, .26, 1)', fill: 'both' });
+      animation.finished.then(
+        () => { if (curtain === layer) clear(true); },
+        () => { if (curtain === layer) clear(); }
+      );
     };
     finish = () => {
       if (!leaving) { clear(); return; }
       finish = null;
+      clearTimeout(navigationTimer);
       try {
         const audioTail = !boilingSound.paused && Date.now() < soundEndsAt
           ? { position: boilingSound.currentTime, endsAt: soundEndsAt }
@@ -207,6 +202,7 @@
       } else reveal();
       return;
     }
+    stopBoilingSound();
     layer.append(boilingSound);
     playBoilingSound();
 
@@ -262,11 +258,7 @@
       if (!leaving) { reveal(); return; }
       soundEndsAt = Date.now() + soundFadeDuration;
       fadeBoilingSound(soundEndsAt);
-      const exit = scene.animate([{ opacity: 1 }, { opacity: 0 }], {
-        duration: sceneExitDuration, easing: 'ease-out', fill: 'both'
-      });
-      progressAnimations.push(exit);
-      exit.finished.then(() => { if (curtain === layer) finish?.(); }, () => {});
+      navigationTimer = setTimeout(() => finish?.(), soundFadeLead);
     }, () => {});
   }
 
@@ -292,8 +284,8 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopBoilingSound();
   });
-  window.addEventListener('pagehide', clear);
-  window.addEventListener('beforeprint', clear);
+  window.addEventListener('pagehide', () => clear());
+  window.addEventListener('beforeprint', () => clear());
   reduceMotion.addEventListener('change', () => {
     if (reduceMotion.matches) finish?.();
   });
