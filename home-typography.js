@@ -1,4 +1,4 @@
-/* Fit the visible headline rows, then adjust the lines beside the carton. */
+/* Fit the opening words at a shared size, with room for the carton and wordmark. */
 (() => {
   const svg = document.querySelector('.home-page .hero-poster');
   const frame = svg?.closest('h2');
@@ -45,13 +45,15 @@
     const intervals = lines.length - 1;
     if (intervals < 1) return;
     context.font = '300 128px "Euclid Circular A", sans-serif';
+    const tracking = -1 / 64;
     const metrics = lines.map(line => {
       const text = line.textContent;
       const metric = context.measureText(text);
+      const gaps = Math.max(0, [...text].length - 1);
+      const spacing = tracking * referenceSize * gaps;
       return {
-        width: metric.width - 2 * Math.max(0, [...text].length - 1),
-        inkRight: metric.actualBoundingBoxRight / referenceSize,
-        letterGaps: Math.max(0, [...text].length - 1),
+        width: metric.width + spacing,
+        inkRight: metric.actualBoundingBoxRight + spacing,
         ascent: metric.actualBoundingBoxAscent,
         descent: metric.actualBoundingBoxDescent
       };
@@ -70,66 +72,49 @@
     const baselineStep = (lastBaseline - firstBaseline) / intervals;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.fontSize = `${fontSize}px`;
-    svg.style.letterSpacing = `${-fontSize / 64}px`;
+    svg.style.letterSpacing = `${tracking * fontSize}px`;
     if (layout) layout.style.transform = 'none';
     const cartonBox = carton?.getBoundingClientRect();
+    let sharedSize = fontSize;
     lines.forEach((line, index) => {
-      const baseline = firstBaseline + index * baselineStep;
+      if (!line.closest('.poster-carton-word') || !cartonBox) return;
       const metric = metrics[index];
-      metric.fontSize = fontSize;
+      const baseline = canvas.top + firstBaseline + index * baselineStep;
+      const top = baseline - metric.ascent * scale;
+      const bottom = baseline + metric.descent * scale;
+      if (cartonBox.left <= canvas.left + padding
+        || bottom <= cartonBox.top + cartonBox.height * .09
+        || top >= cartonBox.top + cartonBox.height * .89) return;
+      // Allow for the transparent margin on the front-facing carton.
+      const depth = (bottom - cartonBox.top) / cartonBox.height;
+      const inset = Math.max(.033, .101 - depth * .106);
+      const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
+      sharedSize = Math.min(sharedSize, available * referenceSize / metric.inkRight);
+    });
+    lines.forEach((line, index) => {
+      const metric = metrics[index];
+      const wordmark = index === intervals;
+      const size = wordmark ? fontSize : sharedSize;
+      const center = firstBaseline + index * baselineStep + (metric.descent - metric.ascent) * scale / 2;
+      metric.fontSize = size;
+      metric.baseline = center + (metric.ascent - metric.descent) * size / referenceSize / 2;
       line.setAttribute('x', padding);
-      line.setAttribute('y', baseline);
-      const word = line.closest('.poster-condensed-word');
-      if (!word) return;
-
-      const bottom = canvas.top + baseline + metric.descent * scale;
-      const top = canvas.top + baseline - metric.ascent * scale;
-      const naturalWidth = word.hasAttribute('data-natural-width');
-      let glyphWidth = naturalWidth ? 1 : .96;
-      let tracking = naturalWidth ? -1 / 64 : -.032;
-      let wordSize = fontSize;
-      if (cartonBox && cartonBox.left > canvas.left + padding
-        && bottom > cartonBox.top + cartonBox.height * .09
-        && top < cartonBox.top + cartonBox.height * .89) {
-        // Use the visible left edge of the front-facing artwork, including its transparent margin.
-        const depth = (bottom - cartonBox.top) / cartonBox.height;
-        const inset = Math.max(.033, .101 - depth * .106);
-        const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
-        if (!naturalWidth) {
-          const isMore = line.textContent === 'more';
-          // The gap after r in “more” closes sooner than the other lines' gaps.
-          const tightest = isMore ? -.048 : -.062;
-          glyphWidth = isMore ? .92 : .9;
-          tracking = Math.max(tightest, Math.min(tracking,
-            (available / (fontSize * glyphWidth) - metric.inkRight) / metric.letterGaps));
-        }
-        wordSize = Math.min(fontSize, available / (glyphWidth * (metric.inkRight + tracking * metric.letterGaps)));
-      }
-      const wordScale = wordSize / fontSize;
-      const center = (top + bottom) / 2 - canvas.top;
-      line.style.fontSize = `${wordSize}px`;
-      line.style.letterSpacing = `${tracking * wordSize}px`;
-      line.setAttribute('y', center + (metric.ascent - metric.descent) * wordSize / referenceSize / 2);
-      if (!naturalWidth) {
-        word.setAttribute('transform', `translate(${padding} 0) scale(${glyphWidth} 1) translate(${-padding} 0)`);
-      }
-      metric.fontSize = wordSize;
-      metric.width = (metric.inkRight + tracking * metric.letterGaps) * referenceSize * glyphWidth * wordScale;
-      const trim = (metric.ascent + metric.descent) * (1 - wordScale) / 2;
-      metric.ascent -= trim;
-      metric.descent -= trim;
+      line.setAttribute('y', metric.baseline);
+      line.style.fontSize = `${size}px`;
+      line.style.letterSpacing = `${tracking * size}px`;
     });
     paintCounters(lines, metrics);
     // Keep the caption clear of the poster while it stays anchored to the carton.
     if (note) {
       const caption = note.getBoundingClientRect();
       let shift = 0;
-      metrics.forEach((metric, index) => {
-        const baseline = canvas.top + firstBaseline + index * baselineStep;
-        const top = baseline - metric.ascent * scale;
-        const bottom = baseline + metric.descent * scale;
+      metrics.forEach(metric => {
+        const lineScale = metric.fontSize / referenceSize;
+        const baseline = canvas.top + metric.baseline;
+        const top = baseline - metric.ascent * lineScale;
+        const bottom = baseline + metric.descent * lineScale;
         const left = canvas.left + padding;
-        const right = left + metric.width * scale;
+        const right = left + metric.width * lineScale;
         if (caption.left < right && caption.right > left
           && caption.top + shift < bottom + 12 && caption.bottom + shift > top - 12) {
           shift = Math.max(shift, bottom + 12 - caption.top);
