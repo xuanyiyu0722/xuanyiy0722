@@ -78,15 +78,14 @@
         duration: 720, delay: 680, easing: 'ease-in-out', fill: 'both'
       }));
 
-      const rows = new Map();
-      document.querySelectorAll('.hero-poster .hero-poster-row').forEach(line => {
-        const y = line.querySelector('text').getAttribute('y');
-        if (!rows.has(y)) rows.set(y, rows.size);
+      const rows = [...document.querySelectorAll('.hero-poster .hero-poster-row')]
+        .filter(row => row.getClientRects().length);
+      rows.forEach((line, index) => {
         line.classList.add('intro-copy-line');
         animations.push(line.animate([
           { opacity: 0, transform: 'translateY(24px)', filter: 'blur(3px)' },
           { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' }
-        ], { duration: 1150, delay: 1050 + rows.get(y) * 150, easing: 'cubic-bezier(.22,.72,.18,1)', fill: 'both' }));
+        ], { duration: 1150, delay: 1050 + index * 150, easing: 'cubic-bezier(.22,.72,.18,1)', fill: 'both' }));
       });
       const note = document.querySelector('.hero-note');
       if (note) animations.push(note.animate([{ opacity: 0 },{ opacity: 1 }], {

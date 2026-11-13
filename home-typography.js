@@ -1,17 +1,17 @@
-/* Fit five evenly spaced baselines, then condense the two words beside the carton. */
+/* Fit the visible headline rows, then adjust the lines beside the carton. */
 (() => {
   const svg = document.querySelector('.home-page .hero-poster');
   const frame = svg?.closest('h2');
-  const lines = svg ? [...svg.querySelectorAll('text')] : [];
+  const posterLines = svg ? [...svg.querySelectorAll('.hero-poster-row text')] : [];
   const carton = document.querySelector('#assetCarton');
   const layout = carton?.closest('.carton-layout');
   const note = layout?.querySelector('.hero-note');
   const context = document.createElement('canvas').getContext('2d');
-  if (!frame || lines.length !== 5 || !context) return;
+  if (!frame || !posterLines.length || !context) return;
   const referenceSize = 128;
   const counterData = {"units":1000,"shapes":{"a":["M167.5 111.5Q219 55 300.0 55.0Q381 55 432.5 111.5Q484 168 484.0 250.0Q484 332 432.5 388.5Q381 445 300.0 445.0Q219 445 167.5 388.5Q116 332 116.0 250.0Q116 168 167.5 111.5Z"],"b":["M201.5 111.5Q253 55 334.0 55.0Q415 55 466.5 111.5Q518 168 518.0 250.0Q518 332 466.5 388.5Q415 445 334.0 445.0Q253 445 201.5 388.5Q150 332 150.0 250.0Q150 168 201.5 111.5Z"],"e":["M293 445Q230 445 182.0 407.5Q134 370 121 291H457Q445 365 401.0 405.0Q357 445 293 445Z"],"o":["M168.5 111.5Q221 55 305.0 55.0Q389 55 441.5 111.5Q494 168 494.0 250.0Q494 332 441.5 388.5Q389 445 305.0 445.0Q221 445 168.5 388.5Q116 332 116.0 250.0Q116 168 168.5 111.5Z"]}};
   let countersReady = false;
-  const paintCounters = metrics => {
+  const paintCounters = (lines, metrics) => {
     lines.forEach((line, lineIndex) => {
       const layer = line.parentElement.querySelector('.hero-counter-layer');
       if (!layer) return;
@@ -41,6 +41,9 @@
     const canvas = frame.getBoundingClientRect();
     const { width, height } = canvas;
     if (width <= 0 || height <= 0) return;
+    const lines = posterLines.filter(line => line.getClientRects().length);
+    const intervals = lines.length - 1;
+    if (intervals < 1) return;
     context.font = '300 128px "Euclid Circular A", sans-serif';
     const metrics = lines.map(line => {
       const text = line.textContent;
@@ -56,15 +59,15 @@
     const padding = 2;
     const widest = Math.max(...metrics.map(metric => metric.width));
     const firstAscent = metrics[0].ascent;
-    const lastDescent = Math.max(0, metrics[4].descent);
+    const lastDescent = Math.max(0, metrics.at(-1).descent);
     const fontSize = Math.min(
       (width - padding * 2) * referenceSize / widest,
-      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + 4 * .82)
+      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + intervals * .82)
     );
     const scale = fontSize / referenceSize;
     const firstBaseline = padding + firstAscent * scale;
     const lastBaseline = height - padding - lastDescent * scale;
-    const baselineStep = (lastBaseline - firstBaseline) / 4;
+    const baselineStep = (lastBaseline - firstBaseline) / intervals;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.fontSize = `${fontSize}px`;
     svg.style.letterSpacing = `${-fontSize / 64}px`;
@@ -92,7 +95,7 @@
         const inset = Math.max(.033, .101 - depth * .106);
         const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
         const isMore = line.textContent === 'more';
-        // The gap after r in “more” closes sooner than the gaps in “beneath”.
+        // The gap after r in “more” closes sooner than the other lines' gaps.
         const tightest = isMore ? -.048 : -.062;
         glyphWidth = isMore ? .92 : .9;
         tracking = Math.max(tightest, Math.min(tracking,
@@ -111,7 +114,7 @@
       metric.ascent -= trim;
       metric.descent -= trim;
     });
-    paintCounters(metrics);
+    paintCounters(lines, metrics);
     // Keep the caption clear of the poster while it stays anchored to the carton.
     if (note) {
       const caption = note.getBoundingClientRect();
