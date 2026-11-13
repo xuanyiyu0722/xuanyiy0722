@@ -47,18 +47,19 @@
         descent: metric.actualBoundingBoxDescent
       };
     });
-    const padding = 2;
+    const padding = 6;
     const widest = Math.max(...metrics.map(metric => metric.width));
     const firstAscent = metrics[0].ascent;
     const lastDescent = Math.max(0, metrics[4].descent);
+    const lineStep = .86;
     const fontSize = Math.min(
       (width - padding * 2) * referenceSize / widest,
-      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + 4 * .82)
+      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + 4 * lineStep)
     );
     const scale = fontSize / referenceSize;
-    const firstBaseline = padding + firstAscent * scale;
-    const lastBaseline = height - padding - lastDescent * scale;
-    const baselineStep = (lastBaseline - firstBaseline) / 4;
+    const baselineStep = fontSize * lineStep;
+    const blockHeight = (firstAscent + lastDescent) * scale + 4 * baselineStep;
+    const firstBaseline = (height - blockHeight) / 2 + firstAscent * scale;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.fontSize = `${fontSize}px`;
     svg.style.letterSpacing = `${-fontSize / 64}px`;
@@ -67,27 +68,6 @@
       line.setAttribute('y', firstBaseline + index * baselineStep);
     });
     paintCounters(fontSize);
-    // Keep the caption clear of the poster while it stays anchored to the carton.
-    const layout = document.querySelector('.carton-layout');
-    const note = layout?.querySelector('.hero-note');
-    if (note) {
-      layout.style.transform = 'none';
-      const caption = note.getBoundingClientRect();
-      const canvas = frame.getBoundingClientRect();
-      let shift = 0;
-      metrics.forEach((metric, index) => {
-        const baseline = canvas.top + firstBaseline + index * baselineStep;
-        const top = baseline - metric.ascent * scale;
-        const bottom = baseline + metric.descent * scale;
-        const left = canvas.left + padding;
-        const right = left + metric.width * scale;
-        if (caption.left < right && caption.right > left
-          && caption.top + shift < bottom + 12 && caption.bottom + shift > top - 12) {
-          shift = Math.max(shift, bottom + 12 - caption.top);
-        }
-      });
-      if (shift > 0) layout.style.transform = `translateY(${shift}px)`;
-    }
   };
   fit();
   if ('ResizeObserver' in window) new ResizeObserver(fit).observe(frame);
