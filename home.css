@@ -13,13 +13,20 @@
 .asset-carton .asset-egg img {display:block;width:100%!important;height:auto!important;max-width:none!important;filter:none!important;transform:none!important;}
 .asset-carton .row-back {z-index:2;}
 .asset-carton .row-front {z-index:4;}
-.asset-carton .row-back.col-left {left:31.4%;top:30.2%;width:16%;}
-.asset-carton .row-back.col-right {left:50.9%;top:32%;width:17%;}
-.asset-carton .row-front.col-left {left:26.7%;top:47.5%;width:18%;}
-.asset-carton .row-front.col-right {left:46.3%;top:49.2%;width:18.8%;}
-/* Trace the actual cup rims so the interactive eggs sit behind the molded walls. */
-.asset-carton .carton-middle {z-index:3;clip-path:polygon(23% 52.5%,26.2% 45%,27.6% 44%,29.6% 44%,31.2% 46%,33.6% 52.6%,35.2% 54.3%,43.7% 55.3%,45.1% 54.1%,46.7% 48.6%,48.2% 46.6%,50% 46.3%,51.4% 48%,53.6% 54.2%,55.5% 56.9%,63.9% 58%,65.2% 56.7%,67.4% 50.3%,68.9% 48.6%,70.8% 48.6%,72.2% 50.2%,76% 67%,23% 67%);}
-.asset-carton .carton-front {z-index:5;clip-path:polygon(18% 72.2%,20.7% 72.3%,22.6% 68.5%,24.1% 66.3%,25.7% 66.1%,27% 67.4%,29.4% 72.5%,30.6% 73.4%,40.3% 74.6%,41.6% 73%,43.4% 69.4%,44.8% 68.7%,46.5% 68.9%,47.9% 70.8%,49.4% 74.7%,50.5% 75.7%,59.6% 77.1%,61% 76.1%,62.9% 72.5%,64.2% 71.2%,66.1% 71.3%,67.7% 73.5%,70.2% 78.2%,76% 79%,76% 86%,18% 86%);}
+.asset-carton .row-back.col-left {left:31.15%;top:32.41%;width:16.3%;}
+.asset-carton .row-back.col-right {left:51.93%;top:35.17%;width:15.75%;}
+.asset-carton .row-front.col-left {left:26.83%;top:48.71%;width:18.16%;}
+.asset-carton .row-front.col-right {left:47.69%;top:51.38%;width:17.33%;}
+/* Trace the painted rims to occlude the eggs and cover their hidden hit areas. */
+.asset-carton :is(.carton-middle,.carton-front) {pointer-events:auto;}
+.asset-carton .carton-middle {z-index:3;clip-path:polygon(
+  20.72% 54.7%,24.17% 55.16%,25.35% 53.5%,26.17% 49.63%,26.93% 47.51%,27.62% 46.5%,28.87% 45.86%,30.04% 46.04%,31.01% 46.59%,31.7% 47.51%,32.46% 50.28%,33.36% 53.31%,34.05% 55.16%,35.08% 55.89%,
+  43.65% 57.09%,44.54% 56.63%,45.37% 54.33%,46.13% 50.83%,47.1% 48.99%,48.14% 48.16%,49.38% 47.97%,50.76% 48.71%,51.52% 49.72%,52.56% 52.85%,53.38% 56.26%,54.42% 57.73%,55.46% 58.2%,
+  63.26% 59.21%,64.36% 58.38%,65.61% 55.06%,66.85% 52.03%,67.75% 50.64%,68.85% 49.91%,70.17% 49.91%,71.48% 50.64%,72.38% 52.03%,73.41% 55.99%,75.28% 60.77%,77% 61.79%,77% 68.05%,20.72% 68.05%);}
+.asset-carton .carton-front {z-index:5;clip-path:polygon(
+  17.61% 72.65%,20.23% 72.93%,21.06% 71.82%,21.96% 69.43%,22.93% 67.77%,23.69% 67.22%,24.86% 66.94%,26.24% 67.03%,27.28% 67.96%,28.45% 70.9%,29.49% 73.2%,30.59% 74.13%,
+  40.61% 75.51%,41.51% 74.86%,42.47% 72.47%,43.65% 70.35%,44.48% 69.52%,45.86% 69.34%,46.96% 69.61%,47.79% 70.44%,48.62% 72.38%,49.59% 75.32%,50.55% 76.52%,
+  59.19% 77.72%,60.22% 77.26%,61.05% 75.69%,61.88% 73.48%,62.98% 72.19%,64.02% 71.64%,65.47% 71.55%,66.64% 72.19%,67.54% 73.57%,68.51% 76.06%,69.61% 78.27%,70.79% 79.28%,76.66% 80.39%,76.66% 87.85%,17.61% 87.85%);}
 .asset-carton{align-self:center;max-height:none;}
 .asset-carton .asset-egg{cursor:pointer;touch-action:manipulation;}
 .asset-carton .asset-egg:focus-visible{outline:2px solid #777871;outline-offset:5px;border-radius:45%;}
