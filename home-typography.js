@@ -12,8 +12,8 @@
   const counterData = {"units":1000,"shapes":{"a":["M167.5 111.5Q219 55 300.0 55.0Q381 55 432.5 111.5Q484 168 484.0 250.0Q484 332 432.5 388.5Q381 445 300.0 445.0Q219 445 167.5 388.5Q116 332 116.0 250.0Q116 168 167.5 111.5Z"],"b":["M201.5 111.5Q253 55 334.0 55.0Q415 55 466.5 111.5Q518 168 518.0 250.0Q518 332 466.5 388.5Q415 445 334.0 445.0Q253 445 201.5 388.5Q150 332 150.0 250.0Q150 168 201.5 111.5Z"],"e":["M293 445Q230 445 182.0 407.5Q134 370 121 291H457Q445 365 401.0 405.0Q357 445 293 445Z"],"o":["M168.5 111.5Q221 55 305.0 55.0Q389 55 441.5 111.5Q494 168 494.0 250.0Q494 332 441.5 388.5Q389 445 305.0 445.0Q221 445 168.5 388.5Q116 332 116.0 250.0Q116 168 168.5 111.5Z"]}};
   counterData.shapes.d = ["M167 111Q219 55 300 55Q381 55 432.5 111.5Q484 168 484 250Q484 332 432.5 388.5Q381 445 300 445Q219 445 167.5 388.5Q116 332 116 250Q116 168 167 111Z"];
   let countersReady = false;
-  const paintCounters = fontSize => {
-    lines.forEach(line => {
+  const paintCounters = metrics => {
+    lines.forEach((line, lineIndex) => {
       const layer = line.parentElement.querySelector('.hero-counter-layer');
       if (!layer) return;
       layer.replaceChildren();
@@ -24,7 +24,7 @@
         if (shapes) {
           const start = line.getStartPositionOfChar(index);
           const group = document.createElementNS('http://www.w3.org/2000/svg','g');
-          const scale = fontSize / counterData.units;
+          const scale = metrics[lineIndex].fontSize / counterData.units;
           group.setAttribute('transform', `translate(${start.x} ${start.y}) scale(${scale} ${-scale})`);
           shapes.forEach(outline => {
             const path = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -48,6 +48,8 @@
       const metric = context.measureText(text);
       return {
         width: metric.width - 2 * Math.max(0, [...text].length - 1),
+        inkRight: metric.actualBoundingBoxRight / referenceSize,
+        letterGaps: Math.max(0, [...text].length - 1),
         ascent: metric.actualBoundingBoxAscent,
         descent: metric.actualBoundingBoxDescent
       };
@@ -71,34 +73,45 @@
     const cartonBox = carton?.getBoundingClientRect();
     lines.forEach((line, index) => {
       const baseline = firstBaseline + index * baselineStep;
+      const metric = metrics[index];
+      metric.fontSize = fontSize;
       line.setAttribute('x', padding);
       line.setAttribute('y', baseline);
       const word = line.closest('.poster-condensed-word');
       if (!word) return;
 
-      const metric = metrics[index];
       const bottom = canvas.top + baseline + metric.descent * scale;
       const top = canvas.top + baseline - metric.ascent * scale;
-      let squeeze = .88;
+      let glyphWidth = .96;
+      let tracking = -.032;
+      let wordSize = fontSize;
       if (cartonBox && cartonBox.left > canvas.left + padding
         && bottom > cartonBox.top + cartonBox.height * .09
         && top < cartonBox.top + cartonBox.height * .89) {
         // Use the visible left edge of the front-facing artwork, including its transparent margin.
         const depth = (bottom - cartonBox.top) / cartonBox.height;
-        const inset = Math.max(.032, .085 - depth * .09);
-        const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 10;
-        squeeze = Math.min(squeeze, available / (metric.width * scale));
+        const inset = Math.max(.033, .101 - depth * .106);
+        const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
+        // The gap after r in “more” closes sooner than the gaps in “under”.
+        const tightest = line.textContent === 'more' ? -.048 : -.075;
+        glyphWidth = .92;
+        tracking = Math.max(tightest, Math.min(tracking,
+          (available / (fontSize * glyphWidth) - metric.inkRight) / metric.letterGaps));
+        wordSize = Math.min(fontSize, available / (glyphWidth * (metric.inkRight + tracking * metric.letterGaps)));
       }
-      // Share the reduction with the height when the available width would make the letters too thin.
-      const heightScale = Math.min(1, Math.max(.68, squeeze / .8));
+      const wordScale = wordSize / fontSize;
       const center = (top + bottom) / 2 - canvas.top;
-      word.setAttribute('transform', `translate(${padding} ${center}) scale(${squeeze} ${heightScale}) translate(${-padding} ${-center})`);
-      metric.width *= squeeze;
-      const trim = (metric.ascent + metric.descent) * (1 - heightScale) / 2;
+      line.style.fontSize = `${wordSize}px`;
+      line.style.letterSpacing = `${tracking * wordSize}px`;
+      line.setAttribute('y', center + (metric.ascent - metric.descent) * wordSize / referenceSize / 2);
+      word.setAttribute('transform', `translate(${padding} 0) scale(${glyphWidth} 1) translate(${-padding} 0)`);
+      metric.fontSize = wordSize;
+      metric.width = (metric.inkRight + tracking * metric.letterGaps) * referenceSize * glyphWidth * wordScale;
+      const trim = (metric.ascent + metric.descent) * (1 - wordScale) / 2;
       metric.ascent -= trim;
       metric.descent -= trim;
     });
-    paintCounters(fontSize);
+    paintCounters(metrics);
     // Keep the caption clear of the poster while it stays anchored to the carton.
     if (note) {
       const caption = note.getBoundingClientRect();
