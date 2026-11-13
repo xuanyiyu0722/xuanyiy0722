@@ -1,18 +1,15 @@
-/* Fit the opening words at a shared size, with room for the carton and wordmark. */
+/* Fit five equal-baseline rows using the actual Euclid font, without stretching glyphs. */
 (() => {
   const svg = document.querySelector('.home-page .hero-poster');
   const frame = svg?.closest('h2');
-  const posterLines = svg ? [...svg.querySelectorAll('.hero-poster-row text')] : [];
-  const carton = document.querySelector('#assetCarton');
-  const layout = carton?.closest('.carton-layout');
-  const note = layout?.querySelector('.hero-note');
+  const lines = svg ? [...svg.querySelectorAll('text')] : [];
   const context = document.createElement('canvas').getContext('2d');
-  if (!frame || !posterLines.length || !context) return;
+  if (!frame || lines.length !== 5 || !context) return;
   const referenceSize = 128;
-  const counterData = {"units":1000,"shapes":{"a":["M167.5 111.5Q219 55 300.0 55.0Q381 55 432.5 111.5Q484 168 484.0 250.0Q484 332 432.5 388.5Q381 445 300.0 445.0Q219 445 167.5 388.5Q116 332 116.0 250.0Q116 168 167.5 111.5Z"],"b":["M201.5 111.5Q253 55 334.0 55.0Q415 55 466.5 111.5Q518 168 518.0 250.0Q518 332 466.5 388.5Q415 445 334.0 445.0Q253 445 201.5 388.5Q150 332 150.0 250.0Q150 168 201.5 111.5Z"],"e":["M293 445Q230 445 182.0 407.5Q134 370 121 291H457Q445 365 401.0 405.0Q357 445 293 445Z"],"o":["M168.5 111.5Q221 55 305.0 55.0Q389 55 441.5 111.5Q494 168 494.0 250.0Q494 332 441.5 388.5Q389 445 305.0 445.0Q221 445 168.5 388.5Q116 332 116.0 250.0Q116 168 168.5 111.5Z"]}};
+  const counterData = {"units":1000,"shapes":{"a":["M167.5 111.5Q219 55 300.0 55.0Q381 55 432.5 111.5Q484 168 484.0 250.0Q484 332 432.5 388.5Q381 445 300.0 445.0Q219 445 167.5 388.5Q116 332 116.0 250.0Q116 168 167.5 111.5Z"],"d":["M167 111Q219 55 300 55Q381 55 432.5 111.5Q484 168 484 250Q484 332 432.5 388.5Q381 445 300 445Q219 445 167.5 388.5Q116 332 116 250Q116 168 167 111Z"],"e":["M293 445Q230 445 182.0 407.5Q134 370 121 291H457Q445 365 401.0 405.0Q357 445 293 445Z"],"o":["M168.5 111.5Q221 55 305.0 55.0Q389 55 441.5 111.5Q494 168 494.0 250.0Q494 332 441.5 388.5Q389 445 305.0 445.0Q221 445 168.5 388.5Q116 332 116.0 250.0Q116 168 168.5 111.5Z"]}};
   let countersReady = false;
-  const paintCounters = (lines, metrics) => {
-    lines.forEach((line, lineIndex) => {
+  const paintCounters = fontSize => {
+    lines.forEach(line => {
       const layer = line.parentElement.querySelector('.hero-counter-layer');
       if (!layer) return;
       layer.replaceChildren();
@@ -23,7 +20,7 @@
         if (shapes) {
           const start = line.getStartPositionOfChar(index);
           const group = document.createElementNS('http://www.w3.org/2000/svg','g');
-          const scale = metrics[lineIndex].fontSize / counterData.units;
+          const scale = fontSize / counterData.units;
           group.setAttribute('transform', `translate(${start.x} ${start.y}) scale(${scale} ${-scale})`);
           shapes.forEach(outline => {
             const path = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -38,22 +35,14 @@
   };
 
   const fit = () => {
-    const canvas = frame.getBoundingClientRect();
-    const { width, height } = canvas;
+    const { width, height } = frame.getBoundingClientRect();
     if (width <= 0 || height <= 0) return;
-    const lines = posterLines.filter(line => line.getClientRects().length);
-    const intervals = lines.length - 1;
-    if (intervals < 1) return;
     context.font = '300 128px "Euclid Circular A", sans-serif';
-    const tracking = -1 / 64;
     const metrics = lines.map(line => {
       const text = line.textContent;
       const metric = context.measureText(text);
-      const gaps = Math.max(0, [...text].length - 1);
-      const spacing = tracking * referenceSize * gaps;
       return {
-        width: metric.width + spacing,
-        inkRight: metric.actualBoundingBoxRight + spacing,
+        width: metric.width - 2 * Math.max(0, [...text].length - 1),
         ascent: metric.actualBoundingBoxAscent,
         descent: metric.actualBoundingBoxDescent
       };
@@ -61,60 +50,37 @@
     const padding = 2;
     const widest = Math.max(...metrics.map(metric => metric.width));
     const firstAscent = metrics[0].ascent;
-    const lastDescent = Math.max(0, metrics.at(-1).descent);
+    const lastDescent = Math.max(0, metrics[4].descent);
     const fontSize = Math.min(
       (width - padding * 2) * referenceSize / widest,
-      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + intervals * .82)
+      (height - padding * 2) / ((firstAscent + lastDescent) / referenceSize + 4 * .82)
     );
     const scale = fontSize / referenceSize;
     const firstBaseline = padding + firstAscent * scale;
     const lastBaseline = height - padding - lastDescent * scale;
-    const baselineStep = (lastBaseline - firstBaseline) / intervals;
+    const baselineStep = (lastBaseline - firstBaseline) / 4;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.fontSize = `${fontSize}px`;
-    svg.style.letterSpacing = `${tracking * fontSize}px`;
-    if (layout) layout.style.transform = 'none';
-    const cartonBox = carton?.getBoundingClientRect();
-    let sharedSize = fontSize;
+    svg.style.letterSpacing = `${-fontSize / 64}px`;
     lines.forEach((line, index) => {
-      if (!line.closest('.poster-carton-word') || !cartonBox) return;
-      const metric = metrics[index];
-      const baseline = canvas.top + firstBaseline + index * baselineStep;
-      const top = baseline - metric.ascent * scale;
-      const bottom = baseline + metric.descent * scale;
-      if (cartonBox.left <= canvas.left + padding
-        || bottom <= cartonBox.top + cartonBox.height * .09
-        || top >= cartonBox.top + cartonBox.height * .89) return;
-      // Allow for the transparent margin on the front-facing carton.
-      const depth = (bottom - cartonBox.top) / cartonBox.height;
-      const inset = Math.max(.033, .101 - depth * .106);
-      const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
-      sharedSize = Math.min(sharedSize, available * referenceSize / metric.inkRight);
-    });
-    lines.forEach((line, index) => {
-      const metric = metrics[index];
-      const wordmark = index === intervals;
-      const size = wordmark ? fontSize : sharedSize;
-      const center = firstBaseline + index * baselineStep + (metric.descent - metric.ascent) * scale / 2;
-      metric.fontSize = size;
-      metric.baseline = center + (metric.ascent - metric.descent) * size / referenceSize / 2;
       line.setAttribute('x', padding);
-      line.setAttribute('y', metric.baseline);
-      line.style.fontSize = `${size}px`;
-      line.style.letterSpacing = `${tracking * size}px`;
+      line.setAttribute('y', firstBaseline + index * baselineStep);
     });
-    paintCounters(lines, metrics);
+    paintCounters(fontSize);
     // Keep the caption clear of the poster while it stays anchored to the carton.
+    const layout = document.querySelector('.carton-layout');
+    const note = layout?.querySelector('.hero-note');
     if (note) {
+      layout.style.transform = 'none';
       const caption = note.getBoundingClientRect();
+      const canvas = frame.getBoundingClientRect();
       let shift = 0;
-      metrics.forEach(metric => {
-        const lineScale = metric.fontSize / referenceSize;
-        const baseline = canvas.top + metric.baseline;
-        const top = baseline - metric.ascent * lineScale;
-        const bottom = baseline + metric.descent * lineScale;
+      metrics.forEach((metric, index) => {
+        const baseline = canvas.top + firstBaseline + index * baselineStep;
+        const top = baseline - metric.ascent * scale;
+        const bottom = baseline + metric.descent * scale;
         const left = canvas.left + padding;
-        const right = left + metric.width * lineScale;
+        const right = left + metric.width * scale;
         if (caption.left < right && caption.right > left
           && caption.top + shift < bottom + 12 && caption.bottom + shift > top - 12) {
           shift = Math.max(shift, bottom + 12 - caption.top);
