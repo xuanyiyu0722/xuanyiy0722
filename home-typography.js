@@ -84,8 +84,9 @@
 
       const bottom = canvas.top + baseline + metric.descent * scale;
       const top = canvas.top + baseline - metric.ascent * scale;
-      let glyphWidth = .96;
-      let tracking = -.032;
+      const naturalWidth = word.hasAttribute('data-natural-width');
+      let glyphWidth = naturalWidth ? 1 : .96;
+      let tracking = naturalWidth ? -1 / 64 : -.032;
       let wordSize = fontSize;
       if (cartonBox && cartonBox.left > canvas.left + padding
         && bottom > cartonBox.top + cartonBox.height * .09
@@ -94,12 +95,14 @@
         const depth = (bottom - cartonBox.top) / cartonBox.height;
         const inset = Math.max(.033, .101 - depth * .106);
         const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
-        const isMore = line.textContent === 'more';
-        // The gap after r in “more” closes sooner than the other lines' gaps.
-        const tightest = isMore ? -.048 : -.062;
-        glyphWidth = isMore ? .92 : .9;
-        tracking = Math.max(tightest, Math.min(tracking,
-          (available / (fontSize * glyphWidth) - metric.inkRight) / metric.letterGaps));
+        if (!naturalWidth) {
+          const isMore = line.textContent === 'more';
+          // The gap after r in “more” closes sooner than the other lines' gaps.
+          const tightest = isMore ? -.048 : -.062;
+          glyphWidth = isMore ? .92 : .9;
+          tracking = Math.max(tightest, Math.min(tracking,
+            (available / (fontSize * glyphWidth) - metric.inkRight) / metric.letterGaps));
+        }
         wordSize = Math.min(fontSize, available / (glyphWidth * (metric.inkRight + tracking * metric.letterGaps)));
       }
       const wordScale = wordSize / fontSize;
@@ -107,7 +110,9 @@
       line.style.fontSize = `${wordSize}px`;
       line.style.letterSpacing = `${tracking * wordSize}px`;
       line.setAttribute('y', center + (metric.ascent - metric.descent) * wordSize / referenceSize / 2);
-      word.setAttribute('transform', `translate(${padding} 0) scale(${glyphWidth} 1) translate(${-padding} 0)`);
+      if (!naturalWidth) {
+        word.setAttribute('transform', `translate(${padding} 0) scale(${glyphWidth} 1) translate(${-padding} 0)`);
+      }
       metric.fontSize = wordSize;
       metric.width = (metric.inkRight + tracking * metric.letterGaps) * referenceSize * glyphWidth * wordScale;
       const trim = (metric.ascent + metric.descent) * (1 - wordScale) / 2;

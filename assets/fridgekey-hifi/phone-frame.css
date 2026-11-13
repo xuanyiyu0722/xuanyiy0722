@@ -4,3 +4,32 @@
   border-radius: 0;
   box-shadow: none;
 }
+
+.journey-feeling-icon {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+}
+
+.journey-feeling-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 12px);
+  height: 100px;
+  overflow: visible;
+  pointer-events: none;
+  color: #3b5bff;
+}
+
+.journey-feeling-arrows line {
+  stroke: currentColor;
+  stroke-width: 2px;
+}
+
+.journey-feeling-arrows polygon {
+  fill: currentColor;
+}
