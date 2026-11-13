@@ -11,6 +11,9 @@
   const referenceSize = 128;
   const originalWords = ['There’s', 'more', 'under', 'the', 'EGGshell.'];
   const stacked = matchMedia('(max-width: 560px)');
+  const selectionRows = [...svg.querySelectorAll('.poster-selectable text')];
+  const selectionBands = svg.querySelector('.poster-highlight-bands');
+  const selectionClip = svg.querySelector('#headline-selection');
 
   function positionCarton({ left, top, width, height }) {
     // Keep the carton and caption at the positions set by the original poster.
@@ -53,24 +56,67 @@
     positionCarton(canvas);
 
     const margin = Math.max(6, Math.min(13, width * .024));
-    const aspectRatio = 1136 / 1307;
+    const { width: artworkWidth, height: artworkHeight } = svg.viewBox.baseVal;
+    const aspectRatio = artworkWidth / artworkHeight;
     let posterWidth = Math.min(width - 2 * margin, (height - 2 * margin) * aspectRatio);
     if (!stacked.matches) {
       const box = carton.getBoundingClientRect();
+      const caption = note.getBoundingClientRect();
+      const captionInset = Math.max(margin, caption.top - canvas.top);
       const cartonEdge = box.left - canvas.left + box.width * .048;
-      const overlap = Math.min(74, width * .065);
-      // The right tip of “below” is 67.2% across the supplied artwork.
-      posterWidth = Math.min(posterWidth, (cartonEdge - margin + overlap) / .672);
+      // Keep the title in the left column while allowing the artwork to meet the carton.
+      const columnWidth = (cartonEdge - margin + Math.min(42, width * .035)) * artworkWidth / 764;
+      posterWidth = Math.min(posterWidth, columnWidth, Math.max(height * .25, height - 2 * captionInset) * aspectRatio);
     }
     const verticalSpace = height - posterWidth / aspectRatio;
     svg.style.left = `${margin}px`;
-    svg.style.top = `${Math.max(margin, verticalSpace * .67)}px`;
+    svg.style.top = `${verticalSpace / 2}px`;
     svg.style.width = `${posterWidth}px`;
     svg.style.height = `${posterWidth / aspectRatio}px`;
+  }
+
+  function highlightSelection() {
+    const selection = window.getSelection();
+    const bands = [];
+    if (selection?.rangeCount && !selection.isCollapsed) {
+      const range = selection.getRangeAt(0);
+      for (const row of selectionRows) {
+        if (!range.intersectsNode(row)) continue;
+        // Read the row's band and the exact character offsets of the native selection.
+        const clip = svg.querySelector(row.getAttribute('clip-path').slice(4, -1));
+        const band = clip.firstElementChild;
+        let offset = 0;
+        let start = Infinity;
+        let end = -Infinity;
+        const walker = document.createTreeWalker(row, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) {
+          const node = walker.currentNode;
+          if (range.intersectsNode(node)) {
+            const first = range.startContainer === node ? range.startOffset : 0;
+            const last = range.endContainer === node ? range.endOffset : node.length;
+            if (last > first) {
+              start = Math.min(start, row.getStartPositionOfChar(offset + first).x);
+              end = Math.max(end, row.getEndPositionOfChar(offset + last - 1).x);
+            }
+          }
+          offset += node.length;
+        }
+        if (end <= start) continue;
+        const rect = document.createElementNS(svg.namespaceURI, 'rect');
+        rect.setAttribute('x', Math.max(0, start));
+        rect.setAttribute('y', band.getAttribute('y') || '0');
+        rect.setAttribute('width', Math.min(svg.viewBox.baseVal.width, end) - Math.max(0, start));
+        rect.setAttribute('height', band.getAttribute('height'));
+        bands.push(rect);
+      }
+    }
+    selectionBands.replaceChildren(...bands);
+    selectionClip.replaceChildren(...bands.map(rect => rect.cloneNode()));
   }
 
   fit();
   if ('ResizeObserver' in window) new ResizeObserver(fit).observe(frame);
   else window.addEventListener('resize', fit, { passive: true });
   document.fonts?.ready.then(fit);
+  document.addEventListener('selectionchange', highlightSelection);
 })();

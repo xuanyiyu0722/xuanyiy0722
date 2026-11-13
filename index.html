@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="styles.css?v=34">
   <link rel="preload" href="assets/fonts/EuclidCircularA-Light.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="home.css?v=142">
+  <link rel="stylesheet" href="home.css?v=143">
 <link rel="stylesheet" href="illustrated-motion.css?v=61">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof Element.prototype.animate==='function'){document.documentElement.classList.add('egg-intro-pending');setTimeout(function(){document.documentElement.classList.remove('egg-intro-pending')},4000)}</script>
 <link rel="stylesheet" href="sidebar-layout.css?v=65">
@@ -53,15 +53,25 @@
     <div class="hero-grid">
       <div class="hero-intro">
         <h2 aria-label="There’s more below the eggshell.">
-          <svg class="hero-poster" viewBox="0 0 1136 1307" aria-hidden="true" focusable="false">
+          <svg class="hero-poster" viewBox="0 0 1276 1307" aria-hidden="true" focusable="false">
             <defs>
-              <image id="headline-artwork" href="assets/home-headline.png" width="1136" height="1307"/>
-              <path id="headline-egg-area" d="M12 1048H647V1119L626 1125 634 1158 634 1207 624 1236 616 1250 609 1258 596 1278 574 1300 554 1307H12Z"/>
+              <image id="headline-artwork" href="assets/home-headline-v143.png" width="1276" height="1307"/>
+              <path id="headline-egg-area" d="M12 1048H677V1130L668 1155 669 1208 662 1234 654 1252 647 1258 630 1286 603 1307H12Z"/>
               <clipPath id="headline-egg"><use href="#headline-egg-area"/></clipPath>
-              <mask id="headline-without-egg" x="0" y="0" width="1136" height="1307" maskUnits="userSpaceOnUse">
-                <rect width="1136" height="1307" fill="white"/>
+              <mask id="headline-without-egg" x="0" y="0" width="1276" height="1307" maskUnits="userSpaceOnUse">
+                <rect width="1276" height="1307" fill="white"/>
                 <use href="#headline-egg-area" fill="black"/>
               </mask>
+              <clipPath id="select-there"><rect width="1276" height="305"/></clipPath>
+              <clipPath id="select-more"><rect y="305" width="1276" height="245"/></clipPath>
+              <clipPath id="select-below"><rect y="550" width="1276" height="248"/></clipPath>
+              <clipPath id="select-the"><rect y="798" width="1276" height="250"/></clipPath>
+              <clipPath id="select-eggshell"><rect y="1048" width="1276" height="259"/></clipPath>
+              <clipPath id="headline-selection"></clipPath>
+              <filter id="headline-selected-ink">
+                <feFlood flood-color="#423c30"/>
+                <feComposite in2="SourceAlpha" operator="in"/>
+              </filter>
             </defs>
             <g class="hero-poster-row">
               <use href="#headline-artwork" mask="url(#headline-without-egg)"/>
@@ -69,7 +79,19 @@
                 <g class="poster-egg-motion">
                   <use href="#headline-artwork" clip-path="url(#headline-egg)"/>
                 </g>
-                <rect class="poster-egg-hit" x="26" y="1050" width="605" height="253"/>
+              </g>
+              <g class="poster-highlight" pointer-events="none" fill="#fdd957">
+                <g class="poster-highlight-bands"></g>
+                <g clip-path="url(#headline-selection)">
+                  <use href="#headline-artwork" filter="url(#headline-selected-ink)"/>
+                </g>
+              </g>
+              <g class="poster-selectable">
+                <text clip-path="url(#select-there)" x="0" y="263" textLength="927" lengthAdjust="spacing">There’s</text>
+                <text clip-path="url(#select-more)" x="6" y="523" textLength="728" lengthAdjust="spacing">more</text>
+                <text clip-path="url(#select-below)" x="5" y="783" textLength="777" lengthAdjust="spacing">below</text>
+                <text clip-path="url(#select-the)" x="0" y="1043" textLength="420" lengthAdjust="spacing" font-style="italic">the</text>
+                <text clip-path="url(#select-eggshell)" x="0" y="1303"><tspan class="poster-egg-select" textLength="650" lengthAdjust="spacing">EGG</tspan><tspan x="650" textLength="626" lengthAdjust="spacing">shell.</tspan></text>
               </g>
             </g>
           </svg>
@@ -102,10 +124,10 @@
 <button class="close-preview" type="button" aria-label="Close project preview"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
 <div class="zoom-egg"><button class="crack-button" type="button" aria-label="Crack the egg to reveal the project"><img class="egg-half egg-top" src="assets/egg.webp" alt=""><img class="egg-half egg-bottom" src="assets/egg.webp" alt=""></button><a class="project-reveal"><span></span><small>Explore project ↗</small></a></div>
 <p class="preview-hint" aria-live="polite">Click again to crack</p></dialog>
-<script src="home-typography.js?v=142"></script>
+<script src="home-typography.js?v=143"></script>
 <script src="home.js?v=80"></script>
 <script src="egg-cursor.js?v=124"></script>
-<script src="egg-letter-hover.js?v=142"></script>
+<script src="egg-letter-hover.js?v=143"></script>
 <script src="illustrated-motion.js?v=131"></script>
 </body>
 </html>
