@@ -10,7 +10,6 @@
   if (!frame || lines.length !== 5 || !context) return;
   const referenceSize = 128;
   const counterData = {"units":1000,"shapes":{"a":["M167.5 111.5Q219 55 300.0 55.0Q381 55 432.5 111.5Q484 168 484.0 250.0Q484 332 432.5 388.5Q381 445 300.0 445.0Q219 445 167.5 388.5Q116 332 116.0 250.0Q116 168 167.5 111.5Z"],"b":["M201.5 111.5Q253 55 334.0 55.0Q415 55 466.5 111.5Q518 168 518.0 250.0Q518 332 466.5 388.5Q415 445 334.0 445.0Q253 445 201.5 388.5Q150 332 150.0 250.0Q150 168 201.5 111.5Z"],"e":["M293 445Q230 445 182.0 407.5Q134 370 121 291H457Q445 365 401.0 405.0Q357 445 293 445Z"],"o":["M168.5 111.5Q221 55 305.0 55.0Q389 55 441.5 111.5Q494 168 494.0 250.0Q494 332 441.5 388.5Q389 445 305.0 445.0Q221 445 168.5 388.5Q116 332 116.0 250.0Q116 168 168.5 111.5Z"]}};
-  counterData.shapes.d = ["M167 111Q219 55 300 55Q381 55 432.5 111.5Q484 168 484 250Q484 332 432.5 388.5Q381 445 300 445Q219 445 167.5 388.5Q116 332 116 250Q116 168 167 111Z"];
   let countersReady = false;
   const paintCounters = metrics => {
     lines.forEach((line, lineIndex) => {
@@ -92,9 +91,10 @@
         const depth = (bottom - cartonBox.top) / cartonBox.height;
         const inset = Math.max(.033, .101 - depth * .106);
         const available = cartonBox.left + cartonBox.width * inset - canvas.left - padding - 5;
-        // The gap after r in “more” closes sooner than the gaps in “under”.
-        const tightest = line.textContent === 'more' ? -.048 : -.075;
-        glyphWidth = .92;
+        const isMore = line.textContent === 'more';
+        // The gap after r in “more” closes sooner than the gaps in “beneath”.
+        const tightest = isMore ? -.048 : -.062;
+        glyphWidth = isMore ? .92 : .9;
         tracking = Math.max(tightest, Math.min(tracking,
           (available / (fontSize * glyphWidth) - metric.inkRight) / metric.letterGaps));
         wordSize = Math.min(fontSize, available / (glyphWidth * (metric.inkRight + tracking * metric.letterGaps)));
