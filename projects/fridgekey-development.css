@@ -7,7 +7,7 @@
 .fk-testing-video:focus-visible{outline:2px solid #3b5bff;outline-offset:4px;}
 
 .fk-sketch .fk-photo-crop {
-  aspect-ratio: 910 / 464;
+  aspect-ratio: 1820 / 860;
 }
 
 .fk-modeling-views {
@@ -37,7 +37,7 @@
 }
 
 .fk-modeling-views .fk-model-exploded .fk-photo-crop {
-  aspect-ratio: 619 / 432;
+  aspect-ratio: 3410 / 2382;
 }
 
 .fk-modeling-scale {
