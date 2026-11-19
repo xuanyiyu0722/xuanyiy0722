@@ -5,3 +5,66 @@
 .fk-servo-build>a:after,.fk-lock-build>a:after{content:"";position:absolute;border:2px solid white;border-radius:50%;pointer-events:none;box-shadow:0 0 2px #17223930}.fk-servo-build>a:after{left:71.49%;top:57.98%;width:13.79%;height:18.40%}.fk-lock-build>a:after{left:75.86%;top:43.56%;width:16.09%;height:21.47%}
 .fk-testing-video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#111210;border-radius:7px;}
 .fk-testing-video:focus-visible{outline:2px solid #3b5bff;outline-offset:4px;}
+
+.fk-sketch .fk-photo-crop {
+  aspect-ratio: 910 / 464;
+}
+
+.fk-modeling-views {
+  display: grid;
+  grid-template-columns: minmax(0, 272fr) minmax(0, 619fr);
+  gap: 0 18px;
+  align-items: start;
+}
+
+.fk-modeling-views .fk-model-open {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.fk-modeling-views .fk-model-closed {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.fk-modeling-views .fk-model-exploded {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.fk-modeling-views .fk-photo-crop {
+  aspect-ratio: 1260 / 1000;
+}
+
+.fk-modeling-views .fk-model-exploded .fk-photo-crop {
+  aspect-ratio: 619 / 432;
+}
+
+.fk-modeling-scale {
+  margin: 0;
+  color: #5a6a95;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.fk-modeling-scale strong {
+  color: #283765;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .fk-modeling-views {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .fk-modeling-views .fk-model-closed {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .fk-modeling-views .fk-model-exploded {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
