@@ -120,6 +120,16 @@
       "kind": "source image",
       "width": 480,
       "height": 480
+    },
+    "musubi-wordmark-flower.webp": {
+      "kind": "User-supplied transparent MUSUBI wordmark with blossom",
+      "width": 2200,
+      "height": 389
+    },
+    "musubi-hero-composition.webp": {
+      "kind": "User-supplied complete MUSUBI hero composition",
+      "width": 2400,
+      "height": 1800
     }
   },
   "notes": "Original Figma materials resized to WebP. The seven-screen EverPaw wall follows the reference frame positions; CSS clips only the export canvas outside each device and the top and bottom of the whole wall. Original project copy and screen artwork are preserved."

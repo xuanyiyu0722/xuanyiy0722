@@ -21,7 +21,7 @@
     if (event.type !== 'keydown' || ['Escape','Tab','ArrowDown','PageDown','End',' '].includes(event.key)) finish();
   };
   const motionChange = event => { if (event.matches) finish(); };
-  if (!showcase || reduce.matches || !Element.prototype.animate || scrollY > 80) { finish(); return; }
+  if (!showcase || reduce.matches || !Element.prototype.animate || scrollY > 80 || root.dataset.galleryRestoring === 'true') { finish(); return; }
   root.dataset.galleryEntry = 'loading';
   types.forEach(type => window.addEventListener(type, skip, { passive:type !== 'keydown' }));
   reduce.addEventListener('change', motionChange);

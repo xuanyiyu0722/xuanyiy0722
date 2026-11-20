@@ -62,7 +62,8 @@
   };
   const snap = (useDirection = true) => {
     clearTimeout(snapTimer);
-    if (dragging || touching || document.documentElement.classList.contains('page-arrival-active')) return;
+    if (dragging || touching || document.documentElement.dataset.galleryRestoring === 'true' ||
+        document.documentElement.classList.contains('page-arrival-active')) return;
     if (pendingStop !== null) {
       if (Math.abs(pendingStop - scrollY) <= 1) pendingStop = null;
       return;
@@ -132,6 +133,7 @@
   }
   window.addEventListener('resize', reset, { passive:true });
   window.addEventListener('pageshow', reset);
+  window.addEventListener('gallery-position-restored', reset);
   window.addEventListener('pagehide', () => {
     clearTimeout(snapTimer);
     if (frame) cancelAnimationFrame(frame);

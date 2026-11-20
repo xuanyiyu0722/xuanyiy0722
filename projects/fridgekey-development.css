@@ -10,6 +10,15 @@
   aspect-ratio: 1820 / 860;
 }
 
+.fk-final-render .fk-photo-crop {
+  aspect-ratio:auto;
+  padding:clamp(16px,3vw,36px);
+}
+.fk-final-render img {
+  height:auto;
+  object-fit:contain;
+}
+
 .fk-modeling-views {
   display: grid;
   grid-template-columns: minmax(0, 272fr) minmax(0, 619fr);
