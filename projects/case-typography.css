@@ -1,0 +1,25 @@
+/* Isolated font aliases keep imported app screens, charts and existing design tokens unchanged.
+   Only explicitly annotated case-study text is styled below. */
+@font-face{font-family:"Case Geist";font-style:normal;font-weight:100 900;font-display:swap;src:url("../assets/fonts/case/Geist-100-900.woff2") format("woff2");}
+@font-face{font-family:"Case Gemunu Libre";font-style:normal;font-weight:200 800;font-display:swap;src:url("../assets/fonts/case/GemunuLibre-200-800.woff2") format("woff2");}
+@font-face{font-family:"Case Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("../assets/fonts/case/Inter-100-900.woff2") format("woff2");}
+@font-face{font-family:"Case Kodchasan";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/case/Kodchasan-400.woff2") format("woff2");}
+@font-face{font-family:"Case Kodchasan";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/case/Kodchasan-700.woff2") format("woff2");}
+@font-face{font-family:"Case Poppins";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/case/Poppins-400.woff2") format("woff2");}
+@font-face{font-family:"Case Poppins";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/case/Poppins-500.woff2") format("woff2");}
+@font-face{font-family:"Case Poppins";font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/case/Poppins-600.woff2") format("woff2");}
+@font-face{font-family:"Case Poppins";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/case/Poppins-700.woff2") format("woff2");}
+@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/case/EuclidCircularA-Regular.ttf") format("truetype");}
+@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/case/EuclidCircularA-Medium.ttf") format("truetype");}
+@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/EuclidCircularA-Bold.ttf") format("truetype");}
+@font-face{font-family:"Case Euclid Circular A";font-style:italic;font-weight:400;font-display:swap;src:url("../assets/fonts/case/EuclidCircularA-Italic.ttf") format("truetype");}
+
+.project-naborfood{--case-heading-family:"Case Inter",sans-serif;--case-copy-family:"Case Euclid Circular A",sans-serif;}
+.project-everpaw{--case-heading-family:"Case Gemunu Libre",sans-serif;--case-copy-family:"Case Geist",sans-serif;}
+.project-fridgekey{--case-heading-family:"Case Inter",sans-serif;--case-copy-family:"Case Inter",sans-serif;}
+.project-musubi{--case-heading-family:"Case Kodchasan",sans-serif;--case-copy-family:"Case Kodchasan",sans-serif;}
+.project-page [data-case-type="heading"]{font-family:var(--case-heading-family)!important;}
+.project-page [data-case-type="copy"]{font-family:var(--case-copy-family)!important;}
+.project-musubi [data-case-type="persona"]{font-family:"Case Poppins",sans-serif!important;}
+.project-fridgekey [data-case-type="heading"],
+.project-musubi [data-case-type="heading"]{font-weight:700!important;}
