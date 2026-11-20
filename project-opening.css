@@ -1,0 +1,21 @@
+/* A sheet grows from the gallery cover; the case study is revealed through masks. */
+.project-opening-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #efeee9;
+  pointer-events: auto;
+  will-change: clip-path, transform;
+}
+.project-opening-out { overflow: hidden; }
+.project-opening-pending :is(.case-brand,.summary--project,.case-meta,.case-hero-art,.project-sidebar,.project-mobile-bar) { visibility: hidden; }
+.project-opening-ink-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.project-opening-line { will-change: clip-path, transform; }
+@media (prefers-reduced-motion: reduce) {
+  .project-opening-sheet { display: none; }
+  .project-opening-pending :is(.case-brand,.summary--project,.case-meta,.case-hero-art,.project-sidebar,.project-mobile-bar) { visibility: visible; }
+}
+@media print {
+  .project-opening-sheet { display: none; }
+  .project-opening-pending :is(.case-brand,.summary--project,.case-meta,.case-hero-art,.project-sidebar,.project-mobile-bar) { visibility: visible; }
+}

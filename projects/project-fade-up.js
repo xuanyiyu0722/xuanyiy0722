@@ -25,7 +25,10 @@
       children.forEach(child => collect(child, depth + 1));
     } else targets.add(node);
   }
-  chapters.forEach(chapter => [...chapter.children].forEach(child => collect(child)));
+  chapters.forEach(chapter => {
+    if (chapter.id === 'project-overview' && root.classList.contains('project-opening-pending')) return;
+    [...chapter.children].forEach(child => collect(child));
+  });
   document.querySelectorAll('.case-next > *').forEach(node => targets.add(node));
   targets.forEach(node => node.classList.add('fade-up-in'));
   let observer;

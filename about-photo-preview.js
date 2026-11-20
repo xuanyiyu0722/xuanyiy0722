@@ -48,12 +48,12 @@
 
   for (const tile of mosaic.querySelectorAll('.about-mosaic__tile')) {
     tile.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'mouse' && !pinned) show(tile);
+      if (!tile.closest('.about-photo-drum') && event.pointerType === 'mouse' && !pinned) show(tile);
     });
     tile.addEventListener('pointerleave', () => {
       if (active === tile && !pinned && !tile.matches(':focus-visible')) close();
     });
-    tile.addEventListener('focus', () => { if (tile.matches(':focus-visible')) show(tile); });
+    tile.addEventListener('focus', () => { if (!tile.closest('.about-photo-drum') && tile.matches(':focus-visible')) show(tile); });
     tile.addEventListener('blur', () => { if (active === tile) close(); });
     tile.addEventListener('click', () => { if (active === tile && pinned) close(); else show(tile, true); });
   }
@@ -61,6 +61,7 @@
   document.addEventListener('pointerdown', event => { if (active && !active.contains(event.target)) close(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
   window.addEventListener('scroll', close, { passive: true });
+  window.addEventListener('about-photo-drum-change', close);
   window.addEventListener('resize', close);
   window.addEventListener('pagehide', close);
 })();

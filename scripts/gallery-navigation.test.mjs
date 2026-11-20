@@ -64,14 +64,12 @@ test('gallery arrows move by one project, keep rapid taps, and clamp at both end
   g.key('ArrowDown');
   assert.deepEqual(g.calls,[900,1800,2700,2700]);
   g.settle(2700);
-  assert.equal(g.next.disabled,true);
   g.key('ArrowUp');
   assert.equal(g.calls.at(-1),1800);
   g.key('Home');
   g.key('ArrowUp');
   assert.equal(g.calls.at(-1),0);
   g.settle(0);
-  assert.equal(g.previous.disabled,true);
 });
 
 test('reversing a key cancels an in-flight move even before scrolling has started', () => {
@@ -79,7 +77,7 @@ test('reversing a key cancels an in-flight move even before scrolling has starte
   g.key('ArrowDown');
   g.key('ArrowUp');
   assert.deepEqual(g.calls,[900,0]);
-  g.next.fire('click');
+  g.key('ArrowDown');
   assert.equal(g.calls.at(-1),900);
   assert.equal(g.status.textContent,'2 of 4 — FridgeKey');
 });

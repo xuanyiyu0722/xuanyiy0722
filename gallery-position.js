@@ -5,8 +5,6 @@
   if (!guide || stages.length < 2) return;
   const track = guide.querySelector('.gallery-scroll-track');
   const thumb = guide.querySelector('.gallery-scroll-thumb');
-  const previous = document.querySelector('[data-gallery-previous]');
-  const next = document.querySelector('[data-gallery-next]');
   const status = document.querySelector('.gallery-keyboard-status');
   let current = 0, frame = 0, dragging = false;
   let resting = 0;
@@ -41,9 +39,6 @@
     const pageY = scrollY;
     const progress = clamp((pageY - stops[0]) / Math.max(1, stops.at(-1) - stops[0]), 0, 1);
     current = closest(stops, pageY);
-    const selected = pendingStop === null ? current : resting;
-    if (previous) previous.disabled = selected === 0;
-    if (next) next.disabled = selected === stages.length - 1;
     const offset = progress * travel;
     if (offset !== thumbOffset) {
       thumbOffset = offset;
@@ -120,8 +115,6 @@
   track.addEventListener('pointercancel', finishDrag);
   track.addEventListener('lostpointercapture', finishDrag);
   const selectedIndex = () => pendingStop === null ? closest(positions()) : resting;
-  previous?.addEventListener('click', () => select(selectedIndex() - 1, positions(), true));
-  next?.addEventListener('click', () => select(selectedIndex() + 1, positions(), true));
   document.addEventListener('keydown', event => {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
         document.documentElement.classList.contains('page-arrival-active')) return;
@@ -139,10 +132,7 @@
   track.setAttribute('aria-valuemax', stages.length);
   window.addEventListener('scroll', () => { queue(); scheduleSnap(); }, { passive:true });
   // A fresh gesture may interrupt an in-flight snap. Its own scroll events may not.
-  const releaseSnap = event => {
-    if (event.type === 'pointerdown' && event.target.closest('.gallery-keyboard-controls')) return;
-    pendingStop = null;
-  };
+  const releaseSnap = () => { pendingStop = null; };
   for (const event of ['wheel', 'pointerdown']) {
     window.addEventListener(event, releaseSnap, { capture:true, passive:true });
   }

@@ -21,9 +21,18 @@
   .sidebar-toggle:hover { background: rgba(66,60,48,.08); }
   .sidebar-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
   .sidebar-content { min-width: 0; }
-  html.sidebar-collapsed { --sidebar: 64px; }
+  .portfolio-theme { --floating-sidebar-ink: #f8f4ed; }
+  html.sidebar-collapsed { --sidebar: 0px; }
+  .sidebar-collapsed .sidebar[data-collapsible-sidebar] {
+    width: 0;
+    padding-inline: 0;
+    border-right: 0;
+    overflow: visible;
+    background: transparent;
+  }
   .sidebar-collapsed .sidebar-content { visibility: hidden; pointer-events: none; }
-  .sidebar-collapsed .sidebar-toggle svg rect { fill: rgba(66,60,48,.06); }
+  .sidebar-collapsed .sidebar-toggle { color: var(--floating-sidebar-ink,var(--ink)); }
+  .sidebar-collapsed .sidebar-toggle:hover { background: rgba(248,244,237,.1); }
   .portfolio-theme .main { transition: margin-left 240ms var(--ease); }
   .gallery-scroll-guide { transition: left 240ms var(--ease); }
 }
