@@ -52,7 +52,7 @@ html:has(body.about-page) { scroll-snap-type:y proximity; }
   border-top:0;
 }
 .about-profile-section .about-side { display:block; padding:0; }
-.about-profile-egg { justify-self:center; width:min(clamp(220px,30cqw,360px),42svh); max-width:100%; margin:0; left:-32px; top:56px; }
+.about-profile-egg { justify-self:center; width:min(clamp(220px,30cqw,360px),42svh); max-width:100%; margin:0; left:-16px; top:56px; }
 .about-story-illustration,.about-story-illustration svg { display:block; width:100%; height:auto; }
 .about-profile-egg .about-egg-note { inset:auto 0 calc(100% + 22px) auto; width:min(420px,calc(100vw - 40px)); padding:18px 22px; border-radius:20px; animation:none; }
 .about-profile-egg .about-egg-note p { max-height:none; overflow:visible; font-size:16px; line-height:1.55; }
