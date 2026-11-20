@@ -59,7 +59,7 @@
   .about-photo-layout .about-copy { display:block; grid-row:2; }
   .about-visual { grid-row:1; }
   .about-photo-layout .about-intro { grid-row:2; }
-  .about-photo-layout .about-intro .lead { max-width:35ch; margin-inline:auto; font-size:20px; }
+  .about-photo-layout .about-intro .lead { max-width:35ch; margin-inline:0; font-size:20px; }
   .about-photo-wall { height:clamp(360px,53svh,560px); }
   .about-photo-columns { gap:8px; }
   .about-photo-group { gap:8px; padding-bottom:8px; }
