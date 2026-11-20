@@ -1,6 +1,6 @@
 @font-face {
   font-family:"Euclid Gallery";
-  src:local("EuclidCircularA-Bold"),url("assets/fonts/EuclidCircularA-Bold.ttf") format("truetype");
+  src:local("EuclidCircularA-Bold"),url("assets/optimized/EuclidCircularA-Bold.1a2ff7e55435.woff2") format("woff2");
   font-weight:700; font-style:normal; font-display:swap;
 }
 html.gallery-lenis-active { scroll-behavior:auto !important; }

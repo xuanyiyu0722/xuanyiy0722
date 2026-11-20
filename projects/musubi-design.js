@@ -83,6 +83,10 @@
   const resume = () => {
     if (playing && visible && !document.hidden && !frame) { previousTime = null; frame = requestAnimationFrame(tick); }
   };
+  const suspend = () => {
+    cancelAnimationFrame(frame); frame = 0; previousTime = null;
+  };
+  const syncPlayback = () => { if (!visible || document.hidden) suspend(); else resume(); };
   const pause = () => {
     playing = false; previousTime = null; cancelAnimationFrame(frame); frame = 0; updateButton();
   };
@@ -102,9 +106,11 @@
     if (visible && !started && !reduceMotion.matches) {
       started = true; playing = true; updateButton();
     }
-    resume();
+    syncPlayback();
   }, {threshold: .15}).observe(root);
-  document.addEventListener('visibilitychange', resume);
+  document.addEventListener('visibilitychange', syncPlayback);
+  window.addEventListener('pagehide', suspend);
+  window.addEventListener('pageshow', syncPlayback);
   reduceMotion.addEventListener('change', () => { if (reduceMotion.matches) pause(); });
   render(); updateButton();
 })();

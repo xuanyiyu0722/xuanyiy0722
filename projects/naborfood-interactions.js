@@ -37,29 +37,49 @@
     status.className = 'wf-feature-status';
     status.setAttribute('aria-live','polite');
     row.querySelector('.wf-notes').append(status);
+    let markers = [], drawFrame = 0;
+    const clearMarkers = () => {
+      markers.forEach(marker => marker.remove());
+      markers = [];
+      anchors.forEach(anchor => anchor.classList.remove('wf-screen-selected'));
+    };
     const draw = () => {
-      anchors.forEach(a => { a.querySelectorAll('.wf-highlight').forEach(h=>h.remove()); a.classList.remove('wf-screen-selected'); });
-      if (active < 0) return;
-      regions[rowIndex][active].forEach(([screen,x,y,w,h]) => {
+      drawFrame = 0;
+      if (active < 0) { clearMarkers(); return; }
+      // Snapshot all selected screens first, then update the highlight layer.
+      const boxes = new Map();
+      const positions = regions[rowIndex][active].map(([screen,x,y,w,h]) => {
         const anchor = anchors[screen];
-        const img = anchor.querySelector('img');
-        const bounds = img.getBoundingClientRect();
-        const parent = anchor.getBoundingClientRect();
-        const ratio = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : bounds.width / bounds.height;
+        if (!boxes.has(screen)) {
+          const img = anchor.querySelector('img');
+          boxes.set(screen, {bounds:img.getBoundingClientRect(), parent:anchor.getBoundingClientRect(),
+            ratio:img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : null});
+        }
+        const {bounds,parent,ratio:intrinsic} = boxes.get(screen);
+        const ratio = intrinsic || bounds.width / bounds.height;
         const drawWidth = Math.min(bounds.width,bounds.height*ratio);
         const drawHeight = drawWidth / ratio;
-        const marker = document.createElement('span');
-        marker.className = 'wf-highlight';
-        marker.setAttribute('aria-hidden','true');
-        marker.style.left = `${bounds.left-parent.left+(bounds.width-drawWidth)/2+drawWidth*x/100}px`;
-        marker.style.top = `${bounds.top-parent.top+drawHeight*y/100}px`;
-        marker.style.width = `${drawWidth*w/100}px`;
-        marker.style.height = `${drawHeight*h/100}px`;
-        anchor.append(marker);
-        anchor.classList.add('wf-screen-selected');
+        return {anchor, left:`${bounds.left-parent.left+(bounds.width-drawWidth)/2+drawWidth*x/100}px`,
+          top:`${bounds.top-parent.top+drawHeight*y/100}px`, width:`${drawWidth*w/100}px`, height:`${drawHeight*h/100}px`};
+      });
+      positions.forEach(({anchor,...styles}, index) => {
+        let marker = markers[index];
+        if (!marker) {
+          marker = document.createElement('span');
+          marker.className = 'wf-highlight';
+          marker.setAttribute('aria-hidden','true');
+          markers.push(marker);
+          anchor.append(marker);
+          anchor.classList.add('wf-screen-selected');
+        }
+        for (const [name,value] of Object.entries(styles)) if (marker.style[name] !== value) marker.style[name] = value;
       });
     };
+    const scheduleDraw = () => {
+      if (active >= 0 && !drawFrame) drawFrame = requestAnimationFrame(draw);
+    };
     buttons.forEach((button,index) => button.addEventListener('click',() => {
+      clearMarkers();
       active = active === index ? -1 : index;
       buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===active)));
       row.dataset.activeFunction = active < 0 ? '' : button.textContent;
@@ -67,8 +87,10 @@
       draw();
       if (active >= 0 && window.matchMedia('(max-width: 640px)').matches) anchors[regions[rowIndex][active][0][0]].scrollIntoView({behavior:motion(),block:'center'});
     }));
-    anchors.forEach(a=>a.querySelector('img').addEventListener('load',draw));
-    new ResizeObserver(draw).observe(row);
+    anchors.forEach(a=>a.querySelector('img').addEventListener('load',scheduleDraw));
+    new ResizeObserver(scheduleDraw).observe(row);
+    window.addEventListener('pagehide', () => { cancelAnimationFrame(drawFrame); drawFrame = 0; });
+    window.addEventListener('pageshow', scheduleDraw);
   });
 
   const store = document.querySelector('[data-store-explorer]');

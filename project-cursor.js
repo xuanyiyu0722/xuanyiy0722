@@ -1,10 +1,10 @@
 // Use the existing project app icons as pointers over the homepage project index.
 (() => {
   const projects = [
-    {href:'projects/naborfood.html', icon:'assets/images/naborfood-cursor-icon.png'},
-    {href:'projects/fridgekey.html', icon:'assets/images/fridgekey-design/app-logo-original.png', viewBox:'52 212 842 842', width:1845, height:2294},
-    {href:'projects/project-03.html', icon:'assets/images/everpaw-research/app-logo-original.png'},
-    {href:'projects/project-04.html', icon:'assets/images/musubi-background/musubi-app-icon.png'}
+    {href:'projects/naborfood.html', icon:'assets/optimized/naborfood-cursor-icon.426fbed1af3e.webp'},
+    {href:'projects/fridgekey.html', icon:'assets/optimized/app-logo-original.c68478fffdc3.webp', viewBox:'52 212 842 842', width:1845, height:2294},
+    {href:'projects/project-03.html', icon:'assets/optimized/app-logo-original.2eb958ae2807.webp'},
+    {href:'projects/project-04.html', icon:'assets/optimized/musubi-app-icon.7553d0eab557.webp'}
   ];
   const cursor = document.createElement('div');
   cursor.className = 'project-cursor';

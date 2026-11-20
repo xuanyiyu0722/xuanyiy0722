@@ -1,0 +1,852 @@
+{
+  "before": {
+    "note": "Static declared resources, deduplicated per page; not a network trace or a loading-time measurement.",
+    "pages": [
+      {
+        "page": "index.html",
+        "htmlBytes": 11311,
+        "images": 9,
+        "missingImageDimensions": 2,
+        "directResourceCount": 20,
+        "directResourceBytes": 1538209,
+        "eagerDirectBytes": 1538209,
+        "declaredFontBytes": 134172,
+        "largest": [
+          {
+            "file": "assets/carton.webp",
+            "bytes": 1055222,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/fonts/EuclidCircularA-Light.ttf",
+            "bytes": 134172,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "assets/home-headline-v148.png",
+            "bytes": 110947,
+            "lazy": false,
+            "tag": "image"
+          },
+          {
+            "file": "assets/egg.webp",
+            "bytes": 110156,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-ostrich-egg.webp",
+            "bytes": 28372,
+            "lazy": false,
+            "tag": "image"
+          },
+          {
+            "file": "styles.css",
+            "bytes": 26661,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "page-arrival.js",
+            "bytes": 14832,
+            "lazy": false,
+            "tag": "script"
+          },
+          {
+            "file": "illustrated-motion.js",
+            "bytes": 11043,
+            "lazy": false,
+            "tag": "script"
+          }
+        ]
+      },
+      {
+        "page": "gallery.html",
+        "htmlBytes": 10341,
+        "images": 4,
+        "missingImageDimensions": 0,
+        "directResourceCount": 25,
+        "directResourceBytes": 1004416,
+        "eagerDirectBytes": 726666,
+        "declaredFontBytes": 137760,
+        "largest": [
+          {
+            "file": "assets/images/musubi-gallery-cover-v77-display.webp",
+            "bytes": 204222,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/everpaw-gallery-cover-v77-display.webp",
+            "bytes": 183466,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/vendor/motion-14.9.1.js",
+            "bytes": 179222,
+            "lazy": false,
+            "tag": "script"
+          },
+          {
+            "file": "assets/fonts/EuclidCircularA-Bold.ttf",
+            "bytes": 137760,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "assets/images/naborfood-cover-display.webp",
+            "bytes": 94284,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-cover-display.webp",
+            "bytes": 55538,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-ostrich-egg.webp",
+            "bytes": 28372,
+            "lazy": false,
+            "tag": "image"
+          },
+          {
+            "file": "styles.css",
+            "bytes": 26661,
+            "lazy": false,
+            "tag": "link"
+          }
+        ]
+      },
+      {
+        "page": "about.html",
+        "htmlBytes": 19887,
+        "images": 9,
+        "missingImageDimensions": 9,
+        "directResourceCount": 26,
+        "directResourceBytes": 1534882,
+        "eagerDirectBytes": 1534882,
+        "declaredFontBytes": 137760,
+        "largest": [
+          {
+            "file": "assets/images/about-mosaic/pink-doll.jpg",
+            "bytes": 399326,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/portrait.jpg",
+            "bytes": 266639,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/silver-doll.jpg",
+            "bytes": 151104,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/roses.jpg",
+            "bytes": 131291,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/embroidered-kimono.jpg",
+            "bytes": 126997,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/jewel-doll.jpg",
+            "bytes": 108308,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/window-portrait.jpg",
+            "bytes": 96938,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/winged-doll.jpg",
+            "bytes": 75869,
+            "lazy": false,
+            "tag": "img"
+          }
+        ]
+      },
+      {
+        "page": "projects/project-04.html",
+        "htmlBytes": 79457,
+        "images": 45,
+        "missingImageDimensions": 0,
+        "directResourceCount": 82,
+        "directResourceBytes": 34860522,
+        "eagerDirectBytes": 549885,
+        "declaredFontBytes": 722192,
+        "largest": [
+          {
+            "file": "assets/images/musubi-background/kimono-window.png",
+            "bytes": 2425632,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/musubi-design/story-fabric.png",
+            "bytes": 1239189,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/musubi-story-update/fabric-map.png",
+            "bytes": 1192091,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/musubi-background/bjd-portrait.webp",
+            "bytes": 1124714,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/musubi-design/story-receive.png",
+            "bytes": 1090617,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/musubi-story-update/makers.png",
+            "bytes": 1088436,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/musubi-background/kimono-purple.png",
+            "bytes": 804054,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/musubi-design/story-interested.png",
+            "bytes": 739617,
+            "lazy": true,
+            "tag": "image"
+          }
+        ]
+      },
+      {
+        "page": "projects/fridgekey.html",
+        "htmlBytes": 119722,
+        "images": 57,
+        "missingImageDimensions": 6,
+        "directResourceCount": 80,
+        "directResourceBytes": 28713841,
+        "eagerDirectBytes": 302932,
+        "declaredFontBytes": 722192,
+        "largest": [
+          {
+            "file": "assets/images/fridgekey-development/model-exploded.png",
+            "bytes": 4490887,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-development/prototype-servo.png",
+            "bytes": 4174320,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-development/safe-open.png",
+            "bytes": 2531186,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/videos/fridgekey/testing-servo.mp4",
+            "bytes": 2412851,
+            "lazy": true,
+            "tag": "source"
+          },
+          {
+            "file": "assets/images/fridgekey-research/persona-competitor-original.webp",
+            "bytes": 2309780,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/fridgekey-development/prototype-lock.png",
+            "bytes": 1835217,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-research/interview-journey-original.webp",
+            "bytes": 1744084,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/videos/fridgekey/testing-lock.mp4",
+            "bytes": 1371694,
+            "lazy": true,
+            "tag": "source"
+          }
+        ]
+      },
+      {
+        "page": "projects/naborfood.html",
+        "htmlBytes": 87378,
+        "images": 82,
+        "missingImageDimensions": 6,
+        "directResourceCount": 107,
+        "directResourceBytes": 51258140,
+        "eagerDirectBytes": 652481,
+        "declaredFontBytes": 722192,
+        "largest": [
+          {
+            "file": "assets/images/naborfood-package/flavor-collection.svg",
+            "bytes": 17975411,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-station/gym-campus.png",
+            "bytes": 4736008,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-station/station-front.png",
+            "bytes": 3151460,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-package/haagen-dazs-reference.png",
+            "bytes": 2451672,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-package/ritter-sport-reference.png",
+            "bytes": 2177194,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-package/product-rendering.png",
+            "bytes": 1723291,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-experience/journey-green-map.png",
+            "bytes": 1615088,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-station/information-architecture-clean.svg",
+            "bytes": 1161289,
+            "lazy": true,
+            "tag": "img"
+          }
+        ]
+      },
+      {
+        "page": "projects/project-03.html",
+        "htmlBytes": 179730,
+        "images": 15,
+        "missingImageDimensions": 0,
+        "directResourceCount": 58,
+        "directResourceBytes": 41205007,
+        "eagerDirectBytes": 518084,
+        "declaredFontBytes": 722192,
+        "largest": [
+          {
+            "file": "assets/images/everpaw-research/future-exploration-original.webp",
+            "bytes": 8679510,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-screens/screens-original.webp",
+            "bytes": 6736264,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/journey-devices-original.png",
+            "bytes": 5300521,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/brainstorm-original.png",
+            "bytes": 4802055,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/storyboard-clear-original.webp",
+            "bytes": 2922026,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/moodboard-complete-original.png",
+            "bytes": 1947061,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/wireframe-testing-exploration-original.webp",
+            "bytes": 1788044,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/journey-original.png",
+            "bytes": 1575130,
+            "lazy": true,
+            "tag": "image"
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "note": "Static declared resources, deduplicated per page; not a network trace or a loading-time measurement.",
+    "pages": [
+      {
+        "page": "index.html",
+        "htmlBytes": 11522,
+        "images": 9,
+        "missingImageDimensions": 0,
+        "directResourceCount": 21,
+        "directResourceBytes": 1378842,
+        "eagerDirectBytes": 1378842,
+        "declaredFontBytes": 114364,
+        "largest": [
+          {
+            "file": "assets/carton.webp",
+            "bytes": 1055222,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/egg.webp",
+            "bytes": 110156,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/EuclidCircularA-Light.439afde0027a.woff2",
+            "bytes": 31048,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "styles.css",
+            "bytes": 28722,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "assets/images/about-ostrich-egg.webp",
+            "bytes": 28372,
+            "lazy": false,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/Teachers-5.83aa7e5999ef.woff2",
+            "bytes": 26324,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "assets/optimized/home-headline-v148.56f53711d32e.webp",
+            "bytes": 24818,
+            "lazy": false,
+            "tag": "image"
+          },
+          {
+            "file": "page-arrival.js",
+            "bytes": 14832,
+            "lazy": false,
+            "tag": "script"
+          }
+        ]
+      },
+      {
+        "page": "gallery.html",
+        "htmlBytes": 10478,
+        "images": 4,
+        "missingImageDimensions": 0,
+        "directResourceCount": 26,
+        "directResourceBytes": 929444,
+        "eagerDirectBytes": 651694,
+        "declaredFontBytes": 117244,
+        "largest": [
+          {
+            "file": "assets/images/musubi-gallery-cover-v77-display.webp",
+            "bytes": 204222,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/everpaw-gallery-cover-v77-display.webp",
+            "bytes": 183466,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/vendor/motion-14.9.1.js",
+            "bytes": 179222,
+            "lazy": false,
+            "tag": "script"
+          },
+          {
+            "file": "assets/images/naborfood-cover-display.webp",
+            "bytes": 94284,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-cover-display.webp",
+            "bytes": 55538,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/EuclidCircularA-Bold.1a2ff7e55435.woff2",
+            "bytes": 33928,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "styles.css",
+            "bytes": 28722,
+            "lazy": false,
+            "tag": "link"
+          },
+          {
+            "file": "assets/images/about-ostrich-egg.webp",
+            "bytes": 28372,
+            "lazy": false,
+            "tag": "image"
+          }
+        ]
+      },
+      {
+        "page": "about.html",
+        "htmlBytes": 20230,
+        "images": 9,
+        "missingImageDimensions": 0,
+        "directResourceCount": 27,
+        "directResourceBytes": 1563283,
+        "eagerDirectBytes": 1563283,
+        "declaredFontBytes": 117244,
+        "largest": [
+          {
+            "file": "assets/images/about-mosaic/pink-doll.jpg",
+            "bytes": 399326,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/portrait.jpg",
+            "bytes": 266639,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/silver-doll.jpg",
+            "bytes": 151104,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/roses.jpg",
+            "bytes": 131291,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/embroidered-kimono.jpg",
+            "bytes": 126997,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/jewel-doll.jpg",
+            "bytes": 108308,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/window-portrait.jpg",
+            "bytes": 96938,
+            "lazy": false,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/about-mosaic/winged-doll.jpg",
+            "bytes": 75869,
+            "lazy": false,
+            "tag": "img"
+          }
+        ]
+      },
+      {
+        "page": "projects/project-04.html",
+        "htmlBytes": 79753,
+        "images": 45,
+        "missingImageDimensions": 0,
+        "directResourceCount": 83,
+        "directResourceBytes": 15586844,
+        "eagerDirectBytes": 575811,
+        "declaredFontBytes": 377924,
+        "largest": [
+          {
+            "file": "assets/optimized/kimono-window.17424c6eeac0.webp",
+            "bytes": 1379284,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/musubi-background/bjd-portrait.webp",
+            "bytes": 1124714,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/fabric-map.ad02df6b3f3d.webp",
+            "bytes": 707480,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/story-fabric.49e83e527ca1.webp",
+            "bytes": 689458,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/musubi-background/kimono-original.webp",
+            "bytes": 600900,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/story-receive.8d0791e48d3e.webp",
+            "bytes": 593374,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/story-interested.890c9f826ff1.webp",
+            "bytes": 501144,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/musubi-background/bjd-joints.webp",
+            "bytes": 472770,
+            "lazy": true,
+            "tag": "img"
+          }
+        ]
+      },
+      {
+        "page": "projects/fridgekey.html",
+        "htmlBytes": 119654,
+        "images": 57,
+        "missingImageDimensions": 0,
+        "directResourceCount": 81,
+        "directResourceBytes": 22652620,
+        "eagerDirectBytes": 333673,
+        "declaredFontBytes": 377924,
+        "largest": [
+          {
+            "file": "assets/images/fridgekey-development/prototype-servo.png",
+            "bytes": 4174320,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-development/safe-open.png",
+            "bytes": 2531186,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/videos/fridgekey/testing-servo.mp4",
+            "bytes": 2412851,
+            "lazy": true,
+            "tag": "source"
+          },
+          {
+            "file": "assets/images/fridgekey-research/persona-competitor-original.webp",
+            "bytes": 2309780,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/model-exploded.1b8a74aa566a.webp",
+            "bytes": 1891512,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-development/prototype-lock.png",
+            "bytes": 1835217,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/fridgekey-research/interview-journey-original.webp",
+            "bytes": 1744084,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/videos/fridgekey/testing-lock.mp4",
+            "bytes": 1371694,
+            "lazy": true,
+            "tag": "source"
+          }
+        ]
+      },
+      {
+        "page": "projects/naborfood.html",
+        "htmlBytes": 87501,
+        "images": 82,
+        "missingImageDimensions": 0,
+        "directResourceCount": 108,
+        "directResourceBytes": 40768895,
+        "eagerDirectBytes": 576204,
+        "declaredFontBytes": 377924,
+        "largest": [
+          {
+            "file": "assets/images/naborfood-package/flavor-collection.svg",
+            "bytes": 17975411,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/gym-campus.8145ab8e5142.webp",
+            "bytes": 2662298,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/station-front.4710a7698d92.webp",
+            "bytes": 1651330,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/haagen-dazs-reference.4c3b18301252.webp",
+            "bytes": 1587034,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/ritter-sport-reference.94eaaba7f8cd.webp",
+            "bytes": 1269070,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/product-rendering.e5552736ea17.webp",
+            "bytes": 1060488,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/images/naborfood-wireframes/iteration-machine-before.svg",
+            "bytes": 988865,
+            "lazy": true,
+            "tag": "img"
+          },
+          {
+            "file": "assets/optimized/journey-green-map.edf3d6d8d0bc.webp",
+            "bytes": 936090,
+            "lazy": true,
+            "tag": "img"
+          }
+        ]
+      },
+      {
+        "page": "projects/project-03.html",
+        "htmlBytes": 179563,
+        "images": 15,
+        "missingImageDimensions": 0,
+        "directResourceCount": 60,
+        "directResourceBytes": 30974140,
+        "eagerDirectBytes": 588524,
+        "declaredFontBytes": 1033696,
+        "largest": [
+          {
+            "file": "assets/images/everpaw-research/future-exploration-original.webp",
+            "bytes": 8679510,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-screens/screens-original.webp",
+            "bytes": 6736264,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/storyboard-clear-original.webp",
+            "bytes": 2922026,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/journey-devices-original.e273455e074e.webp",
+            "bytes": 2444890,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/brainstorm-original.c13b696f4783.webp",
+            "bytes": 2193324,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/wireframe-testing-exploration-original.webp",
+            "bytes": 1788044,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/images/everpaw-research/user-journey-art-hd.webp",
+            "bytes": 1161532,
+            "lazy": true,
+            "tag": "image"
+          },
+          {
+            "file": "assets/optimized/moodboard-complete-original.b73d49a4fe49.webp",
+            "bytes": 1130474,
+            "lazy": true,
+            "tag": "image"
+          }
+        ]
+      }
+    ]
+  }
+}

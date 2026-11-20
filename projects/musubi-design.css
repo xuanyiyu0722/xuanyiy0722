@@ -201,8 +201,8 @@
 .musubi-brainstorm-groups{margin-top:26px;}
 .musubi-brainstorm-group li{background:#e9e5e1;border-top-color:#dfa95c;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);}
 .musubi-fabric li,.musubi-visualisation li{background:#ebe4e6;border-top-color:#663741;}
-.musubi-brainstorm-group li.has-flower::after{content:"";display:block;right:-10px;top:-17px;width:30px;height:28px;background:url('../assets/images/musubi-background/brainstorm-flower-gold.png') center/contain no-repeat;color:transparent;text-shadow:none;}
-.musubi-fabric li.has-flower::after,.musubi-visualisation li.has-flower::after{background-image:url('../assets/images/musubi-background/brainstorm-flower-pink.png');color:transparent;text-shadow:none;}
+.musubi-brainstorm-group li.has-flower::after{content:"";display:block;right:-10px;top:-17px;width:30px;height:28px;background:url('../assets/optimized/brainstorm-flower-gold.7277d27575db.webp') center/contain no-repeat;color:transparent;text-shadow:none;}
+.musubi-fabric li.has-flower::after,.musubi-visualisation li.has-flower::after{background-image:url('../assets/optimized/brainstorm-flower-pink.86a34fbe4293.webp');color:transparent;text-shadow:none;}
 .musubi-commission-columns>ul{align-content:start;align-self:start;}
 
 

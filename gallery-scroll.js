@@ -10,13 +10,16 @@
   let lenis = null;
   let ticking = false;
   let printing = false;
+  let geometry;
+  const signature = () => [innerWidth, innerHeight, ...cards.map(card => card.offsetHeight)].join(':');
   const advance = ({ timestamp }) => {
+    if (!lenis || document.hidden) { ticking = false; return; }
     lenis.raf(timestamp);
     if (lenis.isSmooth) Motion.frame.setup(advance);
     else ticking = false;
   };
   const wake = () => {
-    if (!lenis || ticking) return;
+    if (!lenis || ticking || document.hidden) return;
     ticking = true;
     // Start the clock at the new gesture rather than counting the idle time.
     lenis.time = performance.now();
@@ -75,6 +78,7 @@
     if (reduce.matches || printing) { destroySmooth(); return; }
     if (!window.Motion) { destroySmooth(); return; }
     startSmooth();
+    geometry = signature();
     const { animate, scroll } = Motion;
     try {
       cards.forEach(card => {
@@ -113,6 +117,10 @@
   window.addEventListener('pageshow', event => { if (event.persisted) setup(); });
   window.addEventListener('beforeprint', () => { printing = true; setup(); });
   window.addEventListener('afterprint', () => { printing = false; setup(); });
-  if (document.fonts?.status === 'loading') document.fonts.ready.then(setup);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { window.Motion?.cancelFrame?.(advance); ticking = false; }
+    else if (lenis?.isSmooth) wake();
+  });
+  if (document.fonts?.status === 'loading') document.fonts.ready.then(() => { if (signature() !== geometry) setup(); });
   setup();
 })();

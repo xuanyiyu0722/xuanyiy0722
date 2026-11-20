@@ -5,31 +5,41 @@
   const leaders = overview?.querySelector('.station-leaders');
   if (!overview || !image || !leaders) return;
   const targets = {qr:[.11,.36], brand:[.9,.1], bars:[.9,.75]};
-  let scheduled = false;
+  const compact = matchMedia('(max-width:1100px)');
+  const notes = Object.entries(targets).map(([name, point]) => ({
+    point, note:overview.querySelector(`[data-station-note="${name}"]`),
+    path:leaders.querySelector(`[data-station-leader="${name}"]`)
+  }));
+  let frame = 0, suspended = false;
+  const setAttribute = (element, name, value) => {
+    if (element.getAttribute(name) !== value) element.setAttribute(name, value);
+  };
   const draw = () => {
-    scheduled = false;
-    if (matchMedia('(max-width:1100px)').matches) return;
+    frame = 0;
+    if (suspended || compact.matches) return;
     const box = overview.getBoundingClientRect();
     const machine = image.getBoundingClientRect();
-    leaders.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
-    for (const [name, [x,y]] of Object.entries(targets)) {
-      const note = overview.querySelector(`[data-station-note="${name}"]`).getBoundingClientRect();
+    const boxes = notes.map(({note}) => note.getBoundingClientRect());
+    const paths = notes.map(({point:[x,y]}, index) => {
+      const note = boxes[index];
       const toX = machine.left + machine.width*x - box.left;
       const toY = machine.top + machine.height*y - box.top;
       const fromX = (note.left < machine.left ? note.right + 7 : note.left - 7) - box.left;
       const fromY = note.top + note.height*.5 - box.top;
       const bendX = note.left < machine.left ? machine.left-box.left-10 : machine.right-box.left+10;
-      leaders.querySelector(`[data-station-leader="${name}"]`).setAttribute('d', `M ${fromX} ${fromY} H ${bendX} V ${toY} H ${toX}`);
-    }
+      return `M ${fromX} ${fromY} H ${bendX} V ${toY} H ${toX}`;
+    });
+    setAttribute(leaders, 'viewBox', `0 0 ${box.width} ${box.height}`);
+    notes.forEach(({path}, index) => setAttribute(path, 'd', paths[index]));
   };
   const schedule = () => {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(draw);
+    if (!suspended && !frame) frame = requestAnimationFrame(draw);
   };
   new ResizeObserver(schedule).observe(overview);
   image.addEventListener('load', schedule);
   window.addEventListener('resize', schedule);
   document.fonts.ready.then(schedule);
+  window.addEventListener('pagehide', () => { suspended = true; cancelAnimationFrame(frame); frame = 0; });
+  window.addEventListener('pageshow', () => { suspended = false; schedule(); });
   schedule();
 })();

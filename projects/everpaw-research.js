@@ -90,7 +90,7 @@
   viewer.addEventListener('close', () => {
     document.body.classList.remove('viewer-open');
     scroller.classList.remove('is-dragging');
-    drag = null;
+    endDrag();
     opener?.focus({preventScroll:true});
   });
   scroller.addEventListener('pointerdown', event => {
@@ -99,12 +99,28 @@
     scroller.setPointerCapture(event.pointerId);
     scroller.classList.add('is-dragging');
   });
+  let dragFrame = 0, pointer;
+  const paintDrag = () => {
+    dragFrame = 0;
+    if (!drag || !pointer) return;
+    scroller.scrollLeft = drag.left - (pointer.x - drag.x);
+    scroller.scrollTop = drag.top - (pointer.y - drag.y);
+  };
   scroller.addEventListener('pointermove', event => {
     if (!drag) return;
-    scroller.scrollLeft = drag.left - (event.clientX - drag.x);
-    scroller.scrollTop = drag.top - (event.clientY - drag.y);
+    pointer = {x:event.clientX, y:event.clientY};
+    if (!dragFrame) dragFrame = requestAnimationFrame(paintDrag);
   });
-  const endDrag = () => { drag = null; scroller.classList.remove('is-dragging'); };
+  const endDrag = () => {
+    cancelAnimationFrame(dragFrame);
+    if (dragFrame) paintDrag();
+    dragFrame = 0;
+    pointer = null;
+    drag = null;
+    scroller.classList.remove('is-dragging');
+  };
+  scroller.addEventListener('lostpointercapture', endDrag);
+  window.addEventListener('pagehide', endDrag);
   scroller.addEventListener('pointerup', endDrag);
   scroller.addEventListener('pointercancel', endDrag);
 })();

@@ -1,6 +1,6 @@
 @font-face {
  font-family:"Euclid Circular A";
- src:local("EuclidCircularA-Light"),url("assets/fonts/EuclidCircularA-Light.ttf") format("truetype");
+ src:local("EuclidCircularA-Light"),url("assets/optimized/EuclidCircularA-Light.439afde0027a.woff2") format("woff2");
  font-weight:300;
  font-style:normal;
  font-display:swap;

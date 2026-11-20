@@ -9,10 +9,10 @@
 @font-face{font-family:"Case Poppins";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/case/Poppins-500.woff2") format("woff2");}
 @font-face{font-family:"Case Poppins";font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/case/Poppins-600.woff2") format("woff2");}
 @font-face{font-family:"Case Poppins";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/case/Poppins-700.woff2") format("woff2");}
-@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/case/EuclidCircularA-Regular.ttf") format("truetype");}
-@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/case/EuclidCircularA-Medium.ttf") format("truetype");}
-@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/EuclidCircularA-Bold.ttf") format("truetype");}
-@font-face{font-family:"Case Euclid Circular A";font-style:italic;font-weight:400;font-display:swap;src:url("../assets/fonts/case/EuclidCircularA-Italic.ttf") format("truetype");}
+@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/optimized/EuclidCircularA-Regular.8d659ca2aacf.woff2") format("woff2");}
+@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:500;font-display:swap;src:url("../assets/optimized/EuclidCircularA-Medium.a4e622ab1fcd.woff2") format("woff2");}
+@font-face{font-family:"Case Euclid Circular A";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/optimized/EuclidCircularA-Bold.1a2ff7e55435.woff2") format("woff2");}
+@font-face{font-family:"Case Euclid Circular A";font-style:italic;font-weight:400;font-display:swap;src:url("../assets/optimized/EuclidCircularA-Italic.6e3c7d1e627d.woff2") format("woff2");}
 
 .project-naborfood{--case-heading-family:"Case Inter",sans-serif;--case-copy-family:"Case Euclid Circular A",sans-serif;}
 .project-everpaw{--case-heading-family:"Case Gemunu Libre",sans-serif;--case-copy-family:"Case Geist",sans-serif;}

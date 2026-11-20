@@ -1,4 +1,59 @@
-@import url("https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap");
+/* Same Teachers variable font, served locally to avoid a blocking CSS round trip. */
+/* greek-ext */
+@font-face {
+  font-family: 'Teachers';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/optimized/Teachers-0.9e85fc58b9ff.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Teachers';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/optimized/Teachers-1.0c38dbe471e4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Teachers';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/optimized/Teachers-2.e2778190bdea.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/optimized/Teachers-3.682e21454a48.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/optimized/Teachers-4.83d5fac82fff.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/optimized/Teachers-5.83aa7e5999ef.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 
 @font-face{
   font-family:"Euclid Circular A";
@@ -75,7 +130,7 @@ body,button{font-family:var(--font-body)}
 .wire-egg{width:clamp(122px,12.4vw,178px);z-index:4;cursor:pointer;border:0;background:none;padding:0;color:inherit;text-align:center}
 .wire-egg:focus-visible{outline:0}
 .egg-shell{position:relative;display:block;width:100%;height:auto;aspect-ratio:.74;filter:drop-shadow(0 10px 18px rgba(24,22,18,.08));transform-origin:50% 80%}
-.egg-whole,.egg-piece{position:absolute;inset:0;background:radial-gradient(circle at 35% 22%,rgba(255,255,255,.96) 0 16%,rgba(255,255,255,.65) 17% 31%,transparent 32%),linear-gradient(135deg,rgba(255,255,255,.9),rgba(232,209,188,.35)),url("assets/images/interactive-egg.png") center/cover;border:1.9px solid var(--ink);border-radius:52% 48% 48% 52% / 63% 63% 37% 37%}
+.egg-whole,.egg-piece{position:absolute;inset:0;background:radial-gradient(circle at 35% 22%,rgba(255,255,255,.96) 0 16%,rgba(255,255,255,.65) 17% 31%,transparent 32%),linear-gradient(135deg,rgba(255,255,255,.9),rgba(232,209,188,.35)),url("assets/optimized/interactive-egg.c683d588de24.webp") center/cover;border:1.9px solid var(--ink);border-radius:52% 48% 48% 52% / 63% 63% 37% 37%}
 .egg-piece{opacity:0;will-change:transform;filter:drop-shadow(0 0 0 var(--ink))}
 .egg-piece-left{clip-path:polygon(0 0,55% 0,47% 18%,56% 33%,46% 51%,54% 69%,45% 88%,50% 100%,0 100%)}
 .egg-piece-right{clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%,55% 88%,46% 69%,54% 51%,44% 33%,53% 18%)}

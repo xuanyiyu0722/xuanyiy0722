@@ -1,0 +1,1801 @@
+{
+  "method": "Lossless image encoding at original resolution; glyph outlines, metrics and shaping tables preserved for TTF to WOFF2. Original sources retained.",
+  "media": [
+    {
+      "source": "assets/egg-pointer.png",
+      "optimized": "assets/optimized/egg-pointer.3ad0dab247a3.webp",
+      "beforeBytes": 1591,
+      "afterBytes": 1130,
+      "width": 24,
+      "height": 28,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/home-headline-v148.png",
+      "optimized": "assets/optimized/home-headline-v148.56f53711d32e.webp",
+      "beforeBytes": 110947,
+      "afterBytes": 24818,
+      "width": 1167,
+      "height": 1284,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-cursor-icon.png",
+      "optimized": "assets/optimized/naborfood-cursor-icon.426fbed1af3e.webp",
+      "beforeBytes": 18459,
+      "afterBytes": 5262,
+      "width": 428,
+      "height": 428,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-design/app-logo-original.png",
+      "optimized": "assets/optimized/app-logo-original.c68478fffdc3.webp",
+      "beforeBytes": 551950,
+      "afterBytes": 219544,
+      "width": 1845,
+      "height": 2294,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/app-logo-original.png",
+      "optimized": "assets/optimized/app-logo-original.2eb958ae2807.webp",
+      "beforeBytes": 592892,
+      "afterBytes": 268402,
+      "width": 1011,
+      "height": 1011,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/musubi-app-icon.png",
+      "optimized": "assets/optimized/musubi-app-icon.7553d0eab557.webp",
+      "beforeBytes": 132764,
+      "afterBytes": 39408,
+      "width": 848,
+      "height": 848,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/interactive-egg.png",
+      "optimized": "assets/optimized/interactive-egg.c683d588de24.webp",
+      "beforeBytes": 1279235,
+      "afterBytes": 717294,
+      "width": 1254,
+      "height": 1254,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/parts.png",
+      "optimized": "assets/optimized/parts.4942f508446a.webp",
+      "beforeBytes": 962136,
+      "afterBytes": 581740,
+      "width": 930,
+      "height": 618,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/schematic.png",
+      "optimized": "assets/optimized/schematic.8f6c2163bd68.webp",
+      "beforeBytes": 1125391,
+      "afterBytes": 576874,
+      "width": 1607,
+      "height": 979,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/testing-servo.png",
+      "optimized": "assets/optimized/testing-servo.dcd463a3f327.webp",
+      "beforeBytes": 123871,
+      "afterBytes": 77174,
+      "width": 435,
+      "height": 244,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/testing-lock.png",
+      "optimized": "assets/optimized/testing-lock.aeec43dff4d0.webp",
+      "beforeBytes": 112106,
+      "afterBytes": 71252,
+      "width": 435,
+      "height": 244,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/sketch.png",
+      "optimized": "assets/optimized/sketch.3dbf57ac58d4.webp",
+      "beforeBytes": 487159,
+      "afterBytes": 222596,
+      "width": 1820,
+      "height": 860,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/model-open.png",
+      "optimized": "assets/optimized/model-open.da8b88377d81.webp",
+      "beforeBytes": 1215906,
+      "afterBytes": 544356,
+      "width": 1260,
+      "height": 1000,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/model-closed.png",
+      "optimized": "assets/optimized/model-closed.b80e2174a25f.webp",
+      "beforeBytes": 1238719,
+      "afterBytes": 543812,
+      "width": 1260,
+      "height": 1000,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-development/model-exploded.png",
+      "optimized": "assets/optimized/model-exploded.1b8a74aa566a.webp",
+      "beforeBytes": 4490887,
+      "afterBytes": 1891512,
+      "width": 3410,
+      "height": 2382,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/welcome.png",
+      "optimized": "assets/optimized/welcome.c96a2e511e51.webp",
+      "beforeBytes": 18731,
+      "afterBytes": 6456,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/user-type-selection.png",
+      "optimized": "assets/optimized/user-type-selection.cc09129f3244.webp",
+      "beforeBytes": 29542,
+      "afterBytes": 10722,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/log-in-sign-up.png",
+      "optimized": "assets/optimized/log-in-sign-up.4281385c3290.webp",
+      "beforeBytes": 25044,
+      "afterBytes": 8946,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/pair-your-locker.png",
+      "optimized": "assets/optimized/pair-your-locker.e02c9f921996.webp",
+      "beforeBytes": 31811,
+      "afterBytes": 11314,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/personal-home.png",
+      "optimized": "assets/optimized/personal-home.fd68a16c38e3.webp",
+      "beforeBytes": 39775,
+      "afterBytes": 14942,
+      "width": 471,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/personal-locker-detail.png",
+      "optimized": "assets/optimized/personal-locker-detail.ac337dc5a497.webp",
+      "beforeBytes": 39196,
+      "afterBytes": 13554,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/add-food.png",
+      "optimized": "assets/optimized/add-food.80f9a8e32813.webp",
+      "beforeBytes": 22040,
+      "afterBytes": 7182,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/share-access.png",
+      "optimized": "assets/optimized/share-access.f981c8eec0a7.webp",
+      "beforeBytes": 29707,
+      "afterBytes": 10824,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/history.png",
+      "optimized": "assets/optimized/history.64609b8b5a92.webp",
+      "beforeBytes": 25549,
+      "afterBytes": 8816,
+      "width": 472,
+      "height": 978,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/group-setup.png",
+      "optimized": "assets/optimized/group-setup.907b6038cc72.webp",
+      "beforeBytes": 22122,
+      "afterBytes": 7662,
+      "width": 472,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/join-group.png",
+      "optimized": "assets/optimized/join-group.9f552c46e24d.webp",
+      "beforeBytes": 14734,
+      "afterBytes": 4898,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/create-group.png",
+      "optimized": "assets/optimized/create-group.f16f20c55b9a.webp",
+      "beforeBytes": 21393,
+      "afterBytes": 7438,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/register-lockers.png",
+      "optimized": "assets/optimized/register-lockers.99bacec338af.webp",
+      "beforeBytes": 32483,
+      "afterBytes": 11708,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/role-detection.png",
+      "optimized": "assets/optimized/role-detection.b586ee08896a.webp",
+      "beforeBytes": 21944,
+      "afterBytes": 8062,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/admin-dashboard.png",
+      "optimized": "assets/optimized/admin-dashboard.15265718b329.webp",
+      "beforeBytes": 40209,
+      "afterBytes": 14934,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/manage-members.png",
+      "optimized": "assets/optimized/manage-members.63931e121c8a.webp",
+      "beforeBytes": 36751,
+      "afterBytes": 13690,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/manage-lockers.png",
+      "optimized": "assets/optimized/manage-lockers.81e3b76084ce.webp",
+      "beforeBytes": 38936,
+      "afterBytes": 14268,
+      "width": 471,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/assign-locker.png",
+      "optimized": "assets/optimized/assign-locker.2c0db9ff16e3.webp",
+      "beforeBytes": 37111,
+      "afterBytes": 13582,
+      "width": 472,
+      "height": 981,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/member-home.png",
+      "optimized": "assets/optimized/member-home.cdf29d6e4062.webp",
+      "beforeBytes": 47960,
+      "afterBytes": 18242,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/request-locker.png",
+      "optimized": "assets/optimized/request-locker.aa974c48324f.webp",
+      "beforeBytes": 35855,
+      "afterBytes": 12914,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/member-locker-detail.png",
+      "optimized": "assets/optimized/member-locker-detail.e2e31e0ce0d8.webp",
+      "beforeBytes": 28028,
+      "afterBytes": 9740,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/share-my-locker.png",
+      "optimized": "assets/optimized/share-my-locker.39b2fb26fb47.webp",
+      "beforeBytes": 41880,
+      "afterBytes": 15474,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/group-overview.png",
+      "optimized": "assets/optimized/group-overview.b78a0b6458f2.webp",
+      "beforeBytes": 27291,
+      "afterBytes": 9846,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/report-issue.png",
+      "optimized": "assets/optimized/report-issue.02c8ad191ad6.webp",
+      "beforeBytes": 24921,
+      "afterBytes": 9208,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/alerts.png",
+      "optimized": "assets/optimized/alerts.b8e265ef302a.webp",
+      "beforeBytes": 39332,
+      "afterBytes": 13790,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/emergency-unlock.png",
+      "optimized": "assets/optimized/emergency-unlock.c3e3ac9f0c3f.webp",
+      "beforeBytes": 30756,
+      "afterBytes": 11156,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/admin-access-log.png",
+      "optimized": "assets/optimized/admin-access-log.6cb41514b293.webp",
+      "beforeBytes": 29621,
+      "afterBytes": 10688,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/group-settings.png",
+      "optimized": "assets/optimized/group-settings.65f6defdb732.webp",
+      "beforeBytes": 27016,
+      "afterBytes": 9376,
+      "width": 472,
+      "height": 983,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/share-my-locker-before.png",
+      "optimized": "assets/optimized/share-my-locker-before.60cbb80a6fee.webp",
+      "beforeBytes": 22471,
+      "afterBytes": 8214,
+      "width": 344,
+      "height": 707,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/personal-home-before.png",
+      "optimized": "assets/optimized/personal-home-before.57c77dc0c1df.webp",
+      "beforeBytes": 29874,
+      "afterBytes": 12500,
+      "width": 346,
+      "height": 709,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/fridgekey-wireframes/member-home-before.png",
+      "optimized": "assets/optimized/member-home-before.8c96df4b1a2d.webp",
+      "beforeBytes": 32969,
+      "afterBytes": 14658,
+      "width": 348,
+      "height": 709,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/brainstorm-flower-gold.png",
+      "optimized": "assets/optimized/brainstorm-flower-gold.7277d27575db.webp",
+      "beforeBytes": 3225,
+      "afterBytes": 1118,
+      "width": 80,
+      "height": 75,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/brainstorm-flower-pink.png",
+      "optimized": "assets/optimized/brainstorm-flower-pink.86a34fbe4293.webp",
+      "beforeBytes": 3262,
+      "afterBytes": 1118,
+      "width": 80,
+      "height": 75,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/connected-experience-original.png",
+      "optimized": "assets/optimized/connected-experience-original.26d879056ee0.webp",
+      "beforeBytes": 316172,
+      "afterBytes": 68006,
+      "width": 5212,
+      "height": 891,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/persona-jason.png",
+      "optimized": "assets/optimized/persona-jason.4449ff36b00f.webp",
+      "beforeBytes": 508130,
+      "afterBytes": 238690,
+      "width": 1998,
+      "height": 1105,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/persona-sarah.png",
+      "optimized": "assets/optimized/persona-sarah.49a5e65bd22c.webp",
+      "beforeBytes": 513000,
+      "afterBytes": 244426,
+      "width": 1998,
+      "height": 1104,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/journey-green-map.png",
+      "optimized": "assets/optimized/journey-green-map.edf3d6d8d0bc.webp",
+      "beforeBytes": 1615088,
+      "afterBytes": 936090,
+      "width": 5117,
+      "height": 2232,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-ai-flavor.png",
+      "optimized": "assets/optimized/idea-ai-flavor.d02b89637c9e.webp",
+      "beforeBytes": 9464,
+      "afterBytes": 3218,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-milk-coating.png",
+      "optimized": "assets/optimized/idea-milk-coating.e4ac5f8032d4.webp",
+      "beforeBytes": 14692,
+      "afterBytes": 5830,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-seasonal.png",
+      "optimized": "assets/optimized/idea-seasonal.9b20c0d7f264.webp",
+      "beforeBytes": 8592,
+      "afterBytes": 2894,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-blind-box.png",
+      "optimized": "assets/optimized/idea-blind-box.ead54fb907f4.webp",
+      "beforeBytes": 11795,
+      "afterBytes": 5164,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-build-bar.png",
+      "optimized": "assets/optimized/idea-build-bar.edfea59b1fc4.webp",
+      "beforeBytes": 10448,
+      "afterBytes": 3554,
+      "width": 400,
+      "height": 289,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-regional.png",
+      "optimized": "assets/optimized/idea-regional.ad1499ef8ece.webp",
+      "beforeBytes": 8486,
+      "afterBytes": 2772,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-coating-percent.png",
+      "optimized": "assets/optimized/idea-coating-percent.5f856419ab3a.webp",
+      "beforeBytes": 16650,
+      "afterBytes": 6396,
+      "width": 393,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-coffee.png",
+      "optimized": "assets/optimized/idea-coffee.d4f3513137ed.webp",
+      "beforeBytes": 9735,
+      "afterBytes": 3196,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-smoothie.png",
+      "optimized": "assets/optimized/idea-smoothie.58ea2f59bc4b.webp",
+      "beforeBytes": 7613,
+      "afterBytes": 2566,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-oat.png",
+      "optimized": "assets/optimized/idea-oat.9aa12ed446ff.webp",
+      "beforeBytes": 6853,
+      "afterBytes": 2120,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-dried-fruit.png",
+      "optimized": "assets/optimized/idea-dried-fruit.6673a052e398.webp",
+      "beforeBytes": 8058,
+      "afterBytes": 2648,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-nuts.png",
+      "optimized": "assets/optimized/idea-nuts.785d99f67439.webp",
+      "beforeBytes": 7070,
+      "afterBytes": 2186,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-yogurt.png",
+      "optimized": "assets/optimized/idea-yogurt.7fa860b3dab2.webp",
+      "beforeBytes": 6455,
+      "afterBytes": 1928,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-nutrition-goals.png",
+      "optimized": "assets/optimized/idea-nutrition-goals.1f9c51512637.webp",
+      "beforeBytes": 11978,
+      "afterBytes": 4176,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-dashboard.png",
+      "optimized": "assets/optimized/idea-dashboard.e32773929609.webp",
+      "beforeBytes": 8136,
+      "afterBytes": 2664,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-consumption-app.png",
+      "optimized": "assets/optimized/idea-consumption-app.8045eb4576cc.webp",
+      "beforeBytes": 9236,
+      "afterBytes": 2972,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-workout-tracking.png",
+      "optimized": "assets/optimized/idea-workout-tracking.c7b777922c13.webp",
+      "beforeBytes": 7764,
+      "afterBytes": 2590,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-goal-setting.png",
+      "optimized": "assets/optimized/idea-goal-setting.e306f989e278.webp",
+      "beforeBytes": 11606,
+      "afterBytes": 3974,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-package-size.png",
+      "optimized": "assets/optimized/idea-package-size.4a48713b4c30.webp",
+      "beforeBytes": 9482,
+      "afterBytes": 3092,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-segmented.png",
+      "optimized": "assets/optimized/idea-segmented.c93da6e8c547.webp",
+      "beforeBytes": 9629,
+      "afterBytes": 3096,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-store-sample.png",
+      "optimized": "assets/optimized/idea-store-sample.c9df33445ad2.webp",
+      "beforeBytes": 10355,
+      "afterBytes": 3498,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-topping-bar.png",
+      "optimized": "assets/optimized/idea-topping-bar.36e83c1c16a2.webp",
+      "beforeBytes": 13066,
+      "afterBytes": 4530,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-membership.png",
+      "optimized": "assets/optimized/idea-membership.5ff7236df332.webp",
+      "beforeBytes": 10444,
+      "afterBytes": 3512,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/idea-vending.png",
+      "optimized": "assets/optimized/idea-vending.f828da509080.webp",
+      "beforeBytes": 10886,
+      "afterBytes": 3824,
+      "width": 400,
+      "height": 290,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-station/information-architecture-clean.svg",
+      "optimized": "assets/optimized/information-architecture-clean.b0539979e6bf.svg",
+      "beforeBytes": 1161289,
+      "afterBytes": 260042,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/standard-flavor-series.png",
+      "optimized": "assets/optimized/standard-flavor-series.ad213f588a49.webp",
+      "beforeBytes": 940685,
+      "afterBytes": 555696,
+      "width": 1960,
+      "height": 1742,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/standard-single-bar.png",
+      "optimized": "assets/optimized/standard-single-bar.82c2d77d2f9f.webp",
+      "beforeBytes": 64076,
+      "afterBytes": 21976,
+      "width": 1960,
+      "height": 683,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/custom-recipe-series.png",
+      "optimized": "assets/optimized/custom-recipe-series.afd55d1f9aba.webp",
+      "beforeBytes": 146708,
+      "afterBytes": 49682,
+      "width": 1960,
+      "height": 1742,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/custom-single-bar.png",
+      "optimized": "assets/optimized/custom-single-bar.a875df221729.webp",
+      "beforeBytes": 54569,
+      "afterBytes": 18490,
+      "width": 1960,
+      "height": 683,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/product-rendering.png",
+      "optimized": "assets/optimized/product-rendering.e5552736ea17.webp",
+      "beforeBytes": 1723291,
+      "afterBytes": 1060488,
+      "width": 1448,
+      "height": 1086,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/haagen-dazs-reference.png",
+      "optimized": "assets/optimized/haagen-dazs-reference.4c3b18301252.webp",
+      "beforeBytes": 2451672,
+      "afterBytes": 1587034,
+      "width": 1600,
+      "height": 900,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-package/ritter-sport-reference.png",
+      "optimized": "assets/optimized/ritter-sport-reference.94eaaba7f8cd.webp",
+      "beforeBytes": 2177194,
+      "afterBytes": 1269070,
+      "width": 1400,
+      "height": 1400,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-station/station-sketch.png",
+      "optimized": "assets/optimized/station-sketch.d32359a2ec99.webp",
+      "beforeBytes": 641078,
+      "afterBytes": 299788,
+      "width": 1580,
+      "height": 1194,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-station/station-front.png",
+      "optimized": "assets/optimized/station-front.4710a7698d92.webp",
+      "beforeBytes": 3151460,
+      "afterBytes": 1651330,
+      "width": 1580,
+      "height": 2248,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-station/bars-flat.png",
+      "optimized": "assets/optimized/bars-flat.85cc3fa6c199.webp",
+      "beforeBytes": 96078,
+      "afterBytes": 37282,
+      "width": 1451,
+      "height": 344,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-station/bars-render.png",
+      "optimized": "assets/optimized/bars-render.a2a8521ac1c2.webp",
+      "beforeBytes": 912863,
+      "afterBytes": 492666,
+      "width": 1506,
+      "height": 425,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-station/gym-campus.png",
+      "optimized": "assets/optimized/gym-campus.8145ab8e5142.webp",
+      "beforeBytes": 4736008,
+      "afterBytes": 2662298,
+      "width": 1600,
+      "height": 1844,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/store-original.png",
+      "optimized": "assets/optimized/store-original.dcbc8c5ffb33.webp",
+      "beforeBytes": 781743,
+      "afterBytes": 296934,
+      "width": 2490,
+      "height": 2418,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/future-spaces-transparent.svg",
+      "optimized": "assets/optimized/future-spaces-transparent.c1a9205629dc.svg",
+      "beforeBytes": 110070,
+      "afterBytes": 22095,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/future-community-transparent.svg",
+      "optimized": "assets/optimized/future-community-transparent.1125d399d988.svg",
+      "beforeBytes": 110072,
+      "afterBytes": 22097,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/naborfood-experience/future-sustainable-transparent.svg",
+      "optimized": "assets/optimized/future-sustainable-transparent.a4a35b4512c2.svg",
+      "beforeBytes": 110073,
+      "afterBytes": 22098,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/market-spending-chart.svg",
+      "optimized": "assets/optimized/market-spending-chart.3a56f5c8582a.svg",
+      "beforeBytes": 1580173,
+      "afterBytes": 617686,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/market-icons-original.png",
+      "optimized": "assets/optimized/market-icons-original.1b7eaf06a5b6.webp",
+      "beforeBytes": 15303,
+      "afterBytes": 3830,
+      "width": 2144,
+      "height": 136,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/grief-girl-transparent.png",
+      "optimized": "assets/optimized/grief-girl-transparent.2c9ab121a6dc.webp",
+      "beforeBytes": 791119,
+      "afterBytes": 475796,
+      "width": 1211,
+      "height": 1299,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/persona-original.png",
+      "optimized": "assets/optimized/persona-original.bc04358d2137.webp",
+      "beforeBytes": 1086773,
+      "afterBytes": 416864,
+      "width": 3872,
+      "height": 3000,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/journey-original.png",
+      "optimized": "assets/optimized/journey-original.a04d45d5bd9e.webp",
+      "beforeBytes": 1575130,
+      "afterBytes": 486206,
+      "width": 8000,
+      "height": 3000,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/mvp-bone-original.png",
+      "optimized": "assets/optimized/mvp-bone-original.aa0128dfde90.webp",
+      "beforeBytes": 2358,
+      "afterBytes": 802,
+      "width": 70,
+      "height": 100,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/brainstorm-original.png",
+      "optimized": "assets/optimized/brainstorm-original.c13b696f4783.webp",
+      "beforeBytes": 4802055,
+      "afterBytes": 2193324,
+      "width": 8000,
+      "height": 3000,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/competitor-ia-original.png",
+      "optimized": "assets/optimized/competitor-ia-original.96bf7565870c.webp",
+      "beforeBytes": 1221796,
+      "afterBytes": 305100,
+      "width": 8000,
+      "height": 3000,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/moodboard-complete-original.png",
+      "optimized": "assets/optimized/moodboard-complete-original.b73d49a4fe49.webp",
+      "beforeBytes": 1947061,
+      "afterBytes": 1130474,
+      "width": 1608,
+      "height": 1008,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-research/journey-devices-original.png",
+      "optimized": "assets/optimized/journey-devices-original.e273455e074e.webp",
+      "beforeBytes": 5300521,
+      "afterBytes": 2444890,
+      "width": 5766,
+      "height": 3133,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/everpaw-screens/theme-screens-original.png",
+      "optimized": "assets/optimized/theme-screens-original.f40489e475ef.webp",
+      "beforeBytes": 1298443,
+      "afterBytes": 606456,
+      "width": 1528,
+      "height": 1525,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/furisode-sewing-pattern.png",
+      "optimized": "assets/optimized/furisode-sewing-pattern.84c09d7c8b4e.webp",
+      "beforeBytes": 96290,
+      "afterBytes": 5298,
+      "width": 2525,
+      "height": 1782,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/kimono-purple.png",
+      "optimized": "assets/optimized/kimono-purple.d71efe229383.webp",
+      "beforeBytes": 804054,
+      "afterBytes": 399390,
+      "width": 882,
+      "height": 1176,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/kimono-window.png",
+      "optimized": "assets/optimized/kimono-window.17424c6eeac0.webp",
+      "beforeBytes": 2425632,
+      "afterBytes": 1379284,
+      "width": 1362,
+      "height": 1022,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/user-journey-map-original.png",
+      "optimized": "assets/optimized/user-journey-map-original.287958a5a125.webp",
+      "beforeBytes": 667664,
+      "afterBytes": 240888,
+      "width": 3252,
+      "height": 2437,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/persona-hannah-illustration.png",
+      "optimized": "assets/optimized/persona-hannah-illustration.d08df6f8e008.webp",
+      "beforeBytes": 333858,
+      "afterBytes": 208678,
+      "width": 735,
+      "height": 765,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/musubi-user-doll-mark.png",
+      "optimized": "assets/optimized/musubi-user-doll-mark.ac772481e5f1.webp",
+      "beforeBytes": 4810,
+      "afterBytes": 1276,
+      "width": 133,
+      "height": 192,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/musubi-obi-reference.png",
+      "optimized": "assets/optimized/musubi-obi-reference.2cc33bc5dcc9.webp",
+      "beforeBytes": 225679,
+      "afterBytes": 128996,
+      "width": 312,
+      "height": 384,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/musubi-lettermark.png",
+      "optimized": "assets/optimized/musubi-lettermark.2d7af25a9dfc.webp",
+      "beforeBytes": 16245,
+      "afterBytes": 3456,
+      "width": 478,
+      "height": 385,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-background/information-architecture-graph.png",
+      "optimized": "assets/optimized/information-architecture-graph.96c794387944.webp",
+      "beforeBytes": 648800,
+      "afterBytes": 159526,
+      "width": 3630,
+      "height": 2242,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/explore-home.png",
+      "optimized": "assets/optimized/explore-home.94bd96311aec.webp",
+      "beforeBytes": 642922,
+      "afterBytes": 216608,
+      "width": 1012,
+      "height": 2002,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/country-timeline.png",
+      "optimized": "assets/optimized/country-timeline.014658d8c4a3.webp",
+      "beforeBytes": 583082,
+      "afterBytes": 182548,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/garment-detail.png",
+      "optimized": "assets/optimized/garment-detail.ee429dfc975d.webp",
+      "beforeBytes": 641044,
+      "afterBytes": 220140,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/material-list.png",
+      "optimized": "assets/optimized/material-list.d3ed7fc8e158.webp",
+      "beforeBytes": 680421,
+      "afterBytes": 240776,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/link-platform.png",
+      "optimized": "assets/optimized/link-platform.2143ffd0323f.webp",
+      "beforeBytes": 593583,
+      "afterBytes": 194162,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/detail-specs.png",
+      "optimized": "assets/optimized/detail-specs.a2097f3d5f24.webp",
+      "beforeBytes": 642649,
+      "afterBytes": 218452,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/detail-photos.png",
+      "optimized": "assets/optimized/detail-photos.18b8f9ccbea6.webp",
+      "beforeBytes": 662800,
+      "afterBytes": 225990,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/fabric-map.png",
+      "optimized": "assets/optimized/fabric-map.d604c37dd50e.webp",
+      "beforeBytes": 580283,
+      "afterBytes": 179646,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/claim-state.png",
+      "optimized": "assets/optimized/claim-state.734095f1a213.webp",
+      "beforeBytes": 588262,
+      "afterBytes": 191460,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/splitting-tab.png",
+      "optimized": "assets/optimized/splitting-tab.bbdb80fa5b7f.webp",
+      "beforeBytes": 563238,
+      "afterBytes": 172046,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/saved-tab.png",
+      "optimized": "assets/optimized/saved-tab.e372a3df14a3.webp",
+      "beforeBytes": 601744,
+      "afterBytes": 192792,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/owned-tab.png",
+      "optimized": "assets/optimized/owned-tab.82466120c2b2.webp",
+      "beforeBytes": 562251,
+      "afterBytes": 171504,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/split-detail.png",
+      "optimized": "assets/optimized/split-detail.c8a124db83ae.webp",
+      "beforeBytes": 581405,
+      "afterBytes": 183836,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/projects-home.png",
+      "optimized": "assets/optimized/projects-home.16838e3c37a0.webp",
+      "beforeBytes": 566327,
+      "afterBytes": 173740,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/create-brief-1.png",
+      "optimized": "assets/optimized/create-brief-1.e14586de31e1.webp",
+      "beforeBytes": 621783,
+      "afterBytes": 206108,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/create-brief-2.png",
+      "optimized": "assets/optimized/create-brief-2.0ac8c3726a98.webp",
+      "beforeBytes": 634564,
+      "afterBytes": 211978,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/create-brief-3.png",
+      "optimized": "assets/optimized/create-brief-3.611da036f0ab.webp",
+      "beforeBytes": 551287,
+      "afterBytes": 160994,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/project-tracking.png",
+      "optimized": "assets/optimized/project-tracking.f87de1084f31.webp",
+      "beforeBytes": 603463,
+      "afterBytes": 194622,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/find-maker.png",
+      "optimized": "assets/optimized/find-maker.3228f81350aa.webp",
+      "beforeBytes": 613274,
+      "afterBytes": 200432,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/studio-locked.png",
+      "optimized": "assets/optimized/studio-locked.c9aa3e56d233.webp",
+      "beforeBytes": 566527,
+      "afterBytes": 175512,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/audit-form.png",
+      "optimized": "assets/optimized/audit-form.bb2f8bda6fd3.webp",
+      "beforeBytes": 593351,
+      "afterBytes": 190548,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/dashboard.png",
+      "optimized": "assets/optimized/dashboard.a89b434dbe20.webp",
+      "beforeBytes": 588261,
+      "afterBytes": 187642,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/dashboard-state.png",
+      "optimized": "assets/optimized/dashboard-state.433625dd33e3.webp",
+      "beforeBytes": 571584,
+      "afterBytes": 175872,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/profile-home.png",
+      "optimized": "assets/optimized/profile-home.c8e4a0a858ea.webp",
+      "beforeBytes": 580946,
+      "afterBytes": 184748,
+      "width": 1012,
+      "height": 2001,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/revision-globe-before.png",
+      "optimized": "assets/optimized/revision-globe-before.a98014a2e12f.webp",
+      "beforeBytes": 674359,
+      "afterBytes": 215384,
+      "width": 1075,
+      "height": 2126,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/revision-globe-after.png",
+      "optimized": "assets/optimized/revision-globe-after.734d0a08cd1b.webp",
+      "beforeBytes": 713564,
+      "afterBytes": 236268,
+      "width": 1075,
+      "height": 2126,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/revision-share-before.png",
+      "optimized": "assets/optimized/revision-share-before.febac96e9e22.webp",
+      "beforeBytes": 608696,
+      "afterBytes": 176862,
+      "width": 1075,
+      "height": 2126,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/revision-share-after.png",
+      "optimized": "assets/optimized/revision-share-after.dfa026e22530.webp",
+      "beforeBytes": 627026,
+      "afterBytes": 187616,
+      "width": 1075,
+      "height": 2126,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/revision-filter-before.png",
+      "optimized": "assets/optimized/revision-filter-before.e5f02e620a39.webp",
+      "beforeBytes": 666626,
+      "afterBytes": 211196,
+      "width": 1075,
+      "height": 2126,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/revision-filter-after.png",
+      "optimized": "assets/optimized/revision-filter-after.b369d18358f6.webp",
+      "beforeBytes": 625791,
+      "afterBytes": 188414,
+      "width": 1075,
+      "height": 2126,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-interested.png",
+      "optimized": "assets/optimized/story-interested.890c9f826ff1.webp",
+      "beforeBytes": 739617,
+      "afterBytes": 501144,
+      "width": 1255,
+      "height": 1101,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-explore.png",
+      "optimized": "assets/optimized/story-explore.642fbb93268c.webp",
+      "beforeBytes": 292128,
+      "afterBytes": 179034,
+      "width": 1101,
+      "height": 711,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-country.png",
+      "optimized": "assets/optimized/story-country.77582ead8cf7.webp",
+      "beforeBytes": 313389,
+      "afterBytes": 130506,
+      "width": 645,
+      "height": 1276,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-garment.png",
+      "optimized": "assets/optimized/story-garment.b469085f91c4.webp",
+      "beforeBytes": 419639,
+      "afterBytes": 206044,
+      "width": 645,
+      "height": 1276,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-fabric.png",
+      "optimized": "assets/optimized/story-fabric.49e83e527ca1.webp",
+      "beforeBytes": 1239189,
+      "afterBytes": 689458,
+      "width": 1254,
+      "height": 1254,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-materials.png",
+      "optimized": "assets/optimized/story-materials.d92b794ae92d.webp",
+      "beforeBytes": 381576,
+      "afterBytes": 221330,
+      "width": 430,
+      "height": 851,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-split.png",
+      "optimized": "assets/optimized/story-split.09754df03b6d.webp",
+      "beforeBytes": 633232,
+      "afterBytes": 265672,
+      "width": 860,
+      "height": 1701,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-story-update/fabric-map.png",
+      "optimized": "assets/optimized/fabric-map.ad02df6b3f3d.webp",
+      "beforeBytes": 1192091,
+      "afterBytes": 707480,
+      "width": 1021,
+      "height": 1024,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-story-update/makers.png",
+      "optimized": "assets/optimized/makers.c668c781f691.webp",
+      "beforeBytes": 1088436,
+      "afterBytes": 339674,
+      "width": 1036,
+      "height": 2050,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-maker.png",
+      "optimized": "assets/optimized/story-maker.76b5eaa734d8.webp",
+      "beforeBytes": 583362,
+      "afterBytes": 381132,
+      "width": 951,
+      "height": 951,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-tracking.png",
+      "optimized": "assets/optimized/story-tracking.51d45ba79af5.webp",
+      "beforeBytes": 451751,
+      "afterBytes": 163388,
+      "width": 860,
+      "height": 1701,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/musubi-design/story-receive.png",
+      "optimized": "assets/optimized/story-receive.8d0791e48d3e.webp",
+      "beforeBytes": 1090617,
+      "afterBytes": 593374,
+      "width": 1254,
+      "height": 1254,
+      "rasterCount": 1,
+      "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    }
+  ],
+  "fonts": [
+    {
+      "source": "assets/fonts/EuclidCircularA-Light.ttf",
+      "optimized": "assets/optimized/EuclidCircularA-Light.439afde0027a.woff2",
+      "beforeBytes": 134172,
+      "afterBytes": 31048,
+      "verification": "Matching character map, glyph order, outlines, metrics and shaping tables."
+    },
+    {
+      "source": "assets/fonts/EuclidCircularA-Bold.ttf",
+      "optimized": "assets/optimized/EuclidCircularA-Bold.1a2ff7e55435.woff2",
+      "beforeBytes": 137760,
+      "afterBytes": 33928,
+      "verification": "Matching character map, glyph order, outlines, metrics and shaping tables."
+    },
+    {
+      "source": "assets/fonts/case/EuclidCircularA-Medium.ttf",
+      "optimized": "assets/optimized/EuclidCircularA-Medium.a4e622ab1fcd.woff2",
+      "beforeBytes": 141320,
+      "afterBytes": 34780,
+      "verification": "Matching character map, glyph order, outlines, metrics and shaping tables."
+    },
+    {
+      "source": "assets/fonts/case/EuclidCircularA-Regular.ttf",
+      "optimized": "assets/optimized/EuclidCircularA-Regular.8d659ca2aacf.woff2",
+      "beforeBytes": 141264,
+      "afterBytes": 34576,
+      "verification": "Matching character map, glyph order, outlines, metrics and shaping tables."
+    },
+    {
+      "source": "assets/fonts/case/EuclidCircularA-Italic.ttf",
+      "optimized": "assets/optimized/EuclidCircularA-Italic.6e3c7d1e627d.woff2",
+      "beforeBytes": 146844,
+      "afterBytes": 36320,
+      "verification": "Matching character map, glyph order, outlines, metrics and shaping tables."
+    }
+  ],
+  "teachers": [
+    {
+      "source": "https://fonts.gstatic.com/s/teachers/v6/H4ciBXKVncXVmUGsgRY4-LCYh4y0YzBTFw.woff2",
+      "optimized": "assets/optimized/Teachers-0.9e85fc58b9ff.woff2",
+      "afterBytes": 1316
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/teachers/v6/H4ciBXKVncXVmUGsgRY4-LKYh4y0YzBTFw.woff2",
+      "optimized": "assets/optimized/Teachers-1.0c38dbe471e4.woff2",
+      "afterBytes": 13628
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/teachers/v6/H4ciBXKVncXVmUGsgRY4-LyYh4y0YzA.woff2",
+      "optimized": "assets/optimized/Teachers-2.e2778190bdea.woff2",
+      "afterBytes": 27876
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/teachers/v6/H4ckBXKVncXVmUGsgRYxyL6SgK62UzE.woff2",
+      "optimized": "assets/optimized/Teachers-3.682e21454a48.woff2",
+      "afterBytes": 1272
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/teachers/v6/H4ckBXKVncXVmUGsgRYzyL6SgK62UzE.woff2",
+      "optimized": "assets/optimized/Teachers-4.83d5fac82fff.woff2",
+      "afterBytes": 12900
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/teachers/v6/H4ckBXKVncXVmUGsgRY9yL6SgK62.woff2",
+      "optimized": "assets/optimized/Teachers-5.83aa7e5999ef.woff2",
+      "afterBytes": 26324
+    }
+  ],
+  "everpawSuppliedFonts": [
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2",
+      "optimized": "assets/optimized/EverPaw-font.fccca918fea4.woff2",
+      "afterBytes": 25844
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2",
+      "optimized": "assets/optimized/EverPaw-font.aebf2ab4a4ce.woff2",
+      "afterBytes": 18744
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2",
+      "optimized": "assets/optimized/EverPaw-font.a2e2c783ca6f.woff2",
+      "afterBytes": 11272
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2",
+      "optimized": "assets/optimized/EverPaw-font.46dd4cdca58c.woff2",
+      "afterBytes": 19044
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2",
+      "optimized": "assets/optimized/EverPaw-font.8db00ff46c67.woff2",
+      "afterBytes": 10280
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2",
+      "optimized": "assets/optimized/EverPaw-font.a28eb6d3ccb5.woff2",
+      "afterBytes": 85272
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.c940764593d0.woff2",
+      "afterBytes": 48432
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggqxSvfedN62Zw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.347c589d5713.woff2",
+      "afterBytes": 2584
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggOxSvfedN62Zw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.93bef303b822.woff2",
+      "afterBytes": 14368
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggSxSvfedN62Zw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.6b478f45d63e.woff2",
+      "afterBytes": 9308
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggixSvfedN62Zw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.ddbf28cebf2f.woff2",
+      "afterBytes": 8356
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggmxSvfedN62Zw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.27eccb1f8944.woff2",
+      "afterBytes": 15212
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggexSvfedN4.woff2",
+      "optimized": "assets/optimized/EverPaw-font.8bd97e6bbbc1.woff2",
+      "afterBytes": 24436
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFBEecuCFR9RHw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.c9a83a8708a9.woff2",
+      "afterBytes": 7836
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFIEecuCFR9RHw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.039ce6ed2df8.woff2",
+      "afterBytes": 10000
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFDEecuCFR9RHw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.bc0b15f61bbe.woff2",
+      "afterBytes": 5676
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFCEecuCFR9RHw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.7288ffa8a236.woff2",
+      "afterBytes": 13764
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFMEecuCFR9.woff2",
+      "optimized": "assets/optimized/EverPaw-font.28df8362f9d0.woff2",
+      "afterBytes": 14808
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/matesc/v23/-nF8OGQ1-uoVr2wK-izT9rGnNwE3Cg.woff2",
+      "optimized": "assets/optimized/EverPaw-font.5912efe5fd38.woff2",
+      "afterBytes": 8504
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/matesc/v23/-nF8OGQ1-uoVr2wK-iLT9rGnNwE.woff2",
+      "optimized": "assets/optimized/EverPaw-font.88e875e6cf9c.woff2",
+      "afterBytes": 12712
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/matemasie/v4/OD5BuMCN3ne3Gmr7dlLHpUC5Lr2g2vJg.woff2",
+      "optimized": "assets/optimized/EverPaw-font.ef9baf46579b.woff2",
+      "afterBytes": 13164
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/matemasie/v4/OD5BuMCN3ne3Gmr7dlLHq0C5Lr2g2g.woff2",
+      "optimized": "assets/optimized/EverPaw-font.f1dea3181b1f.woff2",
+      "afterBytes": 32044
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/redhatdisplay/v21/8vIf7wUr0m80wwYf0QCXZzYzUoTK8RZQvRd-D1NYbl6WQkEz-FWZk33BGmGH.woff2",
+      "optimized": "assets/optimized/EverPaw-font.297e3081eaa2.woff2",
+      "afterBytes": 6800
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/redhatdisplay/v21/8vIf7wUr0m80wwYf0QCXZzYzUoTK8RZQvRd-D1NYbl6WQk8z-FWZk33BGg.woff2",
+      "optimized": "assets/optimized/EverPaw-font.9eec90763e39.woff2",
+      "afterBytes": 14868
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.e44224eb71a9.woff2",
+      "afterBytes": 31472
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.32886c5ec61a.woff2",
+      "afterBytes": 19624
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.5fdfeaf926ca.woff2",
+      "afterBytes": 1632
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.4813e3dfbbb2.woff2",
+      "afterBytes": 13984
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.297193369eea.woff2",
+      "afterBytes": 36292
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.fab8a0056d92.woff2",
+      "afterBytes": 16692
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.2071148c26bd.woff2",
+      "afterBytes": 10572
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBHMdazTgWw.woff2",
+      "optimized": "assets/optimized/EverPaw-font.cdd53dc5576a.woff2",
+      "afterBytes": 24444
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+      "optimized": "assets/optimized/EverPaw-font.0a44e0bb6ba5.woff2",
+      "afterBytes": 37520
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/share/v20/i7dPIFliZjKNF6VPLgK7YE98RXi4EwSsbg.woff2",
+      "optimized": "assets/optimized/EverPaw-font.775237ef614d.woff2",
+      "afterBytes": 1396
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/share/v20/i7dPIFliZjKNF6VPLgK7YEF8RXi4EwQ.woff2",
+      "optimized": "assets/optimized/EverPaw-font.9fc34e088325.woff2",
+      "afterBytes": 14136
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/share/v20/i7dEIFliZjKNF6VEFruUck5ceFM.woff2",
+      "optimized": "assets/optimized/EverPaw-font.fccb56c5910b.woff2",
+      "afterBytes": 1336
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/share/v20/i7dEIFliZjKNF6VKFruUck5c.woff2",
+      "optimized": "assets/optimized/EverPaw-font.a4dbc2c7f52b.woff2",
+      "afterBytes": 13344
+    }
+  ]
+}

@@ -14,11 +14,17 @@
   const selectionRows = [...svg.querySelectorAll('.poster-selectable text')];
   const selectionBands = svg.querySelector('.poster-highlight-bands');
   const selectionClip = svg.querySelector('#headline-selection');
+  let metrics;
+  let layoutShift = 0;
+  let fitFrame = 0;
+  let selectionFrame = 0;
+  let suspended = false;
+  let lastBands = '';
 
-  function positionCarton({ left, top, width, height }) {
+  function positionCarton({ left, top, width, height }, caption) {
     // Keep the carton and caption at the positions set by the original poster.
     context.font = '300 128px "Euclid Circular A", sans-serif';
-    const original = originalWords.map(word => {
+    const original = metrics ??= originalWords.map(word => {
       const ink = context.measureText(word);
       return {
         width: ink.width - 2 * (word.length - 1),
@@ -34,8 +40,6 @@
     );
     const first = 2 + firstAscent * scale;
     const last = height - 2 - lastDescent * scale;
-    layout.style.transform = 'none';
-    const caption = note.getBoundingClientRect();
     let shift = 0;
     original.forEach((line, index) => {
       const baseline = top + first + index * (last - first) / 4;
@@ -46,23 +50,29 @@
         shift = Math.max(shift, inkBottom + 12 - caption.top);
       }
     });
-    if (shift > 0) layout.style.transform = `translateY(${shift}px)`;
+    return shift;
   }
 
   function fit() {
+    fitFrame = 0;
+    if (suspended) return;
     const canvas = frame.getBoundingClientRect();
     const { width, height } = canvas;
     if (width <= 0 || height <= 0) return;
-    positionCarton(canvas);
+    // Measure before writing. Remove our previous translation mathematically,
+    // so recalculating the caption never needs a forced layout after a reset.
+    const box = carton.getBoundingClientRect();
+    const captionBox = note.getBoundingClientRect();
+    const caption = { left:captionBox.left, right:captionBox.right,
+      top:captionBox.top - layoutShift, bottom:captionBox.bottom - layoutShift };
+    const shift = positionCarton(canvas, caption);
 
     const margin = Math.max(6, Math.min(13, width * .024));
     const { width: artworkWidth, height: artworkHeight } = svg.viewBox.baseVal;
     const aspectRatio = artworkWidth / artworkHeight;
     let posterWidth = Math.min(width - 2 * margin, (height - 2 * margin) * aspectRatio);
     if (!stacked.matches) {
-      const box = carton.getBoundingClientRect();
-      const caption = note.getBoundingClientRect();
-      const captionInset = Math.max(margin, caption.top - canvas.top);
+      const captionInset = Math.max(margin, caption.top + shift - canvas.top);
       const cartonEdge = box.left - canvas.left + box.width * .048;
       // Keep the title in the left column while allowing the artwork to meet the carton.
       const columnWidth = (cartonEdge - margin + Math.min(42, width * .035)) * artworkWidth / 699;
@@ -74,13 +84,20 @@
       posterWidth = Math.min(posterWidth * 1.075, width - 2 * margin, (height - 2 * targetInset) * aspectRatio);
     }
     const verticalSpace = height - posterWidth / aspectRatio;
-    svg.style.left = `${margin}px`;
-    svg.style.top = `${verticalSpace / 2}px`;
-    svg.style.width = `${posterWidth}px`;
-    svg.style.height = `${posterWidth / aspectRatio}px`;
+    layoutShift = shift;
+    setStyle(layout, 'transform', shift > 0 ? `translateY(${shift}px)` : 'none');
+    setStyle(svg, 'left', `${margin}px`);
+    setStyle(svg, 'top', `${verticalSpace / 2}px`);
+    setStyle(svg, 'width', `${posterWidth}px`);
+    setStyle(svg, 'height', `${posterWidth / aspectRatio}px`);
   }
+  function setStyle(element, name, value) {
+    if (element.style[name] !== value) element.style[name] = value;
+  }
+  const scheduleFit = () => { if (!suspended && !fitFrame) fitFrame = requestAnimationFrame(fit); };
 
   function highlightSelection() {
+    selectionFrame = 0;
     const selection = window.getSelection();
     const bands = [];
     if (selection?.rangeCount && !selection.isCollapsed) {
@@ -115,13 +132,27 @@
         bands.push(rect);
       }
     }
+    const signature = bands.map(rect => ['x','y','width','height'].map(name => rect.getAttribute(name)).join(',')).join(';');
+    if (signature === lastBands) return;
+    lastBands = signature;
     selectionBands.replaceChildren(...bands);
     selectionClip.replaceChildren(...bands.map(rect => rect.cloneNode()));
   }
 
   fit();
-  if ('ResizeObserver' in window) new ResizeObserver(fit).observe(frame);
-  else window.addEventListener('resize', fit, { passive: true });
-  document.fonts?.ready.then(fit);
-  document.addEventListener('selectionchange', highlightSelection);
+  if ('ResizeObserver' in window) new ResizeObserver(scheduleFit).observe(frame);
+  else window.addEventListener('resize', scheduleFit, { passive: true });
+  const fontsChanged = () => { metrics = undefined; scheduleFit(); };
+  document.fonts?.ready.then(fontsChanged);
+  document.fonts?.addEventListener('loadingdone', fontsChanged);
+  document.addEventListener('selectionchange', () => {
+    if (!suspended && !selectionFrame) selectionFrame = requestAnimationFrame(highlightSelection);
+  });
+  window.addEventListener('pagehide', () => {
+    suspended = true;
+    cancelAnimationFrame(fitFrame);
+    cancelAnimationFrame(selectionFrame);
+    fitFrame = selectionFrame = 0;
+  });
+  window.addEventListener('pageshow', () => { suspended = false; scheduleFit(); });
 })();

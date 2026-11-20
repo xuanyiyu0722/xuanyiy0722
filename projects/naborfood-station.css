@@ -56,6 +56,6 @@
 /* The original Connected Experience board stays proportionate beside its explanation. */
 .architecture-explainer{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(28px,4vw,68px);align-items:center;}
 .architecture-explainer>p{max-width:620px;}
-.connected-diagram{max-width:none;aspect-ratio:1762/891;background-image:url('../assets/images/naborfood-experience/connected-experience-original.png');background-repeat:no-repeat;background-size:295.8% auto;background-position:right top;}
+.connected-diagram{max-width:none;aspect-ratio:1762/891;background-image:url('../assets/optimized/connected-experience-original.26d879056ee0.webp');background-repeat:no-repeat;background-size:295.8% auto;background-position:right top;}
 .connected-diagram>h3,.connected-diagram>.connected-pair,.connected-diagram>figcaption{display:none;}
 @media(max-width:640px){.architecture-explainer{grid-template-columns:1fr;gap:28px;}.connected-diagram{max-width:740px;width:100%;}}
