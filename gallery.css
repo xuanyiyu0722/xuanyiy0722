@@ -19,7 +19,6 @@ html.gallery-lenis-active { scroll-behavior:auto !important; }
 .gallery-cover-stage { position:relative; z-index:1; display:block; width:58%; max-width:min(680px,calc((100svh - 200px) * 100 / 76)); aspect-ratio:100 / 76; margin-inline:auto; transform:none; }
 .gallery-cover { width:100%; height:100%; aspect-ratio:100 / 76; margin:0; overflow:hidden; background:var(--paper); }
 .gallery-cover img { display:block; width:100%; height:100%; object-fit:cover; filter:none; transition:transform 550ms var(--ease); }
-.gallery-cover img[src*="fridgekey-cover"] { object-fit:contain; background:#292a36; }
 /* The surrounding information is drawn from each existing case study. */
 .gallery-project-left { position:absolute; z-index:2; top:50%; left:0; width:18%; transform:translateY(-50%); }
 .gallery-project-facts { display:grid; gap:20px; margin:0; }
