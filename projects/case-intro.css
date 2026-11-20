@@ -10,17 +10,16 @@
   grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);
   align-items:center; gap:38px 40px; padding:0;
 }
-.case-hero .case-heading{min-width:0;}
-.case-hero .case-brand{display:flex;align-items:center;gap:18px;margin-bottom:24px;}
-.case-hero .case-brand-icon{display:block;flex:none;width:64px;height:64px;object-fit:contain;}
+.case-hero .case-heading{min-width:0;container-type:inline-size;}
+.case-hero .case-brand{display:block;margin-bottom:24px;text-align:left;}
 .project-page .case-hero h1{
   margin:0; color:var(--intro-ink); font-size:clamp(44px,5.3vw,86px);
   line-height:1.02; font-weight:700; letter-spacing:-.035em;
 }
 .case-hero .summary--project .case-tagline{
-  max-width:650px; margin:0 0 18px; color:var(--intro-accent);
-  font-family:var(--font-heading); font-size:clamp(22px,1.85vw,30px);
-  font-weight:700; line-height:1.25; letter-spacing:0;
+  width:max-content; max-width:none; margin:0 0 18px; color:var(--intro-accent);
+  font-family:var(--font-heading); font-size:min(16px,2.8cqi);
+  font-weight:700; line-height:1.4; letter-spacing:0; white-space:nowrap;
 }
 .case-hero .case-title .summary--project>p{
   max-width:650px; margin:0; color:var(--intro-copy); font-size:15px; line-height:1.65;
@@ -36,18 +35,13 @@
 .case-hero-art img{display:block;max-width:none;object-fit:contain;}
 .case-hero-scene{width:100%;height:100%;}
 
-/* MUSUBI: paper, plum ribbons, garments and the original app mockups. */
+/* MUSUBI: paper, garments and the original app mockups. */
 .project-musubi .case-hero{
   --intro-bg:#f7f6f5; --intro-ink:#201f20; --intro-copy:#595151;
   --intro-accent:#76434f; --intro-rule:#d5bfc7;
 }
-.project-musubi .case-hero::before{
-  content:""; position:absolute; z-index:0; left:-25%; bottom:-24%; width:100%; height:100%;
-  background:url("../assets/images/case-intros/musubi-ribbon.svg") left bottom / contain no-repeat;
-  opacity:.1; pointer-events:none;
-}
 .case-hero-art--musubi .case-hero-scene{position:absolute;inset:0;width:110%;height:100%;object-position:center;}
-.case-hero-art--musubi .case-hero-maker{position:absolute;left:-18px;bottom:3px;width:118px;height:118px;}
+.case-hero-art--musubi .case-hero-maker{position:absolute;left:-24px;bottom:0;width:168px;height:168px;}
 
 /* FridgeKey: a clear reading area beside the solid and exploded locker. */
 .project-fridgekey .case-hero{
@@ -59,28 +53,33 @@
 .case-hero-exploded{position:absolute;top:-6%;left:-12%;width:110%;height:92%;opacity:.3;}
 .case-hero-locker{position:absolute;right:-5%;bottom:0;width:91%;height:83%;}
 
-/* NABORFOOD: the green brand mark and isometric retail journey on white. */
-.project-naborfood .case-hero .case-brand{gap:16px;}
-.project-naborfood .case-hero .case-brand-icon{width:54px;height:auto;}
+/* NABORFOOD: the complete isometric retail journey on white. */
 .project-naborfood .case-hero h1{font-size:clamp(32px,3.65vw,62px);letter-spacing:.015em;}
 .case-hero-art--naborfood{overflow:hidden;}
-.case-hero-art--naborfood .case-hero-scene{object-fit:cover;object-position:center 40%;}
+.case-hero-art--naborfood .case-hero-scene{object-fit:contain;object-position:center;}
 
-/* EverPaw: cocoa, blush and the original mode, mood and Color Room screens. */
+/* EverPaw: the seven original screens in the reference frame's three columns. */
 .project-everpaw .case-hero{
   --intro-bg:#442f24; --intro-ink:#fff7f2; --intro-copy:#efd4c8;
   --intro-accent:#ffd4d2; --intro-rule:#937465;
 }
-.project-everpaw .case-hero .case-brand-icon{width:76px;height:76px;border-radius:24%;}
-.case-hero-art--everpaw{overflow:hidden;}
-.case-hero-device{position:absolute;width:31%;aspect-ratio:400/728;overflow:hidden;box-shadow:0 14px 28px #1d100c40;border-radius:0 0 14% 14% / 0 0 8% 8%;}
+.case-hero-art--everpaw{height:440px;overflow:hidden;}
+.case-hero-phone-wall{position:absolute;left:50%;top:0;height:100%;max-width:100%;aspect-ratio:1282/1500;transform:translateX(-50%);}
+.case-hero-device{position:absolute;width:31.20125%;aspect-ratio:400/728;overflow:hidden;box-shadow:0 14px 28px #1d100c40;border-radius:0 0 14% 14% / 0 0 8% 8%;}
 /* The exports include the template's white shadow canvas outside each phone.
    Clip the canvas in the layout while preserving the original screen and shell. */
 .case-hero-device .case-hero-phone{position:absolute;max-width:none;width:213.75%;height:auto;left:-84.5%;top:0;}
 .case-hero-device--mood{left:0;top:0;}
 .case-hero-device--color{right:0;top:0;}
-.case-hero-device--mode{z-index:1;left:34.5%;top:18%;aspect-ratio:400/821;border-radius:16% / 8%;}
+.case-hero-device--mode{z-index:1;left:34.47894%;top:22.6%;aspect-ratio:400/821;border-radius:16% / 8%;}
 .case-hero-device--mode .case-hero-phone{top:-18.63%;}
+.case-hero-device--home,.case-hero-device--alert{top:52.2%;aspect-ratio:400/717;border-radius:16% 16% 0 0 / 9% 9% 0 0;}
+.case-hero-device--home{left:0;}
+.case-hero-device--alert{right:0;}
+.case-hero-device--home .case-hero-phone,.case-hero-device--alert .case-hero-phone{top:-21.33891%;}
+.case-hero-device--gallery{left:34.47894%;top:0;aspect-ratio:400/284;border-radius:0 0 16% 16% / 0 0 22.5% 22.5%;}
+.case-hero-device--timeline{left:34.47894%;top:81%;aspect-ratio:400/285;border-radius:16% 16% 0 0 / 22.5% 22.5% 0 0;}
+.case-hero-device--timeline .case-hero-phone{top:-53.68421%;}
 
 @media(min-width:1600px){
   .project-page .case-hero{padding-top:72px;padding-bottom:52px;}
@@ -90,30 +89,22 @@
 @media(min-width:821px) and (max-width:1120px){
   .project-page .case-hero{padding:44px 4vw 36px;}
   .project-page .case-hero .case-title{gap:30px 24px;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);}
-  .case-hero .case-brand{gap:12px;}
-  .case-hero .case-brand-icon{width:48px;height:48px;}
-  .project-everpaw .case-hero .case-brand-icon{width:54px;height:54px;}
   .project-page .case-hero h1{font-size:clamp(40px,5.1vw,58px);}
   .project-naborfood .case-hero h1{font-size:clamp(28px,3.3vw,38px);}
-  .project-naborfood .case-hero .case-brand-icon{width:40px;}
-  .case-hero .summary--project .case-tagline{font-size:22px;}
   .case-hero-art{height:360px;}
   .project-page .case-hero .case-meta{gap:16px;}
 }
 @media(max-width:820px){
   .project-page .case-hero{padding:40px 24px 32px;}
   .project-page .case-hero .case-title{grid-template-columns:minmax(0,1fr);gap:28px;}
-  .case-hero .case-brand{gap:14px;margin-bottom:22px;}
-  .case-hero .case-brand-icon{width:56px;height:56px;}
+  .case-hero .case-brand{margin-bottom:22px;}
   .project-page .case-hero h1{font-size:clamp(44px,8.5vw,72px);}
   .project-naborfood .case-hero h1{font-size:clamp(28px,5.8vw,48px);}
-  .project-naborfood .case-hero .case-brand-icon{width:42px;}
-  .project-everpaw .case-hero .case-brand-icon{width:60px;height:60px;}
-  .case-hero .summary--project .case-tagline{font-size:23px;}
   .case-hero .case-title .summary--project>p{font-size:15px;line-height:1.7;}
   .case-hero-art{height:clamp(280px,64vw,440px);max-width:600px;justify-self:center;}
   .case-hero-art--musubi .case-hero-scene{width:100%;}
-  .case-hero-art--musubi .case-hero-maker{left:0;bottom:0;width:96px;height:96px;}
+  .case-hero-art--musubi .case-hero-maker{left:-8px;bottom:0;width:128px;height:128px;}
+  .case-hero-art--everpaw{height:auto;aspect-ratio:1282/1500;max-width:360px;}
   .project-page .case-hero .case-meta{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 22px;padding-top:22px;}
 }
 @media(prefers-reduced-motion:reduce){

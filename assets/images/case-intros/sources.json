@@ -78,7 +78,49 @@
         "canvasWidth": 855,
         "canvasHeight": 1059
       }
+    },
+    "everpaw-home.webp": {
+      "node": "30:18507",
+      "kind": "Figma phone export",
+      "canvasWidth": 855,
+      "canvasHeight": 871,
+      "deviceX": 338,
+      "deviceY": 153,
+      "deviceWidth": 400
+    },
+    "everpaw-alert.webp": {
+      "node": "30:18425",
+      "kind": "Figma phone export",
+      "canvasWidth": 855,
+      "canvasHeight": 871,
+      "deviceX": 338,
+      "deviceY": 153,
+      "deviceWidth": 400
+    },
+    "everpaw-gallery.webp": {
+      "node": "30:18721",
+      "kind": "Figma phone export",
+      "canvasWidth": 855,
+      "canvasHeight": 615,
+      "deviceX": 338,
+      "deviceY": 0,
+      "deviceWidth": 400
+    },
+    "everpaw-timeline.webp": {
+      "node": "30:18820",
+      "kind": "Figma phone export",
+      "canvasWidth": 855,
+      "canvasHeight": 439,
+      "deviceX": 338,
+      "deviceY": 153,
+      "deviceWidth": 400
+    },
+    "musubi-maker-large.webp": {
+      "node": "30:14357",
+      "kind": "source image",
+      "width": 480,
+      "height": 480
     }
   },
-  "notes": "Original Figma materials, resized to WebP for the web. Phone shadow canvases are clipped in CSS to the original device edges; source artwork and screens are unchanged. Full-frame screenshots are not used as implementation assets."
+  "notes": "Original Figma materials resized to WebP. The seven-screen EverPaw wall follows the reference frame positions; CSS clips only the export canvas outside each device and the top and bottom of the whole wall. Original project copy and screen artwork are preserved."
 }
