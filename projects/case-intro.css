@@ -41,9 +41,12 @@
   --intro-accent:#76434f; --intro-rule:#d5bfc7;
 }
 .case-hero-art--musubi{background:var(--intro-bg);box-shadow:0 0 0 12px var(--intro-bg);}
+.project-musubi .case-hero .case-title{background:var(--intro-bg);box-shadow:0 0 0 100px var(--intro-bg);}
 .case-hero-wordmark{display:block;width:clamp(240px,30vw,488px);max-width:100%;height:auto;}
 .case-hero-art--musubi .case-hero-scene{position:absolute;inset:0;width:100%;height:100%;object-position:center;}
 .case-hero-art--musubi img{mix-blend-mode:darken;}
+.case-hero-art--musubi .case-hero-scene,
+.case-hero-art--naborfood .case-hero-scene{transform:translateX(4px) scale(1.3);transform-origin:center;}
 
 /* FridgeKey: a clear reading area beside the solid and exploded locker. */
 .project-fridgekey .case-hero{
@@ -58,7 +61,7 @@
 /* NABORFOOD: the complete retail journey on the case study's own canvas. */
 .project-naborfood .case-hero{--intro-accent:#a5cf4a;}
 .project-naborfood .case-hero h1{font-size:clamp(32px,3.65vw,62px);letter-spacing:.015em;}
-.case-hero-art--naborfood{overflow:hidden;}
+.case-hero-art--naborfood{overflow:visible;}
 .case-hero-art--naborfood .case-hero-scene{object-fit:contain;object-position:center;}
 
 /* EverPaw: the seven original screens in the reference frame's three columns. */
@@ -87,6 +90,7 @@
 @media(min-width:1600px){
   .project-page .case-hero{padding-top:72px;padding-bottom:52px;}
   .case-hero-art{height:480px;}
+  .case-hero-art--musubi,.case-hero-art--naborfood{margin-block:44px;}
   .case-hero .case-title .summary--project>p{font-size:17px;}
 }
 @media(min-width:821px) and (max-width:1120px){
@@ -106,6 +110,7 @@
   .case-hero .case-title .summary--project>p{font-size:15px;line-height:1.7;}
   .case-hero-art{height:clamp(280px,64vw,440px);max-width:600px;justify-self:center;}
   .case-hero-art--musubi .case-hero-scene{width:100%;}
+  .case-hero-art--musubi .case-hero-scene,.case-hero-art--naborfood .case-hero-scene{transform:none;}
   .case-hero-art--everpaw{height:auto;aspect-ratio:1282/1500;max-width:360px;}
   .project-page .case-hero .case-meta{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 22px;padding-top:22px;}
 }
