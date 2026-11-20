@@ -1,0 +1,84 @@
+{
+  "fileKey": "ejMJr7i4EvUJjMSxbnN4AV",
+  "referenceFrames": {
+    "MUSUBI": "30:12092",
+    "FridgeKey": "30:14529",
+    "NABORFOOD": "30:14441",
+    "EverPaw": "30:18258"
+  },
+  "assets": {
+    "musubi-scene.webp": {
+      "node": "30:19363",
+      "kind": "Figma artwork export"
+    },
+    "musubi-maker.webp": {
+      "node": "30:14357",
+      "kind": "source image"
+    },
+    "musubi-logo.webp": {
+      "node": "30:14397",
+      "kind": "Figma logo export"
+    },
+    "musubi-ribbon.svg": {
+      "node": "30:12094",
+      "kind": "source vector"
+    },
+    "fridgekey-exploded.webp": {
+      "node": "30:14530",
+      "kind": "source image"
+    },
+    "fridgekey-locker.webp": {
+      "node": "30:14633",
+      "kind": "source image"
+    },
+    "naborfood-scene.webp": {
+      "node": "30:14442",
+      "kind": "source image"
+    },
+    "naborfood-symbol.svg": {
+      "node": "30:14452",
+      "kind": "source vector"
+    },
+    "everpaw-icon.webp": {
+      "node": "30:18264",
+      "kind": "Figma icon export"
+    },
+    "everpaw-mode.webp": {
+      "node": "30:18265",
+      "kind": "Figma phone export",
+      "deviceBounds": {
+        "x": 338,
+        "y": 153,
+        "width": 400,
+        "height": 821,
+        "canvasWidth": 855,
+        "canvasHeight": 1305
+      }
+    },
+    "everpaw-mood.webp": {
+      "node": "30:18578",
+      "kind": "Figma phone export",
+      "deviceBounds": {
+        "x": 338,
+        "y": 0,
+        "width": 400,
+        "height": 728,
+        "canvasWidth": 855,
+        "canvasHeight": 1059
+      }
+    },
+    "everpaw-color.webp": {
+      "node": "30:18367",
+      "kind": "Figma phone export",
+      "deviceBounds": {
+        "x": 338,
+        "y": 0,
+        "width": 400,
+        "height": 728,
+        "canvasWidth": 855,
+        "canvasHeight": 1059
+      }
+    }
+  },
+  "notes": "Original Figma materials, resized to WebP for the web. Phone shadow canvases are clipped in CSS to the original device edges; source artwork and screens are unchanged. Full-frame screenshots are not used as implementation assets."
+}
