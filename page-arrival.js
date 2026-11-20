@@ -10,8 +10,11 @@
   const currentPage = new URL(location.href);
   const handoffKey = 'portfolio-arrival-covered';
   const soundPreference = 'alicia-portfolio-sound';
-  const boilingSound = new Audio(new URL('assets/audio/loading-boiling-water.mp4', scriptURL).href);
+  // User-selected bubble effect: https://www.youtube.com/watch?v=vthaBJaTWcE (opening silence trimmed).
+  const boilingSound = new Audio(new URL('assets/audio/loading-bubbles.mp3', scriptURL).href);
   boilingSound.preload = 'auto';
+  boilingSound.defaultPlaybackRate = boilingSound.playbackRate = .8;
+  boilingSound.volume = .5;
   const expansionDuration = 800;
   const progressStepDuration = 180;
   const eggShakeDuration = 120;
@@ -99,7 +102,7 @@
     cancelAnimationFrame(soundFrame);
     boilingSound.pause();
     boilingSound.currentTime = 0;
-    boilingSound.volume = 1;
+    boilingSound.volume = .5;
   }
 
   function playBoilingSound() {
@@ -116,7 +119,7 @@
     const fade = () => {
       const remaining = (endsAt - Date.now()) / soundFadeDuration;
       if (remaining <= 0) { stopBoilingSound(); return; }
-      boilingSound.volume = Math.min(1, remaining) ** 2;
+      boilingSound.volume = .5 * Math.min(1, remaining) ** 2;
       soundFrame = requestAnimationFrame(fade);
     };
     fade();

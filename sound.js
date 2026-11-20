@@ -61,26 +61,6 @@
   ['pointerdown', 'keydown', 'touchend', 'click', 'wheel'].forEach(type => {
     document.addEventListener(type, unlock, { capture:true, passive:true });
   });
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'sound-toggle';
-  button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4Z"/><path class="sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="sound-slash" d="m15 9 6 6m0-6-6 6"/></svg><span></span>';
-  const label = button.querySelector('span');
-  const render = () => {
-    label.textContent = enabled ? 'Sound On' : 'Sound Off';
-    button.setAttribute('aria-pressed', String(enabled));
-    button.setAttribute('aria-label', enabled ? 'Mute sound effects' : 'Enable sound effects');
-    button.classList.toggle('is-muted', !enabled);
-  };
-  button.addEventListener('click', () => {
-    enabled = !enabled;
-    try { localStorage.setItem(preference, enabled ? 'on' : 'off'); } catch {}
-    if (!enabled) stopAll();
-    else primePage();
-    render();
-  });
-  document.body.append(button);
-  render();
   window.PortfolioSound = Object.freeze({
     eggSelect() {
       const now = performance.now();
@@ -115,7 +95,6 @@
   const syncPreference = () => {
     enabled = readPreference();
     if (!enabled) stopAll();
-    render();
   };
   window.addEventListener('storage', event => { if (event.key === preference) syncPreference(); });
   window.addEventListener('pageshow', syncPreference);

@@ -28,7 +28,7 @@
   window.PortfolioGalleryScroll = Object.freeze({
     to(top, { immediate = false } = {}) {
       if (!Number.isFinite(top)) return;
-      if (lenis) lenis.scrollTo(top, { immediate, force:true, duration:.33, easing:progress => 1 - (1 - progress) ** 3, onStart:wake });
+      if (lenis) lenis.scrollTo(top, { immediate, force:true, duration:.28, easing:progress => 1 - (1 - progress) ** 3, onStart:wake });
       else window.scrollTo({ top, behavior:immediate || reduce.matches ? 'instant' : 'smooth' });
     }
   });
@@ -62,7 +62,7 @@
     if (lenis || !window.Lenis || !window.Motion?.frame?.setup || !window.Motion?.cancelFrame) return;
     try {
       root.classList.add('gallery-lenis-active');
-      lenis = new Lenis({ autoRaf:false, lerp:0.15, wheelMultiplier:1.12, smoothWheel:true, syncTouch:false, anchors:true });
+      lenis = new Lenis({ autoRaf:false, lerp:0.24, wheelMultiplier:1.6, smoothWheel:true, syncTouch:false, anchors:true });
       lenis.on('virtual-scroll', wake);
       // Lenis also handles same-page anchor links independently of wheel events.
       document.addEventListener('click', wake, { passive:true });

@@ -75,13 +75,14 @@
 .about-mosaic__ticker { overflow: hidden; }
 .about-mosaic__ticker-track {
   display: flex;
-  width: max-content;
+  width: 100%;
+  justify-content: center;
   color: #e3d5ba;
   font-size: clamp(8px, 2.2cqw, 12px);
   letter-spacing: .075em;
   line-height: 1.2;
 }
-.about-mosaic__ticker-track span { min-width: 100cqw; text-align: center; }
+.about-mosaic__ticker-track span { text-align: center; letter-spacing: 0; }
 .about-photo-preview {
   position: fixed;
   z-index: 45;
@@ -103,13 +104,8 @@
   .project-fade-ready .about-mosaic.is-in-view .about-mosaic__name span {
     animation: about-name-reveal 680ms var(--ease) 190ms both;
   }
-  .project-fade-ready .about-mosaic.is-in-view .about-mosaic__ticker-track {
-    animation: about-ticker-scroll 22s linear infinite;
-  }
-  .about-mosaic__ticker:hover .about-mosaic__ticker-track { animation-play-state: paused; }
 }
 @media (prefers-reduced-motion: reduce) { .about-photo-preview { transition: none; } }
-@keyframes about-ticker-scroll { to { transform: translateX(-50%); } }
 @keyframes about-tile-reveal {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: none; }

@@ -5,6 +5,9 @@
   if (!guide || stages.length < 2) return;
   const track = guide.querySelector('.gallery-scroll-track');
   const thumb = guide.querySelector('.gallery-scroll-thumb');
+  const previous = document.querySelector('[data-gallery-previous]');
+  const next = document.querySelector('[data-gallery-next]');
+  const status = document.querySelector('.gallery-keyboard-status');
   let current = 0, frame = 0, dragging = false;
   let resting = 0;
   let pendingStop = null;
@@ -38,6 +41,9 @@
     const pageY = scrollY;
     const progress = clamp((pageY - stops[0]) / Math.max(1, stops.at(-1) - stops[0]), 0, 1);
     current = closest(stops, pageY);
+    const selected = pendingStop === null ? current : resting;
+    if (previous) previous.disabled = selected === 0;
+    if (next) next.disabled = selected === stages.length - 1;
     const offset = progress * travel;
     if (offset !== thumbOffset) {
       thumbOffset = offset;
@@ -54,11 +60,14 @@
     if (window.PortfolioGalleryScroll) window.PortfolioGalleryScroll.to(top, { immediate });
     else window.scrollTo({ top, behavior:immediate ? 'instant' : 'smooth' });
   };
-  const select = (index, stops = positions()) => {
+  const select = (index, stops = positions(), announce = false) => {
+    clearTimeout(snapTimer);
     resting = clamp(index, 0, stops.length - 1);
     const top = stops[resting];
     pendingStop = Math.abs(top - scrollY) > 1 ? top : null;
-    if (pendingStop !== null) scrollTo(top);
+    scrollTo(top);
+    if (announce && status) status.textContent = `${resting + 1} of ${stages.length} — ${titles[resting]}`;
+    queue();
   };
   const snap = (useDirection = true) => {
     clearTimeout(snapTimer);
@@ -71,14 +80,14 @@
     const stops = positions();
     const nearest = closest(stops);
     const distance = scrollY - stops[resting];
-    const threshold = Math.min(90, innerHeight * .13);
+    const threshold = Math.min(56, innerHeight * .08);
     const target = useDirection && nearest === resting && Math.abs(distance) >= threshold
       ? nearest + Math.sign(distance) : nearest;
     select(target, stops);
   };
   const scheduleSnap = () => {
     clearTimeout(snapTimer);
-    snapTimer = setTimeout(snap, 130);
+    snapTimer = setTimeout(snap, 100);
   };
   const reset = () => {
     geometry = null;
@@ -110,23 +119,36 @@
   track.addEventListener('pointerup', finishDrag);
   track.addEventListener('pointercancel', finishDrag);
   track.addEventListener('lostpointercapture', finishDrag);
-  track.addEventListener('keydown', event => {
-    const actions = { ArrowUp:current-1, ArrowDown:current+1, PageUp:current-1, PageDown:current+1, Home:0, End:stages.length-1 };
+  const selectedIndex = () => pendingStop === null ? closest(positions()) : resting;
+  previous?.addEventListener('click', () => select(selectedIndex() - 1, positions(), true));
+  next?.addEventListener('click', () => select(selectedIndex() + 1, positions(), true));
+  document.addEventListener('keydown', event => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
+        document.documentElement.classList.contains('page-arrival-active')) return;
+    if (event.target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="combobox"],[role="listbox"],[role="spinbutton"],[role="tablist"],video,audio,dialog,[role="slider"]:not(.gallery-scroll-track)')) return;
+    const index = selectedIndex();
+    const actions = { ArrowUp:index-1, ArrowDown:index+1, PageUp:index-1, PageDown:index+1, Home:0, End:stages.length-1 };
     if (!(event.key in actions)) return;
     event.preventDefault();
-    select(actions[event.key]);
+    if (event.repeat && pendingStop !== null) return;
+    const moveFocus = stages.some(stage => stage.contains(document.activeElement));
+    select(actions[event.key], positions(), true);
+    if (moveFocus) stages[resting].querySelector('.gallery-project-title-link')?.focus({ preventScroll:true });
   });
   guide.hidden = false;
   track.setAttribute('aria-valuemax', stages.length);
   window.addEventListener('scroll', () => { queue(); scheduleSnap(); }, { passive:true });
   // A fresh gesture may interrupt an in-flight snap. Its own scroll events may not.
-  const releaseSnap = () => { pendingStop = null; };
+  const releaseSnap = event => {
+    if (event.type === 'pointerdown' && event.target.closest('.gallery-keyboard-controls')) return;
+    pendingStop = null;
+  };
   for (const event of ['wheel', 'pointerdown']) {
     window.addEventListener(event, releaseSnap, { capture:true, passive:true });
   }
   window.addEventListener('keydown', event => {
-    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) releaseSnap();
-  }, { capture:true });
+    if (!event.defaultPrevented && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) releaseSnap(event);
+  });
   window.addEventListener('touchstart', () => { touching = true; }, { passive:true });
   for (const event of ['touchend', 'touchcancel']) {
     window.addEventListener(event, () => { touching = false; scheduleSnap(); }, { passive:true });
