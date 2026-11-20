@@ -57,7 +57,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(6px, 1.5cqw, 10px);
+  gap: clamp(4px, .75cqw, 6px);
   overflow: hidden;
 }
 .about-page .about-mosaic .about-mosaic__name {
@@ -118,11 +118,16 @@
   from { opacity: 0; transform: translateY(65%); }
   to { opacity: 1; transform: none; }
 }
-.about-intro{padding:24px 5.5vw 64px;}
-.about-intro .lead{max-width:660px;margin:0;font-size:22px;line-height:1.35;}
+.about-page .about-copy{display:flex;flex-direction:column;gap:24px;min-width:0;}
+.about-copy>.about-intro{flex:none;padding:0;}
+.about-intro .lead{max-width:660px;margin:0;font-size:clamp(18px,1.55vw,22px);line-height:1.4;}
 @media(min-width:821px){
-  .about-page .about-wrap{min-height:100svh;padding-block:64px;align-items:center;}
-  .about-mosaic { max-height: max(280px, calc(100svh - 128px)); }
+  .about-page .about-wrap{
+    --about-inset:clamp(40px,6svh,64px);
+    min-height:100svh;padding-block:var(--about-inset);align-items:center;
+  }
+  .about-page .about-copy{max-height:max(360px,calc(100svh - 2 * var(--about-inset)));}
+  .about-mosaic{flex:0 1 auto;min-height:0;max-height:none;}
   .about-page .about-side{padding-top:0;}
   .about-page .about-side .about-block:last-child{padding-bottom:0;}
 }
@@ -157,6 +162,9 @@
   line-height: 1.5;
 }
 @keyframes about-egg-note-pop{from{opacity:0;transform:translateY(5px) scale(.9);}to{opacity:1;transform:none;}}
-@media(max-width:820px){.about-intro{padding-inline:20px;}.about-page .about-wrap{padding-bottom:40px;}}
+@media(max-width:820px){
+  .about-page .about-wrap{padding-top:36px;padding-bottom:40px;}
+  .about-mosaic{height:calc(100vw - 40px);flex:none;}
+}
 @media(prefers-reduced-motion:reduce){.about-story-state{transition:none;}.about-egg-note{animation:none;}}
-@media print{.about-page .about-wrap{min-height:0;}.about-story-trigger{display:none;}.about-egg-note[hidden],.about-egg-note{display:block;position:static;width:auto;max-width:none;box-shadow:none;animation:none;}.about-egg-note p{max-height:none;}.about-egg-note::before,.about-egg-note::after{display:none;}}
+@media print{.about-page .about-wrap{min-height:0;}.about-page .about-copy{max-height:none;}.about-story-trigger{display:none;}.about-egg-note[hidden],.about-egg-note{display:block;position:static;width:auto;max-width:none;box-shadow:none;animation:none;}.about-egg-note p{max-height:none;}.about-egg-note::before,.about-egg-note::after{display:none;}}
