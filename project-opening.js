@@ -4,9 +4,12 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const storageKey = 'portfolio:project-opening';
   const pages = ['project-04.html','fridgekey.html','naborfood.html','project-03.html'];
-  const destinations = new Set(pages.map(page => new URL(`projects/${page}`,document.currentScript.src).href));
+  const runtimeURL = document.currentScript.src;
+  const destinations = new Set(pages.map(page => new URL(`projects/${page}`,runtimeURL).href));
   const previewToken = window.parent !== window ? location.hash.match(/^#portfolio-preview=([a-z0-9-]+)$/)?.[1] : null;
   const animations = new Set(), timers = new Set();
+  const previews = new Map();
+  const targetOrigin = location.origin === 'null' ? '*' : location.origin;
   let opening = null, inkSVG, artwork, inkFrame, handoff, previewStarted = false;
   const canAnimate = () => !reduce.matches && typeof Element.prototype.animate === 'function';
   const after = (callback,delay) => {
@@ -33,10 +36,12 @@
     root.classList.add('project-opening-pending');
     after(() => { root.classList.remove('project-opening-pending'); handoff=null; },2500);
   }
-  const clean = () => {
+  const clean = event => {
+    const wasOpening = Boolean(opening);
     timers.forEach(id => clearTimeout(id)); timers.clear();
     cancelAnimationFrame(inkFrame);
     animations.forEach(animation => animation.cancel()); animations.clear();
+    if (opening?.previewURL) URL.revokeObjectURL(opening.previewURL);
     opening?.sheet.remove();
     opening = null;
     if (artwork) {
@@ -48,12 +53,51 @@
     document.querySelectorAll('.project-opening-line').forEach(node => node.classList.remove('project-opening-line'));
     root.classList.remove('project-opening-pending','project-opening-active','project-opening-out','project-opening-settled');
     handoff = null;
+    if (wasOpening && event?.type !== 'pagehide' && event?.type !== 'beforeprint') window.dispatchEvent(new Event('project-opening-end'));
   };
+  // Cache only four small first-screen documents. No case-study widgets, charts,
+  // videos, or nested app prototypes are initialized inside the opening sheet.
   const prefetch = url => {
-    if (!destinations.has(url) || document.querySelector(`link[rel="prefetch"][href="${url}"]`)) return;
-    const link=document.createElement('link');
-    link.rel='prefetch'; link.as='document'; link.href=url;
-    document.head.append(link);
+    if (!destinations.has(url) || !canAnimate() || location.protocol === 'file:' ||
+        typeof fetch !== 'function' || typeof DOMParser !== 'function' || typeof URL.createObjectURL !== 'function') return null;
+    if (previews.has(url)) return previews.get(url);
+    const pending = fetch(url, {credentials:'same-origin'}).then(response => {
+      if (!response.ok) throw new Error('Project preview unavailable');
+      return response.text();
+    }).then(html => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const hero = doc.querySelector('.case-hero');
+      const main = doc.querySelector('main');
+      if (!hero || !main) throw new Error('Project hero unavailable');
+      const navigation = [...doc.querySelectorAll('.project-sidebar,.project-mobile-bar')];
+      main.replaceChildren(hero);
+      doc.body.replaceChildren(...navigation, main);
+      doc.querySelectorAll('script,base').forEach(node => node.remove());
+      doc.querySelectorAll('.reveal').forEach(node => node.classList.remove('reveal','in'));
+      // A Blob document keeps local SVG mask fragments local. Rebase source URLs
+      // instead of using <base>, which would redirect those fragments elsewhere.
+      doc.querySelectorAll('[src],[href],[poster]').forEach(node => {
+        for (const name of ['src','href','poster']) {
+          const value = node.getAttribute(name);
+          if (value && !value.startsWith('#')) node.setAttribute(name, new URL(value,url).href);
+        }
+      });
+      doc.querySelectorAll('style,[style]').forEach(node => {
+        const rebase = css => css.replace(/url\(\s*(["']?)([^"')]+)\1\s*\)/g, (match,quote,value) =>
+          value.startsWith('#') ? match : `url("${new URL(value,url).href}")`);
+        if (node.tagName === 'STYLE') node.textContent = rebase(node.textContent);
+        else node.setAttribute('style',rebase(node.getAttribute('style')));
+      });
+      const style = doc.createElement('style');
+      style.textContent = 'html{overflow-y:scroll}';
+      const script = doc.createElement('script');
+      script.src = runtimeURL;
+      script.defer = true;
+      doc.head.append(style,script);
+      return '<!doctype html>\n'+doc.documentElement.outerHTML;
+    }).catch(() => { previews.delete(url); return null; });
+    previews.set(url,pending);
+    return pending;
   };
   const navigate = settled => {
     if (!opening || opening.navigated) return;
@@ -67,18 +111,19 @@
     if (!opening?.ready || opening.startedAt === null || opening.childStarted) return;
     opening.childStarted = true;
     opening.frame.style.visibility='visible';
-    opening.frame.contentWindow.postMessage({type:'project-opening:start',token:opening.token,elapsed:Math.max(0,performance.now()-opening.startedAt)},location.origin);
+    opening.frame.contentWindow.postMessage({type:'project-opening:start',token:opening.token,elapsed:Math.max(0,performance.now()-opening.startedAt)},targetOrigin);
   };
   const grow = () => {
     if (!opening || opening.startedAt !== null) return;
     opening.startedAt=performance.now();
+    const session = opening;
     try {
       track(opening.sheet.animate([
         {clipPath:opening.from},
         {clipPath:'inset(0px 0px 0px 0px round 0px)'}
       ],{duration:900,easing:'cubic-bezier(.76,0,.18,1)',fill:'both'})).finished.then(() => {
-        if (!opening) return;
-        opening.paperDone=true;
+        if (opening !== session) return;
+        session.paperDone=true;
         finishWhenReady();
       },() => {});
       startPreview();
@@ -89,11 +134,13 @@
         link.hasAttribute('download') || (link.target && link.target !== '_self') || !destinations.has(link.href) || !canAnimate()) return;
     const cover=link.closest('.gallery-project')?.querySelector('.gallery-cover');
     if (!cover) return;
+    // Settle the gallery entrance before measuring the source sheet rectangle.
+    window.dispatchEvent(new Event('project-opening-start'));
     const rect=cover.getBoundingClientRect();
     if (rect.width <= 0 || rect.height <= 0) return;
     event.preventDefault();
     if (opening) return;
-    prefetch(link.href);
+    const preview = prefetch(link.href);
     const sheet=document.createElement('div');
     sheet.className='project-opening-sheet';
     sheet.setAttribute('aria-hidden','true');
@@ -106,11 +153,18 @@
     frame.setAttribute('aria-hidden','true');
     const token=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
     const url=new URL(link.href); url.hash='portfolio-preview='+token;
-    frame.src=url.href;
+    if (!preview) frame.src=url.href;
     sheet.append(frame);
-    opening={sheet,frame,from,token,url:link.href,startedAt:null,ready:false,childStarted:false,paperDone:false,childDone:false,navigated:false};
+    opening={sheet,frame,from,token,url:link.href,previewURL:null,startedAt:null,ready:false,childStarted:false,paperDone:false,childDone:false,navigated:false};
     document.body.append(sheet);
     root.classList.add('project-opening-out');
+    const session = opening;
+    preview?.then(html => {
+      if (opening !== session) return;
+      if (!html) { frame.src=url.href; return; }
+      session.previewURL = URL.createObjectURL(new Blob([html],{type:'text/html'}));
+      frame.src = session.previewURL+'#portfolio-preview='+token;
+    });
     // Network work overlaps the first 180ms; slow loading always has a native-link exit.
     after(grow,180);
     after(() => navigate(false),3200);
@@ -123,22 +177,26 @@
     root.classList.add('project-opening-active');
     const complete = () => {
       clean();
-      if (previewToken) window.parent.postMessage({type:'project-opening:done',token:previewToken},location.origin);
+      if (previewToken) window.parent.postMessage({type:'project-opening:done',token:previewToken},targetOrigin);
     };
     try {
       const lines=[...hero.querySelectorAll('.case-brand,.case-tagline,.summary--project > p,.case-meta > span')];
       lines.forEach((node,index) => {
         const planned=index < 3 ? 580+index*120 : 1000+(index-3)*60;
         node.classList.add('project-opening-line');
-        track(node.animate([
+        const motion = track(node.animate([
           {clipPath:'inset(0% 0% 100% 0%)',transform:'translateY(26px)'},
           {clipPath:'inset(0% 0% 0% 0%)',transform:'translateY(0px)'}
-        ],{duration:700,delay:Math.max(0,planned-elapsed),easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
+        ],{duration:700,delay:planned,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
+        motion.currentTime = elapsed;
       });
       const navigation=document.querySelector(innerWidth > 820 ? '.project-sidebar' : '.project-mobile-bar');
-      if (navigation) track(navigation.animate([
-        {clipPath:'inset(0% 0% 100% 0%)'},{clipPath:'inset(0% 0% 0% 0%)'}
-      ],{duration:500,delay:Math.max(0,950-elapsed),easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
+      if (navigation) {
+        const motion = track(navigation.animate([
+          {clipPath:'inset(0% 0% 100% 0%)'},{clipPath:'inset(0% 0% 0% 0%)'}
+        ],{duration:500,delay:950,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
+        motion.currentTime = elapsed;
+      }
       inkSVG=document.createElementNS('http://www.w3.org/2000/svg','svg');
       inkSVG.classList.add('project-opening-ink-defs'); inkSVG.setAttribute('aria-hidden','true');
       inkSVG.innerHTML='<defs><filter id="project-opening-ink-edge" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1400" height="1400"><feTurbulence type="fractalNoise" baseFrequency=".011" numOctaves="2" seed="7" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="65" xChannelSelector="R" yChannelSelector="G"/></filter><mask id="project-opening-ink" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox" x="-.2" y="-.2" width="1.4" height="1.4"><g transform="scale(.001)"><g fill="white" filter="url(#project-opening-ink-edge)"></g></g></mask></defs>';
@@ -153,6 +211,20 @@
       artwork.style.setProperty('mask','url(#project-opening-ink)');
       artwork.style.setProperty('-webkit-mask','url(#project-opening-ink)');
       root.classList.remove('project-opening-pending');
+      if (window.CSS?.supports('r','1px')) {
+        // Native SVG geometry animation keeps the exact seven circles and noise
+        // filter, without seven attribute mutations on every JavaScript frame.
+        circles.forEach((circle,index) => {
+          const motion = track(circle.animate([{r:'0px'},{r:'650px'}], {
+            duration:1050,delay:120+points[index][2],
+            easing:'cubic-bezier(.3333333333,1,.6666666667,1)',fill:'both'
+          }));
+          motion.currentTime = elapsed;
+        });
+        after(complete,Math.max(0,1900-elapsed));
+        return;
+      }
+      // Older engines retain the original appearance through the bounded fallback.
       const started=performance.now();
       const paint=now => {
         const time=elapsed+now-started;
@@ -180,10 +252,12 @@
   });
   document.addEventListener('DOMContentLoaded',() => {
     if (document.querySelector('.gallery-showcase')) {
-      document.addEventListener('pointerover',event => {
+      const warmPreview = event => {
         const link=event.target.closest('.gallery-cover-stage,.gallery-project-title-link');
         if (link) prefetch(link.href);
-      },{passive:true});
+      };
+      document.addEventListener('pointerover',warmPreview,{passive:true});
+      document.addEventListener('focusin',warmPreview);
       document.addEventListener('click',event => {
         const link=event.target.closest('.gallery-cover-stage,.gallery-project-title-link');
         if (link) open(event,link);
@@ -192,15 +266,15 @@
     if (handoff?.settled) { clean(); return; }
     if (!previewToken && !handoff) return;
     const ready = () => {
-      if (previewToken) window.parent.postMessage({type:'project-opening:ready',token:previewToken},location.origin);
+      if (previewToken) window.parent.postMessage({type:'project-opening:ready',token:previewToken},targetOrigin);
       else if (handoff) reveal();
     };
-    const loading=[...document.querySelectorAll('.case-hero-art img')].filter(image => !image.complete && typeof image.decode === 'function');
+    const loading=[...document.querySelectorAll('.case-hero-art img')].filter(image => typeof image.decode === 'function');
     if (loading.length && canAnimate()) {
       let sent=false;
       const start=() => { if (!sent) { sent=true; ready(); } };
       const wait=after(start,450);
-      Promise.allSettled(loading.map(image => image.decode())).then(() => { cancelTimer(wait); start(); });
+      Promise.allSettled([...loading.map(image => image.decode()),document.fonts?.ready || Promise.resolve()]).then(() => { cancelTimer(wait); start(); });
     } else ready();
   },{once:true});
   window.addEventListener('keydown',event => {

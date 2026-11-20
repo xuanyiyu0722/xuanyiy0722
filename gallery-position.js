@@ -67,7 +67,8 @@
   const snap = (useDirection = true) => {
     clearTimeout(snapTimer);
     if (dragging || touching || document.documentElement.dataset.galleryRestoring === 'true' ||
-        document.documentElement.classList.contains('page-arrival-active')) return;
+        document.documentElement.classList.contains('page-arrival-active') ||
+        document.documentElement.classList.contains('project-opening-out')) return;
     if (pendingStop !== null) {
       if (Math.abs(pendingStop - scrollY) <= 1) pendingStop = null;
       return;
@@ -117,7 +118,8 @@
   const selectedIndex = () => pendingStop === null ? closest(positions()) : resting;
   document.addEventListener('keydown', event => {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
-        document.documentElement.classList.contains('page-arrival-active')) return;
+        document.documentElement.classList.contains('page-arrival-active') ||
+        document.documentElement.classList.contains('project-opening-out')) return;
     if (event.target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="combobox"],[role="listbox"],[role="spinbutton"],[role="tablist"],video,audio,dialog,[role="slider"]:not(.gallery-scroll-track)')) return;
     const index = selectedIndex();
     const actions = { ArrowUp:index-1, ArrowDown:index+1, PageUp:index-1, PageDown:index+1, Home:0, End:stages.length-1 };

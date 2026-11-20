@@ -9,7 +9,8 @@ function emitter(extra={}) {
   const handlers=new Map();
   return Object.assign(extra,{
     addEventListener(type,callback) { const list=handlers.get(type)||[]; list.push(callback); handlers.set(type,list); },
-    fire(type,event={}) { for(const callback of handlers.get(type)||[]) callback(event); }
+    fire(type,event={}) { for(const callback of handlers.get(type)||[]) callback(event); },
+    dispatchEvent(event) {this.fire(event.type,event);return true;}
   });
 }
 function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=false }={}) {
@@ -44,7 +45,7 @@ function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=
   const window=emitter();
   window.parent=window;
   const storageAPI={ getItem:key=>{if(blockedStorage)throw Error('Unavailable');return storage.get(key)||null;},setItem:(key,value)=>{if(blockedStorage)throw Error('Unavailable');storage.set(key,value);},removeItem:key=>storage.delete(key) };
-  const context={document,window,sessionStorage:storageAPI,matchMedia:()=>emitter({matches:reduced}),Element:class {animate() {}},URL,
+  const context={document,window,Event,sessionStorage:storageAPI,matchMedia:()=>emitter({matches:reduced}),Element:class {animate() {}},URL,
     location:{origin:'https://portfolio.test',hash:'',href:arrival ? destination : 'https://portfolio.test/gallery.html',assign:url=>navigations.push(url)},
     innerWidth:1440,innerHeight:900,performance:{now:()=>0},
     requestAnimationFrame:fn=>{frames.set(++serial,fn);return serial;},cancelAnimationFrame:id=>frames.delete(id),

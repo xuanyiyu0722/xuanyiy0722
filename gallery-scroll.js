@@ -10,16 +10,16 @@
   let lenis = null;
   let ticking = false;
   let printing = false;
-  let geometry;
-  const signature = () => [innerWidth, innerHeight, ...cards.map(card => card.offsetHeight)].join(':');
+  let geometry, setupFrame = 0, suspended = false, openingProject = false;
+  const signature = () => [innerWidth, innerHeight, root.clientWidth, ...cards.flatMap(card => [card.offsetWidth,card.offsetHeight])].join(':');
   const advance = ({ timestamp }) => {
-    if (!lenis || document.hidden) { ticking = false; return; }
+    if (!lenis || document.hidden || openingProject) { ticking = false; return; }
     lenis.raf(timestamp);
     if (lenis.isSmooth) Motion.frame.setup(advance);
     else ticking = false;
   };
   const wake = () => {
-    if (!lenis || ticking || document.hidden) return;
+    if (!lenis || ticking || document.hidden || openingProject) return;
     ticking = true;
     // Start the clock at the new gesture rather than counting the idle time.
     lenis.time = performance.now();
@@ -27,7 +27,7 @@
   };
   window.PortfolioGalleryScroll = Object.freeze({
     to(top, { immediate = false } = {}) {
-      if (!Number.isFinite(top)) return;
+      if (!Number.isFinite(top) || openingProject) return;
       if (lenis) lenis.scrollTo(top, { immediate, force:true, duration:.28, easing:progress => 1 - (1 - progress) ** 3, onStart:wake });
       else window.scrollTo({ top, behavior:immediate || reduce.matches ? 'instant' : 'smooth' });
     }
@@ -73,19 +73,23 @@
     }
   };
   const setup = () => {
+    setupFrame = 0;
     clearTimeout(resizeTimer);
+    if (suspended || document.hidden || openingProject || root.classList.contains('page-arrival-active')) return;
+    const nextGeometry = signature();
+    if (animations.length && geometry === nextGeometry && !reduce.matches && !printing) return;
+    // Read every card before any animation writes; avoid four alternating layouts.
+    const plans = cards.map(card => ({card,height:card.getBoundingClientRect().height,
+      cover:card.querySelector('.gallery-cover'),index:card.querySelector('.gallery-project-number'),stage:card.closest('.gallery-project')}));
     clearEffects();
     if (reduce.matches || printing) { destroySmooth(); return; }
     if (!window.Motion) { destroySmooth(); return; }
     startSmooth();
-    geometry = signature();
+    geometry = nextGeometry;
     const { animate, scroll } = Motion;
     try {
-      cards.forEach(card => {
-        const cover = card.querySelector('.gallery-cover');
-        const index = card.querySelector('.gallery-project-number');
-        const stage = card.closest('.gallery-project');
-        const tall = card.getBoundingClientRect().height >= innerHeight * .94;
+      plans.forEach(({card,cover,index,stage,height}) => {
+        const tall = height >= innerHeight * .94;
         const offset = tall
           ? ['start end','center 60%','center 40%','end start']
           : ['start end','end end','start start','end start'];
@@ -111,16 +115,36 @@
       console.warn('Gallery scroll effects could not start.', error);
     }
   };
-  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(setup,100); }, { passive:true });
+  const scheduleSetup = () => { if (!suspended && !setupFrame) setupFrame = requestAnimationFrame(setup); };
+  let arrivalActive = root.classList.contains('page-arrival-active');
+  const arrivalObserver = new MutationObserver(() => {
+    const next = root.classList.contains('page-arrival-active');
+    if (next === arrivalActive) return;
+    arrivalActive = next;
+    if (!next) scheduleSetup();
+  });
+  arrivalObserver.observe(root,{attributes:true,attributeFilter:['class']});
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(scheduleSetup,100); }, {passive:true});
+  window.addEventListener('project-opening-start', () => {
+    openingProject = true;
+    window.Motion?.cancelFrame?.(advance);
+    ticking = false;
+    lenis?.stop();
+  });
+  window.addEventListener('project-opening-end', () => {
+    openingProject = false;
+    lenis?.start();
+    scheduleSetup();
+  });
   reduce.addEventListener('change', setup);
-  window.addEventListener('pagehide', () => { clearTimeout(resizeTimer); clearEffects(); destroySmooth(); });
-  window.addEventListener('pageshow', event => { if (event.persisted) setup(); });
+  window.addEventListener('pagehide', () => { suspended = true; clearTimeout(resizeTimer); cancelAnimationFrame(setupFrame); setupFrame = 0; arrivalObserver.disconnect(); clearEffects(); destroySmooth(); });
+  window.addEventListener('pageshow', event => { if (event.persisted) { suspended = false; arrivalActive = root.classList.contains('page-arrival-active'); arrivalObserver.observe(root,{attributes:true,attributeFilter:['class']}); scheduleSetup(); } });
   window.addEventListener('beforeprint', () => { printing = true; setup(); });
   window.addEventListener('afterprint', () => { printing = false; setup(); });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { window.Motion?.cancelFrame?.(advance); ticking = false; }
-    else if (lenis?.isSmooth) wake();
+    else { scheduleSetup(); if (lenis?.isSmooth) wake(); }
   });
-  if (document.fonts?.status === 'loading') document.fonts.ready.then(() => { if (signature() !== geometry) setup(); });
-  setup();
+  if (document.fonts?.status === 'loading') document.fonts.ready.then(() => { if (signature() !== geometry) scheduleSetup(); });
+  scheduleSetup();
 })();

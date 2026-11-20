@@ -65,3 +65,33 @@ Mobile key layouts match; transient arrival classes/sticky offsets are ignored.
 Interaction checks include egg preview/crack/close, gallery engine and return
 position, wireframe tabs/highlights, image zoom, embedded prototypes and storyline
 play/pause. No browser frame-time or real-device performance claim is made.
+
+Gallery opening follow-up — 2026-11-20
+
+- Gallery entry waits until the page-arrival curtain clears. Only visible projects
+  receive the existing 850/1100ms staggered entrance. Measurements are batched,
+  static centering is preserved in full transform keyframes, and temporary
+  compositor hints are removed on finish/cancellation/resize.
+- Scroll bindings start after the curtain. Repeated setup with unchanged geometry
+  is skipped, all card measurements precede animation writes, and observers/frame
+  callbacks disconnect and resume through BFCache.
+- Opening a project stops Lenis before measuring its source rectangle and blocks
+  pending gallery snapping. Escape resumes scrolling. This prevents inertia from
+  moving the source underneath the expanding sheet. A stable scrollbar gutter
+  avoids changing the content width while scrolling is locked.
+- Opening previews use the real case page's stylesheet links, body classes,
+  navigation and hero markup, but omit the remaining chapters and their scripts.
+  A bounded four-entry cache warms the first screen on hover/focus. Blob URLs keep
+  SVG fragments local and are revoked when the preview closes. Failed preparation
+  and limited/local-file contexts retain the original full-page/native fallback.
+- The same seven ink circles, turbulence/displacement filter, dimensions and
+  timings are retained. Supporting engines animate their SVG radius natively,
+  eliminating seven JavaScript attribute writes per frame. This does not imply
+  that SVG filters become GPU accelerated. Older engines keep one bounded RAF
+  fallback. Text/navigation/ink seek the same elapsed time when assets arrive late.
+- Local browser checks exercised all four project previews, the final page
+  handoff, cancellation/resumption and the 390px EverPaw seven-phone hero. The
+  MUSUBI preview held 116 body descendants during opening versus 1230 after full
+  navigation; this is a DOM inventory, not a frame-rate or load-time benchmark.
+- The MUSUBI Questionnaire & Interview introduction now ends with the requested
+  `(percentages are rounded)` note.
