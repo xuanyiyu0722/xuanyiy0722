@@ -1,13 +1,11 @@
-/* Resume headings stay visible; only the supporting details rise into view. */
+/* About resume headings and their content rise into view as complete blocks. */
 (() => {
   if (!document.body.classList.contains('about-page')) return;
   const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const targets = new Set(document.querySelectorAll(
-    '.about-intro > *, .about-egg-story, '
-    + '.about-profile-section .about-block > p:not(.education), .about-profile-section .about-block > a, '
-    + '.about-profile-section .education > :not(strong), '
-    + '.internship > :not(header), .activity > :not(header):not(h4), .skill-group > :not(h4)'
+    '.about-intro > *, .about-egg-story, .about-block, .resume-section-head, .resume-column-heading, '
+    + '.internship, .activity, .skill-group'
   ));
   const animations = new Map();
   targets.forEach(node => node.classList.add('fade-up-in'));
