@@ -52,7 +52,7 @@ html:has(body.about-page) { scroll-snap-type:y proximity; }
   border-top:0;
 }
 .about-profile-section .about-side { display:block; padding:0; }
-.about-profile-egg { justify-self:center; width:clamp(220px,30cqw,360px); max-width:100%; margin:0; }
+.about-profile-egg { justify-self:center; width:clamp(220px,30cqw,360px); max-width:100%; margin:0; left:-32px; top:32px; }
 .about-profile-egg .about-story-trigger { width:100%; height:auto; aspect-ratio:50/62; }
 .about-profile-egg .about-story-state { inset:0; transform-origin:center bottom; }
 .about-profile-egg .about-story-state--closed { transform:none; }
@@ -88,7 +88,7 @@ html:has(body.about-page) { scroll-snap-type:y proximity; }
   .about-photo-card { border-radius:9px; }
   .about-photo-caption { margin-bottom:16px; font-size:24px; }
   .about-page .about-profile-section { min-height:calc(100svh - 56px); grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:20px; padding:40px 20px; }
-  .about-profile-egg { width:min(100%,220px); }
+  .about-profile-egg { width:min(100%,220px); left:-12px; top:24px; }
   .about-profile-section .about-side > .about-block { padding-block:24px; }
 }
 @media (prefers-reduced-motion:reduce) { html:has(body.about-page) { scroll-snap-type:none; } }
@@ -96,7 +96,7 @@ html:has(body.about-page) { scroll-snap-type:y proximity; }
   html:has(body.about-page) { scroll-snap-type:none; }
   .about-page .about-wrap.about-photo-layout { min-height:0; }
   .about-page .about-profile-section { min-height:0; display:block; }
-  .about-profile-egg { width:auto; }
+  .about-profile-egg { width:auto; left:0; top:0; }
   .about-photo-wall { height:auto; overflow:visible; }
   .about-photo-columns { display:grid; grid-template-columns:repeat(2,1fr); height:auto; }
   .about-photo-track { transform:none !important; }
