@@ -26,7 +26,7 @@
     } else targets.add(node);
   }
   chapters.forEach(chapter => {
-    if (chapter.id === 'project-overview' && root.classList.contains('project-opening-pending')) return;
+    if (chapter.id === 'project-overview' && (root.classList.contains('project-opening-pending') || root.classList.contains('project-opening-settled'))) return;
     [...chapter.children].forEach(child => collect(child));
   });
   document.querySelectorAll('.case-next > *').forEach(node => targets.add(node));

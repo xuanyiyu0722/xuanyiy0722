@@ -1,0 +1,76 @@
+/* Hero 50-inspired drifting columns, adapted to Alicia's own photographs. */
+.about-page .about-wrap.about-photo-layout {
+  display:grid;
+  container-type:inline-size;
+  min-height:100svh;
+  grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);
+  column-gap:clamp(32px,4vw,64px);
+  row-gap:0;
+  padding:40px 5.5vw;
+  align-items:center;
+}
+.about-photo-title { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.about-photo-layout .about-copy,.about-visual { min-width:0; }
+.about-photo-layout .about-intro { padding:0; margin:0; }
+.about-photo-layout .about-egg-story { position:relative; width:50px; margin:0 0 16px -8px; }
+.about-photo-layout .about-egg-note { inset:auto auto 0 64px; width:min(300px,calc(100vw - 100px)); }
+.about-photo-layout .about-intro .lead { max-width:30ch; margin:0; font-size:clamp(22px,2.25cqw,28px); line-height:1.5; }
+.about-photo-layout .about-mosaic { grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(0,1fr)); grid-template-areas:none; gap:8px; }
+.about-photo-layout .about-mosaic__tile { grid-area:auto; margin:0; }
+.about-mosaic.about-mosaic--wall { display:block; aspect-ratio:auto; max-height:none; }
+.about-photo-wall {
+  position:relative;
+  width:100%;
+  height:clamp(520px,calc(100svh - 120px),900px);
+  overflow:hidden;
+  border-radius:18px;
+  container-type:inline-size;
+  touch-action:pan-y;
+  user-select:none;
+  cursor:grab;
+}
+.about-photo-wall.is-dragging { cursor:grabbing; }
+.about-photo-wall:focus-visible { outline:1px solid #f8f4ed; outline-offset:5px; }
+.about-photo-columns { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; height:100%; }
+.about-photo-column { min-width:0; overflow:hidden; }
+.about-photo-track { width:100%; }
+.about-photo-group { display:grid; gap:14px; padding-bottom:14px; }
+.about-photo-card { grid-area:auto; position:relative; width:100%; aspect-ratio:4/5; margin:0; overflow:hidden; border-radius:14px; pointer-events:none; }
+.about-photo-card img { display:block; width:100%; height:100%; object-fit:cover; object-position:var(--photo-focus,50% 45%); transform:scale(var(--photo-zoom,1)); pointer-events:none; }
+.about-photo-caption { margin:0 0 20px; font-family:var(--font-heading); font-weight:700; font-size:clamp(24px,3cqw,36px); line-height:1.2; letter-spacing:0; color:var(--ink); }
+.about-photo-wall .about-photo-caption { position:absolute; z-index:1; top:50%; left:50%; transform:translate(-50%,-50%); width:max-content; max-width:calc(100% - 32px); margin:0; text-align:center; font-size:clamp(28px,5cqw,44px); text-shadow:0 2px 18px rgba(31,28,23,.85),0 1px 4px rgba(31,28,23,.9); pointer-events:none; }
+.about-profile-section { max-width:860px; margin-right:auto; }
+.about-profile-section .about-side { display:block; padding:0; }
+.about-profile-section .about-side > .about-block {
+  position:relative;
+  display:block;
+  padding:28px 0 30px;
+  border-top:1px solid var(--line);
+}
+.about-profile-section .about-block h3 { margin:0 0 14px; font-size:14px; font-weight:600; line-height:1.4; letter-spacing:.12em; }
+.about-profile-section .about-block :is(p,a) { margin:0; font-size:14px; font-weight:400; line-height:1.65; color:var(--muted); }
+.about-profile-section .education { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+.about-profile-section .education strong { margin:0 0 6px; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.65; color:var(--ink); }
+.about-profile-section .education > span:not(.education-minor) { font-size:13px; line-height:1.5; }
+.about-profile-section .education > span:nth-of-type(2) { font-size:12px; font-variant-numeric:tabular-nums; }
+.about-profile-section .education em { font-size:13px; font-weight:500; line-height:1.5; }
+@media (max-width:820px) {
+  .about-page .about-wrap.about-photo-layout { min-height:calc(100svh - 56px); grid-template-columns:minmax(0,1fr); gap:28px; padding:28px 20px 36px; }
+  .about-photo-layout .about-copy { display:block; grid-row:2; }
+  .about-visual { grid-row:1; }
+  .about-photo-layout .about-intro { grid-row:2; }
+  .about-photo-layout .about-intro .lead { max-width:35ch; margin-inline:auto; font-size:20px; }
+  .about-photo-wall { height:clamp(360px,53svh,560px); }
+  .about-photo-columns { gap:8px; }
+  .about-photo-group { gap:8px; padding-bottom:8px; }
+  .about-photo-card { border-radius:9px; }
+  .about-photo-caption { margin-bottom:16px; font-size:24px; }
+  .about-profile-section .about-side > .about-block { padding-block:24px; }
+}
+@media print {
+  .about-page .about-wrap.about-photo-layout { min-height:0; }
+  .about-photo-wall { height:auto; overflow:visible; }
+  .about-photo-columns { display:grid; grid-template-columns:repeat(2,1fr); height:auto; }
+  .about-photo-track { transform:none !important; }
+  .about-photo-group[aria-hidden="true"] { display:none; }
+}

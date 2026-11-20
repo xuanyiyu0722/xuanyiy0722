@@ -13,7 +13,7 @@ function emitter(extra={}) {
   });
 }
 function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=false }={}) {
-  const frames=new Map(),timers=new Map(),nodes=[],navigations=[];
+  const frames=new Map(),timers=new Map(),nodes=[],navigations=[],messages=[],effects=[];
   let serial=0;
   const node=() => {
     const classes=new Set(),properties=new Map();
@@ -22,7 +22,13 @@ function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=
       getPropertyValue:key=>properties.get(key)||''
     },classList:{ add:(...values)=>values.forEach(value=>classes.add(value)),remove:(...values)=>values.forEach(value=>classes.delete(value)),contains:value=>classes.has(value) },
     append(...items) { this.children.push(...items); },remove() { this.removed=true; },setAttribute() {},
-    animate() { return { finished:new Promise(()=>{}),cancel() {} }; }
+    contentWindow:{postMessage:data=>messages.push(data)},
+    animate(keyframes,options) {
+      let finish;
+      const finished=new Promise(resolve=>{finish=resolve;});
+      effects.push({keyframes,options,finish});
+      return {finished,cancel() {}};
+    }
     });
     nodes.push(result);
     return result;
@@ -36,15 +42,16 @@ function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=
     createElementNS() {const result=node(); result.namespaceURI='http://www.w3.org/2000/svg'; result.querySelector=()=>group; return result;}
   });
   const window=emitter();
+  window.parent=window;
   const storageAPI={ getItem:key=>{if(blockedStorage)throw Error('Unavailable');return storage.get(key)||null;},setItem:(key,value)=>{if(blockedStorage)throw Error('Unavailable');storage.set(key,value);},removeItem:key=>storage.delete(key) };
   const context={document,window,sessionStorage:storageAPI,matchMedia:()=>emitter({matches:reduced}),Element:class {animate() {}},URL,
-    location:{href:arrival ? destination : 'https://portfolio.test/gallery.html',assign:url=>navigations.push(url)},
+    location:{origin:'https://portfolio.test',hash:'',href:arrival ? destination : 'https://portfolio.test/gallery.html',assign:url=>navigations.push(url)},
     innerWidth:1440,innerHeight:900,performance:{now:()=>0},
     requestAnimationFrame:fn=>{frames.set(++serial,fn);return serial;},cancelAnimationFrame:id=>frames.delete(id),
     setTimeout:fn=>{timers.set(++serial,fn);return serial;},clearTimeout:id=>timers.delete(id)
   };
   vm.runInNewContext(source,context);
-  return { document,window,root,artwork,frames,nodes,navigations,storage,
+  return { document,window,root,artwork,frames,nodes,navigations,storage,messages,effects,
     initialize:()=>document.fire('DOMContentLoaded'),
     flushTimers() {const batch=[...timers.values()];timers.clear();batch.forEach(fn=>fn());},
     paint(now) {const batch=[...frames.values()];frames.clear();batch.forEach(fn=>fn(now));},
@@ -97,11 +104,39 @@ test('arrival consumes its handoff and removes masks and pending frames after re
   assert.equal(f.frames.size,1);
   assert(f.artwork.style.getPropertyValue('mask'));
   f.paint(800);assert.equal(f.frames.size,1);
-  f.paint(1600);
+  f.paint(2000);
   assert.equal(f.frames.size,0);
   assert.equal(f.artwork.style.getPropertyValue('mask'),'');
   assert.equal(f.root.classList.contains('project-opening-active'),false);
   assert.equal(storage.has('portfolio:project-opening'),false);
+});
+
+test('the live project starts inside a straight sheet before that sheet finishes expanding',async()=>{
+  const f=fixture();f.initialize();f.click();
+  const preview=f.nodes.find(node=>node.className==='project-opening-preview');
+  const token=new URL(preview.src).hash.split('=')[1];
+  f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{type:'project-opening:ready',token}});
+  assert.equal(f.messages[0].type,'project-opening:start');
+  assert.equal(f.effects[0].keyframes[0].clipPath,'inset(200.00px 440.00px 250.00px 400.00px round 3px)');
+  assert(f.effects[0].keyframes.every(frame=>frame.transform===undefined),'The cover rectangle stays upright');
+  assert.deepEqual(f.navigations,[],'The live reveal overlaps the expansion');
+  f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{type:'project-opening:done',token}});
+  assert.deepEqual(f.navigations,[],'An early ready message cannot bypass the expanding sheet');
+  f.effects[0].finish();
+  await Promise.resolve();await Promise.resolve();
+  assert.deepEqual(f.navigations,[destination]);
+  assert.equal(JSON.parse(f.storage.get('portfolio:project-opening')).settled,true,'The final page will not restart its entrance');
+});
+
+test('preview handoffs reject unrelated windows, origins, and tokens',()=>{
+  const f=fixture();f.initialize();f.click();
+  const preview=f.nodes.find(node=>node.className==='project-opening-preview');
+  const token=new URL(preview.src).hash.split('=')[1];
+  f.window.fire('message',{origin:'https://other.test',source:preview.contentWindow,data:{type:'project-opening:ready',token}});
+  f.window.fire('message',{origin:'https://portfolio.test',source:{},data:{type:'project-opening:ready',token}});
+  f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{type:'project-opening:ready',token:'wrong'}});
+  assert.equal(f.messages.length,0);
+  assert.deepEqual(f.navigations,[]);
 });
 
 test('user input and slow initialization cannot leave case-study content hidden',()=>{
