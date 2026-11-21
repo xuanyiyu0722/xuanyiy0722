@@ -11,12 +11,14 @@
   stage.setAttribute('aria-describedby',caption.id);
   const columns=document.createElement('div'); columns.className='about-photo-columns';
   const split=Math.ceil(originals.length/2),sets=[originals.slice(0,split),originals.slice(split)];
+  const portrait=originals.find(source=>source.className.includes('about-mosaic__portrait')) || originals[0];
+  const portraitSet=sets.findIndex(set=>set.includes(portrait));
   const initial=[.12,.53,.37],speeds=[-18,15,-16];
   const entries=Array.from({length:3},(_,index) => {
     const column=document.createElement('div'); column.className='about-photo-column';
     const track=document.createElement('div'); track.className='about-photo-track';
-    const sources=sets[index%2],offset=index>1 ? 2%sources.length : 0;
-    let group;
+    const sources=sets[index===1 ? portraitSet : 1-portraitSet],offset=index>1 ? 2%sources.length : 0;
+    let group,opening;
     for (let copy=0;copy<2;copy++) {
       const current=document.createElement('div'); current.className='about-photo-group';
       if (copy || index>=2) current.setAttribute('aria-hidden','true');
@@ -26,27 +28,38 @@
         figure.className='about-photo-card '+source.className.replace('about-mosaic__tile','');
         const image=source.querySelector('img').cloneNode(); image.draggable=false;
         figure.append(image); current.append(figure);
+        if (!copy && index===1 && source===portrait) opening=figure;
       });
       if (!copy) group=current;
       track.append(current);
     }
     column.append(track); columns.append(column);
-    return {track,group,index,animation:null,duration:0};
+    return {track,group,opening,index,animation:null,duration:0,phase:null};
   });
   stage.append(columns,caption); mosaic.replaceChildren(stage); mosaic.classList.add('about-mosaic--wall');
-  let visible=true,drag=null;
+  const root=document.documentElement;
+  let visible=true,drag=null,arriving=root.classList.contains('page-arrival-active');
   const updatePlayback=() => entries.forEach(({animation}) => {
     if (!animation) return;
-    if (reduce.matches || document.hidden || !visible || drag) animation.pause();
+    if (reduce.matches || document.hidden || !visible || drag || arriving) animation.pause();
     else animation.play();
   });
-  const measure=() => {
+  const measure=({reset=false}={}) => {
     entries.forEach(entry => {
-      const phase=entry.animation && entry.duration ? ((Number(entry.animation.currentTime)||0)%entry.duration)/entry.duration : initial[entry.index];
+      let phase=reset ? initial[entry.index] : entry.phase ?? initial[entry.index];
+      if (!reset && entry.animation && entry.duration) phase=(((Number(entry.animation.currentTime)||0)%entry.duration+entry.duration)%entry.duration)/entry.duration;
       entry.animation?.cancel(); entry.animation=null;
-      const distance=entry.group.getBoundingClientRect().height;
+      const groupBox=entry.group.getBoundingClientRect(),distance=groupBox.height;
       if (!distance) return;
       const from=speeds[entry.index]<0 ? 0 : -distance,to=speeds[entry.index]<0 ? -distance : 0;
+      if (entry.opening && (reset || entry.phase===null)) {
+        const photo=entry.opening.getBoundingClientRect();
+        const centered=stage.getBoundingClientRect().height/2-(photo.top-groupBox.top+photo.height/2);
+        // Pick the matching copy inside the endless loop, centered at entry.
+        const shift=((centered%distance)+distance)%distance-distance;
+        phase=(shift-from)/(to-from);
+      }
+      entry.phase=phase;
       if (reduce.matches) { entry.track.style.transform=`translateY(${from+(to-from)*phase}px)`; return; }
       entry.track.style.removeProperty('transform');
       entry.duration=distance/Math.abs(speeds[entry.index])*1000;
@@ -87,7 +100,14 @@
   if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => { visible=entry.isIntersecting; updatePlayback(); }).observe(stage);
   document.addEventListener('visibilitychange',updatePlayback);
   window.addEventListener('pagehide',() => { visible=false; drag=null; stage.classList.remove('is-dragging'); updatePlayback(); });
-  window.addEventListener('pageshow',() => { visible=true; updatePlayback(); });
+  window.addEventListener('pageshow',() => { visible=true; measure({reset:true}); });
+  if (arriving) {
+    const arrivalObserver=new MutationObserver(() => {
+      if (root.classList.contains('page-arrival-active')) return;
+      arrivalObserver.disconnect(); arriving=false; measure({reset:true});
+    });
+    arrivalObserver.observe(root,{attributes:true,attributeFilter:['class']});
+  }
   reduce.addEventListener('change',measure);
   measure();
 })();
