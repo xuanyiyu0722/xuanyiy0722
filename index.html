@@ -53,7 +53,7 @@
 
     <div class="hero-grid">
       <div class="hero-intro">
-        <h2 aria-label="There’s more below the eggshell.">
+        <h2 aria-label="There’s more inside the eggshell.">
           <svg class="hero-poster" viewBox="0 0 1167 1284" aria-hidden="true" focusable="false">
             <defs>
               <image id="headline-artwork" href="assets/optimized/home-headline-v148.56f53711d32e.webp" width="1167" height="1284"/>
@@ -66,9 +66,12 @@
               <!-- Each boundary sits in a transparent gap in the supplied artwork. -->
               <clipPath id="select-there"><rect width="1167" height="290"/></clipPath>
               <clipPath id="select-more"><rect y="290" width="1167" height="222"/></clipPath>
-              <clipPath id="select-below"><rect y="512" width="1167" height="260"/></clipPath>
+              <clipPath id="select-inside"><rect y="512" width="1167" height="260"/></clipPath>
               <clipPath id="select-the"><rect y="772" width="1167" height="260"/></clipPath>
               <clipPath id="select-eggshell"><rect y="1032" width="1167" height="252"/></clipPath>
+              <!-- The replacement word uses the supplied Euclid Light outlines at the original size. -->
+              <path id="headline-inside" fill="#b8b5ac" d="M40.28 552Q32.92 552 27.96 547.04Q23 542.08 23 535.04Q23 528 27.96 523.04Q32.92 518.08 40.28 518.08Q47.32 518.08 52.12 523.04Q56.92 528 56.92 535.04Q56.92 542.08 52.12 547.04Q47.32 552 40.28 552ZM28.76 760V600H51.16V760ZM73.306 760V600H95.706V626.88Q112.026 596.8 148.186 596.8Q174.746 596.8 191.546 613.76Q208.346 630.72 208.346 659.84V760H185.946V663.04Q185.946 642.24 174.906 629.92Q163.866 617.6 145.626 617.6Q123.866 617.6 109.786 634.4Q95.706 651.2 95.706 680.32V760ZM276.251 763.2Q250.651 763.2 233.051 750.72Q215.451 738.24 213.531 714.88H235.931Q242.651 743.04 276.251 743.04Q290.971 743.04 300.571 736.8Q310.171 730.56 310.171 719.04Q310.171 708.48 303.291 701.6Q296.411 694.72 281.371 690.56L260.571 685.12Q219.291 673.92 219.291 638.72Q219.291 619.52 234.011 608.16Q248.731 596.8 271.771 596.8Q296.091 596.8 310.971 609.6Q325.851 622.4 327.771 641.28H305.691Q302.171 629.76 293.211 623.2Q284.251 616.64 271.771 616.64Q258.971 616.64 250.331 622.72Q241.691 628.8 241.691 638.72Q241.691 648.32 247.771 654.4Q253.851 660.48 267.931 664.32L292.571 670.72Q311.771 675.52 322.171 687.52Q332.571 699.52 332.571 717.44Q332.571 740.48 317.051 751.84Q301.531 763.2 276.251 763.2ZM352.797 552Q345.437 552 340.477 547.04Q335.517 542.08 335.517 535.04Q335.517 528 340.477 523.04Q345.437 518.08 352.797 518.08Q359.837 518.08 364.637 523.04Q369.437 528 369.437 535.04Q369.437 542.08 364.637 547.04Q359.837 552 352.797 552ZM341.277 760V600H363.677V760ZM452.062 763.2Q418.462 763.2 395.422 738.88Q372.382 714.56 372.382 680Q372.382 645.44 395.422 621.12Q418.462 596.8 452.062 596.8Q470.302 596.8 486.462 605.12Q502.622 613.44 511.262 626.88V520H533.662V760H511.262V733.12Q502.622 746.56 486.462 754.88Q470.302 763.2 452.062 763.2ZM411.902 724.32Q428.382 742.4 454.302 742.4Q480.222 742.4 496.702 724.32Q513.182 706.24 513.182 680Q513.182 653.76 496.702 635.68Q480.222 617.6 454.302 617.6Q428.382 617.6 411.902 635.68Q395.422 653.76 395.422 680Q395.422 706.24 411.902 724.32ZM622.048 763.2Q587.488 763.2 565.088 739.52Q542.688 715.84 542.688 680Q542.688 644.16 564.448 620.48Q586.208 596.8 623.008 596.8Q659.808 596.8 680.288 623.52Q700.768 650.24 697.568 686.4H565.728Q565.728 710.4 582.688 726.4Q599.648 742.4 622.048 742.4Q656.608 742.4 671.968 712.32H695.008Q688.928 734.4 670.048 748.8Q651.168 763.2 622.048 763.2ZM622.048 617.6Q601.888 617.6 586.528 629.6Q571.168 641.6 567.008 666.88H674.528Q670.688 643.2 656.608 630.4Q642.528 617.6 622.048 617.6Z"/>
+              <clipPath id="headline-original-rows"><path d="M0 0H1167V512H0ZM0 772H1167V1284H0Z"/></clipPath>
               <clipPath id="headline-selection"></clipPath>
               <filter id="headline-selected-ink">
                 <feFlood flood-color="#423c30"/>
@@ -83,9 +86,7 @@
                 M610 97Q575 103 564 147H674Q664 105 630 97Z
                 M342 357C378 357 404 383 404 420S378 483 342 483 281 457 281 420 307 357 342 357Z
                 M568 357Q533 363 523 407H632Q622 365 588 357Z
-                M102 617C136 617 162 643 162 680S136 743 102 743 42 717 42 680 68 617 102 617Z
-                M233 617Q198 623 188 667H297Q287 625 253 617Z
-                M412 617C448 617 474 643 474 680S448 743 412 743 351 717 351 680 377 617 412 617Z
+                M411.902 724.32Q428.382 742.4 454.302 742.4Q480.222 742.4 496.702 724.32Q513.182 706.24 513.182 680Q513.182 653.76 496.702 635.68Q480.222 617.6 454.302 617.6Q428.382 617.6 411.902 635.68Q395.422 653.76 395.422 680Q395.422 706.24 411.902 724.32ZM622.048 617.6Q601.888 617.6 586.528 629.6Q571.168 641.6 567.008 666.88H674.528Q670.688 643.2 656.608 630.4Q642.528 617.6 622.048 617.6Z
                 M292 877Q253 883 243 927H352Q354 884 313 877Z
                 M946 1137Q911 1143 901 1187H1010Q1000 1145 966 1137Z"/>
             </defs>
@@ -97,9 +98,9 @@
               <use href="#headline-counters"/>
               <use href="#headline-artwork"/>
             </g>
-            <g class="hero-poster-row" clip-path="url(#select-below)">
+            <g class="hero-poster-row" clip-path="url(#select-inside)">
               <use href="#headline-counters"/>
-              <use href="#headline-artwork"/>
+              <use href="#headline-inside"/>
             </g>
             <g class="hero-poster-row" clip-path="url(#select-the)">
               <use href="#headline-counters"/>
@@ -119,13 +120,14 @@
             <g class="poster-highlight" pointer-events="none" fill="#fdd957">
               <g class="poster-highlight-bands"></g>
               <g clip-path="url(#headline-selection)">
-                <use href="#headline-artwork" filter="url(#headline-selected-ink)"/>
+                <use href="#headline-artwork" clip-path="url(#headline-original-rows)" filter="url(#headline-selected-ink)"/>
+                <use href="#headline-inside" filter="url(#headline-selected-ink)"/>
               </g>
             </g>
             <g class="poster-selectable">
               <text clip-path="url(#select-there)" x="0" y="240" textLength="848" lengthAdjust="spacing">There’s</text>
               <text clip-path="url(#select-more)" x="6" y="500" textLength="656" lengthAdjust="spacing">more</text>
-              <text clip-path="url(#select-below)" x="5" y="760" textLength="705" lengthAdjust="spacing">below</text>
+              <text clip-path="url(#select-inside)" x="1.24" y="760" font-size="320" textLength="711.048" lengthAdjust="spacing">inside</text>
               <text clip-path="url(#select-the)" x="0" y="1020" textLength="384" lengthAdjust="spacing" font-style="italic">the</text>
               <text clip-path="url(#select-eggshell)" x="0" y="1280"><tspan class="poster-egg-select" textLength="600" lengthAdjust="spacing">EGG</tspan><tspan x="600" textLength="567" lengthAdjust="spacing">shell.</tspan></text>
             </g>
@@ -157,7 +159,7 @@
 <script src="script.js?v=76"></script>
 <dialog class="egg-dialog" aria-label="Project preview">
 <button class="close-preview" type="button" aria-label="Close project preview"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-<div class="zoom-egg"><button class="crack-button" type="button" aria-label="Crack the egg to reveal the project"><img class="egg-half egg-top" src="assets/egg.webp" alt="" width="375" height="430"><img class="egg-half egg-bottom" src="assets/egg.webp" alt="" width="375" height="430"></button><a class="project-reveal"><span></span><small>Explore project ↗</small></a></div>
+<div class="zoom-egg"><button class="crack-button" type="button" aria-label="Crack the egg to reveal the project"><img class="egg-half egg-top" src="assets/egg.webp" alt="" width="375" height="430"><img class="egg-half egg-bottom" src="assets/egg.webp" alt="" width="375" height="430"></button><a class="project-reveal"><span></span><small>Explore ↗</small></a></div>
 <p class="preview-hint" aria-live="polite">Click again to crack</p></dialog>
 <script src="home-typography.js?v=160"></script>
 <script src="home.js?v=80"></script>
