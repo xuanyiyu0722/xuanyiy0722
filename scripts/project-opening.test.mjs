@@ -102,10 +102,9 @@ test('arrival consumes its handoff and removes masks and pending frames after re
   const f=fixture({arrival:true,storage});
   assert.equal(f.root.classList.contains('project-opening-pending'),true);
   f.initialize();
-  assert.equal(f.frames.size,1);
+  assert.equal(f.frames.size,0,'The ink reveal needs no JavaScript painting loop');
   assert(f.artwork.style.getPropertyValue('mask'));
-  f.paint(800);assert.equal(f.frames.size,1);
-  f.paint(2000);
+  f.flushTimers();
   assert.equal(f.frames.size,0);
   assert.equal(f.artwork.style.getPropertyValue('mask'),'');
   assert.equal(f.root.classList.contains('project-opening-active'),false);
@@ -138,6 +137,22 @@ test('preview handoffs reject unrelated windows, origins, and tokens',()=>{
   f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{type:'project-opening:ready',token:'wrong'}});
   assert.equal(f.messages.length,0);
   assert.deepEqual(f.navigations,[]);
+});
+
+test('unavailable preview assets fall back once to the settled native page',()=>{
+  const f=fixture();f.initialize();f.click();
+  const preview=f.nodes.find(node=>node.className==='project-opening-preview');
+  const token=new URL(preview.src).hash.split('=')[1];
+  const unavailable={type:'project-opening:unavailable',token};
+  f.window.fire('message',{origin:'https://other.test',source:preview.contentWindow,data:unavailable});
+  f.window.fire('message',{origin:'https://portfolio.test',source:{},data:unavailable});
+  f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{...unavailable,token:'wrong'}});
+  assert.deepEqual(f.navigations,[]);
+  f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:unavailable});
+  f.flushTimers();
+  f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:unavailable});
+  assert.deepEqual(f.navigations,[destination]);
+  assert.equal(JSON.parse(f.storage.get('portfolio:project-opening')).settled,true,'Slow assets must not restart the reveal after navigation');
 });
 
 test('user input and slow initialization cannot leave case-study content hidden',()=>{

@@ -10,7 +10,7 @@
   const animations = new Set(), timers = new Set();
   const previews = new Map();
   const targetOrigin = location.origin === 'null' ? '*' : location.origin;
-  let opening = null, inkSVG, artwork, inkFrame, handoff, previewStarted = false;
+  let opening = null, inkSVG, artwork, handoff, previewStarted = false, generation = 0;
   const canAnimate = () => !reduce.matches && typeof Element.prototype.animate === 'function';
   const after = (callback,delay) => {
     const id = setTimeout(() => { timers.delete(id); callback(); },delay);
@@ -38,8 +38,8 @@
   }
   const clean = event => {
     const wasOpening = Boolean(opening);
+    generation++;
     timers.forEach(id => clearTimeout(id)); timers.clear();
-    cancelAnimationFrame(inkFrame);
     animations.forEach(animation => animation.cancel()); animations.clear();
     if (opening?.previewURL) URL.revokeObjectURL(opening.previewURL);
     opening?.sheet.remove();
@@ -169,6 +169,18 @@
     after(grow,180);
     after(() => navigate(false),3200);
   };
+  const inkOutline = () => {
+    // Bake the rough edge once instead of evaluating turbulence/displacement
+    // inside the animated mask over large hero images.
+    const points=Array.from({length:96},(_,index) => {
+      const angle=index*Math.PI/48;
+      const radius=650+14*Math.sin(angle*7)+9*Math.sin(angle*13+1.1)+5*Math.sin(angle*23+.6);
+      return [Math.cos(angle)*radius,Math.sin(angle)*radius];
+    });
+    const middle=(a,b) => a.map((value,index)=>((value+b[index])/2).toFixed(2)).join(' ');
+    return 'M'+middle(points.at(-1),points[0])+points.map((point,index) =>
+      'Q'+point.map(value=>value.toFixed(2)).join(' ')+' '+middle(point,points[(index+1)%points.length])).join('')+'Z';
+  };
   const reveal = (elapsed=0) => {
     const hero=document.querySelector('.case-hero');
     artwork=hero?.querySelector('.case-hero-art');
@@ -199,43 +211,31 @@
       }
       inkSVG=document.createElementNS('http://www.w3.org/2000/svg','svg');
       inkSVG.classList.add('project-opening-ink-defs'); inkSVG.setAttribute('aria-hidden','true');
-      inkSVG.innerHTML='<defs><filter id="project-opening-ink-edge" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1400" height="1400"><feTurbulence type="fractalNoise" baseFrequency=".011" numOctaves="2" seed="7" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="65" xChannelSelector="R" yChannelSelector="G"/></filter><mask id="project-opening-ink" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox" x="-.2" y="-.2" width="1.4" height="1.4"><g transform="scale(.001)"><g fill="white" filter="url(#project-opening-ink-edge)"></g></g></mask></defs>';
+      inkSVG.innerHTML='<defs><path id="project-opening-ink-stamp" fill="white" d="'+inkOutline()+'"/><mask id="project-opening-ink" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox" x="-.2" y="-.2" width="1.4" height="1.4"><g transform="scale(.001)"><g></g></g></mask></defs>';
       const group=inkSVG.querySelector('mask g g');
       const points=[[230,380,0],[720,650,90],[480,120,160],[180,830,240],[880,300,300],[570,940,360],[520,530,130]];
-      const circles=points.map(([x,y]) => {
-        const circle=document.createElementNS(inkSVG.namespaceURI,'circle');
-        circle.setAttribute('cx',x); circle.setAttribute('cy',y); circle.setAttribute('r',0); group.append(circle);
-        return circle;
+      const stamps=points.map(([x,y],index) => {
+        const position=document.createElementNS(inkSVG.namespaceURI,'g');
+        position.setAttribute('transform',`translate(${x} ${y}) rotate(${index*47})`);
+        const stamp=document.createElementNS(inkSVG.namespaceURI,'g');
+        stamp.setAttribute('transform','scale(0)');
+        const shape=document.createElementNS(inkSVG.namespaceURI,'use');
+        shape.setAttribute('href','#project-opening-ink-stamp');
+        stamp.append(shape); position.append(stamp); group.append(position);
+        return stamp;
       });
       document.body.append(inkSVG);
       artwork.style.setProperty('mask','url(#project-opening-ink)');
       artwork.style.setProperty('-webkit-mask','url(#project-opening-ink)');
       root.classList.remove('project-opening-pending');
-      if (window.CSS?.supports('r','1px')) {
-        // Native SVG geometry animation keeps the exact seven circles and noise
-        // filter, without seven attribute mutations on every JavaScript frame.
-        circles.forEach((circle,index) => {
-          const motion = track(circle.animate([{r:'0px'},{r:'650px'}], {
-            duration:1050,delay:120+points[index][2],
-            easing:'cubic-bezier(.3333333333,1,.6666666667,1)',fill:'both'
-          }));
-          motion.currentTime = elapsed;
-        });
-        after(complete,Math.max(0,1900-elapsed));
-        return;
-      }
-      // Older engines retain the original appearance through the bounded fallback.
-      const started=performance.now();
-      const paint=now => {
-        const time=elapsed+now-started;
-        circles.forEach((circle,index) => {
-          const progress=Math.max(0,Math.min(1,(time-120-points[index][2])/1050));
-          circle.setAttribute('r',(650*(1-(1-progress)**3)).toFixed(1));
-        });
-        if (time < 1900 && !document.hidden) inkFrame=requestAnimationFrame(paint);
-        else complete();
-      };
-      inkFrame=requestAnimationFrame(paint);
+      stamps.forEach((stamp,index) => {
+        const motion=track(stamp.animate([{transform:'scale(0)'},{transform:'scale(1)'}], {
+          duration:1050,delay:120+points[index][2],
+          easing:'cubic-bezier(.3333333333,1,.6666666667,1)',fill:'both'
+        }));
+        motion.currentTime=elapsed;
+      });
+      after(complete,Math.max(0,1900-elapsed));
     } catch { complete(); }
   };
   window.addEventListener('message',event => {
@@ -244,6 +244,7 @@
     if (opening && event.source === opening.frame.contentWindow && data.token === opening.token) {
       if (data.type === 'project-opening:ready') { opening.ready=true; grow(); startPreview(); }
       else if (data.type === 'project-opening:done' && opening.childStarted) { opening.childDone=true; finishWhenReady(); }
+      else if (data.type === 'project-opening:unavailable') navigate(true);
     } else if (previewToken && !previewStarted && event.source === window.parent && data.token === previewToken &&
                data.type === 'project-opening:start' && Number.isFinite(data.elapsed) && data.elapsed >= 0 && data.elapsed < 5000) {
       previewStarted=true;
@@ -269,12 +270,24 @@
       if (previewToken) window.parent.postMessage({type:'project-opening:ready',token:previewToken},targetOrigin);
       else if (handoff) reveal();
     };
-    const loading=[...document.querySelectorAll('.case-hero-art img')].filter(image => typeof image.decode === 'function');
+    const loading=[...document.querySelectorAll('.case-hero img')].filter(image => typeof image.decode === 'function');
     if (loading.length && canAnimate()) {
       let sent=false;
-      const start=() => { if (!sent) { sent=true; ready(); } };
-      const wait=after(start,450);
-      Promise.allSettled([...loading.map(image => image.decode()),document.fonts?.ready || Promise.resolve()]).then(() => { cancelTimer(wait); start(); });
+      const currentGeneration=generation;
+      const start=decoded => {
+        if (sent || currentGeneration!==generation) return;
+        sent=true;
+        if (decoded) ready();
+        else {
+          // Slow or failed assets use the native page, without a half-decoded
+          // image entering an already-running ink reveal or restarting it later.
+          clean();
+          if (previewToken) window.parent.postMessage({type:'project-opening:unavailable',token:previewToken},targetOrigin);
+        }
+      };
+      const wait=after(() => start(false),1200);
+      Promise.all([...loading.map(image => Promise.resolve().then(() => image.decode())),document.fonts?.ready || Promise.resolve()])
+        .then(() => { cancelTimer(wait); start(true); },() => { cancelTimer(wait); start(false); });
     } else ready();
   },{once:true});
   window.addEventListener('keydown',event => {

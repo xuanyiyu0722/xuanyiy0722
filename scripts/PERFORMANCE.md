@@ -95,3 +95,23 @@ Gallery opening follow-up — 2026-11-20
   navigation; this is a DOM inventory, not a frame-rate or load-time benchmark.
 - The MUSUBI Questionnaire & Interview introduction now ends with the requested
   `(percentages are rounded)` note.
+
+Gallery artwork reveal follow-up — 2026-11-21
+
+- The animated turbulence/displacement mask above is replaced by seven copies
+  of a fixed, rough SVG outline. Each copy scales with the existing positions,
+  delays, 1050ms duration and easing; completion remains at 1900ms. The edge is
+  similar to the ink reveal, rather than the previous live noise calculation.
+  This removes the SVG noise filters and the older radius-attribute RAF loop.
+- Preview readiness waits for every hero image (including MUSUBI's wordmark)
+  and its fonts. It no longer starts unconditionally after 450ms. A failed decode
+  or a 1200ms readiness deadline opens the native case page with a settled handoff,
+  avoiding a late image joining or restarting the reveal. Cleanup invalidates
+  pending decode callbacks after cancellation or leaving the page.
+- All 41 tests and the static build pass. Offline SVG raster checks cover five
+  intermediate times for MUSUBI and NABORFOOD. Reveal coverage increases to the
+  full image, and the final RGBA pixels match the unmasked artwork. Images, CSS
+  placement and layout are unchanged.
+- Browser automation was unavailable for this follow-up. The offline renderer
+  verifies mask appearance and coverage; it does not measure Chrome frame rate
+  or establish performance on the user's device.
