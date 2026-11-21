@@ -40,11 +40,8 @@
   --intro-bg:var(--bg); --intro-ink:#201f20; --intro-copy:#595151;
   --intro-accent:#76434f; --intro-rule:#d5bfc7;
 }
-.case-hero-art--musubi{background:var(--intro-bg);box-shadow:0 0 0 12px var(--intro-bg);}
-.project-musubi .case-hero .case-title{background:var(--intro-bg);box-shadow:0 0 0 100px var(--intro-bg);}
 .case-hero-wordmark{display:block;width:clamp(240px,30vw,488px);max-width:100%;height:auto;}
 .case-hero-art--musubi .case-hero-scene{position:absolute;inset:0;width:100%;height:100%;object-position:center;}
-.case-hero-art--musubi img{mix-blend-mode:darken;}
 .case-hero-art--musubi .case-hero-scene,
 .case-hero-art--naborfood .case-hero-scene{transform:scale(1.3);transform-origin:right center;}
 

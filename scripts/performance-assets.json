@@ -1540,6 +1540,17 @@
       "height": 1254,
       "rasterCount": 1,
       "verification": "Identical dimensions and decoded pixels; fully transparent RGB ignored."
+    },
+    {
+      "source": "assets/images/case-intros/musubi-hero-composition.webp",
+      "optimized": "assets/optimized/musubi-hero-transparent.94bfe436acc1.webp",
+      "beforeBytes": 322572,
+      "afterBytes": 977104,
+      "width": 2400,
+      "height": 1800,
+      "rasterCount": 1,
+      "matteBackground": "#efeee9",
+      "verification": "Straight-alpha derivative at original dimensions. Every pixel composited on #efeee9 exactly matches the original darken blend; maximum RGB error 0. Original source retained."
     }
   ],
   "fonts": [

@@ -115,3 +115,25 @@ Gallery artwork reveal follow-up — 2026-11-21
 - Browser automation was unavailable for this follow-up. The offline renderer
   verifies mask appearance and coverage; it does not measure Chrome frame rate
   or establish performance on the user's device.
+
+Gallery white-strip and opening follow-up — 2026-11-21
+
+- Artwork now enters with one 850ms opacity/translation animation, starting at
+  120ms. This supersedes the SVG ink stamps above. The 900ms paper expansion and
+  the existing text/navigation sequence remain. Temporary layer hints are cleared
+  on completion, interruption and pagehide.
+- MUSUBI's source has an opaque light canvas. Its enlarged left edge extended
+  beyond the figure backdrop while masks isolated its `darken` blend, exposing a
+  light strip. A lossless, content-hashed alpha derivative removes the need for
+  that blend and its compensating background shadows. The original 2400×1800
+  artwork remains in place. All 4,320,000 derived pixels composited on #efeee9
+  match the former darken result exactly; five opacity stages produce no pixels
+  brighter than that background. The derivative is larger than the opaque source
+  (977,104 versus 322,572 bytes) to preserve exact displayed colors with alpha.
+- The gallery stays visible until the preview is decoded, instead of an empty
+  sheet starting after 180ms. The 3200ms loading deadline is canceled on readiness;
+  the 1900ms reveal then has its own 2400ms completion guard. Timeout handoffs are
+  settled so the native page does not restart the entrance. Late messages after
+  navigation are ignored.
+- All 42 tests and the static build pass. Browser automation remains unavailable;
+  pixel/compositing checks and timing/message tests do not establish Chrome FPS.

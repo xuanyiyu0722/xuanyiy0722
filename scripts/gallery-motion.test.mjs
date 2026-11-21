@@ -57,11 +57,11 @@ test('opening a project cancels queued gallery entry work before it can restart'
   f.root.classList.remove('page-arrival-active');f.observers.forEach(fn=>fn());await settle();f.c.paint();f.c.paint();
   assert.equal(f.all.length,0);assert.equal(f.c.frames.size,0);assert.equal(f.root.dataset.galleryEntry,'complete');
 });
-function inkFixture({elapsed=0,decoders=[],fonts=Promise.resolve(),start=true}={}) {
+function revealFixture({elapsed=0,decoders=[],fonts=Promise.resolve(),start=true}={}) {
   const c=clock(),all=[],messages=[],svgNodes=[];
   const root={classList:classes(),dataset:{}};
   const style={setProperty(){},removeProperty(){}};
-  const art={style};
+  const art={style,classList:classes(),animate:(keys,opts)=>animation('art',keys,opts,all)};
   const lines=Array.from({length:7},()=>({classList:classes(),animate:(keys,opts)=>animation('line',keys,opts,all)}));
   const hero={querySelector:()=>art,querySelectorAll:()=>lines};
   const group={children:[],append(node){this.children.push(node);}};
@@ -83,27 +83,27 @@ function inkFixture({elapsed=0,decoders=[],fonts=Promise.resolve(),start=true}={
   document.fire('DOMContentLoaded');
   const startPreview=()=>window.fire('message',{origin:'https://portfolio.test',source:parent,data:{type:'project-opening:start',token:'token-1',elapsed}});
   if(start)startPreview();
-  return {c,all,messages,svgNodes,root,window,startPreview};
+  return {c,all,messages,svgNodes,root,window,art,startPreview};
 }
-test('seven static ink stamps retain the reveal timing without live filters or a painting loop',()=>{
-  const f=inkFixture();const stamps=f.all.filter(a=>a.node==='g');
-  assert.equal(stamps.length,7);assert.equal(f.c.frames.size,0);
-  assert.deepEqual(stamps.map(a=>a.options.delay),[120,210,280,360,420,480,250]);
-  assert(stamps.every(a=>a.options.duration===1050&&a.keyframes[0].transform==='scale(0)'&&a.keyframes[1].transform==='scale(1)'));
-  const svg=f.svgNodes.find(node=>node.tag==='svg');
-  assert(!/<filter|feTurbulence|feDisplacementMap/.test(svg.innerHTML),'No live noise/displacement filter while large hero images animate');
-  assert.equal(f.svgNodes.filter(node=>node.tag==='use'&&node.attributes.get('href')==='#project-opening-ink-stamp').length,7);
+test('artwork reveals on one opacity/transform layer without SVG masks or a painting loop',()=>{
+  const f=revealFixture(),art=f.all.filter(a=>a.node==='art');
+  assert.equal(art.length,1);assert.equal(f.c.frames.size,0);assert.equal(f.svgNodes.length,0);
+  assert.equal(art[0].options.duration,850);assert.equal(art[0].options.delay,120);
+  assert.equal(art[0].keyframes[0].opacity,0);assert.equal(art[0].keyframes[1].opacity,1);
+  assert(art[0].keyframes.every(frame=>Object.keys(frame).every(key=>['opacity','transform'].includes(key))));
+  assert(f.art.classList.contains('project-opening-art'));
   f.c.timeout(1900);assert.equal(f.messages.at(-1).type,'project-opening:done');
+  assert(!f.art.classList.contains('project-opening-art'));
   assert(!f.root.classList.contains('project-opening-active'));assert.equal(f.c.timers.size,0);
 });
 test('late preview readiness seeks the shared clock instead of restarting text reveals',()=>{
-  const f=inkFixture({elapsed:1800});assert.equal(f.all.length,14);assert(f.all.every(a=>a.currentTime===1800));
+  const f=revealFixture({elapsed:1800});assert.equal(f.all.length,8);assert(f.all.every(a=>a.currentTime===1800));
   f.c.timeout(100);assert.equal(f.messages.at(-1).type,'project-opening:done');
 });
-test('ink cleanup cancels its completion timer and ignores foreign messages',()=>{
-  const f=inkFixture();assert.equal(f.c.frames.size,0);
+test('artwork cleanup cancels its completion timer and ignores foreign messages',()=>{
+  const f=revealFixture();assert.equal(f.c.frames.size,0);
   f.window.fire('pagehide');assert.equal(f.c.timers.size,0);
-  const g=inkFixture();const count=g.all.length;
+  const g=revealFixture();const count=g.all.length;
   g.window.fire('message',{origin:'https://foreign.test',source:g.window.parent,data:{type:'project-opening:start',token:'token-1',elapsed:0}});
   assert.equal(g.all.length,count);
 });
@@ -111,23 +111,23 @@ test('ink cleanup cancels its completion timer and ignores foreign messages',()=
 test('preview readiness waits for all hero images and fonts to decode',async()=>{
   let decode,wordmark,fonts;
   const imageReady=new Promise(resolve=>{decode=resolve;}),wordmarkReady=new Promise(resolve=>{wordmark=resolve;}),fontReady=new Promise(resolve=>{fonts=resolve;});
-  const f=inkFixture({start:false,decoders:[()=>imageReady,()=>wordmarkReady],fonts:fontReady});
+  const f=revealFixture({start:false,decoders:[()=>imageReady,()=>wordmarkReady],fonts:fontReady});
   await settle();assert.equal(f.messages.length,0);
   decode();await settle();assert.equal(f.messages.length,0,'The MUSUBI wordmark must also finish decoding');
   wordmark();await settle();assert.equal(f.messages.length,0,'Fonts also settle before the preview appears');
   fonts();await settle();assert.equal(f.messages.at(-1).type,'project-opening:ready');
-  f.startPreview();assert.equal(f.all.length,14);
+  f.startPreview();assert.equal(f.all.length,8);
 });
 
 test('slow or broken hero images request a native fallback instead of entering mid-reveal',async()=>{
   let decode;
   const imageReady=new Promise(resolve=>{decode=resolve;});
-  const f=inkFixture({start:false,decoders:[()=>imageReady]});
+  const f=revealFixture({start:false,decoders:[()=>imageReady]});
   f.c.timeout(1200);assert.equal(f.messages.at(-1).type,'project-opening:unavailable');
   assert(!f.root.classList.contains('project-opening-pending'));
   decode();await settle();assert.equal(f.messages.length,1,'A late decode cannot start another reveal');
   assert.equal(f.all.length,0);
-  const broken=inkFixture({start:false,decoders:[()=>Promise.reject(new Error('broken image'))]});
+  const broken=revealFixture({start:false,decoders:[()=>Promise.reject(new Error('broken image'))]});
   await settle();assert.equal(broken.messages.at(-1).type,'project-opening:unavailable');
   assert.equal(broken.all.length,0);
 });
@@ -135,7 +135,7 @@ test('slow or broken hero images request a native fallback instead of entering m
 test('leaving a pending preview prevents a late decode from restarting it',async()=>{
   let decode;
   const imageReady=new Promise(resolve=>{decode=resolve;});
-  const f=inkFixture({start:false,decoders:[()=>imageReady]});
+  const f=revealFixture({start:false,decoders:[()=>imageReady]});
   f.window.fire('pagehide');decode();await settle();
   assert.equal(f.messages.length,0);assert.equal(f.c.timers.size,0);assert.equal(f.all.length,0);
 });

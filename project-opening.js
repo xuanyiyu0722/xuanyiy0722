@@ -10,7 +10,7 @@
   const animations = new Set(), timers = new Set();
   const previews = new Map();
   const targetOrigin = location.origin === 'null' ? '*' : location.origin;
-  let opening = null, inkSVG, artwork, handoff, previewStarted = false, generation = 0;
+  let opening = null, artwork, handoff, previewStarted = false, generation = 0;
   const canAnimate = () => !reduce.matches && typeof Element.prototype.animate === 'function';
   const after = (callback,delay) => {
     const id = setTimeout(() => { timers.delete(id); callback(); },delay);
@@ -45,11 +45,9 @@
     opening?.sheet.remove();
     opening = null;
     if (artwork) {
-      artwork.style.removeProperty('mask');
-      artwork.style.removeProperty('-webkit-mask');
+      artwork.classList.remove('project-opening-art');
       artwork = null;
     }
-    inkSVG?.remove(); inkSVG=null;
     document.querySelectorAll('.project-opening-line').forEach(node => node.classList.remove('project-opening-line'));
     root.classList.remove('project-opening-pending','project-opening-active','project-opening-out','project-opening-settled');
     handoff = null;
@@ -114,8 +112,12 @@
     opening.frame.contentWindow.postMessage({type:'project-opening:start',token:opening.token,elapsed:Math.max(0,performance.now()-opening.startedAt)},targetOrigin);
   };
   const grow = () => {
-    if (!opening || opening.startedAt !== null) return;
+    if (!opening?.ready || opening.navigated || opening.startedAt !== null) return;
+    cancelTimer(opening.loadTimer);
     opening.startedAt=performance.now();
+    opening.sheet.style.visibility='visible';
+    // Loading time must not consume the reveal's own completion deadline.
+    after(() => navigate(true),2400);
     const session = opening;
     try {
       track(opening.sheet.animate([
@@ -127,7 +129,7 @@
         finishWhenReady();
       },() => {});
       startPreview();
-    } catch { navigate(false); }
+    } catch { navigate(true); }
   };
   const open = (event,link) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey ||
@@ -147,6 +149,7 @@
     const inset=[Math.max(0,rect.top),Math.max(0,innerWidth-rect.right),Math.max(0,innerHeight-rect.bottom),Math.max(0,rect.left)];
     const from=`inset(${inset.map(value => value.toFixed(2)+'px').join(' ')} round 3px)`;
     sheet.style.clipPath=from;
+    sheet.style.visibility='hidden';
     const frame=document.createElement('iframe');
     frame.className='project-opening-preview';
     frame.title='Opening project'; frame.tabIndex=-1;
@@ -155,7 +158,7 @@
     const url=new URL(link.href); url.hash='portfolio-preview='+token;
     if (!preview) frame.src=url.href;
     sheet.append(frame);
-    opening={sheet,frame,from,token,url:link.href,previewURL:null,startedAt:null,ready:false,childStarted:false,paperDone:false,childDone:false,navigated:false};
+    opening={sheet,frame,from,token,url:link.href,previewURL:null,startedAt:null,loadTimer:null,ready:false,childStarted:false,paperDone:false,childDone:false,navigated:false};
     document.body.append(sheet);
     root.classList.add('project-opening-out');
     const session = opening;
@@ -165,21 +168,8 @@
       session.previewURL = URL.createObjectURL(new Blob([html],{type:'text/html'}));
       frame.src = session.previewURL+'#portfolio-preview='+token;
     });
-    // Network work overlaps the first 180ms; slow loading always has a native-link exit.
-    after(grow,180);
-    after(() => navigate(false),3200);
-  };
-  const inkOutline = () => {
-    // Bake the rough edge once instead of evaluating turbulence/displacement
-    // inside the animated mask over large hero images.
-    const points=Array.from({length:96},(_,index) => {
-      const angle=index*Math.PI/48;
-      const radius=650+14*Math.sin(angle*7)+9*Math.sin(angle*13+1.1)+5*Math.sin(angle*23+.6);
-      return [Math.cos(angle)*radius,Math.sin(angle)*radius];
-    });
-    const middle=(a,b) => a.map((value,index)=>((value+b[index])/2).toFixed(2)).join(' ');
-    return 'M'+middle(points.at(-1),points[0])+points.map((point,index) =>
-      'Q'+point.map(value=>value.toFixed(2)).join(' ')+' '+middle(point,points[(index+1)%points.length])).join('')+'Z';
+    // Keep the gallery cover visible until the preview has decoded its first screen.
+    session.loadTimer=after(() => navigate(true),3200);
   };
   const reveal = (elapsed=0) => {
     const hero=document.querySelector('.case-hero');
@@ -209,39 +199,22 @@
         ],{duration:500,delay:950,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
         motion.currentTime = elapsed;
       }
-      inkSVG=document.createElementNS('http://www.w3.org/2000/svg','svg');
-      inkSVG.classList.add('project-opening-ink-defs'); inkSVG.setAttribute('aria-hidden','true');
-      inkSVG.innerHTML='<defs><path id="project-opening-ink-stamp" fill="white" d="'+inkOutline()+'"/><mask id="project-opening-ink" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox" x="-.2" y="-.2" width="1.4" height="1.4"><g transform="scale(.001)"><g></g></g></mask></defs>';
-      const group=inkSVG.querySelector('mask g g');
-      const points=[[230,380,0],[720,650,90],[480,120,160],[180,830,240],[880,300,300],[570,940,360],[520,530,130]];
-      const stamps=points.map(([x,y],index) => {
-        const position=document.createElementNS(inkSVG.namespaceURI,'g');
-        position.setAttribute('transform',`translate(${x} ${y}) rotate(${index*47})`);
-        const stamp=document.createElementNS(inkSVG.namespaceURI,'g');
-        stamp.setAttribute('transform','scale(0)');
-        const shape=document.createElementNS(inkSVG.namespaceURI,'use');
-        shape.setAttribute('href','#project-opening-ink-stamp');
-        stamp.append(shape); position.append(stamp); group.append(position);
-        return stamp;
-      });
-      document.body.append(inkSVG);
-      artwork.style.setProperty('mask','url(#project-opening-ink)');
-      artwork.style.setProperty('-webkit-mask','url(#project-opening-ink)');
+      // Opacity/transform keep the decoded artwork on one reusable layer.
+      // SVG masks isolated MUSUBI's blend backdrop and repainted every frame.
+      artwork.classList.add('project-opening-art');
+      const artMotion=track(artwork.animate([
+        {opacity:0,transform:'translateY(16px)'},
+        {opacity:1,transform:'translateY(0px)'}
+      ],{duration:850,delay:120,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'}));
+      artMotion.currentTime=elapsed;
       root.classList.remove('project-opening-pending');
-      stamps.forEach((stamp,index) => {
-        const motion=track(stamp.animate([{transform:'scale(0)'},{transform:'scale(1)'}], {
-          duration:1050,delay:120+points[index][2],
-          easing:'cubic-bezier(.3333333333,1,.6666666667,1)',fill:'both'
-        }));
-        motion.currentTime=elapsed;
-      });
       after(complete,Math.max(0,1900-elapsed));
     } catch { complete(); }
   };
   window.addEventListener('message',event => {
     if (event.origin !== location.origin || !event.data) return;
     const data=event.data;
-    if (opening && event.source === opening.frame.contentWindow && data.token === opening.token) {
+    if (opening && !opening.navigated && event.source === opening.frame.contentWindow && data.token === opening.token) {
       if (data.type === 'project-opening:ready') { opening.ready=true; grow(); startPreview(); }
       else if (data.type === 'project-opening:done' && opening.childStarted) { opening.childDone=true; finishWhenReady(); }
       else if (data.type === 'project-opening:unavailable') navigate(true);

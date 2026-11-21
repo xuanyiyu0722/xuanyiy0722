@@ -49,12 +49,13 @@ function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=
     location:{origin:'https://portfolio.test',hash:'',href:arrival ? destination : 'https://portfolio.test/gallery.html',assign:url=>navigations.push(url)},
     innerWidth:1440,innerHeight:900,performance:{now:()=>0},
     requestAnimationFrame:fn=>{frames.set(++serial,fn);return serial;},cancelAnimationFrame:id=>frames.delete(id),
-    setTimeout:fn=>{timers.set(++serial,fn);return serial;},clearTimeout:id=>timers.delete(id)
+    setTimeout:(fn,delay)=>{timers.set(++serial,{fn,delay});return serial;},clearTimeout:id=>timers.delete(id)
   };
   vm.runInNewContext(source,context);
   return { document,window,root,artwork,frames,nodes,navigations,storage,messages,effects,
     initialize:()=>document.fire('DOMContentLoaded'),
-    flushTimers() {const batch=[...timers.values()];timers.clear();batch.forEach(fn=>fn());},
+    flushTimers() {const batch=[...timers.values()];timers.clear();batch.forEach(timer=>timer.fn());},
+    timeout(delay) {for(const [id,timer] of [...timers])if(timer.delay===delay){timers.delete(id);timer.fn();}},
     paint(now) {const batch=[...frames.values()];frames.clear();batch.forEach(fn=>fn(now));},
     click(extra={}) {
       const cover={getBoundingClientRect:()=>({left:400,top:200,right:1000,bottom:650,width:600,height:450})};
@@ -97,16 +98,16 @@ test('modified clicks, new tabs and reduced motion keep native link behavior',()
   assert.deepEqual(blocked.navigations,[destination],'Storage failure must not break navigation');
 });
 
-test('arrival consumes its handoff and removes masks and pending frames after revealing',()=>{
+test('arrival consumes its handoff and removes its temporary artwork layer after revealing',()=>{
   const storage=new Map([['portfolio:project-opening',JSON.stringify({url:destination,createdAt:Date.now()})]]);
   const f=fixture({arrival:true,storage});
   assert.equal(f.root.classList.contains('project-opening-pending'),true);
   f.initialize();
-  assert.equal(f.frames.size,0,'The ink reveal needs no JavaScript painting loop');
-  assert(f.artwork.style.getPropertyValue('mask'));
+  assert.equal(f.frames.size,0,'The artwork reveal needs no JavaScript painting loop');
+  assert(f.artwork.classList.contains('project-opening-art'));
   f.flushTimers();
   assert.equal(f.frames.size,0);
-  assert.equal(f.artwork.style.getPropertyValue('mask'),'');
+  assert(!f.artwork.classList.contains('project-opening-art'));
   assert.equal(f.root.classList.contains('project-opening-active'),false);
   assert.equal(storage.has('portfolio:project-opening'),false);
 });
@@ -114,8 +115,12 @@ test('arrival consumes its handoff and removes masks and pending frames after re
 test('the live project starts inside a straight sheet before that sheet finishes expanding',async()=>{
   const f=fixture();f.initialize();f.click();
   const preview=f.nodes.find(node=>node.className==='project-opening-preview');
+  const sheet=f.nodes.find(node=>node.className==='project-opening-sheet');
+  assert.equal(sheet.style.visibility,'hidden','The gallery stays visible instead of showing a blank loading sheet');
+  assert.equal(f.effects.length,0,'Expansion waits for decoded images and fonts');
   const token=new URL(preview.src).hash.split('=')[1];
   f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{type:'project-opening:ready',token}});
+  assert.equal(sheet.style.visibility,'visible');
   assert.equal(f.messages[0].type,'project-opening:start');
   assert.equal(f.effects[0].keyframes[0].clipPath,'inset(200.00px 440.00px 250.00px 400.00px round 3px)');
   assert(f.effects[0].keyframes.every(frame=>frame.transform===undefined),'The cover rectangle stays upright');
@@ -126,6 +131,18 @@ test('the live project starts inside a straight sheet before that sheet finishes
   await Promise.resolve();await Promise.resolve();
   assert.deepEqual(f.navigations,[destination]);
   assert.equal(JSON.parse(f.storage.get('portfolio:project-opening')).settled,true,'The final page will not restart its entrance');
+});
+
+test('loading does not consume the prepared preview reveal deadline or restart a timed-out reveal',()=>{
+  const f=fixture();f.initialize();f.click();
+  const preview=f.nodes.find(node=>node.className==='project-opening-preview');
+  const token=new URL(preview.src).hash.split('=')[1];
+  const message=type=>f.window.fire('message',{origin:'https://portfolio.test',source:preview.contentWindow,data:{type,token}});
+  message('project-opening:ready');
+  f.timeout(3200);assert.deepEqual(f.navigations,[],'The original loading deadline is canceled after readiness');
+  f.timeout(2400);assert.deepEqual(f.navigations,[destination]);
+  assert.equal(JSON.parse(f.storage.get('portfolio:project-opening')).settled,true);
+  message('project-opening:ready');assert.equal(f.effects.length,1,'A late message cannot restart the sheet after navigation');
 });
 
 test('preview handoffs reject unrelated windows, origins, and tokens',()=>{
@@ -159,7 +176,7 @@ test('user input and slow initialization cannot leave case-study content hidden'
   const saved=()=>new Map([['portfolio:project-opening',JSON.stringify({url:destination,createdAt:Date.now()})]]);
   const interrupted=fixture({arrival:true,storage:saved()});interrupted.initialize();interrupted.window.fire('wheel');
   assert.equal(interrupted.frames.size,0);
-  assert.equal(interrupted.artwork.style.getPropertyValue('mask'),'');
+  assert(!interrupted.artwork.classList.contains('project-opening-art'));
   const delayed=fixture({arrival:true,storage:saved()});delayed.flushTimers();delayed.initialize();
   assert.equal(delayed.root.classList.contains('project-opening-pending'),false);
   assert.equal(delayed.frames.size,0);
