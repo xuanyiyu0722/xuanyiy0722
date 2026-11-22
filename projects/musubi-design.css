@@ -110,13 +110,24 @@
 .storyboard-transcript li::marker{color:#b27e93;font-size:17px;}
 .storyboard-transcript h3{font-family:var(--font-heading);font-weight:500;font-size:20px;line-height:1.3;margin:0 0 10px;}
 .storyboard-transcript p{font-size:15px;line-height:1.65;color:#61665b;margin:0;}
-.musubi-future-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
-.musubi-future-item{padding:30px;border:1px solid #ded7d5;border-radius:10px;background:#fffefc;}
-.musubi-future-item .musubi-part{font-size:10px;color:#aa7b57;margin-bottom:20px;}
-.musubi-future-item h3{font-family:var(--font-heading);font-size:23px;font-weight:500;line-height:1.3;color:#66343e;margin:0 0 16px;}
-.future-lead{font-size:16px;line-height:1.55;font-style:italic;color:#825667;margin:0 0 22px;}
-.musubi-future-item ul{padding:20px 0 0 18px;margin:0;border-top:2px solid #dfad6d;font-size:15px;line-height:1.65;color:#68615e;}
-.musubi-future-item li+li{margin-top:9px;}
+/* Cultural significance leads; three concrete enhancements follow it. */
+.musubi-future-significance{container-type:inline-size;overflow:hidden;border-radius:18px;background:#f7f6f5;}
+.musubi-future-banner{padding:clamp(24px,3.2cqi,44px);background:#4d2731;color:#faf6f1;}
+.musubi-future-kicker{margin:0 0 18px;color:#d8b3bf;font-size:14px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;}
+.musubi-future-banner h3{margin:0;font-size:clamp(27px,3.4cqi,44px);line-height:1.35;overflow-wrap:break-word;}
+.musubi-future-subtitle{margin:18px 0 0;font-size:clamp(18px,2.2cqi,26px);line-height:1.5;}
+.musubi-future-costumes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:#f7f6f5;}
+.musubi-future-costumes img{display:block;width:100%;height:auto;min-width:0;}
+.musubi-future-meaning{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding:clamp(24px,3.2cqi,44px);background:#a0677a;color:#fff;}
+.musubi-future-meaning article{min-width:0;}
+.musubi-future-meaning h4{margin:0 0 18px;font-size:clamp(20px,2.2cqi,26px);line-height:1.4;}
+.musubi-future-meaning p{margin:0;font-size:16px;line-height:1.8;}
+.musubi-future-roadmap{margin-top:40px;}
+.musubi-future-roadmap-heading{margin:0 0 22px;color:#4d2731;font-size:22px;line-height:1.4;}
+.musubi-future-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+.musubi-future-item{min-width:0;padding:28px;border:1px solid #ded7d5;border-radius:16px;background:#fffefc;}
+.musubi-future-item h4{margin:0 0 22px;color:#4d2731;font-size:23px;line-height:1.4;overflow-wrap:break-word;}
+.musubi-future-item p{margin:0;color:#68585e;font-size:16px;line-height:1.8;}
 @media(min-width:1600px){.wireframe-shot{flex-basis:200px;width:200px;}.musubi-future-item{padding:38px;}.musubi-future-grid{gap:30px;}}
 @media(max-width:1100px){
  .musubi-persona-layout{gap:30px;}
@@ -182,7 +193,6 @@
  .storyboard-transcript[open]{padding-bottom:0;}
  .musubi-future-grid{grid-template-columns:1fr;gap:20px;}
  .musubi-future-item{padding:26px 24px;}
- .musubi-future-item h3{font-size:22px;}
 }
 @media(max-width:380px){.persona-profile{grid-template-columns:1fr;}.persona-voice strong{font-size:34px;}.persona-preferences label{grid-template-columns:1fr;}.musubi-palette span{font-size:7px;}}
 
@@ -328,3 +338,37 @@
 
 .brainstorm-legend-flowers{display:inline-flex;align-items:center;gap:5px;flex:none;}
 .brainstorm-legend-flowers img{display:block;flex:none;width:19px;height:19px;object-fit:contain;}
+
+/* Interview quotations have their own readable row instead of a narrow third column. */
+.project-musubi .questionnaire-layout{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:36px 40px;}
+.project-musubi .questionnaire-voices{grid-column:1 / -1;grid-template-columns:minmax(0,1fr);gap:24px;padding-top:28px;border-top:1px solid var(--line);}
+.project-musubi .questionnaire-voices>h3{margin:0;color:#663741;font-size:24px;line-height:1.35;}
+.musubi-interview-quote{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:start;gap:22px;min-width:0;}
+.musubi-interview-avatar{display:block;width:64px;height:64px;margin-top:20px;border-radius:50%;object-fit:cover;}
+.project-musubi .questionnaire-voices blockquote{position:relative;min-width:0;margin:0;padding:24px 42px;background:#eee9e8;border-radius:12px;color:#44373b;font-size:16px;line-height:1.75;}
+.project-musubi .questionnaire-voices blockquote p{margin:0;font-size:inherit;line-height:inherit;overflow-wrap:break-word;}
+.project-musubi .questionnaire-voices blockquote::before,.project-musubi .questionnaire-voices blockquote::after{position:absolute;color:#663741;font-family:Georgia,serif;font-size:32px;font-weight:700;line-height:1;}
+.project-musubi .questionnaire-voices blockquote::before{content:"“";left:12px;top:11px;}
+.project-musubi .questionnaire-voices blockquote::after{content:"”";right:12px;bottom:7px;}
+.project-musubi .questionnaire-voices>.musubi-interview-takeaway{margin:0;padding:20px 24px;border-left:3px solid #b58092;background:#eee7e9;color:#68444f;font-size:16px;line-height:1.75;}
+@media(max-width:1100px){
+ .musubi-future-costumes{grid-template-columns:repeat(3,minmax(0,1fr));}
+ .musubi-future-meaning,.musubi-future-grid{grid-template-columns:minmax(0,1fr);gap:24px;}
+ .musubi-future-meaning h4{margin-bottom:10px;}
+}
+@media(max-width:640px){
+ .project-musubi .questionnaire-layout{grid-template-columns:minmax(0,1fr);gap:30px;}
+ .project-musubi .questionnaire-voices{gap:22px;padding-top:24px;}
+ .musubi-interview-quote{grid-template-columns:44px minmax(0,1fr);gap:12px;}
+ .musubi-interview-avatar{width:44px;height:44px;margin-top:18px;}
+ .project-musubi .questionnaire-voices blockquote{padding:22px 28px;}
+ .project-musubi .questionnaire-voices blockquote::before{left:7px;font-size:26px;}
+ .project-musubi .questionnaire-voices blockquote::after{right:7px;font-size:26px;}
+ .project-musubi .questionnaire-voices>.musubi-interview-takeaway{padding:18px;}
+ .musubi-future-significance{border-radius:14px;}
+ .musubi-future-banner,.musubi-future-meaning{padding:24px 20px;}
+ .musubi-future-banner h3{font-size:27px;}
+ .musubi-future-costumes{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .musubi-future-roadmap{margin-top:30px;}
+ .musubi-future-item{padding:24px;}
+}
