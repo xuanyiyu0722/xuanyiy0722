@@ -110,25 +110,48 @@
 .storyboard-transcript li::marker{color:#b27e93;font-size:17px;}
 .storyboard-transcript h3{font-family:var(--font-heading);font-weight:500;font-size:20px;line-height:1.3;margin:0 0 10px;}
 .storyboard-transcript p{font-size:15px;line-height:1.65;color:#61665b;margin:0;}
-/* Cultural significance leads; three concrete enhancements follow it. */
-.musubi-future-significance{container-type:inline-size;overflow:hidden;border-radius:18px;background:#f7f6f5;}
-.musubi-future-banner{padding:clamp(24px,3.2cqi,44px);background:#4d2731;color:#faf6f1;}
-.musubi-future-kicker{margin:0 0 18px;color:#d8b3bf;font-size:14px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;}
-.musubi-future-banner h3{margin:0;font-size:clamp(27px,3.4cqi,44px);line-height:1.35;overflow-wrap:break-word;}
-.musubi-future-subtitle{margin:18px 0 0;font-size:clamp(18px,2.2cqi,26px);line-height:1.5;}
-.musubi-future-costumes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:#f7f6f5;}
+/* The closing chapter follows the site's open layout and reading rhythm. */
+.musubi-future-enhancement{container:musubi-future / inline-size;}
+.musubi-future-vision{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(28px,4cqi,56px);align-items:center;}
+.musubi-future-banner{min-width:0;}
+.musubi-future-kicker{margin:0 0 18px;color:#8b6977;font-size:12px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;}
+.musubi-future-banner h3{max-width:22ch;margin:0;color:#66343e;font-size:clamp(28px,3.5cqi,40px);line-height:1.3;letter-spacing:-.02em;overflow-wrap:break-word;}
+.musubi-future-subtitle{max-width:30ch;margin:22px 0 0;color:#68615f;font-size:18px;line-height:1.65;}
+.musubi-future-costumes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:480px;min-width:0;justify-self:end;padding:12px;border-radius:12px;background:#f7f6f5;}
 .musubi-future-costumes img{display:block;width:100%;height:auto;min-width:0;}
-.musubi-future-meaning{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding:clamp(24px,3.2cqi,44px);background:#a0677a;color:#fff;}
-.musubi-future-meaning article{min-width:0;}
-.musubi-future-meaning h4{margin:0 0 18px;font-size:clamp(20px,2.2cqi,26px);line-height:1.4;}
-.musubi-future-meaning p{margin:0;font-size:16px;line-height:1.8;}
-.musubi-future-roadmap{margin-top:40px;}
-.musubi-future-roadmap-heading{margin:0 0 22px;color:#4d2731;font-size:22px;line-height:1.4;}
-.musubi-future-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
-.musubi-future-item{min-width:0;padding:28px;border:1px solid #ded7d5;border-radius:16px;background:#fffefc;}
-.musubi-future-item h4{margin:0 0 22px;color:#4d2731;font-size:23px;line-height:1.4;overflow-wrap:break-word;}
-.musubi-future-item p{margin:0;color:#68585e;font-size:16px;line-height:1.8;}
-@media(min-width:1600px){.wireframe-shot{flex-basis:200px;width:200px;}.musubi-future-item{padding:38px;}.musubi-future-grid{gap:30px;}}
+.musubi-future-meaning{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3.5cqi,48px);margin-top:40px;}
+.musubi-future-meaning article{min-width:0;padding-top:22px;border-top:2px solid #b27e93;}
+.musubi-future-meaning h4{margin:0 0 14px;color:#66343e;font-size:21px;line-height:1.4;}
+.musubi-future-meaning p{margin:0;color:#68615f;font-size:16px;line-height:1.75;}
+.musubi-future-roadmap{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.5fr);gap:clamp(28px,5cqi,72px);margin-top:56px;padding-top:40px;border-top:1px solid var(--line);}
+.musubi-future-roadmap-intro{min-width:0;}
+.musubi-future-roadmap-heading{max-width:16ch;margin:0;color:#66343e;font-size:28px;line-height:1.35;}
+.musubi-future-grid{display:grid;min-width:0;}
+.musubi-future-item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:18px;min-width:0;padding:24px 0;border-bottom:1px solid var(--line);}
+.musubi-future-item:first-child{padding-top:0;}
+.musubi-future-item:last-child{padding-bottom:0;border-bottom:0;}
+.musubi-future-number{padding-top:3px;color:#8b6977;font-family:var(--case-copy-family,var(--font-body));font-size:13px;line-height:1.5;}
+.musubi-future-item h4{margin:0 0 12px;color:#66343e;font-size:21px;line-height:1.4;overflow-wrap:break-word;}
+.musubi-future-item p{max-width:60ch;margin:0;color:#68615f;font-size:16px;line-height:1.75;}
+@container musubi-future (max-width:760px){
+ .musubi-future-vision{grid-template-columns:minmax(0,1fr);gap:28px;}
+ .musubi-future-banner h3{max-width:26ch;font-size:30px;}
+ .musubi-future-costumes{grid-template-columns:repeat(6,minmax(0,1fr));max-width:none;}
+ .musubi-future-meaning{grid-template-columns:minmax(0,1fr);gap:24px;margin-top:32px;}
+ .musubi-future-meaning article{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr);gap:24px;padding-top:20px;border-top-width:1px;}
+ .musubi-future-meaning h4{margin:0;}
+ .musubi-future-roadmap{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:40px;padding-top:30px;}
+ .musubi-future-roadmap-heading{max-width:none;font-size:26px;}
+}
+@container musubi-future (max-width:480px){
+ .musubi-future-kicker{margin-bottom:14px;}
+ .musubi-future-banner h3{font-size:28px;}
+ .musubi-future-subtitle{margin-top:18px;font-size:17px;}
+ .musubi-future-costumes{grid-template-columns:repeat(3,minmax(0,1fr));padding:8px;}
+ .musubi-future-meaning article{grid-template-columns:minmax(0,1fr);gap:10px;}
+ .musubi-future-item{grid-template-columns:24px minmax(0,1fr);gap:12px;}
+}
+@media(min-width:1600px){.wireframe-shot{flex-basis:200px;width:200px;}}
 @media(max-width:1100px){
  .musubi-persona-layout{gap:30px;}
  .persona-hero{grid-template-columns:1fr 1fr;gap:20px;}
@@ -191,8 +214,6 @@
  .revision-copy h3{font-size:24px;}
  .storyboard-transcript ol{grid-template-columns:1fr;gap:25px;}
  .storyboard-transcript[open]{padding-bottom:0;}
- .musubi-future-grid{grid-template-columns:1fr;gap:20px;}
- .musubi-future-item{padding:26px 24px;}
 }
 @media(max-width:380px){.persona-profile{grid-template-columns:1fr;}.persona-voice strong{font-size:34px;}.persona-preferences label{grid-template-columns:1fr;}.musubi-palette span{font-size:7px;}}
 
@@ -351,11 +372,6 @@
 .project-musubi .questionnaire-voices blockquote::before{content:"“";left:12px;top:11px;}
 .project-musubi .questionnaire-voices blockquote::after{content:"”";right:12px;bottom:7px;}
 .project-musubi .questionnaire-voices>.musubi-interview-takeaway{margin:0;padding:20px 24px;border-left:3px solid #b58092;background:#eee7e9;color:#68444f;font-size:16px;line-height:1.75;}
-@media(max-width:1100px){
- .musubi-future-costumes{grid-template-columns:repeat(3,minmax(0,1fr));}
- .musubi-future-meaning,.musubi-future-grid{grid-template-columns:minmax(0,1fr);gap:24px;}
- .musubi-future-meaning h4{margin-bottom:10px;}
-}
 @media(max-width:640px){
  .project-musubi .questionnaire-layout{grid-template-columns:minmax(0,1fr);gap:30px;}
  .project-musubi .questionnaire-voices{gap:22px;padding-top:24px;}
@@ -365,10 +381,4 @@
  .project-musubi .questionnaire-voices blockquote::before{left:7px;font-size:26px;}
  .project-musubi .questionnaire-voices blockquote::after{right:7px;font-size:26px;}
  .project-musubi .questionnaire-voices>.musubi-interview-takeaway{padding:18px;}
- .musubi-future-significance{border-radius:14px;}
- .musubi-future-banner,.musubi-future-meaning{padding:24px 20px;}
- .musubi-future-banner h3{font-size:27px;}
- .musubi-future-costumes{grid-template-columns:repeat(2,minmax(0,1fr));}
- .musubi-future-roadmap{margin-top:30px;}
- .musubi-future-item{padding:24px;}
 }
