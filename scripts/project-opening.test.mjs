@@ -13,7 +13,7 @@ function emitter(extra={}) {
     dispatchEvent(event) {this.fire(event.type,event);return true;}
   });
 }
-function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=false }={}) {
+function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=false,url=destination }={}) {
   const frames=new Map(),timers=new Map(),nodes=[],navigations=[],messages=[],effects=[];
   let serial=0;
   const node=() => {
@@ -46,7 +46,7 @@ function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=
   window.parent=window;
   const storageAPI={ getItem:key=>{if(blockedStorage)throw Error('Unavailable');return storage.get(key)||null;},setItem:(key,value)=>{if(blockedStorage)throw Error('Unavailable');storage.set(key,value);},removeItem:key=>storage.delete(key) };
   const context={document,window,Event,sessionStorage:storageAPI,matchMedia:()=>emitter({matches:reduced}),Element:class {animate() {}},URL,
-    location:{origin:'https://portfolio.test',hash:'',href:arrival ? destination : 'https://portfolio.test/gallery.html',assign:url=>navigations.push(url)},
+    location:{origin:'https://portfolio.test',hash:'',href:arrival ? url : 'https://portfolio.test/gallery.html',assign:url=>navigations.push(url)},
     innerWidth:1440,innerHeight:900,performance:{now:()=>0},
     requestAnimationFrame:fn=>{frames.set(++serial,fn);return serial;},cancelAnimationFrame:id=>frames.delete(id),
     setTimeout:(fn,delay)=>{timers.set(++serial,{fn,delay});return serial;},clearTimeout:id=>timers.delete(id)
@@ -59,7 +59,7 @@ function fixture({ arrival=false,reduced=false,storage=new Map(),blockedStorage=
     paint(now) {const batch=[...frames.values()];frames.clear();batch.forEach(fn=>fn(now));},
     click(extra={}) {
       const cover={getBoundingClientRect:()=>({left:400,top:200,right:1000,bottom:650,width:600,height:450})};
-      const link={href:destination,target:'',hasAttribute:()=>false,closest:()=>({querySelector:()=>cover})};
+      const link={href:url,target:'',hasAttribute:()=>false,closest:()=>({querySelector:()=>cover})};
       const event={button:0,target:{closest:()=>link},preventDefault(){this.defaultPrevented=true;},...extra};
       document.fire('click',event);
       return event;
@@ -111,6 +111,24 @@ test('arrival consumes its handoff and removes its temporary artwork layer after
   assert.equal(f.root.classList.contains('project-opening-active'),false);
   assert.equal(storage.has('portfolio:project-opening'),false);
 });
+
+for(const page of ['project-04.html','fridgekey.html','naborfood.html','project-03.html']){
+  test(`${page}: the completed preview stays settled before and after the destination initializes`,()=>{
+    const url='https://portfolio.test/projects/'+page;
+    const storage=new Map([['portfolio:project-opening',JSON.stringify({url,createdAt:Date.now(),settled:true})]]);
+    const f=fixture({arrival:true,url,storage});
+    assert(f.root.classList.contains('project-opening-settled'),'Set before any hero markup can paint');
+    assert.equal(storage.has('portfolio:project-opening'),false,'Consume the handoff once');
+    f.initialize();
+    assert(f.root.classList.contains('project-opening-settled'),'DOMContentLoaded cleanup must preserve the settled hero');
+    assert.equal(f.effects.length,0,'No second opening animation on the real page');
+    f.window.fire('pagehide');f.window.fire('pageshow',{persisted:true});
+    assert(f.root.classList.contains('project-opening-settled'),'History restoration must not re-arm the hero entrance');
+    assert.equal(f.effects.length,0);
+    const direct=fixture({arrival:true,url,storage});direct.initialize();
+    assert(!direct.root.classList.contains('project-opening-settled'),'A later direct visit keeps its normal entrance');
+  });
+}
 
 test('the live project starts inside a straight sheet before that sheet finishes expanding',async()=>{
   const f=fixture();f.initialize();f.click();

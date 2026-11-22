@@ -57,6 +57,43 @@ test('opening a project cancels queued gallery entry work before it can restart'
   f.root.classList.remove('page-arrival-active');f.observers.forEach(fn=>fn());await settle();f.c.paint();f.c.paint();
   assert.equal(f.all.length,0);assert.equal(f.c.frames.size,0);assert.equal(f.root.dataset.galleryEntry,'complete');
 });
+
+function studyFadeFixture(state='direct') {
+  const observed=[],motions=[];
+  let notify;
+  const root={classList:classes(...(state==='direct'?[]:['project-opening-'+state]))};
+  const node=kind=>({kind,children:[],classList:classes(),matches:()=>false,hasAttribute:()=>false,
+    closest:()=>null,querySelector:()=>null,getBoundingClientRect:()=>({width:600,height:180}),
+    animate:(keys,opts)=>animation(kind,keys,opts,motions)});
+  const hero=node('hero'),body=node('chapter');hero.classList.add('reveal');
+  const chapters=[{id:'project-overview',children:[hero]},{id:'background',children:[body]}];
+  const document=emitter({documentElement:root,body:{classList:classes('project-page')},
+    querySelectorAll:selector=>selector==='#project-overview, [data-toc-section]'?chapters:
+      selector==='.project-page .reveal'?[hero]:[]});
+  class Observer {constructor(callback){notify=callback;}observe(target){observed.push(target);}disconnect(){}}
+  const window=emitter({IntersectionObserver:Observer});
+  vm.runInNewContext(source('projects/project-fade-up.js'),{document,window,matchMedia:()=>emitter({matches:false}),
+    Element:{prototype:{animate(){}}},IntersectionObserver:Observer,innerHeight:700,innerWidth:1440,
+    getComputedStyle:()=>({display:'block'})});
+  return {observed,motions,hero,body,show:()=>notify(observed.map(target=>({target,isIntersecting:true})))};
+}
+
+test('case-study scroll reveals skip an opening-owned hero while retaining chapter entrances',()=>{
+  for(const state of ['settled','pending']){
+    const f=studyFadeFixture(state);
+    assert(!f.observed.includes(f.hero),'The completed preview must not get another hero fade');
+    assert(!f.hero.classList.contains('reveal'));assert(!f.hero.classList.contains('fade-up-in'));
+    assert(f.observed.includes(f.body));f.show();
+    assert.deepEqual(f.motions.map(motion=>motion.node),['chapter']);
+  }
+});
+
+test('direct case-study visits keep their usual hero and chapter entrances',()=>{
+  const f=studyFadeFixture();
+  assert(f.observed.includes(f.hero));assert(f.observed.includes(f.body));
+  f.show();assert.deepEqual(f.motions.map(motion=>motion.node),['hero','chapter']);
+});
+
 function revealFixture({elapsed=0,decoders=[],fonts=Promise.resolve(),start=true}={}) {
   const c=clock(),all=[],messages=[],svgNodes=[];
   const root={classList:classes(),dataset:{}};

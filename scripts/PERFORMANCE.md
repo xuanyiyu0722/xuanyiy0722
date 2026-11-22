@@ -137,3 +137,20 @@ Gallery white-strip and opening follow-up — 2026-11-21
   navigation are ignored.
 - All 42 tests and the static build pass. Browser automation remains unavailable;
   pixel/compositing checks and timing/message tests do not establish Chrome FPS.
+
+Gallery destination handoff follow-up — 2026-11-21
+
+- Completed preview arrivals now retain their settled marker for the destination
+  document's lifetime. Head-loaded CSS keeps the hero's legacy `.reveal` and
+  `.fade-up-in` wrappers visible without a translation or transition before body
+  scripts initialize. Cleanup no longer removes that protection. Lower chapters
+  retain their scroll entrances, and the consumed handoff does not affect a later
+  direct visit or reload.
+- The fixed preview sheet uses `100vw`, matching the destination viewport instead
+  of fitting inside the gallery's reserved scrollbar gutter. Its own document
+  still reserves a vertical scrollbar, so it no longer loses a second gutter of
+  content width or changes responsive breakpoints at navigation.
+- Regression checks cover completed arrivals for all four case URLs, history
+  restoration, normal direct entry and the real chapter-reveal initializer.
+  All 48 tests and the static build pass. Browser automation remains unavailable;
+  these checks do not measure a real browser's paint timing or frame rate.

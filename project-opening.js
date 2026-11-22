@@ -49,7 +49,9 @@
       artwork = null;
     }
     document.querySelectorAll('.project-opening-line').forEach(node => node.classList.remove('project-opening-line'));
-    root.classList.remove('project-opening-pending','project-opening-active','project-opening-out','project-opening-settled');
+    // A completed arrival stays settled for this document's lifetime. Clearing
+    // it here lets later entrance/observer setup conceal the hero a second time.
+    root.classList.remove('project-opening-pending','project-opening-active','project-opening-out');
     handoff = null;
     if (wasOpening && event?.type !== 'pagehide' && event?.type !== 'beforeprint') window.dispatchEvent(new Event('project-opening-end'));
   };
