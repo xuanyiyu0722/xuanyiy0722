@@ -53,8 +53,8 @@
 .fk-value-reflection dt{margin:0 0 12px;color:#1b2658;font-size:13px;font-weight:600;line-height:1.5;}
 .fk-value-reflection dd{margin:0;color:#566282;font-size:15px;line-height:1.8;}
 .fk-value-reflection strong{font-weight:600;color:#35466f;}
-.fk-value-statement{margin:44px 0 0;padding:24px 0 0;border-top:2px solid #aebdef;color:#1b2658;}
-.fk-value-statement p{margin:0;font-size:clamp(23px,2.8cqi,34px);font-weight:600;line-height:1.4;letter-spacing:-.02em;}
+.fk-project-value .fk-value-statement{max-width:900px;margin:64px 0 8px;padding:0;border:0;background:transparent;color:#1b2658;}
+.fk-project-value .fk-value-statement p{max-width:24ch;margin:0;font-family:var(--case-heading-family,var(--font-heading));font-size:clamp(32px,5.6cqi,64px);font-weight:700;line-height:1.15;letter-spacing:-.035em;text-wrap:balance;}
 @container fk-value (max-width:850px){
  .fk-context-grid{grid-template-columns:minmax(0,1fr);gap:30px;}
  .fk-context-visual{max-width:680px;}
@@ -87,5 +87,5 @@
  .fk-value-table td:nth-child(3),.fk-value-table td:nth-child(4){grid-column:auto;}
  .fk-value-reflection{grid-template-columns:minmax(0,1fr);gap:22px;}
  .fk-value-theory{margin-top:34px;}
- .fk-value-statement{margin-top:32px;}
+ .fk-project-value .fk-value-statement{margin-top:44px;}
 }
