@@ -259,7 +259,9 @@
 .musubi-market-art{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(320px,.92fr);gap:clamp(24px,3.2vw,54px);margin-top:18px;align-items:start;}
 .furisode-pattern{background:transparent;padding:0;}
 .furisode-pattern img{width:100%;}
-.furisode-pattern figcaption{color:#525154;margin-top:7px;text-align:right;}
+.furisode-pattern figcaption{color:#525154;margin:0 0 16px;text-align:left;font-size:13px;line-height:1.5;}
+.furisode-pattern figcaption strong{display:block;color:#543844;font-size:14px;font-weight:700;}
+.furisode-pattern figcaption span{display:block;margin-top:4px;}
 .musubi-market-photos{position:relative;display:block;min-height:min(35vw,490px);}
 .musubi-market-photos a{position:absolute;z-index:1;box-shadow:none;}
 .musubi-market-photos a:first-child{left:0;top:0;width:61%;}
