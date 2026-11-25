@@ -40,3 +40,11 @@
 #cost>.fk-source{margin-top:26px;padding-top:14px;}
 @media(max-width:900px){#cost .fk-cost-optimization>div{row-gap:20px;}}
 @media(max-width:600px){#cost{padding-block:38px;}#cost .fk-unit-cost{padding-block:24px;}}
+
+/* The final target is the focal point of the cost-reduction path. */
+#cost .fk-cost-target::before{width:23px;height:23px;margin-top:-3px;border-width:3px;}
+#cost .fk-cost-path .fk-cost-target-label{max-width:22ch;color:#dce4ff;font-size:clamp(14px,1.45vw,20px);font-weight:600;font-style:italic;line-height:1.4;}
+#cost .fk-cost-target-amount{display:flex;align-items:center;justify-content:center;gap:8px;max-width:100%;}
+#cost .fk-cost-target-amount strong{margin-top:10px;font-size:clamp(26px,3vw,42px);font-weight:700;line-height:1.2;white-space:nowrap;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;}
+#cost .fk-cost-target-arrow{display:block;flex:none;width:58px;height:38px;color:#cbd6ff;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:600px){#cost .fk-cost-target-arrow{display:none;}}
