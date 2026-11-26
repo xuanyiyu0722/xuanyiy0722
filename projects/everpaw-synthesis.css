@@ -185,3 +185,21 @@
  .ep-map-progress{gap:8px;}
 }
 @media(prefers-reduced-motion:reduce){.is-stage-focused .ep-journey-scroll{scroll-behavior:auto;}}
+
+/* Keep the supplied market illustration beside the introduction. */
+.ep-market-intro{display:grid;grid-template-columns:minmax(0,1fr) clamp(170px,19vw,260px);gap:clamp(24px,3vw,44px);align-items:center;}
+.ep-background-editorial .ep-market-intro>p{font-size:18px;line-height:1.75;margin:0;}
+.ep-market-intro strong{color:#8b5340;font-weight:700;}
+.ep-market-intro>img{display:block;width:100%;height:auto;}
+.ep-background-editorial .ep-market-chart figcaption{font-size:clamp(17px,1.6vw,22px);}
+/* Metric sizes belong to the number, independently of its explanatory copy. */
+.ep-background-editorial .ep-grief-evidence li>strong{font-size:clamp(40px,4.3vw,56px);font-weight:600;line-height:1.1;}
+.ep-background-editorial .ep-grief-evidence li>span strong{font:inherit;font-weight:700;color:var(--ep-brown);}
+.project-everpaw .ep-response-count>strong{font-size:clamp(64px,7vw,88px);}
+.project-everpaw :is(.ep-grief-evidence li>strong,.ep-response-count>strong,.ep-donut>span,.ep-family-stat p:first-child>strong) .metric-counter,
+.project-everpaw :is(.ep-grief-evidence li>strong,.ep-response-count>strong,.ep-donut>span,.ep-family-stat p:first-child>strong) .metric-counter>span{font:inherit;color:inherit;letter-spacing:inherit;}
+.ep-background-editorial .ep-donut .metric-counter>:is(.metric-counter-measure,.metric-counter-value){position:static;}
+.ep-background-editorial .ep-donut .metric-counter-sr{position:absolute;}
+@media(max-width:1000px){.ep-background-editorial .ep-grief-evidence li{grid-template-columns:128px minmax(0,1fr);gap:16px;}}
+@media(max-width:640px){.ep-market-intro{grid-template-columns:minmax(0,1fr) 115px;gap:16px;}.ep-background-editorial .ep-market-intro>p{font-size:16px;line-height:1.75;}}
+@media(max-width:480px){.ep-market-intro{grid-template-columns:1fr;gap:20px;}.ep-market-intro>img{width:170px;justify-self:center;}.ep-background-editorial .ep-grief-evidence li{grid-template-columns:1fr;gap:8px;}}

@@ -135,7 +135,8 @@
       '.personalized-values > span:not(.growth-arrow)',
       '.fk-workplace > strong', '.fk-survey-meta > strong', '.fk-result > strong',
       '.ep-market-total > strong', '.ep-spending-grid > div > p', '.ep-donut > span',
-      '.ep-grief-evidence strong', '.ep-response-count > strong', '.ep-key-score',
+      '.ep-family-stat p:first-child > strong', '.ep-grief-evidence li > strong',
+      '.ep-response-count > strong', '.ep-key-score',
       '.bjd-market-stats dd'
     ].join(',');
     const researchSections = '#market, #background, #questionnaire, #bjd-market-data';
