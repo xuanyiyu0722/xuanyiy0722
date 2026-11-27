@@ -10,12 +10,18 @@
   aspect-ratio: 1820 / 860;
 }
 
+.fk-final-views {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+  align-items:start;
+}
 .fk-final-render .fk-photo-crop {
-  aspect-ratio:auto;
-  padding:clamp(16px,3vw,36px);
+  aspect-ratio:5 / 4;
+  padding:clamp(10px,1.5vw,20px);
 }
 .fk-final-render img {
-  height:auto;
+  height:100%;
   object-fit:contain;
 }
 
@@ -62,6 +68,10 @@
 }
 
 @media (max-width: 600px) {
+  .fk-final-views {
+    grid-template-columns:1fr;
+  }
+
   .fk-modeling-views {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
